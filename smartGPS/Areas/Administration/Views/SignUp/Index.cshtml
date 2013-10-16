@@ -1,0 +1,58 @@
+﻿@model smartGPS.Areas.Administration.Models.SignUpModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<legend>Sign up to smartGPS</legend>
+
+@using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+     <div class="control-group">
+        @Html.LabelFor(m => m.username, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.username, new { placeholder = "Username"})
+            @Html.ValidationMessageFor(m => m.username)
+        </div>
+     </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.password, new { @class="control-label"})
+        <div class="controls">
+            @Html.PasswordFor(m => m.password, new { placeholder = "Password"})
+            @Html.ValidationMessageFor(m => m.password)
+        </div>
+     </div>
+
+    <div class="control-group">
+        @Html.LabelFor(m => m.confirmPassword, new { @class="control-label"})
+        <div class="controls">
+            @Html.PasswordFor(m => m.confirmPassword, new { placeholder = "Confirm password"})
+            @Html.ValidationMessageFor(m => m.confirmPassword)
+        </div>
+     </div>
+    
+     <div class="control-group">
+        @Html.LabelFor(m => m.name, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.name, new { placeholder = "Name"})
+            @Html.ValidationMessageFor(m => m.name)
+        </div>
+     </div>
+    
+     <div class="control-group">
+        @Html.LabelFor(m => m.surname, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.surname, new { placeholder = "Surname"})
+            @Html.ValidationMessageFor(m => m.surname)
+        </div>
+     </div>
+    
+     <div class="control-group">
+       <div class="controls">
+           <button class="btn btn-large btn-primary" type="submit">Sign up</button>
+        </div>
+    </div>
+}

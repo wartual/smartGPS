@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="smartgpsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="smartgpsEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="users" EntityType="smartgpsModel.users" />
+  </EntityContainer>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Surname" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+    <Property Type="DateTime" Name="DateLastLogin" Nullable="false" />
+  </EntityType>
+</Schema>

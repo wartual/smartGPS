@@ -1,0 +1,9 @@
+C:\Users\zeljkoplesac\Documents\Visual Studio 2012\Projects\smartGPS\smartGPS.DAO\obj\Debug\smartGPS.DAO.csprojResolveAssemblyReference.cache
+C:\Users\zeljkoplesac\Documents\Visual Studio 2012\Projects\smartGPS\smartGPS.DAO\bin\smartGPS.DAO.dll
+C:\Users\zeljkoplesac\Documents\Visual Studio 2012\Projects\smartGPS\smartGPS.DAO\bin\smartGPS.DAO.pdb
+C:\Users\zeljkoplesac\Documents\Visual Studio 2012\Projects\smartGPS\smartGPS.DAO\bin\smartGPS.Persistence.dll
+C:\Users\zeljkoplesac\Documents\Visual Studio 2012\Projects\smartGPS\smartGPS.DAO\bin\EntityFramework.dll
+C:\Users\zeljkoplesac\Documents\Visual Studio 2012\Projects\smartGPS\smartGPS.DAO\bin\smartGPS.Persistence.pdb
+C:\Users\zeljkoplesac\Documents\Visual Studio 2012\Projects\smartGPS\smartGPS.DAO\bin\EntityFramework.xml
+C:\Users\zeljkoplesac\Documents\Visual Studio 2012\Projects\smartGPS\smartGPS.DAO\obj\Debug\smartGPS.DAO.dll
+C:\Users\zeljkoplesac\Documents\Visual Studio 2012\Projects\smartGPS\smartGPS.DAO\obj\Debug\smartGPS.DAO.pdb
