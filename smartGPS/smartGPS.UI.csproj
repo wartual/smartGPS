@@ -129,11 +129,14 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\SignInController.cs" />
     <Compile Include="Areas\Administration\Controllers\SignUpController.cs" />
+    <Compile Include="Areas\Administration\Models\Mapping.cs" />
     <Compile Include="Areas\Administration\Models\SignInModel.cs" />
     <Compile Include="Areas\Administration\Models\SignUpModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
+    <Compile Include="Areas\Dashboard\Models\ProfileModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Custom\smartGPSAuthorize.cs" />
     <Compile Include="Global.asax.cs">
@@ -217,6 +220,7 @@
     <Content Include="Areas\Dashboard\Views\Web.config" />
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Dashboard\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Profile\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -253,7 +257,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +266,10 @@
     <ProjectReference Include="..\smartGPS.BusinessLogic\smartGPS.BusinessLogic.csproj">
       <Project>{a4abb0a7-37cf-4138-bf13-1c148504e551}</Project>
       <Name>smartGPS.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\smartGPS.Persistence\smartGPS.Persistence.csproj">
+      <Project>{40f74a83-186d-4efb-bdc6-8689555fa752}</Project>
+      <Name>smartGPS.Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

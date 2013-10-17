@@ -25,6 +25,7 @@ namespace smartGPS.Persistence
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<profile> profile { get; set; }
         public DbSet<users> users { get; set; }
     }
 }

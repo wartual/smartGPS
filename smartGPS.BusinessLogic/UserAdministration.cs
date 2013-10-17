@@ -10,6 +10,8 @@ namespace smartGPS.BusinessLogic
 {
     public class UserAdministration
     {
+        #region SignIn/Signup/SignOut
+
         // return 1 if success, 2 if username is taken, 0 if error on database
         public static int signUp(String username, String password, String name, String surname)
         {
@@ -60,5 +62,16 @@ namespace smartGPS.BusinessLogic
             // sign out using forms authentication
             FormsAuthentication.SignOut();
         }
+
+        #endregion
+
+        # region Profile
+
+        public static profile getProfile(String userId)
+        {
+            return UsersDAO.getProfileByUserId(userId);
+        }
+
+        #endregion
     }
 }

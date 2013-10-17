@@ -1,0 +1,74 @@
+﻿@model smartGPS.Areas.Dashboard.Models.ProfileModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+<legend>My profile</legend>
+
+@using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+
+     <div class="control-group">
+        @Html.LabelFor(m => m.username, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.username, new { placeholder = "Username"})
+            @Html.ValidationMessageFor(m => m.username)
+        </div>
+     </div>
+    
+     <div class="control-group">
+        @Html.LabelFor(m => m.name, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.name, new { placeholder = "Name"})
+            @Html.ValidationMessageFor(m => m.name)
+        </div>
+     </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.surname, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.surname, new { placeholder = "Surnam"})
+            @Html.ValidationMessageFor(m => m.surname)
+        </div>
+     </div>
+
+    <div class="control-group">
+        @Html.LabelFor(m => m.email, new { @class="control-label"})
+        <div class="controls">
+            @Html.PasswordFor(m => m.email, new { placeholder = "Email"})
+            @Html.ValidationMessageFor(m => m.email)
+        </div>
+     </div>
+    
+     <div class="control-group">
+        @Html.LabelFor(m => m.dateOfBirth, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.dateOfBirth, new { placeholder = "Date of birth"})
+            @Html.ValidationMessageFor(m => m.dateOfBirth)
+        </div>
+     </div>
+    
+     <div class="control-group">
+        @Html.LabelFor(m => m.address, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.address, new { placeholder = "Address"})
+            @Html.ValidationMessageFor(m => m.address)
+        </div>
+     </div>
+    
+     <div class="control-group">
+        @Html.LabelFor(m => m.postalOffice, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.postalOffice, new { placeholder = "Postal office"})
+            @Html.ValidationMessageFor(m => m.postalOffice)
+        </div>
+     </div>
+    
+     <div class="control-group">
+       <div class="controls">
+           <button class="btn btn-large btn-primary" type="submit">Sign up</button>
+        </div>
+    </div>
+}
