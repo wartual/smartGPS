@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using smartGPS.Areas.Administration.Models;
 using smartGPS.Areas.Dashboard.Models;
-using smartGPS.BusinessLogic;
-using smartGPS.Persistence;
+using smartGPS.Business;
+using smartGPS.Custom;
+using smartGPS.Persistance;
 
 namespace smartGPS.Areas.Dashboard.Controllers
 {
+    [smartGPSAuthorize]
     public class ProfileController : Controller
     {
         //

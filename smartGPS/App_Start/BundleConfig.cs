@@ -14,10 +14,6 @@ namespace smartGPS
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                   "~/Scripts/bootstrap.min.js")
-            );
-
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
@@ -42,10 +38,6 @@ namespace smartGPS
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
-
-             bundles.Add(new StyleBundle("~/Content/themes/bootstrap/css").Include(
-                         "~/Content/themes/bootstrap/bootstrap-responsive.min.css",
-                         "~/Content/themes/bootstrap/bootstrap.min.css"));
         }
     }
 }

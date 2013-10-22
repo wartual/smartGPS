@@ -1,0 +1,6 @@
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\bin\smartGPS.Persistance.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\bin\smartGPS.Persistance.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\bin\EntityFramework.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\bin\EntityFramework.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\obj\Debug\smartGPS.Persistance.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\obj\Debug\smartGPS.Persistance.pdb

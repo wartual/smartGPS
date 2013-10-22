@@ -15,6 +15,7 @@ namespace smartGPS.Areas.Dashboard.Models
         public String surname { get; set; }
 
         [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
         public String email { get; set; }
 
         [Display(Name = "Username")]
@@ -24,6 +25,7 @@ namespace smartGPS.Areas.Dashboard.Models
         public String password { get; set; }
 
         [Display(Name = "Date of birth")]
+        [DataType(DataType.Date)]
         public DateTime? dateOfBirth { get; set; }
 
         [Display(Name = "Address")]

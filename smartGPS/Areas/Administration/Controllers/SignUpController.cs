@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using smartGPS.Areas.Administration.Models;
-using smartGPS.BusinessLogic;
+using smartGPS.Business;
 
 namespace smartGPS.Areas.Administration.Controllers
 {

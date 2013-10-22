@@ -1,4 +1,4 @@
-﻿@model smartGPS.Models.Administration.SignInModel
+﻿@model smartGPS.Areas.Administration.Models.SignInModel
 
 @{
     ViewBag.Title = "Sign in";
@@ -67,7 +67,7 @@
 
     <div class="container">
 
-
+        @Html.ValidationSummary(true)
         
         @using (Html.BeginForm("Index", "SignIn", FormMethod.Post, new { @class = "form-signin"}))
         {

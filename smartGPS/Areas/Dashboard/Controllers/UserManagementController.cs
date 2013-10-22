@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using smartGPS.BusinessLogic;
+using smartGPS.Business;
 using smartGPS.Custom;
 
 namespace smartGPS.Areas.Dashboard.Controllers
@@ -24,5 +24,6 @@ namespace smartGPS.Areas.Dashboard.Controllers
             UserAdministration.signOut();
             return RedirectToAction("Index", "Home", new { area = "" });
         }
+
     }
 }

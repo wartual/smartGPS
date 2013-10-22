@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using smartGPS.BusinessLogic;
-using smartGPS.Models.Administration;
+using smartGPS.Areas.Administration.Models;
+using smartGPS.Business;
 
 namespace smartGPS.Areas.Administration.Controllers
 {

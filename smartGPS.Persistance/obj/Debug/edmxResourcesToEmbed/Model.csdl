@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="smartgpsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="smartgpsEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="profile" EntityType="smartgpsModel.profile" />
+    <EntitySet Name="users" EntityType="smartgpsModel.users" />
+    <AssociationSet Name="fk_profile_users" Association="smartgpsModel.fk_profile_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="profile" EntitySet="profile" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="profile">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="users_Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="DateOfBirth" Type="DateTime" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Address" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="PostalOffice" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Country" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="users_Id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="users" Relationship="smartgpsModel.fk_profile_users" FromRole="profile" ToRole="users" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+    <Property Name="DateLastLogin" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="profile" Relationship="smartgpsModel.fk_profile_users" FromRole="users" ToRole="profile" />
+  </EntityType>
+  <Association Name="fk_profile_users">
+    <End Role="users" Type="smartgpsModel.users" Multiplicity="1" />
+    <End Role="profile" Type="smartgpsModel.profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="profile">
+        <PropertyRef Name="users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

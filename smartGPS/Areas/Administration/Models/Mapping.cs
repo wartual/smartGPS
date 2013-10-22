@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using smartGPS.Areas.Dashboard.Models;
-using smartGPS.Persistence;
+using smartGPS.Persistance;
 
 namespace smartGPS.Areas.Administration.Models
 {

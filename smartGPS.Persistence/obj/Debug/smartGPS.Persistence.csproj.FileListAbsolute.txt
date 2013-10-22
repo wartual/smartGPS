@@ -1,6 +1,0 @@
-C:\Users\zeljkoplesac\documents\visual studio 2012\Projects\smartGPS\smartGPS.Persistence\bin\smartGPS.Persistence.dll
-C:\Users\zeljkoplesac\documents\visual studio 2012\Projects\smartGPS\smartGPS.Persistence\bin\smartGPS.Persistence.pdb
-C:\Users\zeljkoplesac\documents\visual studio 2012\Projects\smartGPS\smartGPS.Persistence\bin\EntityFramework.dll
-C:\Users\zeljkoplesac\documents\visual studio 2012\Projects\smartGPS\smartGPS.Persistence\bin\EntityFramework.xml
-C:\Users\zeljkoplesac\documents\visual studio 2012\Projects\smartGPS\smartGPS.Persistence\obj\Debug\smartGPS.Persistence.dll
-C:\Users\zeljkoplesac\documents\visual studio 2012\Projects\smartGPS\smartGPS.Persistence\obj\Debug\smartGPS.Persistence.pdb

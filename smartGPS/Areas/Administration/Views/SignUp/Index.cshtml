@@ -7,7 +7,14 @@
 
 <legend>Sign up to smartGPS</legend>
 
-@using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @class = "form-horizontal" }))
+<ul class="nav nav-tabs">
+    <li><a href="#internal-login" data-toggle="tab">Sign up</a></li>
+     <li><a href="#external-login" data-toggle="tab">Other accounts</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="internal-login">
+         @using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.ValidationSummary(true)
      <div class="control-group">
@@ -56,3 +63,7 @@
         </div>
     </div>
 }
+  </div>
+  <div class="tab-pane" id="external-login"></div>
+</div>
+
