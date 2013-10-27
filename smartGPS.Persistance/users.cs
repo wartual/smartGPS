@@ -24,6 +24,8 @@ namespace smartGPS.Persistance
         public string Password { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateLastLogin { get; set; }
+        public string FacebookId { get; set; }
+        public string TwitterId { get; set; }
     
         public virtual ICollection<profile> profile { get; set; }
     }

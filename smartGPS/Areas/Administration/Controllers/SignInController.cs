@@ -97,6 +97,7 @@ namespace smartGPS.Areas.Administration.Controllers
         {
             string provider = null;
             string providerUserId = null;
+            int result;
 
             if (User.Identity.IsAuthenticated || !OAuthWebSecurity.TryDeserializeProviderUserId(model.ExternalLoginData, out provider, out providerUserId))
             {
@@ -106,8 +107,14 @@ namespace smartGPS.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-
-                int result = UserAdministration.signUp(model.UserName, providerUserId, "", "", true);
+                if(provider.ToLower().Equals("facebook"))
+                {
+                    result = UserAdministration.signUp(model.UserName, "external", "", "", true, providerUserId, null);
+                }
+                else
+                {
+                    result = UserAdministration.signUp(model.UserName, "external", "", "", true, null, providerUserId);
+                }
                 // model is valid, try to sign up user
                 if (result == (int)ErrorHandler.SignUpErrors.Success)
                 {

@@ -13,7 +13,7 @@ namespace smartGPS.Business
         #region SignIn/Signup/SignOut
 
         // return 1 if success, 2 if username is taken, 0 if error on database
-        public static int signUp(String username, String password, String name, String surname, Boolean isExternal)
+        public static int signUp(String username, String password, String name, String surname, Boolean isExternal, String facebookId, String twitterId)
         {
 
             // check if user already exists
@@ -26,11 +26,11 @@ namespace smartGPS.Business
                     // add new user
                     if (isExternal)
                     {
-                        UsersDAO.addNew(username, password, name, surname);
+                        UsersDAO.addNew(username, "external", name, surname);
                     }
                     else
                     {
-                        UsersDAO.addNew(username, Utilities.encryptPassword(password), name, surname);
+                        UsersDAO.addNew(username, Utilities.encryptPassword(password), name, surname, null , null);
                     }
                     return (int)ErrorHandler.SignUpErrors.Success; ;
                 }

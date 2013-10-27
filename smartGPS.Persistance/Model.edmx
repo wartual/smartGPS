@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="smartgpsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="smartgpsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="smartgpsModelStoreContainer">
           <EntitySet Name="profile" EntityType="smartgpsModel.Store.profile" store:Type="Tables" Schema="smartgps" />
           <EntitySet Name="users" EntityType="smartgpsModel.Store.users" store:Type="Tables" Schema="smartgps" />
@@ -38,6 +38,8 @@
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
+          <Property Name="FacebookId" Type="varchar" MaxLength="45" />
+          <Property Name="TwitterId" Type="varchar" MaxLength="45" />
         </EntityType>
         <Association Name="fk_profile_users">
           <End Role="users" Type="smartgpsModel.Store.users" Multiplicity="1" />
@@ -51,8 +53,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="smartgpsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -91,6 +92,8 @@
           <Property Name="DateCreated" Type="DateTime" Nullable="false" />
           <Property Name="DateLastLogin" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="profile" Relationship="smartgpsModel.fk_profile_users" FromRole="users" ToRole="profile" />
+          <Property Type="String" Name="FacebookId" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TwitterId" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_profile_users">
           <End Role="users" Type="smartgpsModel.users" Multiplicity="1" />
@@ -129,6 +132,8 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="smartgpsModel.users">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="TwitterId" ColumnName="TwitterId" />
+                <ScalarProperty Name="FacebookId" ColumnName="FacebookId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

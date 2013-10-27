@@ -25,7 +25,7 @@ namespace smartGPS.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                int result = UserAdministration.signUp(model.username, model.password, model.name, model.surname, false);
+                int result = UserAdministration.signUp(model.username, model.password, model.name, model.surname, false, null, null);
                 // model is valid, try to sign up user
                 if (result == (int)ErrorHandler.SignUpErrors.Success)
                 {
