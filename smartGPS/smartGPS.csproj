@@ -185,6 +185,7 @@
     <Compile Include="Areas\Administration\Controllers\SignInController.cs" />
     <Compile Include="Areas\Administration\Controllers\SignUpController.cs" />
     <Compile Include="Areas\Administration\Models\Mapping.cs" />
+    <Compile Include="Areas\Administration\Models\RegisterExternalLoginModel.cs" />
     <Compile Include="Areas\Administration\Models\SignInModel.cs" />
     <Compile Include="Areas\Administration\Models\SignUpModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Areas\Dashboard\Models\ProfileModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Custom\smartGPSAuthorize.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,6 +278,9 @@
     <Content Include="Areas\Dashboard\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Dashboard\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\SignUp\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\SignIn\ExternalLoginFailure.cshtml" />
+    <Content Include="Areas\Administration\Views\SignIn\ExternalLoginConfirmation.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

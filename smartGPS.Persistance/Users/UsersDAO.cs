@@ -32,6 +32,11 @@ namespace smartGPS.Persistance.Users
             return db.users.Where(item => item.Id.Equals(id)).SingleOrDefault();
         }
 
+        public static users getByUsername(String username)
+        {
+            return db.users.Include("profile").Where(item => item.Username.Equals(username)).SingleOrDefault();
+        }
+
         public static users getByUsernameAndPassword(String username, String password)
         {
             return db.users.Where(item => item.Username.Equals(username) && item.Password.Equals(password)).SingleOrDefault();

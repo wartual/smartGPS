@@ -13,7 +13,7 @@ namespace smartGPS.Business
         #region SignIn/Signup/SignOut
 
         // return 1 if success, 2 if username is taken, 0 if error on database
-        public static int signUp(String username, String password, String name, String surname)
+        public static int signUp(String username, String password, String name, String surname, Boolean isExternal)
         {
 
             // check if user already exists
@@ -24,7 +24,14 @@ namespace smartGPS.Business
                 try
                 {
                     // add new user
-                    UsersDAO.addNew(username, Utilities.encryptPassword(password), name, surname);
+                    if (isExternal)
+                    {
+                        UsersDAO.addNew(username, password, name, surname);
+                    }
+                    else
+                    {
+                        UsersDAO.addNew(username, Utilities.encryptPassword(password), name, surname);
+                    }
                     return (int)ErrorHandler.SignUpErrors.Success; ;
                 }
                 catch (Exception e)
@@ -38,6 +45,7 @@ namespace smartGPS.Business
         public static int signIn(String username, String password, Boolean rememberMe)
         {
             users model = UsersDAO.getByUsernameAndPassword(username, Utilities.encryptPassword(password));
+            
             if (model == null)
                 return (int)ErrorHandler.SignInErrors.Failed;
             else
@@ -57,10 +65,37 @@ namespace smartGPS.Business
             }
         }
 
+        public static int signInExternalUser(String username)
+        {
+            users model = UsersDAO.getByUsername(username);
+            if (model == null)
+                return (int)ErrorHandler.SignInErrors.Failed;
+            else
+            {
+                try
+                {
+                    // sign in user using forms authentication
+                    UsersDAO.updateDateLastLogin(model);
+                    FormsAuthentication.SetAuthCookie(model.Id, true);
+                    return (int)ErrorHandler.SignInErrors.Success;
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.ToString());
+                    return (int)ErrorHandler.SignInErrors.Database;
+                }
+            }
+        }
+
         public static void signOut()
         {
             // sign out using forms authentication
             FormsAuthentication.SignOut();
+        }
+
+        public static Boolean checkIfUserExists(String username)
+        {
+            return UsersDAO.alreadyExists(username);
         }
 
         #endregion

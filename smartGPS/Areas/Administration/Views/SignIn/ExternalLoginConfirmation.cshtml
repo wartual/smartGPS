@@ -1,0 +1,36 @@
+﻿@model smartGPS.Areas.Administration.Models.RegisterExternalLoginModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<legend>Associate your @ViewBag.ProviderDisplayName account.</legend>
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "SignIn", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+     
+    @Html.HiddenFor(m => m.ExternalLoginData)
+    <p>
+        You've successfully authenticated with <strong>@ViewBag.ProviderDisplayName</strong>.
+            Please enter a user name for this site below and click the Confirm button to finish
+            logging in.
+    </p>
+        
+    <div class="control-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.UserName, new { placeholder = "Username" })
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+    </div>
+        
+    <div class="control-group">
+        <div class="controls">
+            <button class="btn btn-large btn-primary" type="submit">Register</button>
+        </div>
+    </div>
+}
+

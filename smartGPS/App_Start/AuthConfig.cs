@@ -17,9 +17,9 @@ namespace smartGPS
             //    clientId: "",
             //    clientSecret: "");
 
-            //OAuthWebSecurity.RegisterTwitterClient(
-            //    consumerKey: "",
-            //    consumerSecret: "");
+            OAuthWebSecurity.RegisterTwitterClient(
+                consumerKey: "n2RwV6Yn8k6MOjF7ehDjuw",
+                consumerSecret: "hCP8AbV9o8prhX7RiZ52sh0PHxi5SNlOVeWf9DEOA");
 
             OAuthWebSecurity.RegisterFacebookClient(
                 appId: "526242434133615",

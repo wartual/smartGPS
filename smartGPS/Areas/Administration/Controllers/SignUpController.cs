@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Web.WebPages.OAuth;
 using smartGPS.Areas.Administration.Models;
 using smartGPS.Business;
 
@@ -24,7 +25,7 @@ namespace smartGPS.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                int result = UserAdministration.signUp(model.username, model.password, model.name, model.surname);
+                int result = UserAdministration.signUp(model.username, model.password, model.name, model.surname, false);
                 // model is valid, try to sign up user
                 if (result == (int)ErrorHandler.SignUpErrors.Success)
                 {
@@ -49,5 +50,13 @@ namespace smartGPS.Areas.Administration.Controllers
                 return View(model);
             }
         }
+
+        [AllowAnonymous]
+        public ActionResult ExternalLoginsList()
+        {
+            return PartialView("_ExternalLoginsListPartial", OAuthWebSecurity.RegisteredClientData);
+        }
+
+
     }
 }
