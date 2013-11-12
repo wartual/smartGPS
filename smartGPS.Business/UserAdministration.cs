@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using smartGPS.Business.ExternalServices;
 using smartGPS.Persistance;
 using smartGPS.Persistance.Users;
 
@@ -23,15 +24,17 @@ namespace smartGPS.Business
             {
                 try
                 {
+                    String id = Guid.NewGuid().ToString();
                     // add new user
                     if (isExternal)
                     {
-                        UsersDAO.addNew(username, "external", name, surname);
+                        UsersDAO.addNew(id, username, "external", name, surname, facebookId, twitterId);
                     }
                     else
                     {
-                        UsersDAO.addNew(username, Utilities.encryptPassword(password), name, surname, null , null);
+                        UsersDAO.addNew(id, username, Utilities.encryptPassword(password), name, surname, null , null);
                     }
+                    FormsAuthentication.SetAuthCookie(id, false);
                     return (int)ErrorHandler.SignUpErrors.Success; ;
                 }
                 catch (Exception e)
@@ -100,13 +103,25 @@ namespace smartGPS.Business
 
         #endregion
 
-        # region Profile
 
-        public static profile getProfile(String userId)
+        #region Users
+
+        public static users getUserByUserId(String userId)
         {
-            return UsersDAO.getProfileByUserId(userId);
+            return UsersDAO.getById(userId);
         }
 
         #endregion
+
+        # region Profile
+
+        public static profile getProfileByUserId(String userId)
+        {
+            profile model = UsersDAO.getProfileByUserId(userId);
+            return model;
+        }
+
+        #endregion
+
     }
 }

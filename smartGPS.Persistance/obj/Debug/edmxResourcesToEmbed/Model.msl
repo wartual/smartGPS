@@ -20,11 +20,30 @@
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="smartgpsModel.users">
         <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="TwitterId" ColumnName="TwitterId" />
+          <ScalarProperty Name="FacebookId" ColumnName="FacebookId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="DateLastLogin" ColumnName="DateLastLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userfacebookprofile">
+      <EntityTypeMapping TypeName="smartgpsModel.userfacebookprofile">
+        <MappingFragment StoreEntitySet="userfacebookprofile">
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Biography" ColumnName="Biography" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserFacebookProfileId" ColumnName="UserFacebookProfileId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

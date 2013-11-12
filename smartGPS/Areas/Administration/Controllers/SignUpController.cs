@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.Web.WebPages.OAuth;
 using smartGPS.Areas.Administration.Models;
 using smartGPS.Business;
+using smartGPS.Business.ExternalServices;
 
 namespace smartGPS.Areas.Administration.Controllers
 {
@@ -50,13 +51,5 @@ namespace smartGPS.Areas.Administration.Controllers
                 return View(model);
             }
         }
-
-        [AllowAnonymous]
-        public ActionResult ExternalLoginsList()
-        {
-            return PartialView("_ExternalLoginsListPartial", OAuthWebSecurity.RegisteredClientData);
-        }
-
-
     }
 }

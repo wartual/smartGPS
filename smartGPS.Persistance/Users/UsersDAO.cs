@@ -9,10 +9,10 @@ namespace smartGPS.Persistance.Users
     {
           private static smartgpsEntities db = new smartgpsEntities();
 
-        public static void addNew(String username, String password, String name, String surname, String facebookId, String twitterId)
+        public static void addNew(String id, String username, String password, String name, String surname, String facebookId, String twitterId)
         {
             users model = new users();
-            model.Id = Guid.NewGuid().ToString();
+            model.Id = id;
             model.Username = username;
             model.Password = password;
             model.FacebookId = facebookId;

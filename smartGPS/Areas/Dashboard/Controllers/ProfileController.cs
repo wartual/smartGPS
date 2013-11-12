@@ -19,10 +19,12 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         public ActionResult Index()
         {
-            profile profile = UserAdministration.getProfile(User.Identity.Name);
+            profile profile = UserAdministration.getProfileByUserId(User.Identity.Name);
             ProfileModel viewModel = Mapping.usersToProfileModel(profile);
             return View(viewModel);
         }
+
+        
 
     }
 }

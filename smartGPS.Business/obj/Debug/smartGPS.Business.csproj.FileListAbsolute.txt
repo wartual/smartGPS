@@ -7,3 +7,7 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\EntityFramework.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\obj\Debug\smartGPS.Business.csprojResolveAssemblyReference.cache
 C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\obj\Debug\smartGPS.Business.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\obj\Debug\smartGPS.Business.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\Facebook.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\Facebook.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\Newtonsoft.Json.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\Newtonsoft.Json.xml

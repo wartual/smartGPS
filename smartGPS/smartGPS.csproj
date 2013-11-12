@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.6.4.2\lib\net45\Facebook.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -185,10 +188,11 @@
     <Compile Include="Areas\Administration\Controllers\SignInController.cs" />
     <Compile Include="Areas\Administration\Controllers\SignUpController.cs" />
     <Compile Include="Areas\Administration\Models\Mapping.cs" />
-    <Compile Include="Areas\Administration\Models\RegisterExternalLoginModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\RegisterExternalLoginModel.cs" />
     <Compile Include="Areas\Administration\Models\SignInModel.cs" />
     <Compile Include="Areas\Administration\Models\SignUpModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\ExternalServicesController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
@@ -278,12 +282,15 @@
     <Content Include="Areas\Dashboard\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Dashboard\Views\Profile\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\SignUp\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Areas\Administration\Views\SignIn\ExternalLoginFailure.cshtml" />
-    <Content Include="Areas\Administration\Views\SignIn\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ExternalServices\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ExternalServices\ExternalLoginFailure.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ExternalServices\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ExternalServices\FacebookProfile.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ExternalServices\_FacebookLogin.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\facebookApi.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

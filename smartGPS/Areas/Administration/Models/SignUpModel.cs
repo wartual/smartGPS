@@ -20,7 +20,7 @@ namespace smartGPS.Areas.Administration.Models
 
         [Required]
         [MinLength(8)]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("password", ErrorMessage = "The password and confirmation password do not match.")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         public String confirmPassword { get; set; }

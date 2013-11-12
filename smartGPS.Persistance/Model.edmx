@@ -7,10 +7,15 @@
     <Schema Namespace="smartgpsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="smartgpsModelStoreContainer">
           <EntitySet Name="profile" EntityType="smartgpsModel.Store.profile" store:Type="Tables" Schema="smartgps" />
+          <EntitySet Name="userfacebookprofile" EntityType="smartgpsModel.Store.userfacebookprofile" store:Type="Tables" Schema="smartgps" />
           <EntitySet Name="users" EntityType="smartgpsModel.Store.users" store:Type="Tables" Schema="smartgps" />
           <AssociationSet Name="fk_profile_users" Association="smartgpsModel.Store.fk_profile_users">
             <End Role="users" EntitySet="users" />
             <End Role="profile" EntitySet="profile" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userFacebookProfile_users1" Association="smartgpsModel.Store.fk_userFacebookProfile_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="userfacebookprofile" EntitySet="userfacebookprofile" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="profile">
@@ -28,6 +33,22 @@
           <Property Name="users_Id" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="Surname" Type="varchar" Nullable="false" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="userfacebookprofile">
+          <Key>
+            <PropertyRef Name="UserFacebookProfileId" />
+          </Key>
+          <Property Name="UserFacebookProfileId" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="Surname" Type="varchar" MaxLength="45" />
+          <Property Name="Username" Type="varchar" MaxLength="45" />
+          <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="45" />
+          <Property Name="Link" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Biography" Type="varchar" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -53,6 +74,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_userFacebookProfile_users1">
+          <End Role="users" Type="smartgpsModel.Store.users" Multiplicity="1" />
+          <End Role="userfacebookprofile" Type="smartgpsModel.Store.userfacebookprofile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userfacebookprofile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -63,6 +96,11 @@
           <AssociationSet Name="fk_profile_users" Association="smartgpsModel.fk_profile_users">
             <End Role="users" EntitySet="users" />
             <End Role="profile" EntitySet="profile" />
+          </AssociationSet>
+          <EntitySet Name="userfacebookprofile" EntityType="smartgpsModel.userfacebookprofile" />
+          <AssociationSet Name="fk_userFacebookProfile_users1" Association="smartgpsModel.fk_userFacebookProfile_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="userfacebookprofile" EntitySet="userfacebookprofile" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="profile">
@@ -94,6 +132,7 @@
           <NavigationProperty Name="profile" Relationship="smartgpsModel.fk_profile_users" FromRole="users" ToRole="profile" />
           <Property Type="String" Name="FacebookId" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="TwitterId" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="userfacebookprofile" Relationship="smartgpsModel.fk_userFacebookProfile_users1" FromRole="users" ToRole="userfacebookprofile" />
         </EntityType>
         <Association Name="fk_profile_users">
           <End Role="users" Type="smartgpsModel.users" Multiplicity="1" />
@@ -104,6 +143,35 @@
             </Principal>
             <Dependent Role="profile">
               <PropertyRef Name="users_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="userfacebookprofile">
+          <Key>
+            <PropertyRef Name="UserFacebookProfileId" />
+          </Key>
+          <Property Type="String" Name="UserFacebookProfileId" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Surname" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Username" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Link" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Biography" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateOfBirth" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+          <Property Type="DateTime" Name="DateUpdated" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="smartgpsModel.fk_userFacebookProfile_users1" FromRole="userfacebookprofile" ToRole="users" />
+        </EntityType>
+        <Association Name="fk_userFacebookProfile_users1">
+          <End Type="smartgpsModel.users" Role="users" Multiplicity="1" />
+          <End Type="smartgpsModel.userfacebookprofile" Role="userfacebookprofile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userfacebookprofile">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -139,6 +207,23 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="DateLastLogin" ColumnName="DateLastLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userfacebookprofile">
+            <EntityTypeMapping TypeName="smartgpsModel.userfacebookprofile">
+              <MappingFragment StoreEntitySet="userfacebookprofile">
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Biography" ColumnName="Biography" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserFacebookProfileId" ColumnName="UserFacebookProfileId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

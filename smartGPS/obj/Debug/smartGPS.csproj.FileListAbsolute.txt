@@ -87,3 +87,5 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\zh-Hant\System.Spatial.resources.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.csprojResolveAssemblyReference.cache
 C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Facebook.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Facebook.xml

@@ -85,9 +85,13 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="userfacebookprofile.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Users\ExternalServicesDAO.cs" />
     <Compile Include="Users\UsersDAO.cs" />
   </ItemGroup>
   <ItemGroup>

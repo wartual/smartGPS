@@ -1,0 +1,44 @@
+﻿@model smartGPS.Business.Models.FacebookProfileModel
+@{
+    ViewBag.Title = "FacebookProfile";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+<legend>Facebook profile</legend>
+
+@if (Model == null)
+{
+    @Html.Action("FacebookLogin")
+}
+else
+{
+    <legend>Facebook profile for user: @Html.LabelFor(m => m.Username)</legend>
+    
+     <div class="control-group">
+        @Html.LabelFor(m => m.Name, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Name, new { placeholder = "Name", @readonly="readonly"})
+        </div>
+     </div>
+    
+     <div class="control-group">
+        @Html.LabelFor(m => m.Surname, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Surname, new { placeholder = "Surname", @readonly="readonly" })
+        </div>
+     </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.MiddleName, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.MiddleName, new { placeholder = "Middle name", @readonly="readonly" })
+        </div>
+     </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.Link, new { @class="control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Link, new { placeholder = "Link", @readonly="readonly" })
+        </div>
+     </div>
+}

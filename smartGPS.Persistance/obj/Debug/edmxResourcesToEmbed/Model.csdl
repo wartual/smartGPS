@@ -7,6 +7,11 @@
       <End Role="users" EntitySet="users" />
       <End Role="profile" EntitySet="profile" />
     </AssociationSet>
+    <EntitySet Name="userfacebookprofile" EntityType="smartgpsModel.userfacebookprofile" />
+    <AssociationSet Name="fk_userFacebookProfile_users1" Association="smartgpsModel.fk_userFacebookProfile_users1">
+      <End Role="users" EntitySet="users" />
+      <End Role="userfacebookprofile" EntitySet="userfacebookprofile" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="profile">
     <Key>
@@ -35,6 +40,9 @@
     <Property Name="DateCreated" Type="DateTime" Nullable="false" />
     <Property Name="DateLastLogin" Type="DateTime" Nullable="false" />
     <NavigationProperty Name="profile" Relationship="smartgpsModel.fk_profile_users" FromRole="users" ToRole="profile" />
+    <Property Type="String" Name="FacebookId" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TwitterId" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="userfacebookprofile" Relationship="smartgpsModel.fk_userFacebookProfile_users1" FromRole="users" ToRole="userfacebookprofile" />
   </EntityType>
   <Association Name="fk_profile_users">
     <End Role="users" Type="smartgpsModel.users" Multiplicity="1" />
@@ -45,6 +53,35 @@
       </Principal>
       <Dependent Role="profile">
         <PropertyRef Name="users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="userfacebookprofile">
+    <Key>
+      <PropertyRef Name="UserFacebookProfileId" />
+    </Key>
+    <Property Type="String" Name="UserFacebookProfileId" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Name" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Surname" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Username" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MiddleName" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Link" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Biography" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateOfBirth" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+    <Property Type="DateTime" Name="DateUpdated" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="smartgpsModel.fk_userFacebookProfile_users1" FromRole="userfacebookprofile" ToRole="users" />
+  </EntityType>
+  <Association Name="fk_userFacebookProfile_users1">
+    <End Type="smartgpsModel.users" Role="users" Multiplicity="1" />
+    <End Type="smartgpsModel.userfacebookprofile" Role="userfacebookprofile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userfacebookprofile">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

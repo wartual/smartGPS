@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="smartgpsModel.profile" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="smartgpsModel.users" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="smartgpsModel.fk_profile_users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="smartgpsModel.userfacebookprofile" Width="1.5" PointX="10.162710399442684" PointY="0.57819971469147113" />
+        <AssociationConnector Association="smartgpsModel.fk_userFacebookProfile_users1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

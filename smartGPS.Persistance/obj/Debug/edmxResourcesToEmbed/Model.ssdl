@@ -2,10 +2,15 @@
 <Schema Namespace="smartgpsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="smartgpsModelStoreContainer">
     <EntitySet Name="profile" EntityType="smartgpsModel.Store.profile" store:Type="Tables" Schema="smartgps" />
+    <EntitySet Name="userfacebookprofile" EntityType="smartgpsModel.Store.userfacebookprofile" store:Type="Tables" Schema="smartgps" />
     <EntitySet Name="users" EntityType="smartgpsModel.Store.users" store:Type="Tables" Schema="smartgps" />
     <AssociationSet Name="fk_profile_users" Association="smartgpsModel.Store.fk_profile_users">
       <End Role="users" EntitySet="users" />
       <End Role="profile" EntitySet="profile" />
+    </AssociationSet>
+    <AssociationSet Name="fk_userFacebookProfile_users1" Association="smartgpsModel.Store.fk_userFacebookProfile_users1">
+      <End Role="users" EntitySet="users" />
+      <End Role="userfacebookprofile" EntitySet="userfacebookprofile" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="profile">
@@ -24,6 +29,22 @@
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="45" />
     <Property Name="Surname" Type="varchar" Nullable="false" MaxLength="45" />
   </EntityType>
+  <EntityType Name="userfacebookprofile">
+    <Key>
+      <PropertyRef Name="UserFacebookProfileId" />
+    </Key>
+    <Property Name="UserFacebookProfileId" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="Name" Type="varchar" MaxLength="45" />
+    <Property Name="Surname" Type="varchar" MaxLength="45" />
+    <Property Name="Username" Type="varchar" MaxLength="45" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="45" />
+    <Property Name="Link" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Biography" Type="varchar" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="users">
     <Key>
       <PropertyRef Name="Id" />
@@ -33,6 +54,8 @@
     <Property Name="Password" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
+    <Property Name="FacebookId" Type="varchar" MaxLength="45" />
+    <Property Name="TwitterId" Type="varchar" MaxLength="45" />
   </EntityType>
   <Association Name="fk_profile_users">
     <End Role="users" Type="smartgpsModel.Store.users" Multiplicity="1" />
@@ -43,6 +66,18 @@
       </Principal>
       <Dependent Role="profile">
         <PropertyRef Name="users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_userFacebookProfile_users1">
+    <End Role="users" Type="smartgpsModel.Store.users" Multiplicity="1" />
+    <End Role="userfacebookprofile" Type="smartgpsModel.Store.userfacebookprofile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userfacebookprofile">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
