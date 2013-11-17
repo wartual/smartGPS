@@ -5,10 +5,8 @@ using System.Web;
 
 namespace smartGPS.Persistance.Users
 {
-    public class UsersDAO
+    public class UsersDAO:BaseClass
     {
-          private static smartgpsEntities db = new smartgpsEntities();
-
         public static void addNew(String id, String username, String password, String name, String surname, String facebookId, String twitterId)
         {
             users model = new users();
@@ -24,6 +22,12 @@ namespace smartGPS.Persistance.Users
             profile.Id = Guid.NewGuid().ToString();
             profile.Name = name;
             profile.Surname = surname;
+
+            usershelper helper = new usershelper();
+            helper.Id = Guid.NewGuid().ToString();
+            helper.DateUpdated = DateTime.Now;
+
+            model.usershelper.Add(helper);
             model.profile.Add(profile);
             db.users.Add(model);
             db.SaveChanges();
@@ -59,6 +63,8 @@ namespace smartGPS.Persistance.Users
             db.SaveChanges();
         }
 
+        #region Profile
+
         public static profile getProfileById(String id)
         {
             return db.profile.Include("users").Where(m => m.Id.Equals(id)).SingleOrDefault();
@@ -68,5 +74,28 @@ namespace smartGPS.Persistance.Users
         {
             return db.profile.Include("users").Where(m => m.users.Id.Equals(userId)).SingleOrDefault();
         }
-     }
+
+        #endregion
+
+        #region Helper
+
+        public static usershelper getUserHelper(String userId)
+        {
+            return db.usershelper.Where(item => item.UserId.Equals(userId)).SingleOrDefault();
+        }
+
+        public static void updateLastLocation(double latitude, double longitude, String userId)
+        {
+            usershelper model = getUserHelper(userId);
+
+            if (model != null)
+            {
+                model.LastLocationLatitude = latitude;
+                model.LastLocationLongitude = longitude;
+                db.SaveChanges();
+            }
+        }
+
+        #endregion
+    }
 }

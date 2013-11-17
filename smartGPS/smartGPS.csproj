@@ -188,6 +188,7 @@
     <Compile Include="Areas\Administration\Controllers\SignInController.cs" />
     <Compile Include="Areas\Administration\Controllers\SignUpController.cs" />
     <Compile Include="Areas\Administration\Models\Mapping.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\TravelController.cs" />
     <Compile Include="Areas\Dashboard\Models\RegisterExternalLoginModel.cs" />
     <Compile Include="Areas\Administration\Models\SignInModel.cs" />
     <Compile Include="Areas\Administration\Models\SignUpModel.cs" />
@@ -287,6 +288,7 @@
     <Content Include="Areas\Dashboard\Views\ExternalServices\ExternalLoginConfirmation.cshtml" />
     <Content Include="Areas\Dashboard\Views\ExternalServices\FacebookProfile.cshtml" />
     <Content Include="Areas\Dashboard\Views\ExternalServices\_FacebookLogin.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Travel\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

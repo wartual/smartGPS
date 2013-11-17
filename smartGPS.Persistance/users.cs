@@ -18,6 +18,7 @@ namespace smartGPS.Persistance
         {
             this.profile = new HashSet<profile>();
             this.userfacebookprofile = new HashSet<userfacebookprofile>();
+            this.usershelper = new HashSet<usershelper>();
         }
     
         public string Id { get; set; }
@@ -30,5 +31,6 @@ namespace smartGPS.Persistance
     
         public virtual ICollection<profile> profile { get; set; }
         public virtual ICollection<userfacebookprofile> userfacebookprofile { get; set; }
+        public virtual ICollection<usershelper> usershelper { get; set; }
     }
 }

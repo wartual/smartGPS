@@ -111,6 +111,12 @@ namespace smartGPS.Business
             return UsersDAO.getById(userId);
         }
 
+        public static void updateUserLocation(double latitude, double longitude, String userId)
+        {
+            if (latitude > -90 && latitude < 90 && longitude > -90 && longitude < 90)
+                UsersDAO.updateLastLocation(latitude, longitude, userId);
+        }
+
         #endregion
 
         # region Profile

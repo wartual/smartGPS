@@ -8,9 +8,14 @@
       <End Role="profile" EntitySet="profile" />
     </AssociationSet>
     <EntitySet Name="userfacebookprofile" EntityType="smartgpsModel.userfacebookprofile" />
+    <EntitySet Name="usershelper" EntityType="smartgpsModel.usershelper" />
     <AssociationSet Name="fk_userFacebookProfile_users1" Association="smartgpsModel.fk_userFacebookProfile_users1">
       <End Role="users" EntitySet="users" />
       <End Role="userfacebookprofile" EntitySet="userfacebookprofile" />
+    </AssociationSet>
+    <AssociationSet Name="fk_usersHelper_users1" Association="smartgpsModel.fk_usersHelper_users1">
+      <End Role="users" EntitySet="users" />
+      <End Role="usershelper" EntitySet="usershelper" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="profile">
@@ -43,6 +48,7 @@
     <Property Type="String" Name="FacebookId" MaxLength="45" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="TwitterId" MaxLength="45" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="userfacebookprofile" Relationship="smartgpsModel.fk_userFacebookProfile_users1" FromRole="users" ToRole="userfacebookprofile" />
+    <NavigationProperty Name="usershelper" Relationship="smartgpsModel.fk_usersHelper_users1" FromRole="users" ToRole="usershelper" />
   </EntityType>
   <Association Name="fk_profile_users">
     <End Role="users" Type="smartgpsModel.users" Multiplicity="1" />
@@ -73,6 +79,17 @@
     <Property Type="DateTime" Name="DateUpdated" Nullable="false" />
     <NavigationProperty Name="users" Relationship="smartgpsModel.fk_userFacebookProfile_users1" FromRole="userfacebookprofile" ToRole="users" />
   </EntityType>
+  <EntityType Name="usershelper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="LastLocationLatitude" />
+    <Property Type="Double" Name="LastLocationLongitude" />
+    <Property Type="DateTime" Name="DateUpdated" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="smartgpsModel.fk_usersHelper_users1" FromRole="usershelper" ToRole="users" />
+  </EntityType>
   <Association Name="fk_userFacebookProfile_users1">
     <End Type="smartgpsModel.users" Role="users" Multiplicity="1" />
     <End Type="smartgpsModel.userfacebookprofile" Role="userfacebookprofile" Multiplicity="*" />
@@ -81,6 +98,18 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="userfacebookprofile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_usersHelper_users1">
+    <End Type="smartgpsModel.users" Role="users" Multiplicity="1" />
+    <End Type="smartgpsModel.usershelper" Role="usershelper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="usershelper">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>

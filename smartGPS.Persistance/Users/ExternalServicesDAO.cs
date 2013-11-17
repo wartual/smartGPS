@@ -5,10 +5,9 @@ using System.Web;
 
 namespace smartGPS.Persistance.Users
 {
-    public class ExternalServicesDAO
+    public class ExternalServicesDAO : BaseClass
     {
-        private static smartgpsEntities db = new smartgpsEntities();
-
+        
         public static void addFacebookProfile(String userId, String name, String lastName, String middleName, String username, String link,
                         String gender, String birthday, String biography)
         {

@@ -8,8 +8,10 @@
         <EntityTypeShape EntityType="smartgpsModel.profile" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="smartgpsModel.users" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="smartgpsModel.fk_profile_users" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="smartgpsModel.userfacebookprofile" Width="1.5" PointX="10.162710399442684" PointY="0.57819971469147113" />
+        <EntityTypeShape EntityType="smartgpsModel.userfacebookprofile" Width="1.5" PointX="7.405831863826994" PointY="20.677257428261104" />
+        <EntityTypeShape EntityType="smartgpsModel.usershelper" Width="1.5" PointX="6.849079083115365" PointY="17.774983622960274" />
         <AssociationConnector Association="smartgpsModel.fk_userFacebookProfile_users1" />
+        <AssociationConnector Association="smartgpsModel.fk_usersHelper_users1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

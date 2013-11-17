@@ -4,6 +4,7 @@
     <EntitySet Name="profile" EntityType="smartgpsModel.Store.profile" store:Type="Tables" Schema="smartgps" />
     <EntitySet Name="userfacebookprofile" EntityType="smartgpsModel.Store.userfacebookprofile" store:Type="Tables" Schema="smartgps" />
     <EntitySet Name="users" EntityType="smartgpsModel.Store.users" store:Type="Tables" Schema="smartgps" />
+    <EntitySet Name="usershelper" EntityType="smartgpsModel.Store.usershelper" store:Type="Tables" Schema="smartgps" />
     <AssociationSet Name="fk_profile_users" Association="smartgpsModel.Store.fk_profile_users">
       <End Role="users" EntitySet="users" />
       <End Role="profile" EntitySet="profile" />
@@ -11,6 +12,10 @@
     <AssociationSet Name="fk_userFacebookProfile_users1" Association="smartgpsModel.Store.fk_userFacebookProfile_users1">
       <End Role="users" EntitySet="users" />
       <End Role="userfacebookprofile" EntitySet="userfacebookprofile" />
+    </AssociationSet>
+    <AssociationSet Name="fk_usersHelper_users1" Association="smartgpsModel.Store.fk_usersHelper_users1">
+      <End Role="users" EntitySet="users" />
+      <End Role="usershelper" EntitySet="usershelper" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="profile">
@@ -57,6 +62,16 @@
     <Property Name="FacebookId" Type="varchar" MaxLength="45" />
     <Property Name="TwitterId" Type="varchar" MaxLength="45" />
   </EntityType>
+  <EntityType Name="usershelper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="LastLocationLatitude" Type="double" />
+    <Property Name="LastLocationLongitude" Type="double" />
+    <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+  </EntityType>
   <Association Name="fk_profile_users">
     <End Role="users" Type="smartgpsModel.Store.users" Multiplicity="1" />
     <End Role="profile" Type="smartgpsModel.Store.profile" Multiplicity="*" />
@@ -77,6 +92,18 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="userfacebookprofile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_usersHelper_users1">
+    <End Role="users" Type="smartgpsModel.Store.users" Multiplicity="1" />
+    <End Role="usershelper" Type="smartgpsModel.Store.usershelper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="usershelper">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>

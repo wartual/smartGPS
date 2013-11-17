@@ -8,6 +8,7 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OAuth.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OpenId.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\EntityFramework.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Facebook.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Data.Edm.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Data.OData.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Web.Infrastructure.dll
@@ -33,6 +34,7 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\WebMatrix.Data.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\WebMatrix.WebData.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.Business.pdb
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.Persistance.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Facebook.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\EntityFramework.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Newtonsoft.Json.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Net.Http.Formatting.xml
@@ -87,5 +89,3 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\zh-Hant\System.Spatial.resources.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.csprojResolveAssemblyReference.cache
 C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.pdb
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Facebook.dll
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Facebook.xml

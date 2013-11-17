@@ -47,5 +47,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="usershelper">
+      <EntityTypeMapping TypeName="smartgpsModel.usershelper">
+        <MappingFragment StoreEntitySet="usershelper">
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="LastLocationLongitude" ColumnName="LastLocationLongitude" />
+          <ScalarProperty Name="LastLocationLatitude" ColumnName="LastLocationLatitude" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
