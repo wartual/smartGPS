@@ -41,6 +41,9 @@
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.6.4.2\lib\net45\Facebook.dll</HintPath>
     </Reference>
+    <Reference Include="GeoCoding">
+      <HintPath>..\packages\Geocoding.net.2.1.1\lib\net35\GeoCoding.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -67,8 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErrorHandler.cs" />
+    <Compile Include="ExternalServices\APICalls.cs" />
     <Compile Include="ExternalServices\Config.cs" />
     <Compile Include="ExternalServices\FacebookManagement.cs" />
+    <Compile Include="ExternalServices\ExternalUtilities.cs" />
     <Compile Include="Models\FacebookProfileModel.cs" />
     <Compile Include="Models\Mapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +94,10 @@
       <Project>{d9577cb7-1da0-4f2c-bb6d-0bb25492b55c}</Project>
       <Name>smartGPS.Persistance</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="API\" />
+    <Folder Include="Travel\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

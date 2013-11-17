@@ -117,6 +117,11 @@ namespace smartGPS.Business
                 UsersDAO.updateLastLocation(latitude, longitude, userId);
         }
 
+        public static usershelper getUserHelper(String userId)
+        {
+            return UsersDAO.getUserHelper(userId);
+        }
+
         #endregion
 
         # region Profile

@@ -1,0 +1,69 @@
+﻿@model smartGPS.Areas.Dashboard.Models.SetupTravelModel
+
+<script src="~/Scripts/Dashboard/setupNavigations.js"></script>
+
+<legend>New travel</legend>
+
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sapien nunc, condimentum eget ultrices at, commodo nec velit. Vivamus id venenatis augue. Nulla magna magna, laoreet feugiat mi eget, posuere placerat libero. Phasellus sed dolor enim. 
+</p>
+
+<!-- Button to trigger modal -->
+<a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Setup travel</a>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Setup navigation</h3>
+    </div>
+    <div class="modal-body">
+        <div style="display: table-cell">
+            <p>Select navigation type:</p>
+        </div>
+        <div style="display: table-cell; padding-left: 20px">
+            @Html.DropDownList("TypesOfNavigation")
+        </div>
+        <div id="address" style="float: none">
+            @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Address, new { placeholder = "Address" })
+                @Html.ValidationMessageFor(m => m.Address)
+            </div>
+        </div>
+
+        <div id="latitude" class="control-group" style="float: left">
+            @Html.LabelFor(m => m.Latitude, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Latitude, new { placeholder = "Latitude", onkeypress="return isNumberKey(event)", name = "latitude" })
+                @Html.ValidationMessageFor(m => m.Latitude)
+            </div>
+        </div>
+        <div id="longitude" class="control-group" style="float: right">
+            @Html.LabelFor(m => m.Longitude, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Longitude, new { placeholder = "Longitude", onkeypress="return isNumberKey(event)", name = "longitude" })
+                @Html.ValidationMessageFor(m => m.Longitude)
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="find-destination" aria-hidden="true">Find destination</button>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-success">Save changes</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+</script>

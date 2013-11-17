@@ -42,7 +42,14 @@
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.6.4.2\lib\net45\Facebook.dll</HintPath>
     </Reference>
+    <Reference Include="GeoCoding">
+      <HintPath>..\packages\Geocoding.net.2.1.1\lib\net35\GeoCoding.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -73,9 +80,6 @@
     <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -198,6 +202,8 @@
     <Compile Include="Areas\Dashboard\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\Models\ProfileModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\SetupTravelModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\SmartDestinationJson.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Custom\smartGPSAuthorize.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -289,9 +295,11 @@
     <Content Include="Areas\Dashboard\Views\ExternalServices\FacebookProfile.cshtml" />
     <Content Include="Areas\Dashboard\Views\ExternalServices\_FacebookLogin.cshtml" />
     <Content Include="Areas\Dashboard\Views\Travel\Index.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Travel\_SetupNavigation.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Dashboard\setupNavigations.js" />
     <Content Include="Scripts\facebookApi.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

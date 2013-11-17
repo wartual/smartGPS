@@ -82,3 +82,12 @@ C:\smartGPS\smartGPS\smartGPS\demo\bin\zh-Hans\System.Spatial.resources.dll
 C:\smartGPS\smartGPS\smartGPS\demo\bin\zh-Hant\System.Spatial.resources.dll
 C:\smartGPS\smartGPS\smartGPS\demo\obj\Debug\demo.dll
 C:\smartGPS\smartGPS\smartGPS\demo\obj\Debug\demo.pdb
+C:\smartGPS\smartGPS\smartGPS\demo\bin\demo.dll.config
+C:\smartGPS\smartGPS\smartGPS\demo\bin\System.Json.dll
+C:\smartGPS\smartGPS\smartGPS\demo\bin\System.Net.Http.Extensions.dll
+C:\smartGPS\smartGPS\smartGPS\demo\bin\System.Net.Http.Primitives.dll
+C:\smartGPS\smartGPS\smartGPS\demo\bin\System.Json.xml
+C:\smartGPS\smartGPS\smartGPS\demo\bin\System.Net.Http.Extensions.xml
+C:\smartGPS\smartGPS\smartGPS\demo\bin\System.Net.Http.Primitives.xml
+C:\smartGPS\smartGPS\smartGPS\demo\obj\Debug\demo.csproj.App.config
+C:\smartGPS\smartGPS\smartGPS\demo\obj\Debug\demo.csprojResolveAssemblyReference.cache
