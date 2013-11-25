@@ -193,6 +193,8 @@
     <Compile Include="Areas\Administration\Controllers\SignUpController.cs" />
     <Compile Include="Areas\Administration\Models\Mapping.cs" />
     <Compile Include="Areas\Dashboard\Controllers\TravelController.cs" />
+    <Compile Include="Areas\Dashboard\Models\DirectionsModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\PreviewTravelModel.cs" />
     <Compile Include="Areas\Dashboard\Models\RegisterExternalLoginModel.cs" />
     <Compile Include="Areas\Administration\Models\SignInModel.cs" />
     <Compile Include="Areas\Administration\Models\SignUpModel.cs" />
@@ -205,6 +207,7 @@
     <Compile Include="Areas\Dashboard\Models\SetupTravelModel.cs" />
     <Compile Include="Areas\Dashboard\Models\SmartDestinationJson.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Custom\Attributes\RequiredIfAttribute.cs" />
     <Compile Include="Custom\smartGPSAuthorize.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -216,10 +219,12 @@
     <Content Include="Content\img\browser-icon-chrome.png" />
     <Content Include="Content\img\browser-icon-firefox.png" />
     <Content Include="Content\img\browser-icon-safari.png" />
+    <Content Include="Content\img\loading_spinner.gif" />
     <Content Include="Content\img\slide-01.jpg" />
     <Content Include="Content\img\slide-02.jpg" />
     <Content Include="Content\img\slide-03.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\smartGPSTheme.css" />
     <Content Include="Content\themes\base\images\glyphicons-halflings-white.png" />
     <Content Include="Content\themes\base\images\glyphicons-halflings.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -280,6 +285,7 @@
     <Content Include="Content\themes\bootstrap\bootstrap-responsive.min.css" />
     <Content Include="Content\themes\bootstrap\bootstrap.css" />
     <Content Include="Content\themes\bootstrap\bootstrap.min.css" />
+    <Content Include="directions.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Administration\Views\Web.config" />
@@ -296,9 +302,13 @@
     <Content Include="Areas\Dashboard\Views\ExternalServices\_FacebookLogin.cshtml" />
     <Content Include="Areas\Dashboard\Views\Travel\Index.cshtml" />
     <Content Include="Areas\Dashboard\Views\Travel\_SetupNavigation.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Travel\TravelError.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Travel\PreviewTravel.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Custom\global.js" />
+    <Content Include="Scripts\Dashboard\previewTravel.js" />
     <Content Include="Scripts\Dashboard\setupNavigations.js" />
     <Content Include="Scripts\facebookApi.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

@@ -13,5 +13,8 @@ namespace smartGPS.Areas.Dashboard.Models
 
         [JsonProperty("country")]
         public String Country { get; set; }
+
+         [JsonProperty("value")]
+        public int Value { get; set; }
     }
 }

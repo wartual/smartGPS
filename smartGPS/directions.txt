@@ -1,0 +1,166 @@
+{
+    "routes": [
+        {
+            "bounds": {
+                "northeast": {
+                    "lat": 46.0742835,
+                    "lng": 14.5080916
+                },
+                "southwest": {
+                    "lat": 46.0544506,
+                    "lng": 14.4854516
+                }
+            },
+            "copyrights": "Map data ©2013 Google",
+            "legs": [
+                {
+                    "distance": {
+                        "text": "3.2 km",
+                        "value": 3160
+                    },
+                    "duration": {
+                        "text": "6 mins",
+                        "value": 385
+                    },
+                    "end_address": "Celovška cesta 162-166, 1000 Ljubljana, Slovenia",
+                    "end_location": {
+                        "lat": 46.0742835,
+                        "lng": 14.4854516
+                    },
+                    "start_address": "Miklošičeva cesta 34-36, 1000 Ljubljana, Slovenia",
+                    "start_location": {
+                        "lat": 46.0565001,
+                        "lng": 14.5080916
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "0.2 km",
+                                "value": 237
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 39
+                            },
+                            "end_location": {
+                                "lat": 46.0544506,
+                                "lng": 14.507258
+                            },
+                            "html_instructions": "Head <b>south</b> on <b>Miklošičeva cesta</b> toward <b>Pražakova ulica</b>",
+                            "polyline": {
+                                "points": "clbxGqrpwAHBpErA|DlA"
+                            },
+                            "start_location": {
+                                "lat": 46.0565001,
+                                "lng": 14.5080916
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.2 km",
+                                "value": 200
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 64
+                            },
+                            "end_location": {
+                                "lat": 46.0549617,
+                                "lng": 14.5047694
+                            },
+                            "html_instructions": "Turn <b>right</b> onto <b>Tavčarjeva ulica</b>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "i_bxGkmpwAo@nFo@jFET"
+                            },
+                            "start_location": {
+                                "lat": 46.0544506,
+                                "lng": 14.507258
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "56 m",
+                                "value": 56
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 5
+                            },
+                            "end_location": {
+                                "lat": 46.05448089999999,
+                                "lng": 14.5045379
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>Slovenska cesta</b>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "obbxGy}owAn@PXNTJ"
+                            },
+                            "start_location": {
+                                "lat": 46.0549617,
+                                "lng": 14.5047694
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.3 km",
+                                "value": 327
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 48
+                            },
+                            "end_location": {
+                                "lat": 46.0565715,
+                                "lng": 14.5015807
+                            },
+                            "html_instructions": "Take the 1st <b>right</b> onto <b>Gosposvetska cesta</b>",
+                            "polyline": {
+                                "points": "o_bxGk|owAcC|DwA|CYj@cBxBg@j@_@`@"
+                            },
+                            "start_location": {
+                                "lat": 46.05448089999999,
+                                "lng": 14.5045379
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "2.3 km",
+                                "value": 2340
+                            },
+                            "duration": {
+                                "text": "4 mins",
+                                "value": 229
+                            },
+                            "end_location": {
+                                "lat": 46.0742835,
+                                "lng": 14.4854516
+                            },
+                            "html_instructions": "Continue onto <b>Celovška cesta</b><div style=\"font-size:0.9em\">Destination will be on the right</div>",
+                            "polyline": {
+                                "points": "qlbxG{iowASTmArAyAzA_@`@a@b@ST_FbFwA~As@t@eCbDQT{BhCoBjBaBfAOLGBgBhAuBhA}@`@aD`A{BdA_Ar@aFpE}BrBw@t@OJk@d@IHaA|@IJg@h@{@x@uApAeHxG_@\\cIvHOLwF~EOJgAhAQT"
+                            },
+                            "start_location": {
+                                "lat": 46.0565715,
+                                "lng": 14.5015807
+                            },
+                            "travel_mode": "DRIVING"
+                        }
+                    ],
+                    "via_waypoint": []
+                }
+            ],
+            "overview_polyline": {
+                "points": "clbxGqrpwAzEvA|DlAo@nFu@`GhA`@TJcC|DqBhEkCdDs@v@gDnDaAdA_KnKwCxD{BhCoBjBqBtAoBlAuBhA}@`@aD`A{BdA_Ar@aFpEuDhDgCxBq@t@qCjCyS|RgGjFyA~A"
+            },
+            "summary": "Celovška cesta",
+            "warnings": [],
+            "waypoint_order": []
+        }
+    ],
+    "status": "OK"
+}

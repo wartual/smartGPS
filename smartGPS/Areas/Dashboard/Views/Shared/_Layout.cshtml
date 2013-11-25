@@ -10,9 +10,11 @@
     <!-- Le styles -->
     <link href="~/Content/themes/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/themes/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" />
-    
+    <link href="~/Content/smartGPSTheme.css" rel="stylesheet" />
+
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom/global.js"></script>
     <style type="text/css">
         body
         {
@@ -20,6 +22,9 @@
             padding-bottom: 40px;
         }
     </style>
+    <div id="spinner" class="spinner" style="display: none;">
+        <img id="img-spinner" src="~/Content/img/loading_spinner.gif" alt="Loading" />
+    </div>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -34,6 +39,7 @@
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <li>@Html.ActionLink("Travel", "Index", "Travel")</li>
+                        <li>@Html.ActionLink("Fake", "Fake", "Travel")</li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
 
@@ -44,7 +50,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("My profile", "Index", "Profile")</li>
-                                       <li class="divider"></li>
+                                    <li class="divider"></li>
                                     <li>@Html.ActionLink("Sign out", "SignOut", "UserManagement")</li>
                                 </ul>
                             </li>

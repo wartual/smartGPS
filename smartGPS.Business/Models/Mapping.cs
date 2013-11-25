@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using smartGPS.Business.Models.GoogleModels;
 using smartGPS.Persistance;
 
 namespace smartGPS.Business.Models
@@ -20,5 +21,7 @@ namespace smartGPS.Business.Models
             model.Biography = db.Biography;
             return model;
         }
+
+        
     }
 }

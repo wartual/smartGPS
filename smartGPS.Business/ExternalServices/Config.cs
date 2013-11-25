@@ -16,5 +16,6 @@ namespace smartGPS.Business.ExternalServices
         {
             return "AIzaSyAZM05G9vmxsBScFmW42iI0geoGmdryG0g";
         }
+
     }
 }

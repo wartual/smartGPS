@@ -7,8 +7,13 @@ namespace smartGPS.Business.ExternalServices
 {
     public class APICalls
     {
+        public static String GOOGLE_MAP_APIS = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&";
+        public static String GOOGLE_MAP_DIRECTIONS = "http://maps.googleapis.com/maps/api/directions/json?origin=";
 
-        private String GOOGLE_GEOCODER_REVERSE_GEOCODING = "";
-
+        public static String getMapDirectionsFormattedUrl(double startLatitude, double startLongitude, double endLatitude, double endLongitude, String mode)
+        {
+            return GOOGLE_MAP_DIRECTIONS + startLatitude.ToString().Replace(",", ".") + "," + startLongitude.ToString().Replace(",", ".") + "&destination=" + endLatitude.ToString().Replace(",", ".")
+                + "," + endLongitude.ToString().Replace(",", ".") + "&sensor=false&units=metric&mode=" + mode; 
+        }
     }
 }

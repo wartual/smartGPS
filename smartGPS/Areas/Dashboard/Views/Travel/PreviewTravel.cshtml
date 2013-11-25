@@ -1,0 +1,72 @@
+﻿@model smartGPS.Areas.Dashboard.Models.DirectionsModel
+
+@{
+    ViewBag.Title = "PreviewTravel";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/Dashboard/previewTravel.js"></script>
+<legend>Travels</legend>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#preview" data-toggle="tab">Travel data</a></li>
+    <li><a href="#map" data-toggle="tab">Map</a></li>
+</ul>
+
+<input type="hidden" id="endLatitude" value="@Model.EndLocation.Latitude" />
+<input type="hidden" id="endLongitude" value="@Model.EndLocation.Longitude" />
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active" id="preview">
+         @using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.ValidationSummary(true)
+            <div class="control-group">
+                @Html.LabelFor(m => m.StartAddress, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.StartAddress, new { placeholder = "Start address", @class = "input-xxlarge"  })
+                </div>
+            </div>
+    
+            <div class="control-group">
+                @Html.LabelFor(m => m.EndAddress, new { @class = "control-label"})
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.EndAddress, new { placeholder = "End address", @class = "input-xxlarge"  })
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(m => m.DistanceText, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.DistanceText, new { placeholder = "Distance" })
+                </div>
+            </div>
+    
+            <div class="control-group">
+                @Html.LabelFor(m => m.DurationText, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.DurationText, new { placeholder = "Duration" })
+                </div>
+            </div>
+    
+            <div class="control-group">
+                @Html.LabelFor(m => m.Mode, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.Mode, (IEnumerable<SelectListItem>)Model.Modes)
+                </div>
+            </div>
+    
+            <div class="control-group">
+                <div class="controls">
+                    <button class="btn btn-large btn-primary" type="submit">Sign up</button>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+
+     <div class="tab-pane" id="map">
+     </div>
+</div>
