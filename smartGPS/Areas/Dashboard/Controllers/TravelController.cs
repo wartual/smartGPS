@@ -108,6 +108,9 @@ namespace smartGPS.Areas.Dashboard.Controllers
             directions.DistanceText = googleDirections.Routes[0].Legs[0].Distance.Text;
             directions.DurationValue = googleDirections.Routes[0].Legs[0].Duration.Value;
             directions.DistanceValue = googleDirections.Routes[0].Legs[0].Distance.Value;
+            directions.PolyLines = googleDirections.Routes[0].OverviewPolyline.Points;
+            directions.NortheastBound = googleDirections.Routes[0].Bounds.Northeast;
+            directions.SouthwestBound = googleDirections.Routes[0].Bounds.Southwest;
             directions.Modes = setupModes();
             if (mode == null)
             {
@@ -141,6 +144,11 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
             return typesOfNavigation;
         }
+
+#endregion
+
+
+        #region ExternalCalls
 
         public JsonResult GetAddressByGPSCoordinates(String latitude, String longitude)
         {
@@ -184,6 +192,16 @@ namespace smartGPS.Areas.Dashboard.Controllers
             return this.Json(mapGoogleDirectionsToDirectionsModel(new DirectionsModel(), googleDirections, mode), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetPlaces(String latitude, String longitude)
+        {
+            double endLatitude = Double.Parse(latitude.Replace(",", "."), CultureInfo.InvariantCulture);
+            double endLongitude = Double.Parse(longitude.Replace(",", "."), CultureInfo.InvariantCulture);
+
+            GooglePlacesResponse googlePlaces = ExternalUtilities.getDataFromGooglePlaces(User.Identity.Name,
+                                                                        endLatitude, endLongitude);
+
+            return this.Json(googlePlaces, JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }

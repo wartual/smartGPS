@@ -5,18 +5,29 @@
     Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
 }
 <script src="~/Scripts/Dashboard/previewTravel.js"></script>
+<script src="~/Scripts/Dashboard/setupPlaces.js"></script>
+<script src="~/Scripts/bootstrap-paginator.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHDokIj0w1zAvUQYEu-0fKfbuvfOQvuRg&libraries=geometry&sensor=false"></script>
 <legend>Travels</legend>
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#preview" data-toggle="tab">Travel data</a></li>
     <li><a href="#map" data-toggle="tab">Map</a></li>
+    <li><a href="#places" data-toggle="tab">Places</a></li>
 </ul>
 
 <input type="hidden" id="endLatitude" value="@Model.EndLocation.Latitude" />
 <input type="hidden" id="endLongitude" value="@Model.EndLocation.Longitude" />
+<input type="hidden" id="startLatitude" value="@Model.StartLocation.Latitude" />
+<input type="hidden" id="startLongitude" value="@Model.StartLocation.Longitude" />
+<input type="hidden" id="neBoundLat" value="@Model.NortheastBound.Latitude" />
+<input type="hidden" id="neBoundLng" value="@Model.NortheastBound.Longitude" />
+<input type="hidden" id="swBoundLat" value="@Model.SouthwestBound.Latitude" />
+<input type="hidden" id="swBoundLng" value="@Model.SouthwestBound.Longitude" />
+<input type="hidden" id="polylines" value="@Model.PolyLines" />
 
 <!-- Tab panes -->
-<div class="tab-content">
+<div class="tab-content" id="tabs">
     <div class="tab-pane active" id="preview">
          @using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @class = "form-horizontal" }))
         {
@@ -58,15 +69,29 @@
     
             <div class="control-group">
                 <div class="controls">
-                    <button class="btn btn-large btn-primary" type="submit">Sign up</button>
+                    <button class="btn btn-large btn-success" type="submit">Send to mobile phone</button>
                 </div>
             </div>
         }
-
-
-
     </div>
 
      <div class="tab-pane" id="map">
+         <div id="map-canvas" style="height:500px; width:100%; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box;">
+
+         </div>
      </div>
+
+    <div class="tab-pane" id="places">
+        <table class="table table-striped" id="placesTable">
+            <thead>
+                <td>#</td>
+                <td>Name</td>
+                <td>Address</td>
+                <td>Type</td>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="paginator"></div>
+    </div>
 </div>

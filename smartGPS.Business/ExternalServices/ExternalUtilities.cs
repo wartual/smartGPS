@@ -16,6 +16,7 @@ namespace smartGPS.Business.ExternalServices
 {
     public class ExternalUtilities
     {
+        private static double PLACES_RADIUS = 20000;
 
         public static IEnumerable<Address> getLocationsFromGpsCoordinates(double latitude, double longitude)
         {
@@ -81,6 +82,37 @@ namespace smartGPS.Business.ExternalServices
                     {
                         String responseString = new StreamReader(stream).ReadToEnd();
                         model = JsonConvert.DeserializeObject<GoogleMapsDirectionsResponse>(responseString);
+                        return model;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static GooglePlacesResponse getDataFromGooglePlaces(String userId, double endLatitude, double endLongitude)
+        {
+            double startLatitude, startLongitude;
+
+            usershelper helper = UserAdministration.getUserHelper(userId);
+            startLatitude = helper.LastLocationLatitude.Value;
+            startLongitude = helper.LastLocationLongitude.Value;
+
+            GooglePlacesResponse model = null;
+            String url = APICalls.getPlacesFormattedUrl(endLatitude, endLongitude, PLACES_RADIUS);
+
+            WebRequest request = WebRequest.Create(url);
+
+            try
+            {
+                using (WebResponse response = request.GetResponse())
+                {
+                    using (Stream stream = response.GetResponseStream())
+                    {
+                        String responseString = new StreamReader(stream).ReadToEnd();
+                        model = JsonConvert.DeserializeObject<GooglePlacesResponse>(responseString);
                         return model;
                     }
                 }

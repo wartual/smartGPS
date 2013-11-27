@@ -20,6 +20,10 @@ namespace smartGPS.Areas.Dashboard.Models
 
         public Location EndLocation { get; set; }
 
+        public Location NortheastBound { get; set; }
+
+        public Location SouthwestBound { get; set; }
+
         [Display(Name = "Duration")]
         public String DurationText { get; set; }
 
@@ -29,6 +33,8 @@ namespace smartGPS.Areas.Dashboard.Models
         public double DurationValue { get; set; }
 
         public double DistanceValue { get; set; }
+
+        public String PolyLines { get; set; }
 
         public List<String> Directions { get; set; }
 

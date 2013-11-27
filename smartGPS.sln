@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "smartGPS.Persistance", "sma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "smartGPS.Business", "smartGPS.Business\smartGPS.Business.csproj", "{1D03DB55-2E55-4470-A2D7-11B5CB7202F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo", "demo\demo.csproj", "{CBB9272D-DF33-48CC-B74E-A69C8F331BE0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +25,6 @@ Global
 		{1D03DB55-2E55-4470-A2D7-11B5CB7202F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D03DB55-2E55-4470-A2D7-11B5CB7202F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D03DB55-2E55-4470-A2D7-11B5CB7202F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CBB9272D-DF33-48CC-B74E-A69C8F331BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBB9272D-DF33-48CC-B74E-A69C8F331BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBB9272D-DF33-48CC-B74E-A69C8F331BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBB9272D-DF33-48CC-B74E-A69C8F331BE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

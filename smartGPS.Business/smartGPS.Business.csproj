@@ -82,8 +82,10 @@
     <Compile Include="Models\GoogleModels\Duration.cs" />
     <Compile Include="Models\GoogleModels\Geometry.cs" />
     <Compile Include="Models\GoogleModels\GoogleMapsDirectionsResponse.cs" />
+    <Compile Include="Models\GoogleModels\GooglePlacesResponse.cs" />
     <Compile Include="Models\GoogleModels\Legs.cs" />
     <Compile Include="Models\GoogleModels\OverviewPolyline.cs" />
+    <Compile Include="Models\GoogleModels\PlacesResult.cs" />
     <Compile Include="Models\GoogleModels\Polyline.cs" />
     <Compile Include="Models\GoogleModels\Routes.cs" />
     <Compile Include="Models\GoogleModels\Steps.cs" />

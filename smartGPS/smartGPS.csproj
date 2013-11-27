@@ -63,8 +63,12 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Transactions" />
@@ -305,11 +309,13 @@
     <Content Include="Areas\Dashboard\Views\Travel\TravelError.cshtml" />
     <Content Include="Areas\Dashboard\Views\Travel\PreviewTravel.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap-paginator.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\global.js" />
     <Content Include="Scripts\Dashboard\previewTravel.js" />
     <Content Include="Scripts\Dashboard\setupNavigations.js" />
+    <Content Include="Scripts\Dashboard\setupPlaces.js" />
     <Content Include="Scripts\facebookApi.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
