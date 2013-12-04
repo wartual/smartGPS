@@ -6,12 +6,9 @@ using Newtonsoft.Json;
 
 namespace smartGPS.Business.Models.Foursquare
 {
-    public class Icons
+    public class Hours
     {
-        [JsonProperty("prefix")]
-        public String Prefix { get; set; }
-
-        [JsonProperty("sufx")]
-        public String Sufix { get; set; }
+        [JsonProperty("isOpen")]
+        public Boolean IsOpen { get; set; }
     }
 }
