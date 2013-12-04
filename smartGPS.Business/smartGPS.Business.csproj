@@ -76,6 +76,7 @@
     <Compile Include="ExternalServices\FourqsquareManagement.cs" />
     <Compile Include="ExternalServices\GoogleManagement.cs" />
     <Compile Include="Models\FacebookProfileModel.cs" />
+    <Compile Include="Models\Foursquare\Icons.cs" />
     <Compile Include="Models\GoogleModels\AddressComponents.cs" />
     <Compile Include="Models\GoogleModels\Bounds.cs" />
     <Compile Include="Models\GoogleModels\DirectionsMode.cs" />
