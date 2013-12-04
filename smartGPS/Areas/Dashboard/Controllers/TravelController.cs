@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using smartGPS.Areas.Dashboard.Models;
 using smartGPS.Business;
 using smartGPS.Business.ExternalServices;
+using smartGPS.Business.Models.Foursquare;
 using smartGPS.Business.Models.GoogleModels;
 using smartGPS.Custom;
 using smartGPS.Persistance;
@@ -241,23 +242,34 @@ namespace smartGPS.Areas.Dashboard.Controllers
         public JsonResult GetDirections(String startLatitude, String startLongitude, String endLatitude, String endLongitude, String mode)
         {
             GoogleMapsDirectionsResponse googleDirections = GoogleManagement.getDataFromGoogleMapsApis(User.Identity.Name,
-                                                                        Double.Parse(startLatitude.Replace(",", "."), CultureInfo.InvariantCulture),
-                                                                        Double.Parse(startLongitude.Replace(",", "."), CultureInfo.InvariantCulture),
-                                                                        Double.Parse(endLatitude.Replace(",", "."), CultureInfo.InvariantCulture),
-                                                                        Double.Parse(endLongitude.Replace(",", "."), CultureInfo.InvariantCulture), mode);
+                                                                        Utilities.parseDouble(startLatitude).Value,
+                                                                        Utilities.parseDouble(startLongitude).Value,
+                                                                        Utilities.parseDouble(endLatitude).Value,
+                                                                        Utilities.parseDouble(endLongitude).Value, 
+                                                                        mode);
 
             return this.Json(mapGoogleDirectionsToDirectionsModel(new DirectionsModel(), googleDirections, mode), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetPlaces(String latitude, String longitude)
         {
-            double endLatitude = Double.Parse(latitude.Replace(",", "."), CultureInfo.InvariantCulture);
-            double endLongitude = Double.Parse(longitude.Replace(",", "."), CultureInfo.InvariantCulture);
+            double endLatitude = Utilities.parseDouble(latitude).Value;
+            double endLongitude = Utilities.parseDouble(longitude).Value;
 
             GooglePlacesResponse googlePlaces = GoogleManagement.getDataFromGooglePlaces(User.Identity.Name,
                                                                         endLatitude, endLongitude);
 
             return this.Json(googlePlaces, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetFoursquareExploreVenues(String latitude, String longitude)
+        {
+            double queryLatitude = Utilities.parseDouble(latitude).Value;
+            double queryLongitude = Utilities.parseDouble(longitude).Value;
+
+            FoursquareExploreVenueResponse exploreVenues = FourqsquareManagement.getExploreVenues(queryLatitude, queryLongitude);
+
+            return this.Json(exploreVenues, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

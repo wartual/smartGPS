@@ -76,6 +76,25 @@
     <Compile Include="ExternalServices\FourqsquareManagement.cs" />
     <Compile Include="ExternalServices\GoogleManagement.cs" />
     <Compile Include="Models\FacebookProfileModel.cs" />
+    <Compile Include="Models\Foursquare\Categories.cs" />
+    <Compile Include="Models\Foursquare\Contact.cs" />
+    <Compile Include="Models\Foursquare\ExploreResponse.cs" />
+    <Compile Include="Models\Foursquare\Filters.cs" />
+    <Compile Include="Models\Foursquare\FoursquareExploreVenueResponse.cs" />
+    <Compile Include="Models\Foursquare\FoursquareSearchVenuesResponse.cs" />
+    <Compile Include="Models\Foursquare\GroupItems.cs" />
+    <Compile Include="Models\Foursquare\Groups.cs" />
+    <Compile Include="Models\Foursquare\Hours.cs" />
+    <Compile Include="Models\Foursquare\Icon.cs" />
+    <Compile Include="Models\Foursquare\Items.cs" />
+    <Compile Include="Models\Foursquare\Location.cs" />
+    <Compile Include="Models\Foursquare\Page.cs" />
+    <Compile Include="Models\Foursquare\Specials.cs" />
+    <Compile Include="Models\Foursquare\SuggestedFilters.cs" />
+    <Compile Include="Models\Foursquare\Tips.cs" />
+    <Compile Include="Models\Foursquare\User.cs" />
+    <Compile Include="Models\Foursquare\Venues.cs" />
+    <Compile Include="Models\Foursquare\Response.cs" />
     <Compile Include="Models\GoogleModels\AddressComponents.cs" />
     <Compile Include="Models\GoogleModels\Bounds.cs" />
     <Compile Include="Models\GoogleModels\DirectionsMode.cs" />
@@ -115,11 +134,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="API\" />
     <Folder Include="Travel\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
