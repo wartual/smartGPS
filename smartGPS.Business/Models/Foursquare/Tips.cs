@@ -17,8 +17,11 @@ namespace smartGPS.Business.Models.Foursquare
         [JsonProperty("canonicalUrl")]
         public String CanonicalUrl { get; set; }
 
-        [JsonProperty("id")]
-        public String Id { get; set; }
+        [JsonProperty("text")]
+        public String Text { get; set; }
+
+        [JsonProperty("user")]
+        public User User { get; set; }
 
     }
 }

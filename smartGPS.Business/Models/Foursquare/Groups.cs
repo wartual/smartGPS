@@ -15,6 +15,6 @@ namespace smartGPS.Business.Models.Foursquare
         public String Name { get; set; }
 
         [JsonProperty("items")]
-        public List<Items> Items { get; set; }
+        public List<GroupItems> Items { get; set; }
     }
 }

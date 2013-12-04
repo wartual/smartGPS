@@ -18,7 +18,7 @@ namespace smartGPS.Business.Models.Foursquare
         public Location Location { get; set; }
 
         [JsonProperty("categories")]
-        public Categories Categories { get; set; }
+        public List<Categories> Categories { get; set; }
 
         [JsonProperty("verified")]
         public Boolean Verified { get; set; }
