@@ -1,0 +1,29 @@
+﻿@model smartGPS.Areas.Dashboard.Models.ProfileModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log("ready!");
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(savePosition);
+        }
+    });
+
+    function savePosition(position) {
+        $.ajax({
+            url: ("@Url.Action("UpdateUserLocation", "Dashboard")"),
+            type: ("PUT"),
+            data: { latitude: position.coords.latitude, longitude: position.coords.longitude },
+            success: function (data) {
+                console.log(data);
+            }
+        });
+
+        console.log("Latitude: " + position.coords.latitude +
+        "Longitude: " + position.coords.longitude);
+    }
+
+</script>

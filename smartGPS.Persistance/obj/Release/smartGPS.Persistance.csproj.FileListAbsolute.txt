@@ -1,0 +1,7 @@
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\bin\smartGPS.Persistance.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\bin\smartGPS.Persistance.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\bin\EntityFramework.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\bin\EntityFramework.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\obj\Release\smartGPS.Persistance.csprojResolveAssemblyReference.cache
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\obj\Release\smartGPS.Persistance.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Persistance\obj\Release\smartGPS.Persistance.pdb

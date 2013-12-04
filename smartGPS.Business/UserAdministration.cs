@@ -6,6 +6,7 @@ using System.Web.Security;
 using smartGPS.Business.ExternalServices;
 using smartGPS.Persistance;
 using smartGPS.Persistance.Users;
+using smartGPS.Persistance.UsersFolder;
 
 namespace smartGPS.Business
 {
@@ -47,7 +48,7 @@ namespace smartGPS.Business
 
         public static int signIn(String username, String password, Boolean rememberMe)
         {
-            users model = UsersDAO.getByUsernameAndPassword(username, Utilities.encryptPassword(password));
+            User model = UsersDAO.getByUsernameAndPassword(username, Utilities.encryptPassword(password));
             
             if (model == null)
                 return (int)ErrorHandler.SignInErrors.Failed;
@@ -70,7 +71,7 @@ namespace smartGPS.Business
 
         public static int signInExternalUser(String username)
         {
-            users model = UsersDAO.getByUsername(username);
+            User model = UsersDAO.getByUsername(username);
             if (model == null)
                 return (int)ErrorHandler.SignInErrors.Failed;
             else
@@ -106,7 +107,7 @@ namespace smartGPS.Business
 
         #region Users
 
-        public static users getUserByUserId(String userId)
+        public static User getUserByUserId(String userId)
         {
             return UsersDAO.getById(userId);
         }
@@ -117,7 +118,7 @@ namespace smartGPS.Business
                 UsersDAO.updateLastLocation(latitude, longitude, userId);
         }
 
-        public static usershelper getUserHelper(String userId)
+        public static UserHelper getUserHelper(String userId)
         {
             return UsersDAO.getUserHelper(userId);
         }
@@ -126,9 +127,9 @@ namespace smartGPS.Business
 
         # region Profile
 
-        public static profile getProfileByUserId(String userId)
+        public static Profile getProfileByUserId(String userId)
         {
-            profile model = UsersDAO.getProfileByUserId(userId);
+            Profile model = UsersDAO.getProfileByUserId(userId);
             return model;
         }
 

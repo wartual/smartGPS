@@ -1,0 +1,14 @@
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\smartGPS.Business.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\smartGPS.Business.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\Facebook.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\GeoCoding.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\Newtonsoft.Json.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\smartGPS.Persistance.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\EntityFramework.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\smartGPS.Persistance.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\Facebook.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\Newtonsoft.Json.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\bin\EntityFramework.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\obj\Release\smartGPS.Business.csprojResolveAssemblyReference.cache
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\obj\Release\smartGPS.Business.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS.Business\obj\Release\smartGPS.Business.pdb

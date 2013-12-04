@@ -18,19 +18,32 @@ namespace smartGPS.Areas.Dashboard.Controllers
     [smartGPSAuthorize]
     public class TravelController : Controller
     {
-        //
-        // GET: /Dashboard/Travel/
-
+        
         private static IEnumerable<Address> locations;
+        public static String DEPARTURE_LATITUDE = "departure_latitude";
+        public static String DEPARTURE_LONGITUDE = "departure_longitude";
+        public static String DESTINATION_LATITUDE = "destination_latitude";
+        public static String DESTINATION_LONGITUDE = "destination_longitude";
 
         public ActionResult Index()
         {
             return View();
         }
 
+
         public ActionResult NewTravel()
         {
             SetupTravelModel model = new SetupTravelModel();
+            UserHelper helper = UserAdministration.getUserHelper(User.Identity.Name);
+
+            if (helper.LastLocationLatitude != null && helper.LastLocationLongitude != null)
+            {
+                model.StartLatitude = helper.LastLocationLatitude.ToString();
+                model.StartLongitude = helper.LastLocationLongitude.ToString();
+                locations = GoogleManagement.getLocationsFromGpsCoordinates(helper.LastLocationLatitude.Value, helper.LastLocationLongitude.Value);
+                model.StartAddress = locations.FirstOrDefault().FormattedAddress;
+            }
+
             ViewBag.TypesOfNavigation = new SelectList(setupTypeOfNavigation(), "Value", "Text");
             ViewBag.Destinations = new SelectList(new List<SelectListItem>());
             return PartialView("_SetupNavigation", model);
@@ -48,15 +61,15 @@ namespace smartGPS.Areas.Dashboard.Controllers
             // check if model is valid
             if (ModelState.IsValid)
             {
-                if (viewModel.NavigationType.Equals("2") && viewModel.Destination == null && (viewModel.Latitude == null || viewModel.Longitude == null))
+                if (viewModel.DestinationType.Equals("2") && viewModel.Destination == null && (viewModel.Latitude == null || viewModel.Longitude == null))
                 {
                     return RedirectToAction("TravelError");
                 }
-                else if (viewModel.NavigationType.Equals("1") && viewModel.DestinationDropdown == null)
+                else if (viewModel.DestinationType.Equals("1") && viewModel.DestinationDropdown == null)
                 {
-                      return RedirectToAction("TravelError");
+                    return RedirectToAction("TravelError");
                 }
-                else if (viewModel.NavigationType.Equals(null))
+                else if (viewModel.DestinationType.Equals(null))
                 {
                     return RedirectToAction("TravelError");
                 }
@@ -67,7 +80,9 @@ namespace smartGPS.Areas.Dashboard.Controllers
             }
             else
             {
-                return RedirectToAction("TravelError");
+                ViewBag.TypesOfNavigation = new SelectList(setupTypeOfNavigation(), "Value", "Text");
+                ViewBag.Destinations = new SelectList(new List<SelectListItem>());
+                return View(viewModel);
             }
         }
 
@@ -75,28 +90,70 @@ namespace smartGPS.Areas.Dashboard.Controllers
         [HttpGet]
         public ActionResult PreviewTravel(SetupTravelModel model)
         {
-            DirectionsModel viewModel = new DirectionsModel();
-            GoogleMapsDirectionsResponse googleDirections = null;
-            GoogleGeoCodeResponse googleGeocoder;
+            try
+            {
+                Dictionary<string, double> endpoints = obtainDepartureAndDestinationLocation(model);
+                DirectionsModel viewModel = new DirectionsModel();
+                GoogleMapsDirectionsResponse googleDirections = null;
 
-            if(model.NavigationType.Equals("1")){
-                locations = ExternalUtilities.getLocationsFromAddress(model.Address);
-                int index = model.DestinationDropdown.Value;
-                String address = locations.ElementAt(index).FormattedAddress;
-                googleGeocoder = ExternalUtilities.getDataFromGoogleApis(address);
-                Geometry geometry = googleGeocoder.Results.ElementAt(0).Geometry;
-                googleDirections = ExternalUtilities.getDataFromGoogleMapsApis(User.Identity.Name, geometry.Locations.Latitude, geometry.Locations.Longitude, DirectionsMode.MODE_DRIVING);
+
+                googleDirections = GoogleManagement.getDataFromGoogleMapsApis(User.Identity.Name, endpoints[DEPARTURE_LATITUDE], endpoints[DEPARTURE_LONGITUDE],
+                                     endpoints[DESTINATION_LATITUDE], endpoints[DESTINATION_LONGITUDE], DirectionsMode.MODE_DRIVING);
+              
+
+                viewModel = mapGoogleDirectionsToDirectionsModel(viewModel, googleDirections, null);
+                return View(viewModel);
             }
-            else if(model.NavigationType.Equals("2")){
-                googleDirections = ExternalUtilities.getDataFromGoogleMapsApis(User.Identity.Name, model.Latitude.Value, model.Longitude.Value
-                            , DirectionsMode.MODE_DRIVING);
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return View("NewTravle");
             }
 
-            viewModel = mapGoogleDirectionsToDirectionsModel(viewModel, googleDirections, null);
-            return View(viewModel);
         }
 
         #region Utilities
+
+        private Dictionary<string, double> obtainDepartureAndDestinationLocation(SetupTravelModel model)
+        {
+            Dictionary<string, double> endpoints = new Dictionary<string, double>();
+            Geometry geometry = new Geometry();
+
+            if (model.DestinationType.Equals("1"))
+            {
+                geometry = getGeometryFromAddress(model.Address, model.DestinationDropdown.Value);
+                endpoints.Add(DESTINATION_LATITUDE, geometry.Locations.Latitude);
+                endpoints.Add(DESTINATION_LONGITUDE, geometry.Locations.Longitude);
+            }
+            else if(model.DestinationType.Equals("2"))
+            {
+                endpoints.Add(DESTINATION_LATITUDE, Utilities.parseDouble(model.Latitude).Value);
+                endpoints.Add(DESTINATION_LONGITUDE, Utilities.parseDouble(model.Longitude).Value);
+            }
+
+            if (model.DepartureType.Equals("1"))
+            {
+                geometry = getGeometryFromAddress(model.StartAddress, model.DepartureDropdown.Value);
+                endpoints.Add(DEPARTURE_LATITUDE, geometry.Locations.Latitude);
+                endpoints.Add(DEPARTURE_LONGITUDE, geometry.Locations.Longitude);
+            }
+            else if(model.DepartureType.Equals("2"))
+            {
+                endpoints.Add(DEPARTURE_LATITUDE, Utilities.parseDouble(model.StartLatitude).Value);
+                endpoints.Add(DEPARTURE_LONGITUDE, Utilities.parseDouble(model.StartLongitude).Value);
+            }
+
+            return endpoints;
+        }
+
+        private Geometry getGeometryFromAddress(String address, int index)
+        {
+            GoogleGeoCodeResponse googleGeocoder;
+            locations = GoogleManagement.getLocationsFromAddress(address);
+            String formattedAddress = locations.ElementAt(index).FormattedAddress;
+            googleGeocoder = GoogleManagement.getDataFromGoogleApis(address);
+            return googleGeocoder.Results.ElementAt(0).Geometry;
+        }
 
         private DirectionsModel mapGoogleDirectionsToDirectionsModel(DirectionsModel directions, GoogleMapsDirectionsResponse googleDirections, String mode)
         {
@@ -120,9 +177,9 @@ namespace smartGPS.Areas.Dashboard.Controllers
             {
                 directions.Mode = Int16.Parse(directions.Modes.Where(item => item.Text.ToLower().Equals(mode.ToLower())).FirstOrDefault().Value);
             }
-           
+
             return directions;
-        
+
         }
 
         private List<SelectListItem> setupTypeOfNavigation()
@@ -145,14 +202,14 @@ namespace smartGPS.Areas.Dashboard.Controllers
             return typesOfNavigation;
         }
 
-#endregion
+        #endregion
 
 
         #region ExternalCalls
 
         public JsonResult GetAddressByGPSCoordinates(String latitude, String longitude)
         {
-            locations = ExternalUtilities.getLocationsFromGpsCoordinates(Double.Parse(latitude, CultureInfo.InvariantCulture), Double.Parse(longitude, CultureInfo.InvariantCulture));
+            locations = GoogleManagement.getLocationsFromGpsCoordinates(Double.Parse(latitude, CultureInfo.InvariantCulture), Double.Parse(longitude, CultureInfo.InvariantCulture));
             List<SmartDestinationJson> list = new List<SmartDestinationJson>();
             foreach (Address model in locations)
             {
@@ -166,7 +223,7 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         public JsonResult GetDestinationsByAddress(String address)
         {
-            locations = ExternalUtilities.getLocationsFromAddress(address);
+            locations = GoogleManagement.getLocationsFromAddress(address);
             List<SmartDestinationJson> list = new List<SmartDestinationJson>();
             int i = 0;
             foreach (Address model in locations)
@@ -181,13 +238,13 @@ namespace smartGPS.Areas.Dashboard.Controllers
             return this.Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetDirections(String latitude, String longitude, String mode)
+        public JsonResult GetDirections(String startLatitude, String startLongitude, String endLatitude, String endLongitude, String mode)
         {
-            double endLatitude = Double.Parse(latitude.Replace(",","."), CultureInfo.InvariantCulture);
-            double endLongitude= Double.Parse(longitude.Replace(",","."), CultureInfo.InvariantCulture);
-
-            GoogleMapsDirectionsResponse googleDirections = ExternalUtilities.getDataFromGoogleMapsApis(User.Identity.Name,
-                                                                        endLatitude, endLongitude, mode);
+            GoogleMapsDirectionsResponse googleDirections = GoogleManagement.getDataFromGoogleMapsApis(User.Identity.Name,
+                                                                        Double.Parse(startLatitude.Replace(",", "."), CultureInfo.InvariantCulture),
+                                                                        Double.Parse(startLongitude.Replace(",", "."), CultureInfo.InvariantCulture),
+                                                                        Double.Parse(endLatitude.Replace(",", "."), CultureInfo.InvariantCulture),
+                                                                        Double.Parse(endLongitude.Replace(",", "."), CultureInfo.InvariantCulture), mode);
 
             return this.Json(mapGoogleDirectionsToDirectionsModel(new DirectionsModel(), googleDirections, mode), JsonRequestBehavior.AllowGet);
         }
@@ -197,7 +254,7 @@ namespace smartGPS.Areas.Dashboard.Controllers
             double endLatitude = Double.Parse(latitude.Replace(",", "."), CultureInfo.InvariantCulture);
             double endLongitude = Double.Parse(longitude.Replace(",", "."), CultureInfo.InvariantCulture);
 
-            GooglePlacesResponse googlePlaces = ExternalUtilities.getDataFromGooglePlaces(User.Identity.Name,
+            GooglePlacesResponse googlePlaces = GoogleManagement.getDataFromGooglePlaces(User.Identity.Name,
                                                                         endLatitude, endLongitude);
 
             return this.Json(googlePlaces, JsonRequestBehavior.AllowGet);

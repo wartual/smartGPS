@@ -1,0 +1,19 @@
+﻿@model ICollection<AuthenticationClientData>
+
+@using (Html.BeginForm("ExternalLogin", "ExternalServices"))
+{
+    <p>
+        Your smartGPS account is not linked with @ViewBag.Provider.
+    </p>
+    @Html.AntiForgeryToken()
+        <p>
+            @foreach (AuthenticationClientData p in Model)
+            {
+                if (p.AuthenticationClient.ProviderName.ToLower().Equals(ViewBag.Provider))
+                {
+                    <button class="btn btn-large btn-primary" type="submit" name="provider" value="@p.AuthenticationClient.ProviderName" title="Log in using your @p.DisplayName account">Import</button>
+                }
+            }
+        </p>
+}
+

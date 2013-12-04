@@ -92,3 +92,4 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.pdb
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\GeoCoding.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Abstractions.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Routing.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Elmah.dll

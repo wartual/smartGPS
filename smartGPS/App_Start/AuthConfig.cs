@@ -25,6 +25,7 @@ namespace smartGPS
                 appId: "526242434133615",
                 appSecret: "00c9a5e5a3e8b0f70e7da472685e9f54");
 
+
             //OAuthWebSecurity.RegisterGoogleClient();
         }
     }

@@ -12,19 +12,19 @@ namespace smartGPS.Persistance
     using System;
     using System.Collections.Generic;
     
-    public partial class profile
+    public partial class Profile
     {
         public string Id { get; set; }
+        public string UserId { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public Nullable<bool> Gender { get; set; }
         public string Address { get; set; }
         public string PostalOffice { get; set; }
         public string Country { get; set; }
         public string Email { get; set; }
-        public string users_Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
     
-        public virtual users users { get; set; }
+        public virtual User User { get; set; }
     }
 }

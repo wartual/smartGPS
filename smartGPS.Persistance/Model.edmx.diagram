@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="760b2688c4e645699c99965fa2e3a0b7" Name="Diagram1">
-        <EntityTypeShape EntityType="smartgpsModel.profile" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartgpsModel.users" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="smartgpsModel.fk_profile_users" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="smartgpsModel.userfacebookprofile" Width="1.5" PointX="7.405831863826994" PointY="20.677257428261104" />
-        <EntityTypeShape EntityType="smartgpsModel.usershelper" Width="1.5" PointX="6.849079083115365" PointY="17.774983622960274" />
-        <AssociationConnector Association="smartgpsModel.fk_userFacebookProfile_users1" />
-        <AssociationConnector Association="smartgpsModel.fk_usersHelper_users1" />
+      <Diagram DiagramId="bfe4216e8e704606a5a50d6af5b1094b" Name="Diagram1">
+        <EntityTypeShape EntityType="smartGPSModel.FacebookProfile" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.Profile" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.User" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.UserHelper" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="smartGPSModel.FK_FacebookProfile_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_Profile_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_UserHelper_Users" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

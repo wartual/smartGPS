@@ -10,7 +10,7 @@ namespace smartGPS.Business.Models
     public class Mapping
     {
 
-        public static FacebookProfileModel mapFacebookDBModelToFacebookProfileModel(userfacebookprofile db, FacebookProfileModel model)
+        public static FacebookProfileModel mapFacebookDBModelToFacebookProfileModel(FacebookProfile db, FacebookProfileModel model)
         {
             model.Username = db.Username;
             model.Surname = db.Surname;

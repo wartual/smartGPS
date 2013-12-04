@@ -13,10 +13,10 @@ namespace smartGPS.Persistance
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class smartgpsEntities : DbContext
+    public partial class smartGPSEntities : DbContext
     {
-        public smartgpsEntities()
-            : base("name=smartgpsEntities")
+        public smartGPSEntities()
+            : base("name=smartGPSEntities")
         {
         }
     
@@ -25,9 +25,10 @@ namespace smartGPS.Persistance
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<profile> profile { get; set; }
-        public DbSet<users> users { get; set; }
-        public DbSet<userfacebookprofile> userfacebookprofile { get; set; }
-        public DbSet<usershelper> usershelper { get; set; }
+        public DbSet<FacebookProfile> FacebookProfile { get; set; }
+        public DbSet<Profile> Profile { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<UserHelper> UserHelper { get; set; }
     }
 }

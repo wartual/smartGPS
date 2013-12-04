@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="smartGPS.Persistance.smartGPSEntities-Web.config Connection String" description="smartGPS.Persistance.smartGPSEntities Connection String used in web.config by the application to access the database." defaultValue="smartGPS.Persistance.smartGPSEntities_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\smartGPS\\smartGPS\\smartGPS\\smartGPS\.Business\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='smartGPS.Persistance.smartGPSEntities']/@connectionString" />
+  </parameter>
+</parameters>

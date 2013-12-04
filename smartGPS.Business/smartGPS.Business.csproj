@@ -73,7 +73,8 @@
     <Compile Include="ExternalServices\APICalls.cs" />
     <Compile Include="ExternalServices\Config.cs" />
     <Compile Include="ExternalServices\FacebookManagement.cs" />
-    <Compile Include="ExternalServices\ExternalUtilities.cs" />
+    <Compile Include="ExternalServices\FourqsquareManagement.cs" />
+    <Compile Include="ExternalServices\GoogleManagement.cs" />
     <Compile Include="Models\FacebookProfileModel.cs" />
     <Compile Include="Models\GoogleModels\AddressComponents.cs" />
     <Compile Include="Models\GoogleModels\Bounds.cs" />
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\smartGPS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -115,6 +117,9 @@
   <ItemGroup>
     <Folder Include="API\" />
     <Folder Include="Travel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -33,7 +33,7 @@ namespace smartGPS.Business.ExternalServices
 
         public static FacebookProfileModel getFacebookProfileData(String userId)
         {
-            userfacebookprofile profile = ExternalServicesDAO.getFacebookProfileByUserId(userId);
+            FacebookProfile profile = ExternalServicesDAO.getFacebookProfileByUserId(userId);
             FacebookProfileModel model = new FacebookProfileModel();
 
             if (profile == null)

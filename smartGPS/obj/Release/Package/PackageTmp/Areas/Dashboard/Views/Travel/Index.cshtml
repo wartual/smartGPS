@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+<legend>Travels</legend>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#new" data-toggle="tab">New travel</a></li>
+    <li><a href="#history" data-toggle="tab">History</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane active" id="home">
+        @Html.Action("NewTravel", "Travel")
+    </div>
+
+     <div class="tab-pane" id="history">
+     </div>
+</div>

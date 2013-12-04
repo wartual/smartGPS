@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -28,6 +29,18 @@ namespace smartGPS.Business
             }
 
             return strBuilder.ToString();
+        }
+
+        public static double? parseDouble(String value)
+        {
+            try
+            {
+                return Double.Parse(value, CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }
