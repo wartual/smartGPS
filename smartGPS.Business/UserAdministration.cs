@@ -123,6 +123,11 @@ namespace smartGPS.Business
             return UsersDAO.getUserHelper(userId);
         }
 
+        public static User getUserByUsername(String username)
+        {
+            return UsersDAO.getByUsername(username);
+        }
+
         #endregion
 
         # region Profile
