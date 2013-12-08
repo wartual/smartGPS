@@ -22,54 +22,112 @@
     {
         <div class="modal-body">
 
-            <div style="display: table-cell">
-                <p>Select navigation type:</p>
-            </div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#departure-tab" data-toggle="tab">Departure</a></li>
+                <li><a href="#destination-tab" data-toggle="tab">Destination</a></li>
+            </ul>
 
-            <div style="display: table-cell; padding-left: 20px" name="types">
-                @Html.DropDownListFor(m => m.NavigationType, (IEnumerable<SelectListItem>)ViewBag.TypesOfNavigation, "Select a value")
-            </div>
-            <div id="address" style="float: none">
-                @Html.LabelFor(m => m.Address, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.TextBoxFor(m => m.Address, new { placeholder = "Address", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(m => m.Address)
+            <div class="tab-content">
+                <div class="tab-pane active" id="departure-tab">
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.DepartureType, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownListFor(m => m.DepartureType, (IEnumerable<SelectListItem>)ViewBag.TypesOfNavigation, "Select a value")
+                        </div>
+
+                    </div>
+                    <div id="startAddress" style="float: none">
+                        @Html.LabelFor(m => m.StartAddress, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.StartAddress, new { placeholder = "Address", @class = "input-xlarge" })
+                            @Html.ValidationMessageFor(m => m.StartAddress)
+                        </div>
+                    </div>
+
+                    <div id="startLatitude" class="control-group" style="float: left">
+                        @Html.LabelFor(m => m.StartLatitude, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.StartLatitude, new { placeholder = "Latitude", onkeypress = "return isNumberKey(event)", name = "latitude" })
+                            @Html.ValidationMessageFor(m => m.StartLatitude)
+                        </div>
+                    </div>
+                    <div id="startLongitude" class="control-group" style="float: right">
+                        @Html.LabelFor(m => m.StartLongitude, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.StartLongitude, new { placeholder = "Longitude", onkeypress = "return isNumberKey(event)", name = "longitude" })
+                            @Html.ValidationMessageFor(m => m.StartLongitude)
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="find-departure" aria-hidden="true">Find departure</button>
+
+                    <div style="display: table-cell; padding-top: 10px" name="types">
+                        @Html.DropDownListFor(m => m.DepartureDropdown, (IEnumerable<SelectListItem>)ViewBag.Destinations, "Select a value")
+                    </div>
+
+                    <div id="departure" class="control-group" style="padding-top: 10px">
+                        @Html.LabelFor(m => m.Departure, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Departure, new { placeholder = "Destination", @class = "input-xlarge" })
+                            @Html.ValidationMessageFor(m => m.Departure)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="destination-tab">
+
+                    <div id="destination-type" class="control-group">
+                        @Html.LabelFor(m => m.DestinationType, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownListFor(m => m.DestinationType, (IEnumerable<SelectListItem>)ViewBag.TypesOfNavigation, "Select a value")
+
+                        </div>
+                    </div>
+                    <div id="address" style="float: none">
+                        @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Address, new { placeholder = "Address", @class = "input-xlarge" })
+                            @Html.ValidationMessageFor(m => m.Address)
+                        </div>
+                    </div>
+
+                    <div id="latitude" class="control-group" style="float: left">
+                        @Html.LabelFor(m => m.Latitude, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Latitude, new { placeholder = "Latitude", onkeypress = "return isNumberKey(event)", name = "latitude" })
+                            @Html.ValidationMessageFor(m => m.Latitude)
+                        </div>
+                    </div>
+                    <div id="longitude" class="control-group" style="float: right">
+                        @Html.LabelFor(m => m.Longitude, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Longitude, new { placeholder = "Longitude", onkeypress = "return isNumberKey(event)", name = "longitude" })
+                            @Html.ValidationMessageFor(m => m.Longitude)
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="find-destination" aria-hidden="true">Find destination</button>
+
+                    <div style="display: table-cell; padding-top: 10px" name="types">
+                        @Html.DropDownListFor(m => m.DestinationDropdown, (IEnumerable<SelectListItem>)ViewBag.Destinations, "Select a value")
+                    </div>
+
+                    <div id="destination" class="control-group" style="padding-top: 10px">
+                        @Html.LabelFor(m => m.Destination, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Destination, new { placeholder = "Destination", @class = "input-xlarge" })
+                            @Html.ValidationMessageFor(m => m.Destination)
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id="latitude" class="control-group" style="float: left">
-                @Html.LabelFor(m => m.Latitude, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.TextBoxFor(m => m.Latitude, new { placeholder = "Latitude", onkeypress = "return isNumberKey(event)", name = "latitude" })
-                    @Html.ValidationMessageFor(m => m.Latitude)
-                </div>
-            </div>
-            <div id="longitude" class="control-group" style="float: right">
-                @Html.LabelFor(m => m.Longitude, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.TextBoxFor(m => m.Longitude, new { placeholder = "Longitude", onkeypress = "return isNumberKey(event)", name = "longitude" })
-                    @Html.ValidationMessageFor(m => m.Longitude)
-                </div>
-            </div>
 
-            <button class="btn btn-primary" id="find-destination" aria-hidden="true">Find destination</button>
-
-            <div style="display: table-cell; padding-top: 10px" name="types">
-                @Html.DropDownListFor(m => m.DestinationDropdown, (IEnumerable<SelectListItem>)ViewBag.Destinations, "Select a value")
-            </div>
-
-            <div id="destination" class="control-group" style="padding-top: 10px">
-                @Html.LabelFor(m => m.Destination, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.TextBoxFor(m => m.Destination, new { placeholder = "Destination", @class = "input-xxlarge" })
-                    @Html.ValidationMessageFor(m => m.Destination)
-                </div>
-            </div>
 
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <button class="btn btn-success" type="submit" name="submitButton">Continue</button>
+            <button class="btn btn-success" type="submit" id="submitButton">Continue</button>
         </div>
     }
 </div>

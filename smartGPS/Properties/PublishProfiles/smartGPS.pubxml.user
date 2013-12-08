@@ -56,7 +56,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2013 21:04:47</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/_SetupNavigation.cshtml">
-      <publishTime>11/25/2013 22:45:32</publishTime>
+      <publishTime>12/04/2013 15:39:14</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Web.config">
       <publishTime>12/02/2013 23:42:46</publishTime>
@@ -185,13 +185,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>12/03/2013 20:54:20</publishTime>
+      <publishTime>12/04/2013 22:56:10</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>12/03/2013 21:25:36</publishTime>
+      <publishTime>12/04/2013 22:56:12</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>12/03/2013 01:13:30</publishTime>
+      <publishTime>12/04/2013 22:51:17</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>04/10/2012 00:21:08</publishTime>
@@ -245,7 +245,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:01</publishTime>
     </File>
     <File Include="bin/WebMatrix.WebData.dll">
-      <publishTime>10/22/2013 22:14:02</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/zh-Hans/Microsoft.Data.Edm.resources.dll">
       <publishTime>10/22/2013 22:14:08</publishTime>
@@ -353,7 +353,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:38:30</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.button.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/22/2013 22:38:30</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.core.css">
       <publishTime>10/22/2013 22:38:30</publishTime>
@@ -539,10 +539,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/25/2013 22:54:18</publishTime>
     </File>
     <File Include="Scripts/Dashboard/previewTravel.js">
-      <publishTime>11/27/2013 17:22:22</publishTime>
+      <publishTime>12/04/2013 22:51:17</publishTime>
     </File>
     <File Include="Scripts/Dashboard/setupNavigations.js">
-      <publishTime>11/25/2013 22:57:59</publishTime>
+      <publishTime>12/04/2013 18:11:32</publishTime>
     </File>
     <File Include="Scripts/Dashboard/setupPlaces.js">
       <publishTime>11/27/2013 20:42:42</publishTime>
