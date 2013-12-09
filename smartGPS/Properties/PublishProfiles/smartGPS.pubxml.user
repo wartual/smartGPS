@@ -185,19 +185,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>12/04/2013 22:56:10</publishTime>
+      <publishTime>12/09/2013 18:25:36</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>12/04/2013 22:56:12</publishTime>
+      <publishTime>12/09/2013 18:25:39</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>12/04/2013 22:51:17</publishTime>
+      <publishTime>12/09/2013 18:23:31</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>04/10/2012 00:21:08</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>10/22/2013 22:13:58</publishTime>
+      <publishTime>12/09/2013 18:23:31</publishTime>
     </File>
     <File Include="bin/System.Spatial.dll">
       <publishTime>10/22/2013 22:14:06</publishTime>
@@ -209,13 +209,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:56</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>10/22/2013 22:13:58</publishTime>
+      <publishTime>12/09/2013 18:23:31</publishTime>
     </File>
     <File Include="bin/System.Web.Http.OData.dll">
-      <publishTime>10/22/2013 22:14:13</publishTime>
+      <publishTime>12/09/2013 18:23:31</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>10/22/2013 22:13:59</publishTime>
+      <publishTime>12/09/2013 18:23:31</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>10/22/2013 22:13:57</publishTime>
@@ -245,7 +245,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:01</publishTime>
     </File>
     <File Include="bin/WebMatrix.WebData.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/22/2013 22:14:02</publishTime>
     </File>
     <File Include="bin/zh-Hans/Microsoft.Data.Edm.resources.dll">
       <publishTime>10/22/2013 22:14:08</publishTime>
@@ -380,7 +380,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:38:30</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.theme.css">
-      <publishTime>10/22/2013 22:38:30</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>10/22/2013 22:38:30</publishTime>
@@ -521,7 +521,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>12/03/2013 00:53:50</publishTime>
+      <publishTime>12/09/2013 18:23:31</publishTime>
     </File>
     <File Include="Scripts/bootstrap-paginator.min.js">
       <publishTime>11/27/2013 20:12:39</publishTime>
@@ -572,7 +572,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:51</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
-      <publishTime>11/28/2013 22:49:59</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.min.js.map">
       <publishTime>11/28/2013 22:49:59</publishTime>
@@ -623,7 +623,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/03/2013 20:54:37</publishTime>
+      <publishTime>12/09/2013 18:23:31</publishTime>
     </File>
   </ItemGroup>
 </Project>
