@@ -61,6 +61,8 @@ namespace smartGPS.Areas.API.Controllers
                     response.Status = SmartResponseType.RESULT_OK;
                     response.Message = user.Id;
                     UserAdministration.APIexternaLoginUpdateDateLogin(user);
+
+                    return Request.CreateResponse(HttpStatusCode.Created, response);
                 }
                 else
                 {
@@ -74,8 +76,9 @@ namespace smartGPS.Areas.API.Controllers
                         response.Status = SmartResponseType.RESULT_FAIL;
                         response.Message = "An error has occured while saving to database";
                     }
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
                 }
-                return Request.CreateResponse(HttpStatusCode.OK, response);
+                
             }
             catch (Exception e)
             {
