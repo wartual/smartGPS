@@ -107,6 +107,11 @@ namespace smartGPS.Business
 
         #region Users
 
+        public static void APIexternaLoginUpdateDateLogin(User user)
+        {
+            UsersDAO.updateDateLastLogin(user);
+        }
+
         public static User getUserByUserId(String userId)
         {
             return UsersDAO.getById(userId);
