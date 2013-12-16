@@ -9,6 +9,7 @@ using smartGPS.Areas.API.Models.UserAdministration;
 using smartGPS.Business;
 using smartGPS.Controllers;
 using smartGPS.Models.UserAdministration;
+using smartGPS.Persistance;
 using smartGPS.Persistance.UsersFolder;
 
 namespace smartGPS.Areas.API.Controllers
@@ -18,7 +19,7 @@ namespace smartGPS.Areas.API.Controllers
 
         [HttpPut]
         [ActionName("loginUser")]
-        public HttpResponseMessage GetLoginDetails([FromBody] ExternalLoginModel model)
+        public HttpResponseMessage GetLoginDetails([FromBody] ApiExternalLoginModel model)
         {
             try
             {
@@ -49,7 +50,7 @@ namespace smartGPS.Areas.API.Controllers
 
         [HttpPost]
         [ActionName("registerUser")]
-        public HttpResponseMessage CreateNewUser([FromBody] ExternalNewUserModel model)
+        public HttpResponseMessage CreateNewUser([FromBody] APINewUserModel model)
         {
             try
             {
@@ -85,8 +86,91 @@ namespace smartGPS.Areas.API.Controllers
                 Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 response.Status = SmartResponseType.RESULT_FAIL;
                 response.Message = "An error has occured!";
-                return Request.CreateResponse(HttpStatusCode.BadRequest, response);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
             }
         }
+
+
+        [HttpGet]
+        [ActionName("getUser")]
+        public HttpResponseMessage GetUserProfile(String userId)
+        {
+            try
+            {
+                smartGPS.Persistance.User user = UserAdministration.getUserByUserId(userId);
+
+                if (user == null)
+                {
+                    response.Status = SmartResponseType.RESULT_FAIL;
+                    response.Message = "User does not exists";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, getProfileModel(UserAdministration.getProfileByUserId(userId)));
+                }
+            }
+            catch (Exception e)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                response.Status = SmartResponseType.RESULT_FAIL;
+                response.Message = "An error has occured!";
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
+            }
+        }
+
+
+        [HttpPut]
+        [ActionName("updateProfile")]
+        public HttpResponseMessage UpdateUserProfile([FromBody] APIProfileModel model)
+        {
+            try
+            {
+                Boolean status = UserAdministration.updateProfile(model.UserId, model.Username, model.Name, model.Surname, model.DateOfBirth,
+                                                                    model.Gender, model.Email, model.Phone, model.Address, model.PostalOffice, model.Country, null);
+
+                if (status)
+                {
+                    response.Status = SmartResponseType.RESULT_OK;
+                    response.Message = "User profile has been updated!";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else
+                {
+                    response.Status = SmartResponseType.RESULT_FAIL;
+                    response.Message = "Data is not in valid format!";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+            }
+            catch (Exception e)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                response.Status = SmartResponseType.RESULT_FAIL;
+                response.Message = "An error has occured!";
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
+            }
+        }
+
+        #region Utils
+
+        private APIProfileModel getProfileModel(Profile profile)
+        {
+            APIProfileModel model = new APIProfileModel();
+            model.Address = profile.Address;
+            model.Country = profile.Country;
+            model.DateOfBirth = profile.DateOfBirth.Value.Date.Millisecond;
+            model.Email = profile.Email;
+            model.Gender = profile.Gender;
+            model.Name = profile.Name;
+            model.PostalOffice = profile.PostalOffice;
+            model.Surname = profile.Surname;
+            model.Phone = profile.Phone;
+            model.UserId = profile.UserId;
+            model.Username = profile.User.Username;
+
+            return model;
+        }
+
+        #endregion
     }
 }

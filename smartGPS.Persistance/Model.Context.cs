@@ -27,7 +27,6 @@ namespace smartGPS.Persistance
     
         public DbSet<FacebookProfile> FacebookProfile { get; set; }
         public DbSet<Profile> Profile { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserHelper> UserHelper { get; set; }
     }

@@ -3,27 +3,26 @@
   <EntityContainer Name="smartGPSModelStoreContainer">
     <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.Store.FacebookProfile" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Profile" EntityType="smartGPSModel.Store.Profile" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="smartGPSModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="smartGPSModel.Store.User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserHelper" EntityType="smartGPSModel.Store.UserHelper" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_FacebookProfile_Users" Association="smartGPSModel.Store.FK_FacebookProfile_Users">
+    <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.Store.FK_FacebookProfile_User">
       <End Role="User" EntitySet="User" />
       <End Role="FacebookProfile" EntitySet="FacebookProfile" />
     </AssociationSet>
-    <AssociationSet Name="FK_Profile_Users" Association="smartGPSModel.Store.FK_Profile_Users">
+    <AssociationSet Name="FK_Profile_User" Association="smartGPSModel.Store.FK_Profile_User">
       <End Role="User" EntitySet="User" />
       <End Role="Profile" EntitySet="Profile" />
     </AssociationSet>
-    <AssociationSet Name="FK_UserHelper_Users" Association="smartGPSModel.Store.FK_UserHelper_Users">
+    <AssociationSet Name="FK_UserHelper_User" Association="smartGPSModel.Store.FK_UserHelper_User">
       <End Role="User" EntitySet="User" />
       <End Role="UserHelper" EntitySet="UserHelper" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="FacebookProfile">
     <Key>
-      <PropertyRef Name="UserFacebookProfileId" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="UserFacebookProfileId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Surname" Type="varchar" MaxLength="50" />
@@ -45,20 +44,11 @@
     <Property Name="Gender" Type="bit" />
     <Property Name="Address" Type="varchar" MaxLength="100" />
     <Property Name="PostalOffice" Type="varchar" MaxLength="100" />
-    <Property Name="Country" Type="varchar" MaxLength="45" />
+    <Property Name="Country" Type="varchar" MaxLength="100" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
     <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Surname" Type="varchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -68,8 +58,8 @@
     <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
-    <Property Name="FacebookId" Type="varchar" MaxLength="50" />
-    <Property Name="TwitterId" Type="varchar" MaxLength="50" />
+    <Property Name="FacebookId" Type="varchar" MaxLength="100" />
+    <Property Name="TwitterId" Type="varchar" MaxLength="100" />
     <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="UserHelper">
@@ -79,10 +69,10 @@
     <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="LastLocationLatitude" Type="float" />
     <Property Name="LastLocationLongitude" Type="float" />
-    <Property Name="DateUpdated" Type="datetime" Nullable="false" />
     <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DateUpdated" Type="datetime" Nullable="false" />
   </EntityType>
-  <Association Name="FK_FacebookProfile_Users">
+  <Association Name="FK_FacebookProfile_User">
     <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
     <End Role="FacebookProfile" Type="smartGPSModel.Store.FacebookProfile" Multiplicity="*" />
     <ReferentialConstraint>
@@ -94,7 +84,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Profile_Users">
+  <Association Name="FK_Profile_User">
     <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
     <End Role="Profile" Type="smartGPSModel.Store.Profile" Multiplicity="*" />
     <ReferentialConstraint>
@@ -106,7 +96,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserHelper_Users">
+  <Association Name="FK_UserHelper_User">
     <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
     <End Role="UserHelper" Type="smartGPSModel.Store.UserHelper" Multiplicity="*" />
     <ReferentialConstraint>

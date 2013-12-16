@@ -4,6 +4,11 @@
     Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/Profile/profile.js"></script>
+
+ <div id="successMessage" class="alert alert-success">@ViewBag.Message</div>
+
+     
 <legend>My profile</legend>
 
 <ul class="nav nav-tabs">
@@ -15,69 +20,84 @@
 <!-- Tab panes -->
 <div class="tab-content">
     <div class="tab-pane active" id="home">
-        @using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @class = "form-horizontal" }))
+        @using (Html.BeginForm("Profile", "Profile", FormMethod.Post, new { @class = "form-horizontal" }))
         {
             @Html.ValidationSummary(true)
 
             <div class="control-group">
-                @Html.LabelFor(m => m.username, new { @class = "control-label" })
+                @Html.LabelFor(m => m.Username, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.username, new { placeholder = "Username" })
-                    @Html.ValidationMessageFor(m => m.username)
+                    @Html.TextBoxFor(m => m.Username, new { placeholder = "Username" })
+                    @Html.ValidationMessageFor(m => m.Username)
                 </div>
             </div>
     
             <div class="control-group">
-                @Html.LabelFor(m => m.name, new { @class = "control-label" })
+                @Html.LabelFor(m => m.Name, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.name, new { placeholder = "Name" })
-                    @Html.ValidationMessageFor(m => m.name)
+                    @Html.TextBoxFor(m => m.Name, new { placeholder = "Name" })
+                    @Html.ValidationMessageFor(m => m.Name)
                 </div>
             </div>
     
             <div class="control-group">
-                @Html.LabelFor(m => m.surname, new { @class = "control-label" })
+                @Html.LabelFor(m => m.Surname, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.surname, new { placeholder = "Surnam" })
-                    @Html.ValidationMessageFor(m => m.surname)
+                    @Html.TextBoxFor(m => m.Surname, new { placeholder = "Surnam" })
+                    @Html.ValidationMessageFor(m => m.Surname)
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(m => m.email, new { @class = "control-label" })
+                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.email, new { placeholder = "Email" })
-                    @Html.ValidationMessageFor(m => m.email)
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Email" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+            </div>
+            
+            <div class="control-group">
+                @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Phone, new { placeholder = "Phone" })
+                    @Html.ValidationMessageFor(m => m.Phone)
                 </div>
             </div>
     
             <div class="control-group">
-                @Html.LabelFor(m => m.dateOfBirth, new { @class = "control-label" })
+                @Html.LabelFor(m => m.DateOfBirth, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.dateOfBirth, new { placeholder = "Date of birth" })
-                    @Html.ValidationMessageFor(m => m.dateOfBirth)
+                    @if (Model.DateOfBirth.HasValue)
+                    {
+                          @Html.TextBoxFor(m => m.DateOfBirth, new { placeholder = "Date of birth", @Value = Model.DateOfBirth.Value.ToShortDateString() })
+                    }
+                    else
+                    {
+                          @Html.TextBoxFor(m => m.DateOfBirth, new { placeholder = "Date of birth"})
+                    }
+                        @Html.ValidationMessageFor(m => m.DateOfBirth)
                 </div>
             </div>
     
             <div class="control-group">
-                @Html.LabelFor(m => m.address, new { @class = "control-label" })
+                @Html.LabelFor(m => m.Address, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.address, new { placeholder = "Address" })
-                    @Html.ValidationMessageFor(m => m.address)
+                    @Html.TextBoxFor(m => m.Address, new { placeholder = "Address" })
+                    @Html.ValidationMessageFor(m => m.Address)
                 </div>
             </div>
     
             <div class="control-group">
-                @Html.LabelFor(m => m.postalOffice, new { @class = "control-label" })
+                @Html.LabelFor(m => m.PostalOffice, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(m => m.postalOffice, new { placeholder = "Postal office" })
-                    @Html.ValidationMessageFor(m => m.postalOffice)
+                    @Html.TextBoxFor(m => m.PostalOffice, new { placeholder = "Postal office" })
+                    @Html.ValidationMessageFor(m => m.PostalOffice)
                 </div>
             </div>
     
             <div class="control-group">
                 <div class="controls">
-                    <button class="btn btn-large btn-primary" type="submit">Sign up</button>
+                    <button class="btn btn-large btn-primary" type="submit">Save changes</button>
                 </div>
             </div>
         }

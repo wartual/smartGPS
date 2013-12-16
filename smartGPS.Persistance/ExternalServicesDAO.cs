@@ -13,7 +13,7 @@ namespace smartGPS.Persistance.Users
         {
             FacebookProfile model = new FacebookProfile();
 
-            model.UserFacebookProfileId = Guid.NewGuid().ToString();
+            model.Id = Guid.NewGuid().ToString();
             model.UserId = userId;
             model.Name = name;
             model.Surname = lastName;

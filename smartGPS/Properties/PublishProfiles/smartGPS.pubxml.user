@@ -14,7 +14,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2013 00:53:50</publishTime>
     </File>
     <File Include="Areas/Administration/Views/SignIn/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>11/20/2013 21:13:12</publishTime>
     </File>
     <File Include="Areas/Administration/Views/SignUp/Index.cshtml">
       <publishTime>11/23/2013 12:05:03</publishTime>
@@ -185,13 +185,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>12/09/2013 21:24:34</publishTime>
+      <publishTime>12/11/2013 13:49:24</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>12/09/2013 22:15:53</publishTime>
+      <publishTime>12/11/2013 13:49:26</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>12/09/2013 18:48:14</publishTime>
+      <publishTime>12/11/2013 13:49:23</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>04/10/2012 00:21:08</publishTime>
@@ -476,7 +476,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2013 23:06:43</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>10/22/2013 22:13:21</publishTime>
@@ -623,7 +623,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/09/2013 18:48:14</publishTime>
+      <publishTime>12/11/2013 13:49:32</publishTime>
     </File>
   </ItemGroup>
 </Project>

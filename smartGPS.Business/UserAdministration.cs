@@ -143,6 +143,34 @@ namespace smartGPS.Business
             return model;
         }
 
+        private static readonly DateTime UnixEpochStart =
+               DateTime.SpecifyKind(new DateTime(1970, 1, 1), DateTimeKind.Utc);
+
+
+        public static DateTime ToDateTimeFromEpoch(long epochTime)
+        {
+            DateTime result = UnixEpochStart.AddMilliseconds(epochTime);
+            return result;
+        }
+
+        public static Boolean updateProfile(String userId, String username, String name, String surname, long? dateofBirth, Boolean? gender, String email,
+                                               String phone, String address, String postalOffice, String country, DateTime? date)
+        {
+            // TODO
+            // 1. Implement check-in logic 
+
+            DateTime? dateOfBirthDB = null;
+           
+            if (dateofBirth.HasValue)
+            {
+                dateOfBirthDB = ToDateTimeFromEpoch(dateofBirth.Value);
+            }
+
+          
+            UsersDAO.updateProfile(userId, username, name, surname, dateOfBirthDB, gender, email, phone, address, postalOffice, country, date);
+            return true;
+        }
+
         #endregion
 
     }

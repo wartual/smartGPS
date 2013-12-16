@@ -7,6 +7,9 @@ namespace smartGPS.Persistance.UsersFolder
 {
     public class UsersDAO:BaseClass
     {
+
+        #region Users
+
         public static void addNew(String id, String username, String password, String name, String surname, String facebookId, String twitterId)
         {
             User model = new User();
@@ -63,6 +66,9 @@ namespace smartGPS.Persistance.UsersFolder
             db.SaveChanges();
         }
 
+#endregion
+
+
         #region Profile
 
         public static Profile getProfileById(String id)
@@ -75,7 +81,34 @@ namespace smartGPS.Persistance.UsersFolder
             return db.Profile.Include("User").Where(m => m.User.Id.Equals(userId)).SingleOrDefault();
         }
 
+        public static void updateProfile(String userId, String username, String name, String surname, DateTime? dateofBirth, Boolean? gender, String email,
+                                               String phone, String address, String postalOffice, String country, DateTime? date)
+        {
+            Profile profile = getProfileByUserId(userId);
+
+            profile.Address = address;
+            profile.Country = country;
+
+            if (date.HasValue)
+            {
+                profile.DateOfBirth = date.Value;
+            }
+            else if(dateofBirth.HasValue)
+            {
+                profile.DateOfBirth = dateofBirth.Value;
+            }
+
+            profile.Email = email;
+            profile.Name = name;
+            profile.Phone = phone;
+            profile.PostalOffice = postalOffice;
+            profile.Surname = surname;
+
+            db.SaveChanges();
+        }
+
         #endregion
+
 
         #region Helper
 

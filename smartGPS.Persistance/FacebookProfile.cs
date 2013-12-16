@@ -14,7 +14,7 @@ namespace smartGPS.Persistance
     
     public partial class FacebookProfile
     {
-        public string UserFacebookProfileId { get; set; }
+        public string Id { get; set; }
         public string UserId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
