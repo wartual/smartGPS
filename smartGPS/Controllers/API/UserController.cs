@@ -128,7 +128,6 @@ namespace smartGPS.Areas.API.Controllers
             {
                 Boolean status = UserAdministration.updateProfile(model.UserId, model.Username, model.Name, model.Surname, model.DateOfBirth,
                                                                     model.Gender, model.Email, model.Phone, model.Address, model.PostalOffice, model.Country, null);
-
                 if (status)
                 {
                     response.Status = SmartResponseType.RESULT_OK;
@@ -138,7 +137,7 @@ namespace smartGPS.Areas.API.Controllers
                 else
                 {
                     response.Status = SmartResponseType.RESULT_FAIL;
-                    response.Message = "Data is not in valid format!";
+                    response.Message = "User does not exist!";
                     return Request.CreateResponse(HttpStatusCode.OK, response);
                 }
             }
@@ -158,7 +157,10 @@ namespace smartGPS.Areas.API.Controllers
             APIProfileModel model = new APIProfileModel();
             model.Address = profile.Address;
             model.Country = profile.Country;
-            model.DateOfBirth = profile.DateOfBirth.Value.Date.Millisecond;
+            if (profile.DateOfBirth.HasValue)
+            {
+                model.DateOfBirth = Utilities.ToEpochFromDateTime(profile.DateOfBirth.Value);
+            }
             model.Email = profile.Email;
             model.Gender = profile.Gender;
             model.Name = profile.Name;

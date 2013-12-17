@@ -81,10 +81,14 @@ namespace smartGPS.Persistance.UsersFolder
             return db.Profile.Include("User").Where(m => m.User.Id.Equals(userId)).SingleOrDefault();
         }
 
-        public static void updateProfile(String userId, String username, String name, String surname, DateTime? dateofBirth, Boolean? gender, String email,
+        public static Boolean updateProfile(String userId, String username, String name, String surname, DateTime? dateofBirth, Boolean? gender, String email,
                                                String phone, String address, String postalOffice, String country, DateTime? date)
         {
             Profile profile = getProfileByUserId(userId);
+
+            if(profile == null){
+                return false;
+            }
 
             profile.Address = address;
             profile.Country = country;
@@ -105,6 +109,8 @@ namespace smartGPS.Persistance.UsersFolder
             profile.Surname = surname;
 
             db.SaveChanges();
+
+            return true;
         }
 
         #endregion

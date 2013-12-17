@@ -12,6 +12,7 @@ namespace smartGPS.Business
 {
     public class UserAdministration
     {
+
         #region SignIn/Signup/SignOut
 
         // return 1 if success, 2 if username is taken, 0 if error on database
@@ -135,6 +136,7 @@ namespace smartGPS.Business
 
         #endregion
 
+
         # region Profile
 
         public static Profile getProfileByUserId(String userId)
@@ -143,15 +145,7 @@ namespace smartGPS.Business
             return model;
         }
 
-        private static readonly DateTime UnixEpochStart =
-               DateTime.SpecifyKind(new DateTime(1970, 1, 1), DateTimeKind.Utc);
-
-
-        public static DateTime ToDateTimeFromEpoch(long epochTime)
-        {
-            DateTime result = UnixEpochStart.AddMilliseconds(epochTime);
-            return result;
-        }
+      
 
         public static Boolean updateProfile(String userId, String username, String name, String surname, long? dateofBirth, Boolean? gender, String email,
                                                String phone, String address, String postalOffice, String country, DateTime? date)
@@ -163,12 +157,12 @@ namespace smartGPS.Business
            
             if (dateofBirth.HasValue)
             {
-                dateOfBirthDB = ToDateTimeFromEpoch(dateofBirth.Value);
+                dateOfBirthDB = Utilities.ToDateTimeFromEpoch(dateofBirth.Value);
             }
 
           
-            UsersDAO.updateProfile(userId, username, name, surname, dateOfBirthDB, gender, email, phone, address, postalOffice, country, date);
-            return true;
+            Boolean status = UsersDAO.updateProfile(userId, username, name, surname, dateOfBirthDB, gender, email, phone, address, postalOffice, country, date);
+            return status;
         }
 
         #endregion
