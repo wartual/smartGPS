@@ -14,7 +14,7 @@ namespace smartGPS.Models.UserAdministration
         [JsonProperty("username")]
         public String Username { get; set; }
 
-        [JsonProperty("dateofBirth")]
+        [JsonProperty("dateOfBirth")]
         public long? DateOfBirth { get; set; }
 
         [JsonProperty("gender")]

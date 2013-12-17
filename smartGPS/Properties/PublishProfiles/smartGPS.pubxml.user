@@ -185,13 +185,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>12/16/2013 23:03:18</publishTime>
+      <publishTime>12/17/2013 21:30:17</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>12/16/2013 23:03:27</publishTime>
+      <publishTime>12/17/2013 23:02:35</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>12/16/2013 23:03:13</publishTime>
+      <publishTime>12/17/2013 21:12:17</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>04/10/2012 00:21:08</publishTime>
