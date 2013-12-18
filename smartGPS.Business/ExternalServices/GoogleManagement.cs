@@ -85,16 +85,10 @@ namespace smartGPS.Business.ExternalServices
             }
         }
 
-        public static GooglePlacesResponse getDataFromGooglePlaces(String userId, double endLatitude, double endLongitude)
+        public static GooglePlacesResponse getDataFromGooglePlaces(String userId, double latitude, double longitude)
         {
-            double startLatitude, startLongitude;
-
-            UserHelper helper = UserAdministration.getUserHelper(userId);
-            startLatitude = helper.LastLocationLatitude.Value;
-            startLongitude = helper.LastLocationLongitude.Value;
-
             GooglePlacesResponse model = null;
-            String url = APICalls.getPlacesFormattedUrl(endLatitude, endLongitude, Config.PLACES_RADIUS);
+            String url = APICalls.getPlacesFormattedUrl(latitude, longitude, Config.PLACES_RADIUS);
 
             WebRequest request = WebRequest.Create(url);
 

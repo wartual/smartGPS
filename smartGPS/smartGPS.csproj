@@ -204,10 +204,12 @@
     <Compile Include="Areas\Administration\Controllers\SignUpController.cs" />
     <Compile Include="Areas\Administration\Models\Mapping.cs" />
     <Compile Include="Controllers\API\BaseAPIController.cs" />
+    <Compile Include="Controllers\API\EventsController.cs" />
     <Compile Include="Controllers\API\UserController.cs" />
     <Compile Include="Models\SmartResponseType.cs" />
+    <Compile Include="Models\UserAdministration\APIGetEventsModel.cs" />
     <Compile Include="Models\UserAdministration\APIProfileModel.cs" />
-    <Compile Include="Models\UserAdministration\ApiExternalLoginModel.cs" />
+    <Compile Include="Models\UserAdministration\APIExternalLoginModel.cs" />
     <Compile Include="Models\UserAdministration\APINewUserModel.cs" />
     <Compile Include="Models\UserAdministration\SmartJsonResponseModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\TravelController.cs" />

@@ -19,7 +19,7 @@ namespace smartGPS.Areas.API.Controllers
 
         [HttpPut]
         [ActionName("loginUser")]
-        public HttpResponseMessage GetLoginDetails([FromBody] ApiExternalLoginModel model)
+        public HttpResponseMessage GetLoginDetails([FromBody] APIExternalLoginModel model)
         {
             try
             {

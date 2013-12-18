@@ -5,7 +5,7 @@ using System.Web;
 
 namespace smartGPS.Models.UserAdministration
 {
-    public class ApiExternalLoginModel
+    public class APIExternalLoginModel
     {
         public String username { get; set; }
 
