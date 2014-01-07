@@ -7,16 +7,17 @@ using System.Web.Http;
 using smartGPS.Areas.API.Models;
 using smartGPS.Business;
 using smartGPS.Business.ExternalServices;
-using smartGPS.Business.Models.Foursquare;
+using smartGPS.Business.Models.GoogleModels;
 using smartGPS.Models.UserAdministration;
 
 namespace smartGPS.Controllers.API
 {
-    public class EventsController : BaseAPIController
+    public class PlacesController : BaseAPIController
     {
+
         [HttpGet]
-        [ActionName("getEvents")]
-        public HttpResponseMessage getEvents([FromUri] APIGetEventsModel model)
+        [ActionName("getPlaces")]
+        public HttpResponseMessage getPlaces([FromUri] APIGetPlacesModel model)
         {
             try
             {
@@ -28,17 +29,17 @@ namespace smartGPS.Controllers.API
                 }
                 else
                 {
-                    FoursquareExploreVenueResponse events = FourqsquareManagement.getExploreVenues(model.latitude, model.longitude);
-                    if (events != null)
+                    GooglePlacesResponse places = GoogleManagement.getDataFromGooglePlaces(model.userId, model.latitude, model.longitude);
+                    if (places != null)
                     {
                         if (model.num != 0)
                         {
-                            return Request.CreateResponse(HttpStatusCode.OK, events.Response.Groups.First().Items.Take(model.num));
+                            return Request.CreateResponse(HttpStatusCode.OK, places.Results.Take(model.num));
 
                         }
                         else
                         {
-                            return Request.CreateResponse(HttpStatusCode.OK, events.Response.Groups.First().Items);
+                            return Request.CreateResponse(HttpStatusCode.OK, places.Results);
                         }
                     }
                     else
@@ -57,5 +58,6 @@ namespace smartGPS.Controllers.API
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
             }
         }
+
     }
 }

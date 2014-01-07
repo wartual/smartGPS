@@ -205,9 +205,11 @@
     <Compile Include="Areas\Administration\Models\Mapping.cs" />
     <Compile Include="Controllers\API\BaseAPIController.cs" />
     <Compile Include="Controllers\API\EventsController.cs" />
+    <Compile Include="Controllers\API\PlacesController.cs" />
     <Compile Include="Controllers\API\UserController.cs" />
     <Compile Include="Models\SmartResponseType.cs" />
     <Compile Include="Models\UserAdministration\APIGetEventsModel.cs" />
+    <Compile Include="Models\UserAdministration\APIGetPlacesModel.cs" />
     <Compile Include="Models\UserAdministration\APIProfileModel.cs" />
     <Compile Include="Models\UserAdministration\APIExternalLoginModel.cs" />
     <Compile Include="Models\UserAdministration\APINewUserModel.cs" />
