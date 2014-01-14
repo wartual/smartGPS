@@ -2,12 +2,22 @@
 <Schema Namespace="smartGPSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="smartGPSModelStoreContainer">
     <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.Store.FacebookProfile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NotificationCategory" EntityType="smartGPSModel.Store.NotificationCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notifications" EntityType="smartGPSModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Profile" EntityType="smartGPSModel.Store.Profile" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="smartGPSModel.Store.User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserHelper" EntityType="smartGPSModel.Store.UserHelper" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.Store.FK_FacebookProfile_User">
       <End Role="User" EntitySet="User" />
       <End Role="FacebookProfile" EntitySet="FacebookProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_NotificationCategory" Association="smartGPSModel.Store.FK_Notifications_NotificationCategory">
+      <End Role="NotificationCategory" EntitySet="NotificationCategory" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_User" Association="smartGPSModel.Store.FK_Notifications_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Notifications" EntitySet="Notifications" />
     </AssociationSet>
     <AssociationSet Name="FK_Profile_User" Association="smartGPSModel.Store.FK_Profile_User">
       <End Role="User" EntitySet="User" />
@@ -33,6 +43,26 @@
     <Property Name="DateOfBirth" Type="datetime" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NotificationCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="Type" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="Text" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="CategoryId" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -61,6 +91,7 @@
     <Property Name="FacebookId" Type="varchar" MaxLength="100" />
     <Property Name="TwitterId" Type="varchar" MaxLength="100" />
     <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
+    <Property Name="GcmId" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="UserHelper">
     <Key>
@@ -80,6 +111,30 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="FacebookProfile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_NotificationCategory">
+    <End Role="NotificationCategory" Type="smartGPSModel.Store.NotificationCategory" Multiplicity="1" />
+    <End Role="Notifications" Type="smartGPSModel.Store.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NotificationCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_User">
+    <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
+    <End Role="Notifications" Type="smartGPSModel.Store.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notifications">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>

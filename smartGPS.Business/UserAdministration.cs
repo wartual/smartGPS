@@ -108,6 +108,20 @@ namespace smartGPS.Business
 
         #region Users
 
+        public static IEnumerable<User> getAll()
+        {
+            return UsersDAO.getAll();
+        }
+
+        public static void updateUsersGcmId(String userId, String gcmId)
+        {
+            User user = UsersDAO.getById(userId);
+            if (user != null)
+            {
+                UsersDAO.updateUsersGcm(user, gcmId);
+            }
+        }
+
         public static void APIexternaLoginUpdateDateLogin(User user)
         {
             UsersDAO.updateDateLastLogin(user);

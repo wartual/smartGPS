@@ -38,6 +38,7 @@
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="smartGPSModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="GcmId" ColumnName="GcmId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -55,6 +56,28 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="LastLocationLongitude" ColumnName="LastLocationLongitude" />
           <ScalarProperty Name="LastLocationLatitude" ColumnName="LastLocationLatitude" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotificationCategory">
+      <EntityTypeMapping TypeName="smartGPSModel.NotificationCategory">
+        <MappingFragment StoreEntitySet="NotificationCategory">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="smartGPSModel.Notifications">
+        <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

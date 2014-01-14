@@ -9,7 +9,7 @@ using smartGPS.Custom;
 namespace smartGPS.Areas.Dashboard.Controllers
 {
     [smartGPSAuthorize]
-    public class UserManagementController : Controller
+    public class UserManagementController : BaseDashboardController
     {
         //
         // GET: /Dashboard/UserMangement/

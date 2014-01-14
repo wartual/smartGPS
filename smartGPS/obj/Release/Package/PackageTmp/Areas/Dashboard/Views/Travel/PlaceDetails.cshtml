@@ -1,0 +1,50 @@
+﻿@model smartGPS.Business.Models.GoogleModels.PlacesResult
+@{
+    ViewBag.Title = "PlaceDetails";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/Dashboard/placeDetails.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHDokIj0w1zAvUQYEu-0fKfbuvfOQvuRg&libraries=geometry&sensor=false"></script>
+
+<h2>@Model.Name</h2>
+
+<table class="table">
+    <tr>
+        <td rowspan="3" style="width: 50%">
+            <div id="map-canvas" style="height: 500px; width: 100%; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box;"></div>
+            <input type="hidden" id="latitude" value="@Model.Geometry.Locations.Latitude" />
+            <input type="hidden" id="longitude" value="@Model.Geometry.Locations.Longitude" />
+            <input type="hidden" id="iconUrl" value="@Model.IconUrl" />
+        </td>
+        <td>
+            <table class"table">
+                <tr>
+                    <td>Name</td>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>@Model.Vicinity</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>
+                       @for (int i = 0; i < Model.Types.Count; i++)
+                       {
+                           if (i < Model.Types.Count - 1)
+                           {
+                                 <text>@Model.Types.ElementAt(i).ToUpper(), </text>
+                         
+                           }
+                           else
+                           {
+                                 <text>@Model.Types.ElementAt(i).ToUpper()</text>
+                         
+                           }
+                       }
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

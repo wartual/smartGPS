@@ -85,6 +85,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NotificationCategory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationsDao.cs" />
     <Compile Include="Profile.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<smartGPS.Business.Models.GoogleModels.PlacesResult>
+@{
+    ViewBag.Title = "Places";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/Dashboard/Search/places.js"></script>
+<h2>Places</h2>
+
+<table class="table table-striped" id="placesTable">
+    <thead>
+        <td>#</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Type</td>
+        <td></td>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < @Model.Count(); i++ )
+        {
+            <tr>
+                <td id="num">@i</td>
+                <td>@Model.ElementAt(i).Name</td>
+                <td>@Model.ElementAt(i).Vicinity</td>
+                <td>
+                    @foreach (var type in @Model.ElementAt(i).Types)
+                    {
+                        <text>@type, </text>
+                    }
+                </td>
+                <td>Details</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div id="paginatorPlaces"></div>
+

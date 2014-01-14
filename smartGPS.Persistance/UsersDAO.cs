@@ -36,6 +36,11 @@ namespace smartGPS.Persistance.UsersFolder
             db.SaveChanges();
         }
 
+        public static IEnumerable<User> getAll()
+        {
+            return db.User;
+        }
+
         public static User getById(String id)
         {
             return db.User.Where(item => item.Id.Equals(id)).SingleOrDefault();
@@ -66,7 +71,17 @@ namespace smartGPS.Persistance.UsersFolder
             db.SaveChanges();
         }
 
-#endregion
+        public static void updateUsersGcm(User model, String regId)
+        {
+            if (model != null)
+            {
+                model.GcmId = regId;
+                model.DateLastLogin = DateTime.Now;
+                db.SaveChanges();
+            }
+        }
+
+    #endregion
 
 
         #region Profile

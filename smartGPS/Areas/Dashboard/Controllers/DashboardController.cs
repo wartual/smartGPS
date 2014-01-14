@@ -9,7 +9,7 @@ using smartGPS.Custom;
 
 namespace smartGPS.Areas.Dashboard.Controllers
 {
-    public class DashboardController : Controller
+    public class DashboardController : BaseDashboardController
     {
         //
         // GET: /Dashboard/Dashboard/

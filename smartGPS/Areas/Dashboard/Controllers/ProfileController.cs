@@ -12,7 +12,7 @@ using smartGPS.Persistance;
 namespace smartGPS.Areas.Dashboard.Controllers
 {
     [smartGPSAuthorize]
-    public class ProfileController : Controller
+    public class ProfileController : BaseDashboardController
     {
         //
         // GET: /Dashboard/Profile/

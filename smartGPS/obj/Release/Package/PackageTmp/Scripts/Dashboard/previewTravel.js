@@ -35,8 +35,7 @@
 
 
     google.maps.event.addDomListener(window, 'load', initialize);
-    getFoursquareExploreVenues();
-
+   
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         if (e.target.hash == "#map") {
             google.maps.event.trigger(map, 'resize');
@@ -63,18 +62,7 @@
         }
     });
 
-    function getFoursquareExploreVenues()
-    {
-        $.ajax({
-            url: ("GetFoursquareExploreVenues"),
-            type: ("GET"),
-            data: { latitude: startLatitude, longitude: startLongitude},
-            success: function (data) {
-                
-            }
-        });
-    }
-
+    
     function getDirections(mode) {
         var modeText;
         if (mode == 1) {

@@ -7,6 +7,7 @@
 <script src="~/Scripts/Dashboard/previewTravel.js"></script>
 <script src="~/Scripts/Dashboard/setupPlaces.js"></script>
 <script src="~/Scripts/bootstrap-paginator.min.js"></script>
+<script src="~/Scripts/Dashboard/setupEvents.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHDokIj0w1zAvUQYEu-0fKfbuvfOQvuRg&libraries=geometry&sensor=false"></script>
 <legend>Travels</legend>
 
@@ -14,6 +15,7 @@
     <li class="active"><a href="#preview" data-toggle="tab">Travel data</a></li>
     <li><a href="#map" data-toggle="tab">Map</a></li>
     <li><a href="#places" data-toggle="tab">Places</a></li>
+    <li><a href="#events" data-toggle="tab">Events</a></li>
 </ul>
 
 <input type="hidden" id="endLatitude" value="@Model.EndLocation.Latitude" />
@@ -88,10 +90,26 @@
                 <td>Name</td>
                 <td>Address</td>
                 <td>Type</td>
+                <td></td>
             </thead>
             <tbody>
             </tbody>
         </table>
-        <div id="paginator"></div>
+        <div id="paginatorPlaces"></div>
+    </div>
+
+    <div class="tab-pane" id="events">
+          <table class="table table-striped" id="eventsTable">
+            <thead>
+                <td>#</td>
+                <td>Name</td>
+                <td>Address</td>
+                <td>Type</td>
+                <td></td>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="paginatorEvents"></div>
     </div>
 </div>

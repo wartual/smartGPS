@@ -29,7 +29,7 @@ namespace smartGPS.Controllers.API
                 }
                 else
                 {
-                    GooglePlacesResponse places = GoogleManagement.getDataFromGooglePlaces(model.userId, model.latitude, model.longitude);
+                    GooglePlacesResponse places = GoogleManagement.getDataFromGooglePlaces(model.latitude, model.longitude);
                     if (places != null)
                     {
                         if (model.num != 0)

@@ -51,10 +51,18 @@ namespace smartGPS.Business
             return result;
         }
 
+        public static DateTime ToDateTimeFromEpochInSeconds(long epochTime)
+        {
+               DateTime result = UnixEpochStart.AddSeconds(epochTime);
+               return result;
+        }
+
         public static long ToEpochFromDateTime(DateTime date)
         {
             TimeSpan ts = date.ToUniversalTime() - UnixEpochStart;
             return (long)Math.Floor(ts.TotalMilliseconds);
         }
+
+       
     }
 }

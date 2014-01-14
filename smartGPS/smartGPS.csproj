@@ -203,16 +203,22 @@
     <Compile Include="Areas\Administration\Controllers\SignInController.cs" />
     <Compile Include="Areas\Administration\Controllers\SignUpController.cs" />
     <Compile Include="Areas\Administration\Models\Mapping.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\BaseDashboardController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\SearchController.cs" />
+    <Compile Include="Areas\Dashboard\Models\SearchModel.cs" />
     <Compile Include="Controllers\API\BaseAPIController.cs" />
     <Compile Include="Controllers\API\EventsController.cs" />
+    <Compile Include="Controllers\API\NotificationController.cs" />
     <Compile Include="Controllers\API\PlacesController.cs" />
     <Compile Include="Controllers\API\UserController.cs" />
     <Compile Include="Models\SmartResponseType.cs" />
+    <Compile Include="Models\UserAdministration\APIAddNotification.cs" />
     <Compile Include="Models\UserAdministration\APIGetEventsModel.cs" />
     <Compile Include="Models\UserAdministration\APIGetPlacesModel.cs" />
     <Compile Include="Models\UserAdministration\APIProfileModel.cs" />
     <Compile Include="Models\UserAdministration\APIExternalLoginModel.cs" />
     <Compile Include="Models\UserAdministration\APINewUserModel.cs" />
+    <Compile Include="Models\UserAdministration\APIUserGcm.cs" />
     <Compile Include="Models\UserAdministration\SmartJsonResponseModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\TravelController.cs" />
     <Compile Include="Areas\Dashboard\Models\DirectionsModel.cs" />
@@ -330,13 +336,22 @@
     <Content Include="Scripts\bootstrap.min.js.map">
       <DependentUpon>bootstrap.js</DependentUpon>
     </Content>
+    <Content Include="Areas\Dashboard\Views\Travel\PlaceDetails.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Travel\EventDetails.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Search\SearchPlaces.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Search\Places.cshtml" />
     <None Include="Properties\PublishProfiles\smartGPS.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-paginator.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\global.js" />
+    <Content Include="Scripts\Dashboard\eventDetails.js" />
+    <Content Include="Scripts\Dashboard\placeDetails.js" />
     <Content Include="Scripts\Dashboard\previewTravel.js" />
+    <Content Include="Scripts\Dashboard\searchPlaces.js" />
+    <Content Include="Scripts\Dashboard\Search\places.js" />
+    <Content Include="Scripts\Dashboard\setupEvents.js" />
     <Content Include="Scripts\Dashboard\setupNavigations.js" />
     <Content Include="Scripts\Dashboard\setupPlaces.js" />
     <Content Include="Scripts\facebookApi.js" />
