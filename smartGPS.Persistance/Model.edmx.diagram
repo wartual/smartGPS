@@ -16,7 +16,11 @@
         <EntityTypeShape EntityType="smartGPSModel.Notifications" Width="1.5" PointX="6.3842029079721332" PointY="2.7761572463326889" />
         <AssociationConnector Association="smartGPSModel.FK_Notifications_NotificationCategory" />
         <AssociationConnector Association="smartGPSModel.FK_Notifications_User" />
-      </Diagram>
+        <EntityTypeShape EntityType="smartGPSModel.Travel" Width="1.5" PointX="4.1986536570818416" PointY="31.11702136654268" />
+        <EntityTypeShape EntityType="smartGPSModel.TravelStatusCategory" Width="1.5" PointX="1.215032067715671" PointY="25.973020610386982" />
+        <AssociationConnector Association="smartGPSModel.FK_Travel_TravelStatusCategory" />
+        <AssociationConnector Association="smartGPSModel.FK_Travel_User" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

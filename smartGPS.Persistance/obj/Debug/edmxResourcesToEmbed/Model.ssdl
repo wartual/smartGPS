@@ -5,6 +5,8 @@
     <EntitySet Name="NotificationCategory" EntityType="smartGPSModel.Store.NotificationCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Notifications" EntityType="smartGPSModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Profile" EntityType="smartGPSModel.Store.Profile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Travel" EntityType="smartGPSModel.Store.Travel" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TravelStatusCategory" EntityType="smartGPSModel.Store.TravelStatusCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="smartGPSModel.Store.User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserHelper" EntityType="smartGPSModel.Store.UserHelper" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.Store.FK_FacebookProfile_User">
@@ -22,6 +24,14 @@
     <AssociationSet Name="FK_Profile_User" Association="smartGPSModel.Store.FK_Profile_User">
       <End Role="User" EntitySet="User" />
       <End Role="Profile" EntitySet="Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Travel_TravelStatusCategory" Association="smartGPSModel.Store.FK_Travel_TravelStatusCategory">
+      <End Role="TravelStatusCategory" EntitySet="TravelStatusCategory" />
+      <End Role="Travel" EntitySet="Travel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Travel_User" Association="smartGPSModel.Store.FK_Travel_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Travel" EntitySet="Travel" />
     </AssociationSet>
     <AssociationSet Name="FK_UserHelper_User" Association="smartGPSModel.Store.FK_UserHelper_User">
       <End Role="User" EntitySet="User" />
@@ -63,6 +73,7 @@
     <Property Name="CategoryId" Type="varchar" Nullable="false" MaxLength="45" />
     <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="DateUpdated" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -79,6 +90,33 @@
     <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Surname" Type="varchar" MaxLength="50" />
     <Property Name="Phone" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Travel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DepartudeAddress" Type="varchar" MaxLength="200" />
+    <Property Name="DepartureLatitude" Type="float" Nullable="false" />
+    <Property Name="DepartudeLongitude" Type="float" Nullable="false" />
+    <Property Name="DestinationAddress" Type="varchar" MaxLength="200" />
+    <Property Name="DestinationLatitude" Type="float" Nullable="false" />
+    <Property Name="DestinationLongitude" Type="float" Nullable="false" />
+    <Property Name="CurrentLatitude" Type="float" Nullable="false" />
+    <Property Name="CurrentLongitude" Type="float" Nullable="false" />
+    <Property Name="Time" Type="float" Nullable="false" />
+    <Property Name="Distance" Type="float" Nullable="false" />
+    <Property Name="StatusId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TravelStatusCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Type" Type="varchar" Nullable="false" MaxLength="20" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -147,6 +185,30 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Travel_TravelStatusCategory">
+    <End Role="TravelStatusCategory" Type="smartGPSModel.Store.TravelStatusCategory" Multiplicity="1" />
+    <End Role="Travel" Type="smartGPSModel.Store.Travel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TravelStatusCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Travel">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Travel_User">
+    <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
+    <End Role="Travel" Type="smartGPSModel.Store.Travel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Travel">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>

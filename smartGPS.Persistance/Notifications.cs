@@ -22,6 +22,8 @@ namespace smartGPS.Persistance
         public string CategoryId { get; set; }
         public string UserId { get; set; }
         public bool Active { get; set; }
+        public System.DateTime DateUpdated { get; set; }
+        public string Address { get; set; }
     
         public virtual NotificationCategory NotificationCategory { get; set; }
         public virtual User User { get; set; }

@@ -31,5 +31,7 @@ namespace smartGPS.Persistance
         public DbSet<UserHelper> UserHelper { get; set; }
         public DbSet<NotificationCategory> NotificationCategory { get; set; }
         public DbSet<Notifications> Notifications { get; set; }
+        public DbSet<Travel> Travel { get; set; }
+        public DbSet<TravelStatusCategory> TravelStatusCategory { get; set; }
     }
 }

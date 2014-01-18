@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYVPaQ2AM302qZOvsqYLf5wAAAAACAAAAAAAQZgAAAAEAACAAAABiAsZ9svgFWEhVl+GluKcf5QftfxSzznZdvl6pdBoSMwAAAAAOgAAAAAIAACAAAACc0WYcsjB4cRe0ZRDzzQyzxxgposGHiq6SNQugbkUWOCAAAAAdtgr+28MFNeZ4hIxJ6FHNhgEqa1Ono1xuRpeDuWk4qUAAAACUCXIrWWbMqha40QmSVBsw4iioic3gSQPvr/RfuWHJetWRN+RO08/g1q+ZmrwqnMSOUZJI2Y3BWz4MIX0kfB/B</EncryptedPassword>
-    <_PublishTargetUrl>ftp://smartgps.somee.com/www.smartgps.somee.com</_PublishTargetUrl>
+    <_PublishTargetUrl>ftp://smart-gps.somee.com/www.smart-gps.somee.com</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Readme/Elmah.txt">
@@ -176,16 +176,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:01</publishTime>
     </File>
     <File Include="bin/Mono.Security.dll">
-      <publishTime>04/10/2012 00:21:08</publishTime>
+      <publishTime>10/04/2012 00:21:08</publishTime>
     </File>
     <File Include="bin/MySql.Data.dll">
-      <publishTime>04/10/2012 00:21:10</publishTime>
+      <publishTime>10/04/2012 00:21:10</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/29/2013 20:59:30</publishTime>
     </File>
     <File Include="bin/Npgsql.dll">
-      <publishTime>04/10/2012 00:21:08</publishTime>
+      <publishTime>10/04/2012 00:21:08</publishTime>
     </File>
     <File Include="bin/ru/Microsoft.Data.Edm.resources.dll">
       <publishTime>10/22/2013 22:14:08</publishTime>
@@ -197,16 +197,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>01/14/2014 19:47:20</publishTime>
+      <publishTime>01/18/2014 16:26:40</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>01/14/2014 19:47:22</publishTime>
+      <publishTime>01/18/2014 16:26:42</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>01/14/2014 19:47:19</publishTime>
+      <publishTime>01/18/2014 16:26:32</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
-      <publishTime>04/10/2012 00:21:08</publishTime>
+      <publishTime>10/04/2012 00:21:08</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>12/09/2013 18:48:14</publishTime>
@@ -218,7 +218,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/09/2012 00:40:10</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/22/2013 22:13:56</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
       <publishTime>12/09/2013 18:48:14</publishTime>
@@ -653,7 +653,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/11/2013 13:49:32</publishTime>
+      <publishTime>01/15/2014 20:58:01</publishTime>
     </File>
   </ItemGroup>
 </Project>

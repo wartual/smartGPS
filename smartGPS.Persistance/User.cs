@@ -20,6 +20,7 @@ namespace smartGPS.Persistance
             this.Profile = new HashSet<Profile>();
             this.UserHelper = new HashSet<UserHelper>();
             this.Notifications = new HashSet<Notifications>();
+            this.Travel = new HashSet<Travel>();
         }
     
         public string Id { get; set; }
@@ -35,5 +36,6 @@ namespace smartGPS.Persistance
         public virtual ICollection<Profile> Profile { get; set; }
         public virtual ICollection<UserHelper> UserHelper { get; set; }
         public virtual ICollection<Notifications> Notifications { get; set; }
+        public virtual ICollection<Travel> Travel { get; set; }
     }
 }

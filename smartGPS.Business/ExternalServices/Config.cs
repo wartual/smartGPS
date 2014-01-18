@@ -23,5 +23,6 @@ namespace smartGPS.Business.ExternalServices
 
         public static double PLACES_RADIUS = 20000;
 
+        public static double NOTIFICATION_RADIUS = 20;
     }
 }

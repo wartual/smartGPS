@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using smartGPS.Business.Custom;
 using smartGPS.Business.ExternalServices;
 using smartGPS.Persistance;
 
@@ -12,41 +13,15 @@ namespace smartGPS.Business
 {
     public class NotificationsManager
     {
-        public static string sendNotification(string deviceId, string message)
+
+        public static List<Notifications> getAllActiveNotifications()
         {
-            string GoogleAppID = Config.GOOGLE_SERVER_API;
-            var SENDER_ID = Config.APP_ID;
-            var value = message;
-            WebRequest tRequest;
-            tRequest = WebRequest.Create("https://android.googleapis.com/gcm/send");
-            tRequest.Method = "post";
-            tRequest.ContentType = " application/x-www-form-urlencoded;charset=UTF-8";
-            tRequest.Headers.Add(string.Format("Authorization: key={0}", GoogleAppID));
+            return NotificationsDao.getAllActiveNotification().ToList<Notifications>();
+        }
 
-            tRequest.Headers.Add(string.Format("Sender: id={0}", SENDER_ID));
-
-            string postData = "collapse_key=score_update&time_to_live=108&delay_while_idle=1&data.message=" + value + "&data.time=" + System.DateTime.Now.ToString() + "&registration_id=" + deviceId + "";
-            Console.WriteLine(postData);
-            Byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            tRequest.ContentLength = byteArray.Length;
-
-            Stream dataStream = tRequest.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-
-            WebResponse tResponse = tRequest.GetResponse();
-
-            dataStream = tResponse.GetResponseStream();
-
-            StreamReader tReader = new StreamReader(dataStream);
-
-            String sResponseFromServer = tReader.ReadToEnd();
-
-
-            tReader.Close();
-            dataStream.Close();
-            tResponse.Close();
-            return sResponseFromServer;
+        public static Notifications getById(String id)
+        {
+            return NotificationsDao.getById(id);
         }
 
         public static List<NotificationCategory> getNotificationCategories()
@@ -54,22 +29,22 @@ namespace smartGPS.Business
             return NotificationsDao.getAllNotificationCateogries().ToList<NotificationCategory>();
         }
 
-        public static void addNew(String text, String category, double latitude, double longitude, String userId)
+        public static String addNew(String text, String category, double latitude, double longitude, String userId, String address)
         {
-            NotificationsDao.addNew(Guid.NewGuid().ToString(), DateTime.Now, text, category, latitude, longitude, userId);
+            String id = Guid.NewGuid().ToString();
+            NotificationsDao.addNew(id, DateTime.Now, text, category, latitude, longitude, userId, address);
+            return id;
         }
 
-        public static List<String> sendToAllUsers(String text)
+        public static void sendToAllUsers(String text)
         {
             List<String> gcmIds = getAllGcmIds();
             List<String> responses = new List<string>();
 
             foreach (String id in gcmIds)
             {
-                responses.Add(sendNotification(id, text));
+                sendNotification(id, text);
             }
-
-            return responses;
         }
 
         public static List<String> getAllGcmIds()
@@ -84,6 +59,94 @@ namespace smartGPS.Business
             }
 
             return gcmIds;
+        }
+
+        public static void sendNotification(string regId, string text)
+        {
+            var applicationID = Config.GOOGLE_SERVER_API ;
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://android.googleapis.com/gcm/send");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            httpWebRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{\"registration_ids\":[\"" + regId + "\"]," +
+                            "\"data\": {\"title\": \"" + text + "\"}}";
+                Console.WriteLine(json);
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    Console.WriteLine(result);
+                }
+            }
+        }
+
+        public static void sendNotification(string regId, Notifications notification)
+        {
+            string jsonObject = "{\"user\": \"" + notification.User.Username + "\", \"latitude\": \"" + notification.Latitude + "\", \"longitude\": \"" + notification.Longitude + "\", \"text\":\"" + notification.Text + "\", \"category\":\"" + notification.CategoryId + "\"}";
+            var applicationID = Config.GOOGLE_SERVER_API;
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://android.googleapis.com/gcm/send");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            httpWebRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{\"registration_ids\":[\"" + regId + "\"]," +
+                            "\"data\": " + jsonObject + "}";
+                Console.WriteLine(json);
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    Console.WriteLine(result);
+                }
+            }
+        }
+
+        public static void notifyUsersNearNotification(String notificationId, String userId)
+        {
+            Notifications notification = getById(notificationId);
+            List<User> users = TravelManager.getAllUsersNearLocation(notification.Latitude, notification.Longitude, Config.NOTIFICATION_RADIUS, userId);
+
+            foreach (User item in users)
+            {
+                sendNotification(item.GcmId, notification);
+            }
+        }
+
+        public static List<Notifications> getNotificationsNearLocation(double latitude, double longitude)
+        {
+            List<Notifications> notifications = getAllActiveNotifications();
+            List<Notifications> nearNotifications = new List<Notifications>();
+            Location location = new Location();
+            Location notificationLocation = new Location();
+            location.Latitude = latitude;
+            location.Longitude = longitude;
+            Haversine haversine = new Haversine();
+            double distance;
+
+            foreach (var item in notifications)
+            {
+                notificationLocation.Latitude = item.Latitude;
+                notificationLocation.Longitude = item.Longitude;
+                distance = haversine.Distance(location, notificationLocation, Haversine.DistanceType.Kilometers);
+
+                if (distance <= Config.NOTIFICATION_RADIUS)
+                    nearNotifications.Add(item);
+            }
+
+            return nearNotifications;
         }
     }
 }
