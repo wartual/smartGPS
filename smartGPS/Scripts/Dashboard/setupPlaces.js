@@ -29,7 +29,7 @@
             }
         }
 
-        $('#paginator').bootstrapPaginator(paginatorOptions);
+        $('#paginatorPlaces').bootstrapPaginator(paginatorOptions);
     }
 
     function setPageData(data, currentPage) {
@@ -63,12 +63,12 @@
 
 
                 for (var j = 0; j < data.Results[i].Types.length; j++) {
-                    row = row + capitaliseFirstLetter(data.Results[i].Types[j]);
+                    row = row + capitaliseFirstLetter(data.Results[i].Types[j].replace("_"," "));
                     if (j != (data.Results[i].Types.length - 1)) {
                         row = row + ", ";
                     }
                 }
-                row = row + "</td></tr>";
+                row = row + "</td><td><a href=\"PlaceDetails?id=" + i + "&lat=" + startLatitude + "&lon=" + startLongitude + "\">Details</a></td></tr>";
             }
         }
 

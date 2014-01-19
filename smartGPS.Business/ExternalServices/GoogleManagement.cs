@@ -85,16 +85,10 @@ namespace smartGPS.Business.ExternalServices
             }
         }
 
-        public static GooglePlacesResponse getDataFromGooglePlaces(String userId, double endLatitude, double endLongitude)
+        public static GooglePlacesResponse getDataFromGooglePlaces(double latitude, double longitude)
         {
-            double startLatitude, startLongitude;
-
-            UserHelper helper = UserAdministration.getUserHelper(userId);
-            startLatitude = helper.LastLocationLatitude.Value;
-            startLongitude = helper.LastLocationLongitude.Value;
-
             GooglePlacesResponse model = null;
-            String url = APICalls.getPlacesFormattedUrl(endLatitude, endLongitude, Config.PLACES_RADIUS);
+            String url = APICalls.getPlacesFormattedUrl(latitude, longitude, Config.PLACES_RADIUS);
 
             WebRequest request = WebRequest.Create(url);
 
@@ -116,5 +110,29 @@ namespace smartGPS.Business.ExternalServices
             }
         }
 
+        public static GooglePlacesResponse getDataFromGooglePlacesByText(String text)
+        {
+            GooglePlacesResponse model = null;
+            String url = APICalls.getPlacesByTextFormattedUrl(text, Config.PLACES_RADIUS);
+
+            WebRequest request = WebRequest.Create(url);
+
+            try
+            {
+                using (WebResponse response = request.GetResponse())
+                {
+                    using (Stream stream = response.GetResponseStream())
+                    {
+                        String responseString = new StreamReader(stream).ReadToEnd();
+                        model = JsonConvert.DeserializeObject<GooglePlacesResponse>(responseString);
+                        return model;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

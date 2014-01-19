@@ -11,6 +11,10 @@ namespace smartGPS.Business.ExternalServices
 
         public static String GOOGLE_SERVER_API = "AIzaSyAZM05G9vmxsBScFmW42iI0geoGmdryG0g";
 
+        public static String GOOGLE_ANDROID_API = "AIzaSyCEeBcJW12qngWZxfhF-Gg91NkHvX-jFm8";
+
+        public static String APP_ID = "680887826369";
+
         //public static String GOOGLE_SERVER_API = "AIzaSyCuK1VvZa01LSR9bYSc_hG9xnzCn-z6U04";
 
         public static String FOURSQUARE_CLIENT_ID = "V22JFGZJFGU0N1EI2XPLWTCZMOMY5KPCMFZ0DUK05JPI0EVS";
@@ -19,5 +23,6 @@ namespace smartGPS.Business.ExternalServices
 
         public static double PLACES_RADIUS = 20000;
 
+        public static double NOTIFICATION_RADIUS = 20;
     }
 }

@@ -19,6 +19,8 @@ namespace smartGPS.Persistance
             this.FacebookProfile = new HashSet<FacebookProfile>();
             this.Profile = new HashSet<Profile>();
             this.UserHelper = new HashSet<UserHelper>();
+            this.Notifications = new HashSet<Notifications>();
+            this.Travel = new HashSet<Travel>();
         }
     
         public string Id { get; set; }
@@ -28,9 +30,12 @@ namespace smartGPS.Persistance
         public string FacebookId { get; set; }
         public string TwitterId { get; set; }
         public System.DateTime DateLastLogin { get; set; }
+        public string GcmId { get; set; }
     
         public virtual ICollection<FacebookProfile> FacebookProfile { get; set; }
         public virtual ICollection<Profile> Profile { get; set; }
         public virtual ICollection<UserHelper> UserHelper { get; set; }
+        public virtual ICollection<Notifications> Notifications { get; set; }
+        public virtual ICollection<Travel> Travel { get; set; }
     }
 }

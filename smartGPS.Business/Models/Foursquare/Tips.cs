@@ -23,5 +23,12 @@ namespace smartGPS.Business.Models.Foursquare
         [JsonProperty("user")]
         public User User { get; set; }
 
+        public String CreatedAtFormatted
+        {
+            get
+            {
+                return Utilities.ToDateTimeFromEpochInSeconds(CreatedAt).ToString();
+            }
+        }
     }
 }

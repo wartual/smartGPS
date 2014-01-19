@@ -27,8 +27,11 @@ namespace smartGPS.Persistance
     
         public DbSet<FacebookProfile> FacebookProfile { get; set; }
         public DbSet<Profile> Profile { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserHelper> UserHelper { get; set; }
+        public DbSet<NotificationCategory> NotificationCategory { get; set; }
+        public DbSet<Notifications> Notifications { get; set; }
+        public DbSet<Travel> Travel { get; set; }
+        public DbSet<TravelStatusCategory> TravelStatusCategory { get; set; }
     }
 }

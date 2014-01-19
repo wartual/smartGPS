@@ -4,16 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bfe4216e8e704606a5a50d6af5b1094b" Name="Diagram1">
+      <Diagram DiagramId="dd0553e32a5e4251827f9d5125e19a51" Name="Diagram1">
         <EntityTypeShape EntityType="smartGPSModel.FacebookProfile" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="smartGPSModel.Profile" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.User" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.UserHelper" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
-        <AssociationConnector Association="smartGPSModel.FK_FacebookProfile_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_Profile_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_UserHelper_Users" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="smartGPSModel.User" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="smartGPSModel.FK_FacebookProfile_User" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_Profile_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="smartGPSModel.UserHelper" Width="1.5" PointX="2.6166796659197096" PointY="11.886430224350853" />
+        <AssociationConnector Association="smartGPSModel.FK_UserHelper_User" />
+        <EntityTypeShape EntityType="smartGPSModel.NotificationCategory" Width="1.5" PointX="10.096277072139214" PointY="18.889437624667508" />
+        <EntityTypeShape EntityType="smartGPSModel.Notifications" Width="1.5" PointX="6.3842029079721332" PointY="2.7761572463326889" />
+        <AssociationConnector Association="smartGPSModel.FK_Notifications_NotificationCategory" />
+        <AssociationConnector Association="smartGPSModel.FK_Notifications_User" />
+        <EntityTypeShape EntityType="smartGPSModel.Travel" Width="1.5" PointX="4.1986536570818416" PointY="31.11702136654268" />
+        <EntityTypeShape EntityType="smartGPSModel.TravelStatusCategory" Width="1.5" PointX="1.215032067715671" PointY="25.973020610386982" />
+        <AssociationConnector Association="smartGPSModel.FK_Travel_TravelStatusCategory" />
+        <AssociationConnector Association="smartGPSModel.FK_Travel_User" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

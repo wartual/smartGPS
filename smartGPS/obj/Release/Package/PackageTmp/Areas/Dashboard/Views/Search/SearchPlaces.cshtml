@@ -1,0 +1,45 @@
+﻿@model smartGPS.Areas.Dashboard.Models.SearchModel
+@{
+    ViewBag.Title = "Places";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/Dashboard/searchPlaces.js"></script>
+
+<h2>Search for places near...</h2>
+
+@using (Html.BeginForm("SearchPlaces", "Search", FormMethod.Post))
+{
+
+    <div class="control-group">
+        @Html.LabelFor(m => m.SearchType, new { @class = "control-label" })
+        <div class="controls">
+            @Html.DropDownListFor(m => m.SearchType, (IEnumerable<SelectListItem>)ViewBag.TypesOfNavigation, "Select a value")
+        </div>
+
+        <div id="place" style="float: none">
+            @Html.LabelFor(m => m.Place, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Place, new { placeholder = "Place", @class = "input-xlarge" })
+                @Html.ValidationMessageFor(m => m.Place)
+            </div>
+        </div>
+
+        <div id="latitude" class="control-group">
+            @Html.LabelFor(m => m.Latitude, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Latitude, new { placeholder = "Latitude", onkeypress = "return isNumberKey(event)", name = "latitude" })
+                @Html.ValidationMessageFor(m => m.Latitude)
+            </div>
+        </div>
+        <div id="longitude" class="control-group">
+            @Html.LabelFor(m => m.Longitude, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.Longitude, new { placeholder = "Longitude", onkeypress = "return isNumberKey(event)", name = "longitude" })
+                @Html.ValidationMessageFor(m => m.Longitude)
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="find" aria-hidden="true">Search</button>
+
+    </div>
+}

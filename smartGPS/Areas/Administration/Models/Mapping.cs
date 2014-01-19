@@ -15,14 +15,14 @@ namespace smartGPS.Areas.Administration.Models
         public static ProfileModel usersToProfileModel(Profile profile)
         {
             ProfileModel model = new ProfileModel();
-            model.name = profile.Name;
-            model.surname = profile.Surname;
-            model.username = profile.User.Username;
-            model.address = profile.Address;
-            model.country = profile.Country;
-            model.dateOfBirth = profile.DateOfBirth;
-            model.gender = profile.Gender;
-            model.postalOffice = profile.PostalOffice;
+            model.Name = profile.Name;
+            model.Surname = profile.Surname;
+            model.Username = profile.User.Username;
+            model.Address = profile.Address;
+            model.Country = profile.Country;
+            model.DateOfBirth = profile.DateOfBirth;
+            model.Gender = profile.Gender;
+            model.PostalOffice = profile.PostalOffice;
 
             return model;
         }

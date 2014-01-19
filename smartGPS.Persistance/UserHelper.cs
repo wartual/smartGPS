@@ -17,8 +17,8 @@ namespace smartGPS.Persistance
         public string Id { get; set; }
         public Nullable<double> LastLocationLatitude { get; set; }
         public Nullable<double> LastLocationLongitude { get; set; }
-        public System.DateTime DateUpdated { get; set; }
         public string UserId { get; set; }
+        public System.DateTime DateUpdated { get; set; }
     
         public virtual User User { get; set; }
     }

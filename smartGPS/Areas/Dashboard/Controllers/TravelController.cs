@@ -17,7 +17,7 @@ using smartGPS.Persistance;
 namespace smartGPS.Areas.Dashboard.Controllers
 {
     [smartGPSAuthorize]
-    public class TravelController : Controller
+    public class TravelController : BaseDashboardController
     {
         
         private static IEnumerable<Address> locations;
@@ -113,7 +113,52 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult PlaceDetails(int id, String lat, String lon)
+        {
+            double queryLatitude = Utilities.parseDouble(lat).Value;
+            double queryLongitude = Utilities.parseDouble(lon).Value;
+
+            GooglePlacesResponse googlePlaces = GoogleManagement.getDataFromGooglePlaces(queryLatitude, queryLongitude);
+            //ViewBag.Types = googlePlaces.Results.ElementAt(id).Types;
+            return View(googlePlaces.Results.ElementAt(id));
+        }
+
+        [HttpGet]
+        public ActionResult EventDetails(int id, String lat, String lon)
+        {
+            double queryLatitude = Utilities.parseDouble(lat).Value;
+            double queryLongitude = Utilities.parseDouble(lon).Value;
+           
+            FoursquareExploreVenueResponse exploreVenues = FourqsquareManagement.getExploreVenues(queryLatitude, queryLongitude);
+            ViewBag.IconUrl = exploreVenues.Response.Groups.ElementAt(0).Items.ElementAt(id).Venue.Categories.ElementAt(0).Icon.Prefix + "bg_32.png";
+            ViewBag.Address = getEventAddress(exploreVenues.Response.Groups.ElementAt(0).Items.ElementAt(id));
+
+            return View(exploreVenues.Response.Groups.ElementAt(0).Items.ElementAt(id));
+        }
+
         #region Utilities
+
+        private String getEventAddress(GroupItems item)
+        {
+            String address = "";
+            if (item.Venue.Location.Address != null)
+            {
+                address = address + item.Venue.Location.Address;
+            }
+
+            if (item.Venue.Location.City != null)
+            {
+                address = address + ", " + item.Venue.Location.City;
+            }
+
+            if (item.Venue.Location.Country != null)
+            {
+                address = address + ", " + item.Venue.Location.Country;
+            }
+
+            return address;
+        }
 
         private Dictionary<string, double> obtainDepartureAndDestinationLocation(SetupTravelModel model)
         {
@@ -183,16 +228,6 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         }
 
-        private List<SelectListItem> setupTypeOfNavigation()
-        {
-            List<SelectListItem> typesOfNavigation = new List<SelectListItem>();
-
-            typesOfNavigation.Add(new SelectListItem { Text = "Address", Value = "1" });
-            typesOfNavigation.Add(new SelectListItem { Text = "Gps coordinates", Value = "2" });
-
-            return typesOfNavigation;
-        }
-
         private List<SelectListItem> setupModes()
         {
             List<SelectListItem> typesOfNavigation = new List<SelectListItem>();
@@ -256,20 +291,19 @@ namespace smartGPS.Areas.Dashboard.Controllers
             double endLatitude = Utilities.parseDouble(latitude).Value;
             double endLongitude = Utilities.parseDouble(longitude).Value;
 
-            GooglePlacesResponse googlePlaces = GoogleManagement.getDataFromGooglePlaces(User.Identity.Name,
-                                                                        endLatitude, endLongitude);
+            GooglePlacesResponse googlePlaces = GoogleManagement.getDataFromGooglePlaces(endLatitude, endLongitude);
 
             return this.Json(googlePlaces, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetFoursquareExploreVenues(String latitude, String longitude)
+        public JsonResult GetEvents(String latitude, String longitude)
         {
             double queryLatitude = Utilities.parseDouble(latitude).Value;
             double queryLongitude = Utilities.parseDouble(longitude).Value;
 
             FoursquareExploreVenueResponse exploreVenues = FourqsquareManagement.getExploreVenues(queryLatitude, queryLongitude);
 
-            return this.Json(exploreVenues, JsonRequestBehavior.AllowGet);
+            return this.Json(exploreVenues.Response.Groups.ElementAt(0), JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

@@ -12,6 +12,7 @@ namespace smartGPS.Business
 {
     public class UserAdministration
     {
+
         #region SignIn/Signup/SignOut
 
         // return 1 if success, 2 if username is taken, 0 if error on database
@@ -107,6 +108,25 @@ namespace smartGPS.Business
 
         #region Users
 
+        public static IEnumerable<User> getAll()
+        {
+            return UsersDAO.getAll();
+        }
+
+        public static void updateUsersGcmId(String userId, String gcmId)
+        {
+            User user = UsersDAO.getById(userId);
+            if (user != null)
+            {
+                UsersDAO.updateUsersGcm(user, gcmId);
+            }
+        }
+
+        public static void APIexternaLoginUpdateDateLogin(User user)
+        {
+            UsersDAO.updateDateLastLogin(user);
+        }
+
         public static User getUserByUserId(String userId)
         {
             return UsersDAO.getById(userId);
@@ -123,7 +143,13 @@ namespace smartGPS.Business
             return UsersDAO.getUserHelper(userId);
         }
 
+        public static User getUserByUsername(String username)
+        {
+            return UsersDAO.getByUsername(username);
+        }
+
         #endregion
+
 
         # region Profile
 
@@ -131,6 +157,26 @@ namespace smartGPS.Business
         {
             Profile model = UsersDAO.getProfileByUserId(userId);
             return model;
+        }
+
+      
+
+        public static Boolean updateProfile(String userId, String username, String name, String surname, long? dateofBirth, Boolean? gender, String email,
+                                               String phone, String address, String postalOffice, String country, DateTime? date)
+        {
+            // TODO
+            // 1. Implement check-in logic 
+
+            DateTime? dateOfBirthDB = null;
+           
+            if (dateofBirth.HasValue)
+            {
+                dateOfBirthDB = Utilities.ToDateTimeFromEpoch(dateofBirth.Value);
+            }
+
+          
+            Boolean status = UsersDAO.updateProfile(userId, username, name, surname, dateOfBirthDB, gender, email, phone, address, postalOffice, country, date);
+            return status;
         }
 
         #endregion

@@ -1,0 +1,118 @@
+﻿@model smartGPS.Business.Models.Foursquare.GroupItems
+@{
+    ViewBag.Title = "EventDetails";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/Dashboard/eventDetails.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHDokIj0w1zAvUQYEu-0fKfbuvfOQvuRg&libraries=geometry&sensor=false"></script>
+
+<h2>@Model.Venue.Name</h2>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#map" data-toggle="tab">Map</a></li>
+    <li><a href="#details" data-toggle="tab">Details</a></li>
+    <li><a href="#tips" data-toggle="tab">Tips</a></li>
+    <li><a href="#specials" data-toggle="tab">Specials</a></li>
+</ul>
+
+<!-- hidden elements -->
+ <input type="hidden" id="latitude" value="@Model.Venue.Location.Latitude" />
+ <input type="hidden" id="longitude" value="@Model.Venue.Location.Longitude" />
+ <input type="hidden" id="iconUrl" value="@ViewBag.IconUrl" />
+
+<!-- Tab panes -->
+<div class="tab-content" id="tabs">
+     <div class="tab-pane active" id="map">
+         <div id="map-canvas" style="height:500px; width:100%; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box;">
+
+         </div>
+     </div>
+
+    <div class="tab-pane" id="details">
+        <table class="table">
+            <tr>
+                <td>Name</td>
+                <td>@Model.Venue.Name</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>@ViewBag.Address</td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>@Model.Venue.Categories.ElementAt(0).Name</td>
+            </tr>
+            <tr>
+                <td>Working hours</td>
+                <td>
+                    @if (@Model.Venue.Hours != null &&  @Model.Venue.Hours.IsOpen)
+                    {
+                        <text>Open</text>
+                    }
+                    else
+                    {
+                        <text>Closed</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>@Model.Venue.Contact.FormattedPhone</td>
+            </tr>
+            <tr>
+                <td>Twitter</td>
+                <td>@Model.Venue.Contact.Twitter</td>
+            </tr>
+            <tr>
+                <td>Rating</td>
+                <td>@Model.Venue.Rating</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="tab-pane" id="tips">
+       <h4>Tips (@Model.Tips.Count)</h4>
+       <table>
+           @for (int i = 0; i < @Model.Tips.Count; i++ )
+           {
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2">@Model.Tips.ElementAt(i).Text</td>
+                            </tr>
+                            <tr>
+                                <td id="createdAt">@Model.Tips.ElementAt(i).CreatedAtFormatted</td>
+                                <td><i><b>@Model.Tips.ElementAt(i).User.FirstName</b></i></td>
+                            </tr>
+                            <br />
+                        </table>
+                    </td>
+                </tr>
+           }
+       </table>
+    </div>
+
+    <div class="tab-pane" id="specials">
+         <h4>Specials (@Model.Venue.Specials.Count)</h4>
+        <table>
+           @for (int i = 0; i < @Model.Venue.Specials.Count; i++ )
+           {
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>@Model.Venue.Specials.Items.ElementAt(i).Title</td>
+                            </tr>
+                            <tr>
+                                <td>@Model.Venue.Specials.Items.ElementAt(i).Message</td>
+                            </tr>
+                            <br />
+                        </table>
+                    </td>
+                </tr>
+           }
+       </table>
+    </div>
+
+</div>

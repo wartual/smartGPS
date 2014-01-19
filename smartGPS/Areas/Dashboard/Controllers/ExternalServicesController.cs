@@ -12,7 +12,7 @@ using smartGPS.Business.Models;
 
 namespace smartGPS.Areas.Dashboard.Controllers
 {
-    public class ExternalServicesController : Controller
+    public class ExternalServicesController : BaseDashboardController
     {
 
         #region Importd data

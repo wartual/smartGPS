@@ -5,11 +5,13 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using smartGPS.Business.Custom;
 
 namespace smartGPS.Business
 {
     public class Utilities
     {
+
         public static String encryptPassword(String password)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -41,6 +43,46 @@ namespace smartGPS.Business
             {
                 return null;
             }
+        }
+
+        public static readonly DateTime UnixEpochStart =  DateTime.SpecifyKind(new DateTime(1970, 1, 1), DateTimeKind.Utc);
+
+        public static DateTime ToDateTimeFromEpoch(long epochTime)
+        {
+            DateTime result = UnixEpochStart.AddMilliseconds(epochTime);
+            return result;
+        }
+
+        public static DateTime ToDateTimeFromEpochInSeconds(long epochTime)
+        {
+               DateTime result = UnixEpochStart.AddSeconds(epochTime);
+               return result;
+        }
+
+        public static long ToEpochFromDateTime(DateTime date)
+        {
+            TimeSpan ts = date.ToUniversalTime() - UnixEpochStart;
+            return (long)Math.Floor(ts.TotalMilliseconds);
+        }
+
+        public static double calculateDistance(double departureLatitude, double departureLongitude, double destinationLatitude, double destinationLongitude)
+        {
+            Location departure = new Location();
+            departure.Latitude = departureLatitude;
+            departure.Longitude = departureLongitude;
+
+            Location destination = new Location();
+            destination.Latitude = destinationLatitude;
+            destination.Longitude = destinationLongitude;
+
+            Haversine haversine = new Haversine();
+            return haversine.Distance(departure, destination, Haversine.DistanceType.Kilometers);
+        }
+
+        public static double calculateDistance(Location departure, Location destination)
+        {
+            Haversine haversine = new Haversine();
+            return haversine.Distance(departure, destination, Haversine.DistanceType.Kilometers);
         }
     }
 }

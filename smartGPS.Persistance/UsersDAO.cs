@@ -7,6 +7,9 @@ namespace smartGPS.Persistance.UsersFolder
 {
     public class UsersDAO:BaseClass
     {
+
+        #region Users
+
         public static void addNew(String id, String username, String password, String name, String surname, String facebookId, String twitterId)
         {
             User model = new User();
@@ -31,6 +34,11 @@ namespace smartGPS.Persistance.UsersFolder
             model.Profile.Add(profile);
             db.User.Add(model);
             db.SaveChanges();
+        }
+
+        public static IEnumerable<User> getAll()
+        {
+            return db.User;
         }
 
         public static User getById(String id)
@@ -63,6 +71,19 @@ namespace smartGPS.Persistance.UsersFolder
             db.SaveChanges();
         }
 
+        public static void updateUsersGcm(User model, String regId)
+        {
+            if (model != null)
+            {
+                model.GcmId = regId;
+                model.DateLastLogin = DateTime.Now;
+                db.SaveChanges();
+            }
+        }
+
+    #endregion
+
+
         #region Profile
 
         public static Profile getProfileById(String id)
@@ -75,7 +96,40 @@ namespace smartGPS.Persistance.UsersFolder
             return db.Profile.Include("User").Where(m => m.User.Id.Equals(userId)).SingleOrDefault();
         }
 
+        public static Boolean updateProfile(String userId, String username, String name, String surname, DateTime? dateofBirth, Boolean? gender, String email,
+                                               String phone, String address, String postalOffice, String country, DateTime? date)
+        {
+            Profile profile = getProfileByUserId(userId);
+
+            if(profile == null){
+                return false;
+            }
+
+            profile.Address = address;
+            profile.Country = country;
+
+            if (date.HasValue)
+            {
+                profile.DateOfBirth = date.Value;
+            }
+            else if(dateofBirth.HasValue)
+            {
+                profile.DateOfBirth = dateofBirth.Value;
+            }
+
+            profile.Email = email;
+            profile.Name = name;
+            profile.Phone = phone;
+            profile.PostalOffice = postalOffice;
+            profile.Surname = surname;
+
+            db.SaveChanges();
+
+            return true;
+        }
+
         #endregion
+
 
         #region Helper
 

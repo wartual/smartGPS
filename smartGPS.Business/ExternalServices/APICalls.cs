@@ -11,6 +11,7 @@ namespace smartGPS.Business.ExternalServices
         public static String GOOGLE_MAP_DIRECTIONS = "http://maps.googleapis.com/maps/api/directions/json?origin=";
         public static String GOOGLE_PLACES = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?sensor=false&location=";
         public static String FOURSQUARE_EXPLORE_VENUES = "https://api.foursquare.com/v2/venues/explore?";
+        public static String GOOGLE_PLACES_TEXT = "https://maps.googleapis.com/maps/api/place/textsearch/json?sensor=false&query=";
 
         public static String getMapDirectionsFormattedUrl(double startLatitude, double startLongitude, double endLatitude, double endLongitude, String mode)
         {
@@ -28,6 +29,11 @@ namespace smartGPS.Business.ExternalServices
         {
             return FOURSQUARE_EXPLORE_VENUES + "client_id=" + Config.FOURSQUARE_CLIENT_ID + "&client_secret=" + Config.FOURSQUARE_CLIENT_SECRET +
                  "&v=20131201&" + "ll=" + latitude.ToString().Replace(",",".") + "," + longitude.ToString().Replace(",",".") +  "&radius=" + radius;
+        }
+
+        public static String getPlacesByTextFormattedUrl(String text, double radius)
+        {
+            return GOOGLE_PLACES_TEXT + text + "&radius=" + radius.ToString().Replace(",", ".") + "&key=" + Config.GOOGLE_SERVER_API;
         }
     }
 }
