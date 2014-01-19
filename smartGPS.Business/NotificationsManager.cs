@@ -24,6 +24,12 @@ namespace smartGPS.Business
             return NotificationsDao.getById(id);
         }
 
+        public static void deactivateNotification(String id)
+        {
+            Notifications notification = getById(id);
+            NotificationsDao.deactivateNotification(notification);
+        }
+
         public static List<NotificationCategory> getNotificationCategories()
         {
             return NotificationsDao.getAllNotificationCateogries().ToList<NotificationCategory>();

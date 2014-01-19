@@ -71,6 +71,7 @@
     <EntitySetMapping Name="Notifications">
       <EntityTypeMapping TypeName="smartGPSModel.Notifications">
         <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />

@@ -158,6 +158,36 @@ namespace smartGPS.Controllers.API
             }
         }
 
+        [HttpPut]
+        [ActionName("deactivateNotification")]
+        public HttpResponseMessage deactivateNotification([FromBody] APIDeactivateNotification model)
+        {
+            try
+            {
+                if (UserAdministration.getUserByUserId(model.userId) == null)
+                {
+                    response.Status = SmartResponseType.RESULT_FAIL;
+                    response.Message = "User does not exists";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else
+                {
+                    NotificationsManager.deactivateNotification(model.notificationId);
+
+                    response.Status = SmartResponseType.RESULT_OK;
+                    response.Message = "Notification deactivated!";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+            }
+            catch (Exception e)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                response.Status = SmartResponseType.RESULT_FAIL;
+                response.Message = "An error has occured!";
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
+            }
+        }
+
         #region Utils
 
         private APIAddNotification mapToApiAddNotification(Notifications model)
@@ -171,7 +201,8 @@ namespace smartGPS.Controllers.API
             api.text = model.Text;
             api.userId = model.UserId;
             api.username = model.User.Username;
-
+            api.address = model.Address;
+            api.notificationId = model.Id;
             return api;
         }
 

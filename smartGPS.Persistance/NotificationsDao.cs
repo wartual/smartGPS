@@ -41,9 +41,8 @@ namespace smartGPS.Persistance
             return db.Notifications.Where(item => item.Active == true);
         }
 
-        public static void deactivateNotification(String id)
+        public static void deactivateNotification(Notifications notification)
         {
-            Notifications notification = getById(id);
             notification.Active = false;
             notification.DateUpdated = DateTime.Now;
 

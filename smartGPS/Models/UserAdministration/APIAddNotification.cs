@@ -8,6 +8,9 @@ namespace smartGPS.Models.UserAdministration
 {
     public class APIAddNotification
     {
+        [JsonProperty("notificationId")]
+        public String notificationId { get; set; }
+
         [JsonProperty("userId")]
         public String userId { get; set; }
 

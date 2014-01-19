@@ -197,13 +197,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>01/18/2014 16:26:40</publishTime>
+      <publishTime>01/18/2014 19:44:41</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>01/18/2014 16:26:42</publishTime>
+      <publishTime>01/18/2014 21:22:38</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>01/18/2014 16:26:32</publishTime>
+      <publishTime>01/18/2014 19:44:40</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>10/04/2012 00:21:08</publishTime>

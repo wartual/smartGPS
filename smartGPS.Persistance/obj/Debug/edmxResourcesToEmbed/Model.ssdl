@@ -74,6 +74,7 @@
     <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
