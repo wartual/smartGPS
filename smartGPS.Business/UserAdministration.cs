@@ -34,7 +34,7 @@ namespace smartGPS.Business
                     }
                     else
                     {
-                        UsersDAO.addNew(id, username, Utilities.encryptPassword(password), name, surname, null , null);
+                        UsersDAO.addNew(id, username, Utilities.encryptPassword(password), name, surname, null, null);
                     }
                     FormsAuthentication.SetAuthCookie(id, false);
                     return (int)ErrorHandler.SignUpErrors.Success; ;
@@ -50,7 +50,7 @@ namespace smartGPS.Business
         public static int signIn(String username, String password, Boolean rememberMe)
         {
             User model = UsersDAO.getByUsernameAndPassword(username, Utilities.encryptPassword(password));
-            
+
             if (model == null)
                 return (int)ErrorHandler.SignInErrors.Failed;
             else
@@ -148,6 +148,15 @@ namespace smartGPS.Business
             return UsersDAO.getByUsername(username);
         }
 
+        public static void updateFoursquareId(String userId, String foursquareId)
+        {
+            User user = UsersDAO.getById(userId);
+            if (user != null && foursquareId != null)
+            {
+                UsersDAO.updateFoursquareId(user, foursquareId);
+            }
+        }
+
         #endregion
 
 
@@ -159,7 +168,7 @@ namespace smartGPS.Business
             return model;
         }
 
-      
+
 
         public static Boolean updateProfile(String userId, String username, String name, String surname, long? dateofBirth, Boolean? gender, String email,
                                                String phone, String address, String postalOffice, String country, DateTime? date)
@@ -168,13 +177,13 @@ namespace smartGPS.Business
             // 1. Implement check-in logic 
 
             DateTime? dateOfBirthDB = null;
-           
+
             if (dateofBirth.HasValue)
             {
                 dateOfBirthDB = Utilities.ToDateTimeFromEpoch(dateofBirth.Value);
             }
 
-          
+
             Boolean status = UsersDAO.updateProfile(userId, username, name, surname, dateOfBirthDB, gender, email, phone, address, postalOffice, country, date);
             return status;
         }

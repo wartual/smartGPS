@@ -6,9 +6,9 @@ using Newtonsoft.Json;
 
 namespace smartGPS.Business.Models.Foursquare
 {
-    public class Response
+    public class ResponseCheckins
     {
-        [JsonProperty("venues")]
-        public List<Venues> Venues { get; set; }
+        [JsonProperty("checkins")]
+        public Checkins Checkins { get; set; }
     }
 }

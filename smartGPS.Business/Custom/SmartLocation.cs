@@ -5,7 +5,7 @@ using System.Web;
 
 namespace smartGPS.Business.Custom
 {
-    public class Location
+    public class SmartLocation
     {
         public double Latitude { get; set; }
 

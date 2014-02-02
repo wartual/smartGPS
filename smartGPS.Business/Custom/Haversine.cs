@@ -9,7 +9,7 @@ namespace smartGPS.Business.Custom
     {
         public enum DistanceType { Miles, Kilometers };
 
-        public double Distance(Location pos1, Location pos2, DistanceType type)
+        public double Distance(SmartLocation pos1, SmartLocation pos2, DistanceType type)
         {
             double preDlat = pos2.Latitude - pos1.Latitude;
             double preDlon = pos2.Longitude - pos1.Longitude;

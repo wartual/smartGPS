@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYVPaQ2AM302qZOvsqYLf5wAAAAACAAAAAAAQZgAAAAEAACAAAABiAsZ9svgFWEhVl+GluKcf5QftfxSzznZdvl6pdBoSMwAAAAAOgAAAAAIAACAAAACc0WYcsjB4cRe0ZRDzzQyzxxgposGHiq6SNQugbkUWOCAAAAAdtgr+28MFNeZ4hIxJ6FHNhgEqa1Ono1xuRpeDuWk4qUAAAACUCXIrWWbMqha40QmSVBsw4iioic3gSQPvr/RfuWHJetWRN+RO08/g1q+ZmrwqnMSOUZJI2Y3BWz4MIX0kfB/B</EncryptedPassword>
-    <_PublishTargetUrl>ftp://smart-gps.somee.com/www.smart-gps.somee.com</_PublishTargetUrl>
+    <_PublishTargetUrl>ftp://smartgps.somee.com/www.smartgps.somee.com</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Readme/Elmah.txt">
@@ -41,28 +41,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/12/2013 20:28:17</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Profile/Index.cshtml">
-      <publishTime>12/16/2013 22:02:26</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Search/Places.cshtml">
-      <publishTime>01/14/2014 12:02:56</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Search/SearchPlaces.cshtml">
-      <publishTime>01/14/2014 11:27:32</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Shared/_Layout.cshtml">
-      <publishTime>01/14/2014 11:26:42</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/EventDetails.cshtml">
-      <publishTime>01/13/2014 22:03:44</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/Index.cshtml">
       <publishTime>11/20/2013 21:04:03</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/PlaceDetails.cshtml">
-      <publishTime>01/11/2014 18:26:22</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/PreviewTravel.cshtml">
-      <publishTime>01/13/2014 18:38:55</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/TravelError.cshtml">
       <publishTime>11/20/2013 21:04:47</publishTime>
@@ -197,19 +197,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>01/18/2014 19:44:41</publishTime>
+      <publishTime>01/25/2014 17:12:28</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>01/18/2014 21:22:38</publishTime>
+      <publishTime>01/25/2014 17:12:29</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>01/18/2014 19:44:40</publishTime>
+      <publishTime>01/25/2014 17:12:27</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>10/04/2012 00:21:08</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>12/09/2013 18:48:14</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="bin/System.Spatial.dll">
       <publishTime>10/22/2013 22:14:06</publishTime>
@@ -221,13 +221,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:56</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>12/09/2013 18:48:14</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="bin/System.Web.Http.OData.dll">
       <publishTime>12/09/2013 18:23:31</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>12/09/2013 18:48:14</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>10/22/2013 22:13:57</publishTime>
@@ -533,7 +533,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>12/09/2013 18:48:14</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Scripts/bootstrap-paginator.min.js">
       <publishTime>11/27/2013 20:12:39</publishTime>
@@ -551,28 +551,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/25/2013 22:54:18</publishTime>
     </File>
     <File Include="Scripts/Dashboard/eventDetails.js">
-      <publishTime>01/13/2014 21:49:57</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Scripts/Dashboard/placeDetails.js">
-      <publishTime>01/13/2014 20:04:48</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Scripts/Dashboard/previewTravel.js">
-      <publishTime>01/13/2014 19:06:11</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Scripts/Dashboard/Search/places.js">
-      <publishTime>01/14/2014 12:03:34</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Scripts/Dashboard/searchPlaces.js">
-      <publishTime>01/14/2014 11:17:38</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Scripts/Dashboard/setupEvents.js">
-      <publishTime>01/13/2014 19:07:29</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Scripts/Dashboard/setupNavigations.js">
       <publishTime>12/04/2013 18:11:32</publishTime>
     </File>
     <File Include="Scripts/Dashboard/setupPlaces.js">
-      <publishTime>01/13/2014 19:07:38</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Scripts/facebookApi.js">
       <publishTime>11/05/2013 22:39:43</publishTime>
@@ -632,7 +632,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:53</publishTime>
     </File>
     <File Include="Scripts/Profile/profile.js">
-      <publishTime>12/16/2013 21:32:35</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
     <File Include="Scripts/_references.js">
       <publishTime>10/22/2013 22:13:53</publishTime>
@@ -653,7 +653,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/15/2014 20:58:01</publishTime>
+      <publishTime>01/19/2014 17:07:48</publishTime>
     </File>
   </ItemGroup>
 </Project>

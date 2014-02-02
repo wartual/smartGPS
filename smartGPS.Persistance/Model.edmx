@@ -80,6 +80,8 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="ThumbsUp" Type="bigint" Nullable="false" />
+          <Property Name="ThumbsDown" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Profile">
           <Key>
@@ -133,6 +135,7 @@
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="FacebookId" Type="varchar" MaxLength="100" />
+          <Property Name="FoursquareId" Type="varchar" MaxLength="100" />
           <Property Name="TwitterId" Type="varchar" MaxLength="100" />
           <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
           <Property Name="GcmId" Type="varchar" MaxLength="200" />
@@ -324,6 +327,7 @@
           <NavigationProperty Name="Notifications" Relationship="smartGPSModel.FK_Notifications_User" FromRole="User" ToRole="Notifications" />
           <Property Type="String" Name="GcmId" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Travel" Relationship="smartGPSModel.FK_Travel_User" FromRole="User" ToRole="Travel" />
+          <Property Type="String" Name="FoursquareId" MaxLength="100" FixedLength="false" Unicode="false" />
           </EntityType>
         <Association Name="FK_FacebookProfile_User">
           <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
@@ -396,6 +400,8 @@
           <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Notifications_User" FromRole="Notifications" ToRole="User" />
           <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
           <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="ThumbsUp" Nullable="false" />
+          <Property Type="Int64" Name="ThumbsDown" Nullable="false" />
         </EntityType>
         <Association Name="FK_Notifications_NotificationCategory">
           <End Type="smartGPSModel.NotificationCategory" Role="NotificationCategory" Multiplicity="1" />
@@ -518,6 +524,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="smartGPSModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="FoursquareId" ColumnName="FoursquareId" />
                 <ScalarProperty Name="GcmId" ColumnName="GcmId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -551,6 +558,8 @@
           <EntitySetMapping Name="Notifications">
             <EntityTypeMapping TypeName="smartGPSModel.Notifications">
               <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="ThumbsDown" ColumnName="ThumbsDown" />
+                <ScalarProperty Name="ThumbsUp" ColumnName="ThumbsUp" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="Active" ColumnName="Active" />

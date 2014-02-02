@@ -77,10 +77,10 @@ namespace smartGPS.Business
             {
                 double distance;
                 Haversine haversine = new Haversine();
-                Location notification = new Location();
+                SmartLocation notification = new SmartLocation();
                 notification.Latitude = latitude;
                 notification.Longitude = longitude;
-                Location currentLocation = new Location();
+                SmartLocation currentLocation = new SmartLocation();
                 List<User> users = new List<User>();
                 foreach (Travel travel in travels)
                 {

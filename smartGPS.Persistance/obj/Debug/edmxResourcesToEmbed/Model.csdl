@@ -89,6 +89,7 @@
     <NavigationProperty Name="Notifications" Relationship="smartGPSModel.FK_Notifications_User" FromRole="User" ToRole="Notifications" />
     <Property Type="String" Name="GcmId" MaxLength="200" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Travel" Relationship="smartGPSModel.FK_Travel_User" FromRole="User" ToRole="Travel" />
+    <Property Type="String" Name="FoursquareId" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_FacebookProfile_User">
     <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
@@ -161,6 +162,8 @@
     <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Notifications_User" FromRole="Notifications" ToRole="User" />
     <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
     <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="ThumbsUp" Nullable="false" />
+    <Property Type="Int64" Name="ThumbsDown" Nullable="false" />
   </EntityType>
   <Association Name="FK_Notifications_NotificationCategory">
     <End Type="smartGPSModel.NotificationCategory" Role="NotificationCategory" Multiplicity="1" />

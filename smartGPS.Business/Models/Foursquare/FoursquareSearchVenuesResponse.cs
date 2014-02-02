@@ -9,6 +9,6 @@ namespace smartGPS.Business.Models.Foursquare
     public class FoursquareSearchVenuesResponse
     {
         [JsonProperty("response")]
-        public Response Response { get; set; }
+        public ResponseVenues Response { get; set; }
     }
 }

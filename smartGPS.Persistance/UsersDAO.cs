@@ -5,7 +5,7 @@ using System.Web;
 
 namespace smartGPS.Persistance.UsersFolder
 {
-    public class UsersDAO:BaseClass
+    public class UsersDAO : BaseClass
     {
 
         #region Users
@@ -20,7 +20,7 @@ namespace smartGPS.Persistance.UsersFolder
             model.TwitterId = twitterId;
             model.DateCreated = DateTime.Now;
             model.DateLastLogin = DateTime.Now;
-         
+
             Profile profile = new Profile();
             profile.Id = Guid.NewGuid().ToString();
             profile.Name = name;
@@ -56,7 +56,7 @@ namespace smartGPS.Persistance.UsersFolder
             return db.User.Where(item => item.Username.Equals(username) && item.Password.Equals(password)).SingleOrDefault();
         }
 
-        public static Boolean alreadyExists(String username) 
+        public static Boolean alreadyExists(String username)
         {
             User model = db.User.Where(item => item.Username.Equals(username)).SingleOrDefault();
             if (model == null)
@@ -81,7 +81,14 @@ namespace smartGPS.Persistance.UsersFolder
             }
         }
 
-    #endregion
+        public static void updateFoursquareId(User user, String foursquareId)
+        {
+            user.FoursquareId = foursquareId;
+            user.DateLastLogin = DateTime.Now;
+            db.SaveChanges();
+        }
+
+        #endregion
 
 
         #region Profile
@@ -101,7 +108,8 @@ namespace smartGPS.Persistance.UsersFolder
         {
             Profile profile = getProfileByUserId(userId);
 
-            if(profile == null){
+            if (profile == null)
+            {
                 return false;
             }
 
@@ -112,7 +120,7 @@ namespace smartGPS.Persistance.UsersFolder
             {
                 profile.DateOfBirth = date.Value;
             }
-            else if(dateofBirth.HasValue)
+            else if (dateofBirth.HasValue)
             {
                 profile.DateOfBirth = dateofBirth.Value;
             }

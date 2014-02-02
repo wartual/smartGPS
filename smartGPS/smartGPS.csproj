@@ -205,6 +205,8 @@
     <Compile Include="Areas\Administration\Models\Mapping.cs" />
     <Compile Include="Areas\Dashboard\Controllers\BaseDashboardController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\SearchController.cs" />
+    <Compile Include="Areas\Dashboard\Models\FacebookStatisticsModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\FoursquareStatisticsModel.cs" />
     <Compile Include="Areas\Dashboard\Models\SearchModel.cs" />
     <Compile Include="Controllers\API\BaseAPIController.cs" />
     <Compile Include="Controllers\API\EventsController.cs" />
@@ -221,6 +223,7 @@
     <Compile Include="Models\UserAdministration\APIProfileModel.cs" />
     <Compile Include="Models\UserAdministration\APIExternalLoginModel.cs" />
     <Compile Include="Models\UserAdministration\APINewUserModel.cs" />
+    <Compile Include="Models\UserAdministration\APIRateNotification.cs" />
     <Compile Include="Models\UserAdministration\APITravel.cs" />
     <Compile Include="Models\UserAdministration\APITravelsCurrentLocation.cs" />
     <Compile Include="Models\UserAdministration\APITravelStatus.cs" />
@@ -347,6 +350,10 @@
     <Content Include="Areas\Dashboard\Views\Travel\EventDetails.cshtml" />
     <Content Include="Areas\Dashboard\Views\Search\SearchPlaces.cshtml" />
     <Content Include="Areas\Dashboard\Views\Search\Places.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ExternalServices\FoursquareProfile.cshtml" />
+    <Content Include="Areas\Dashboard\Views\ExternalServices\_FoursquareLogin.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Profile\_FacebookStatistics.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Profile\_FoursquareStatistics.cshtml" />
     <None Include="Properties\PublishProfiles\smartGPS.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-paginator.min.js" />

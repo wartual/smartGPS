@@ -161,6 +161,8 @@
     <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Notifications_User" FromRole="Notifications" ToRole="User" />
     <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
     <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="ThumbsUp" Nullable="false" />
+    <Property Type="Int64" Name="ThumbsDown" Nullable="false" />
   </EntityType>
   <Association Name="FK_Notifications_NotificationCategory">
     <End Type="smartGPSModel.NotificationCategory" Role="NotificationCategory" Multiplicity="1" />

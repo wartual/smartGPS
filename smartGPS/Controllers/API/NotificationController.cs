@@ -188,6 +188,54 @@ namespace smartGPS.Controllers.API
             }
         }
 
+        [HttpPut]
+        [ActionName("rateNotification")]
+        public HttpResponseMessage rateNotification([FromBody] APIRateNotification rateNotification)
+        {
+            try
+            {
+                if (UserAdministration.getUserByUserId(rateNotification.userId) == null)
+                {
+                    response.Status = SmartResponseType.RESULT_FAIL;
+                    response.Message = "User does not exists";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else if(rateNotification.thumbsDown && rateNotification.thumbsUp)
+                {
+                    response.Status = SmartResponseType.RESULT_FAIL;
+                    response.Message = "Please choose only once action!";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else if (!rateNotification.thumbsDown && !rateNotification.thumbsUp)
+                {
+                    response.Status = SmartResponseType.RESULT_FAIL;
+                    response.Message = "Please choose one action!";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else
+                {
+                    if (rateNotification.thumbsUp)
+                    {
+                        NotificationsManager.thumbsUp(rateNotification.notificationId);
+                    }
+                    else
+                    {
+                        NotificationsManager.thumbsDown(rateNotification.notificationId);
+                    }
+                    response.Status = SmartResponseType.RESULT_OK;
+                    response.Message = "Notification rated!";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+            }
+            catch (Exception e)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                response.Status = SmartResponseType.RESULT_FAIL;
+                response.Message = "An error has occured!";
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
+            }
+        }
+
         #region Utils
 
         private APIAddNotification mapToApiAddNotification(Notifications model)
@@ -201,8 +249,10 @@ namespace smartGPS.Controllers.API
             api.text = model.Text;
             api.userId = model.UserId;
             api.username = model.User.Username;
-            api.address = model.Address;
+            api.address = model.Address.Replace(" ", "+");
             api.notificationId = model.Id;
+            api.thumbsUp = model.ThumbsUp;
+            api.thumbsDown = model.ThumbsDown;
             return api;
         }
 

@@ -6,6 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using smartGPS.Business.Custom;
+using smartGPS.Business.ExternalServices;
+using smartGPS.Business.Models.Facebook;
 
 namespace smartGPS.Business
 {
@@ -67,11 +69,11 @@ namespace smartGPS.Business
 
         public static double calculateDistance(double departureLatitude, double departureLongitude, double destinationLatitude, double destinationLongitude)
         {
-            Location departure = new Location();
+            SmartLocation departure = new SmartLocation();
             departure.Latitude = departureLatitude;
             departure.Longitude = departureLongitude;
 
-            Location destination = new Location();
+            SmartLocation destination = new SmartLocation();
             destination.Latitude = destinationLatitude;
             destination.Longitude = destinationLongitude;
 
@@ -79,10 +81,34 @@ namespace smartGPS.Business
             return haversine.Distance(departure, destination, Haversine.DistanceType.Kilometers);
         }
 
-        public static double calculateDistance(Location departure, Location destination)
+        public static double calculateDistance(SmartLocation departure, SmartLocation destination)
         {
             Haversine haversine = new Haversine();
             return haversine.Distance(departure, destination, Haversine.DistanceType.Kilometers);
+        }
+
+        public static List<KeyValuePair<String, int>> returnSortedKeyValuePair(Dictionary<String,int> dictionary)
+        {
+            List<KeyValuePair<String, int>> list = dictionary.ToList();
+            list.Sort((firstPair,nextPair) =>
+                {
+                    return firstPair.Value.CompareTo(nextPair.Value);
+                }
+            );
+            
+            return list;
+        }
+
+        public static List<KeyValuePair<FacebookProfileModel, int>> returnSortedKeyValuePair(Dictionary<FacebookProfileModel, int> dictionary)
+        {
+            List<KeyValuePair<FacebookProfileModel, int>> list = dictionary.ToList();
+            list.Sort((firstPair, nextPair) =>
+            {
+                return firstPair.Value.CompareTo(nextPair.Value);
+            }
+            );
+
+            return list;
         }
     }
 }

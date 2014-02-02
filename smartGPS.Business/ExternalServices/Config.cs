@@ -15,8 +15,6 @@ namespace smartGPS.Business.ExternalServices
 
         public static String APP_ID = "680887826369";
 
-        //public static String GOOGLE_SERVER_API = "AIzaSyCuK1VvZa01LSR9bYSc_hG9xnzCn-z6U04";
-
         public static String FOURSQUARE_CLIENT_ID = "V22JFGZJFGU0N1EI2XPLWTCZMOMY5KPCMFZ0DUK05JPI0EVS";
 
         public static String FOURSQUARE_CLIENT_SECRET = "H42JQPLZAGLVLK0T4THIIH5CTYN2JLUWMSNOMLU4KRILE10M";
@@ -24,5 +22,20 @@ namespace smartGPS.Business.ExternalServices
         public static double PLACES_RADIUS = 20000;
 
         public static double NOTIFICATION_RADIUS = 20;
+
+        public static int NOTIFICATION_CONSENSUS = 20;
+
+        public static int SORTED_LIMIT = 10;
+
+        public static int LIKES_MUSIC_LIMIT = 10;
+
+        public static int LIKES_MOVIES_LIMIT = 10;
+
+        public static int LIKES_BOOK_LIMIT = 10;
+
+        public static int LIKES_SPORTS = 3;
+
+        public static int LIKES_TRAVELING = 3;
+
     }
 }

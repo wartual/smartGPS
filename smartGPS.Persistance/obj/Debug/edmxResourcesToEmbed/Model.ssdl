@@ -75,6 +75,8 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="DateUpdated" Type="datetime" Nullable="false" />
     <Property Name="Address" Type="varchar" MaxLength="200" />
+    <Property Name="ThumbsUp" Type="bigint" Nullable="false" />
+    <Property Name="ThumbsDown" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -128,6 +130,7 @@
     <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="FacebookId" Type="varchar" MaxLength="100" />
+    <Property Name="FoursquareId" Type="varchar" MaxLength="100" />
     <Property Name="TwitterId" Type="varchar" MaxLength="100" />
     <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
     <Property Name="GcmId" Type="varchar" MaxLength="200" />

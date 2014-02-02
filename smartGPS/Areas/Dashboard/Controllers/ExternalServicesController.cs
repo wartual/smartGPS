@@ -6,16 +6,18 @@ using System.Web.Mvc;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using smartGPS.Areas.Administration.Models;
+using smartGPS.Areas.Dashboard.Models;
 using smartGPS.Business;
 using smartGPS.Business.ExternalServices;
 using smartGPS.Business.Models;
+using smartGPS.Business.Models.Facebook;
 
 namespace smartGPS.Areas.Dashboard.Controllers
 {
     public class ExternalServicesController : BaseDashboardController
     {
 
-        #region Importd data
+        #region Imported data
 
         [AllowAnonymous]
         public ActionResult ExternalLoginsList(String provider)
@@ -28,6 +30,11 @@ namespace smartGPS.Areas.Dashboard.Controllers
         public ActionResult FacebookLogin()
         {
             return PartialView("_FacebookLogin");
+        }
+
+        public ActionResult FoursquareLogin()
+        {
+            return PartialView("_FoursquareLogin");
         }
 
 
@@ -77,14 +84,14 @@ namespace smartGPS.Areas.Dashboard.Controllers
             }
             
            
-            if(result.Provider.ToLower().Equals("facebook"))
-            {
-                Boolean managementResult = FacebookManagement.importFacebookData(result.ProviderUserId, User.Identity.Name);
-                if(!managementResult)
-                    return View("ExternalLoginFailure");
-                else
-                    return RedirectToAction("FacebookProfile");
-            }
+            //if(result.Provider.ToLower().Equals("facebook"))
+            //{
+            //    Boolean managementResult = FacebookManagement.importFacebookData(result.ProviderUserId, User.Identity.Name);
+            //    if(!managementResult)
+            //        return View("ExternalLoginFailure");
+            //    else
+            //        return RedirectToAction("FacebookProfile");
+            //}
 
             return View();
        }
@@ -96,27 +103,56 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         #endregion
 
+
         #region Facebook
-
-        public ActionResult GetFacebookData(String token)
+        [HttpGet]
+        public ActionResult FacebookProfile(FacebookStatisticsModel model)
         {
-            Boolean success = FacebookManagement.importFacebookData(token, User.Identity.Name);
-            if (success)
-                return RedirectToAction("FacebookProfile");
-            else
-                return RedirectToAction("ExternalLoginFailure");
+            ViewBag.LoadData = false;
+             return View();
         }
-
-
-        public ActionResult FacebookProfile()
+        
+        [HttpPost]
+        public ActionResult FacebookProfile(String dummy)
         {
-            FacebookProfileModel model = FacebookManagement.getFacebookProfileData(User.Identity.Name);
-            return View(model);
+            ViewBag.LoadData = true;
+            return View();
         }
-
-      
 
         #endregion
+
+
+        #region Foursquare
+        [HttpGet]
+        public ActionResult FoursquareProfile()
+        {
+            ViewBag.LoadData = false;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FoursquareProfile(String dummy)
+        {
+            String url = APICalls.getFoursquareAuthTokenUrl();
+            return Redirect(url);
+        }
+
+        [HttpGet]
+        public ActionResult FoursquareResponse(String code)
+        {
+            Boolean status = FourqsquareManagement.obtainAuthToken(code, User.Identity.Name);
+            if (status)
+            {
+                return RedirectToAction("ShowFoursquareStatistics", "Profile", new { area = "Dashboard" });
+            }
+            else
+            {
+                return RedirectToAction("ExternalLoginFailure");
+            }
+        }
+
+        #endregion
+
 
         #region Custom
 

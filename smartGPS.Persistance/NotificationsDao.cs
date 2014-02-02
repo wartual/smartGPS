@@ -31,6 +31,8 @@ namespace smartGPS.Persistance
             notification.Text = text;
             notification.UserId = userId;
             notification.Address = address;
+            notification.ThumbsDown = 0;
+            notification.ThumbsUp = 0;
 
             db.Notifications.Add(notification);
             db.SaveChanges();
@@ -44,6 +46,22 @@ namespace smartGPS.Persistance
         public static void deactivateNotification(Notifications notification)
         {
             notification.Active = false;
+            notification.DateUpdated = DateTime.Now;
+
+            db.SaveChanges();
+        }
+
+        public static void thumbsUp(Notifications notification)
+        {
+            notification.ThumbsUp++;
+            notification.DateUpdated = DateTime.Now;
+
+            db.SaveChanges();
+        }
+
+        public static void thumbsDown(Notifications notification)
+        {
+            notification.ThumbsDown++;
             notification.DateUpdated = DateTime.Now;
 
             db.SaveChanges();

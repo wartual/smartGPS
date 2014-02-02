@@ -75,6 +75,8 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="DateUpdated" Type="datetime" Nullable="false" />
     <Property Name="Address" Type="varchar" MaxLength="200" />
+    <Property Name="ThumbsUp" Type="bigint" Nullable="false" />
+    <Property Name="ThumbsDown" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>

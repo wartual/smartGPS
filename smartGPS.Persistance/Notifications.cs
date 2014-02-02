@@ -24,6 +24,8 @@ namespace smartGPS.Persistance
         public bool Active { get; set; }
         public System.DateTime DateUpdated { get; set; }
         public string Address { get; set; }
+        public long ThumbsUp { get; set; }
+        public long ThumbsDown { get; set; }
     
         public virtual NotificationCategory NotificationCategory { get; set; }
         public virtual User User { get; set; }

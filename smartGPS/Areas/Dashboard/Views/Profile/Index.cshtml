@@ -14,6 +14,7 @@
 <ul class="nav nav-tabs">
     <li class="active"><a href="#home" data-toggle="tab">smartGPS profile</a></li>
     <li><a href="#facebook" data-toggle="tab">Facebook</a></li>
+    <li><a href="#foursquare" data-toggle="tab">Foursquare</a></li>
 </ul>
 
 
@@ -103,8 +104,24 @@
         }
     </div>
     <div class="tab-pane" id="facebook">
-        @Html.Action("FacebookProfile", "ExternalServices")
-
+        @if (Model.FacebookStatistics == null)
+        {
+                @Html.Action("FacebookProfile", "ExternalServices")        
+        }
+        else
+        {
+            @Html.Partial("_FacebookStatistics", Model.FacebookStatistics)
+        }
+       </div>
+    <div class="tab-pane" id="foursquare">
+        @if (Model.FoursquareStatistics == null)
+        {
+             @Html.Action("FoursquareProfile", "ExternalServices")
+        }
+        else
+        {
+            @Html.Partial("_FoursquareStatistics", Model.FoursquareStatistics)
+        }
     </div>
 </div>
 

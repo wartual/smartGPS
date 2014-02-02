@@ -1,6 +1,4 @@
-﻿<legend>Facebook login</legend>
-
-<div id="fb-root"></div>
+﻿<div id="fb-root"></div>
 <script>
     window.fbAsyncInit = function () {
         FB.init({
@@ -78,14 +76,22 @@
 
         var data = new Object();
         data.token = token;
+        var url;
+        if (window.location.port == null)
+            url = window.location.hostname + "/Dashboard/Profile/FacebookStatistics";
+        else
+            url = window.location.hostname + ":" + window.location.port + "/Dashboard/Profile/FacebookStatistics";
+        url = "http://" + url;
 
-        $.ajax({
-            url: ("\GetFacebookData"),
-            type: ("POST"),
-            data: { token : token },
-            success: console.log('success'),
-            error: console.log('error')
-        });
+        window.location.href = url + "?token=" + token;
+
+        //$.ajax({
+        //    url: (url),
+        //    type: ("GET"),
+        //    data: { token : token },
+        //    success: console.log('success'),
+        //    error: console.log('error')
+        //});
 
 
         //console.log('Welcome!  Fetching your information.... ');
@@ -102,7 +108,7 @@
   Learn more about options for the login button plugin:
   /docs/reference/plugins/login/ -->
 
-<div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1" data-scope="email"></div>
+<div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1" data-scope="email,user_likes,friends_likes,user_actions.books, user_actions.video, user_actions.music,user_checkins,friends_checkins"></div>
 
 
 

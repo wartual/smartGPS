@@ -43,5 +43,8 @@ namespace smartGPS.Areas.Dashboard.Models
 
         [Display(Name = "Gender")]
         public Boolean? Gender { get; set; }
+
+        public FacebookStatisticsModel FacebookStatistics { get; set; }
+        public FoursquareStatisticsModel FoursquareStatistics { get; set; }
     }
 }

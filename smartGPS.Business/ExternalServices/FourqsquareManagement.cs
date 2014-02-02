@@ -37,5 +37,76 @@ namespace smartGPS.Business.ExternalServices
             }
         }
 
+        public static Boolean obtainAuthToken(String code, String userId)
+        {
+            String url = APICalls.getFoursquareAuthTokenWithCode(code);
+            FoursquareAuthToken token;
+            WebRequest request = WebRequest.Create(url);
+
+            try
+            {
+                using (WebResponse response = request.GetResponse())
+                {
+                    using (Stream stream = response.GetResponseStream())
+                    {
+                        String responseString = new StreamReader(stream).ReadToEnd();
+                        token = JsonConvert.DeserializeObject<FoursquareAuthToken>(responseString);
+                        UserAdministration.updateFoursquareId(userId, token.AuthToken);
+                        return true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public static FoursquareStatistics importVenusHistory(String userId)
+        {
+            smartGPS.Persistance.User user = UserAdministration.getUserByUserId(userId);
+
+            if (user == null || user.FoursquareId == null)
+                return null;
+            else
+            {
+                String url = APICalls.getFoursquareCheckins(user.FoursquareId);
+                FoursquareVenuesHistoryResponse checkins;
+                FoursquareRecentCheckinsResponse recent;
+                FoursquareStatistics statistics;
+                FoursquareDataMining dataMining;
+                WebRequest request = WebRequest.Create(url);
+                try
+                {
+                    using (WebResponse response = request.GetResponse())
+                    {
+                        using (Stream stream = response.GetResponseStream())
+                        {
+                            String responseString = new StreamReader(stream).ReadToEnd();
+                            checkins = JsonConvert.DeserializeObject<FoursquareVenuesHistoryResponse>(responseString);
+                        }
+                    }
+
+                    url = APICalls.getFoursquareRecentCheckins(user.FoursquareId);
+                    request = WebRequest.Create(url);
+         
+                    using (WebResponse response = request.GetResponse())
+                    {
+                        using (Stream stream = response.GetResponseStream())
+                        {
+                            String responseString = new StreamReader(stream).ReadToEnd();
+                            recent = JsonConvert.DeserializeObject<FoursquareRecentCheckinsResponse>(responseString);
+                        }
+                    }
+                    dataMining = new FoursquareDataMining(checkins, recent);
+                    statistics = dataMining.analyze();
+                    return statistics;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

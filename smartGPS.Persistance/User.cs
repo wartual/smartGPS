@@ -31,6 +31,7 @@ namespace smartGPS.Persistance
         public string TwitterId { get; set; }
         public System.DateTime DateLastLogin { get; set; }
         public string GcmId { get; set; }
+        public string FoursquareId { get; set; }
     
         public virtual ICollection<FacebookProfile> FacebookProfile { get; set; }
         public virtual ICollection<Profile> Profile { get; set; }

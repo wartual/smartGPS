@@ -135,8 +135,8 @@ namespace smartGPS.Business
         {
             List<Notifications> notifications = getAllActiveNotifications();
             List<Notifications> nearNotifications = new List<Notifications>();
-            Location location = new Location();
-            Location notificationLocation = new Location();
+            SmartLocation location = new SmartLocation();
+            SmartLocation notificationLocation = new SmartLocation();
             location.Latitude = latitude;
             location.Longitude = longitude;
             Haversine haversine = new Haversine();
@@ -153,6 +153,35 @@ namespace smartGPS.Business
             }
 
             return nearNotifications;
+        }
+
+        public static void thumbsUp(String notificationId)
+        {
+            Notifications notification = getById(notificationId);
+            NotificationsDao.thumbsUp(notification);
+        }
+
+        public static void thumbsDown(String notificationId)
+        {
+            Notifications notification = getById(notificationId);
+            NotificationsDao.thumbsDown(notification);
+
+            checkIfNotificationHasToBeDeactivated(notification);
+        }
+
+        public static Boolean checkIfNotificationHasToBeDeactivated(Notifications notification)
+        {
+            long difference = notification.ThumbsDown - notification.ThumbsUp;
+
+            if(difference > Config.NOTIFICATION_CONSENSUS)
+            {
+                deactivateNotification(notification.Id);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -34,5 +34,11 @@ namespace smartGPS.Models.UserAdministration
 
         [JsonProperty("address")]
         public String address { get; set; }
+
+        [JsonProperty("thumbsUp")]
+        public long thumbsUp { get; set; }
+
+        [JsonProperty("thumbsDown")]
+        public long thumbsDown { get; set; }
     }
 }

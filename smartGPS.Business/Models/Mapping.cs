@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using smartGPS.Business.Models.Facebook;
 using smartGPS.Business.Models.GoogleModels;
 using smartGPS.Persistance;
 
