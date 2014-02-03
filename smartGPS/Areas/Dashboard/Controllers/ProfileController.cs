@@ -25,7 +25,8 @@ namespace smartGPS.Areas.Dashboard.Controllers
         {
             Profile profile = UserAdministration.getProfileByUserId(User.Identity.Name);
             ProfileModel viewModel = smartGPS.Areas.Administration.Models.Mapping.usersToProfileModel(profile);
-            
+            PrometInfoManagement.getInfo();
+            OpenWeatherManagement.getWeatherByGPS(44, 16); 
             return View(viewModel);
         }
 
@@ -104,6 +105,8 @@ namespace smartGPS.Areas.Dashboard.Controllers
             model.FriendsLikesCategoriesFrequency = statistics.FriendsLikesCategoriesFrequency;
             model.FriendsLikesFrequency = statistics.FriendsLikesFrequency;
             model.Name = statistics.Name;
+            model.FriendsCheckinsFrequency = statistics.FriendsCheckinsFrequency;
+            model.UserCheckinsFrequency = statistics.UserCheckinsFrequency;
             model.SimilarFriends = statistics.similarFriends;
             model.UserLikesCategoriesFrequency = statistics.UserLikesCategoriesFrequency;
             model.LikesBooks = mapStatusEnumToWord(statistics.likesBooks);
@@ -112,10 +115,12 @@ namespace smartGPS.Areas.Dashboard.Controllers
             model.LikesTravelling = mapStatusEnumToWord(statistics.likesTraveling);
             model.LikesSports = mapStatusEnumToWord(statistics.likesSports);
             model.IsSportsman = mapStatusEnumToWord(statistics.isSportsman);
-            model.SortedFriendsLikesCategoriesFrequency = statistics.SortedFriendsLikesCategoriesFrequency;
-            model.SortedFriendsLikesFrequency = statistics.SortedFriendsLikesFrequency;
-            model.SortedUserLikesCategoriesFrequency = statistics.SortedUserLikesCategoriesFrequency;
-            model.SortedSimillarFriends = statistics.SortedSimillarFriends;
+            model.SortedFriendsLikesCategoriesFrequency = statistics.SortedFriendsLikesCategoriesFrequency.Take(10);
+            model.SortedFriendsLikesFrequency = statistics.SortedFriendsLikesFrequency.Take(10);
+            model.SortedUserLikesCategoriesFrequency = statistics.SortedUserLikesCategoriesFrequency.Take(10);
+            model.SortedSimillarFriends = statistics.SortedSimillarFriends.Take(10);
+            model.SortedFriendsCheckinsFrequency = statistics.SortedFriendsCheckinsFrequency.Take(10);
+            model.SortedUserCheckinsFrequency = statistics.SortedUserCheckinsFrequency.Take(10);
             return model;
         }
 

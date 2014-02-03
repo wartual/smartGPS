@@ -8,7 +8,10 @@ namespace smartGPS.Business.Models.Facebook
 {
     public class UserCheckins
     {
-        [JsonProperty("data)")]
-        public List<Place> Checkins { get; set; }
+        [JsonProperty("data")]
+        public List<CheckinData> Checkins { get; set; }
+
+        [JsonProperty("paging")]
+        public Paging Paging { get; set; }
     }
 }

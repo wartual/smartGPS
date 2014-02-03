@@ -3,9 +3,122 @@
 <table class="table">
     <tbody>
         <tr>
-            <td>   @Html.LabelFor(m => m.Name, new { @class = "control-label" })</td>
-            <td>     @Html.TextBoxFor(m => m.Name)</td>
+            <td>@Html.LabelFor(m => m.Name, new { @class = "control-label" })</td>
+            <td><b>@Model.Name</b></td>
         </tr>
-
+        <tr>
+            <td>
+                <h4>@Html.LabelFor(m => m.MostFrequentUserCheckins)</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table">
+                    <thead>
+                        <td>
+                            #
+                        </td>
+                        <td>
+                            Place
+                        </td>
+                        <td>
+                            Number of checkins
+                        </td>
+                    </thead>
+                    <tbody>
+                        @for (int i = 1; i <= Model.SortedCheckinsFrequency.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @i
+                                </td>
+                                <td>
+                                    @Model.SortedCheckinsFrequency.ElementAt(i-1).Key
+                                </td>
+                                <td>
+                                    @Model.SortedCheckinsFrequency.ElementAt(i-1).Value
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                 <h4>@Html.LabelFor(m => m.MostFrequendUserCheckinsByCategory)</h4>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                <table class="table">
+                    <thead>
+                        <td>
+                            #
+                        </td>
+                        <td>
+                            Checkin category
+                        </td>
+                        <td>
+                            Number of checkins
+                        </td>
+                    </thead>
+                    <tbody>
+                        @for (int i = 1; i <= Model.SortedCheckinCategoriesFrequency.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @i
+                                </td>
+                                <td>
+                                    @Model.SortedCheckinCategoriesFrequency.ElementAt(i-1).Key
+                                </td>
+                                <td>
+                                    @Model.SortedCheckinCategoriesFrequency.ElementAt(i-1).Value
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                 <h4>@Html.LabelFor(m => m.MostFrequendUserVisitedPlaces)</h4>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                <table class="table">
+                    <thead>
+                        <td>
+                            #
+                        </td>
+                        <td>
+                            City
+                        </td>
+                        <td>
+                            Number of checkins
+                        </td>
+                    </thead>
+                    <tbody>
+                        @for (int i = 1; i <= Model.SortedVisitedCitiesFrequency.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @i
+                                </td>
+                                <td>
+                                    @Model.SortedVisitedCitiesFrequency.ElementAt(i-1).Key
+                                </td>
+                                <td>
+                                    @Model.SortedVisitedCitiesFrequency.ElementAt(i-1).Value
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
     </tbody>
 </table>

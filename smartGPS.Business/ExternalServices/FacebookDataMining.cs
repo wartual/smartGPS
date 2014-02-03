@@ -14,7 +14,10 @@ namespace smartGPS.Business.ExternalServices
         private Dictionary<String, int> friendslikesCategoriesFrequency;
         private Dictionary<String, int> myLikesCategoriesFrequency;
         private Dictionary<FacebookProfileModel, int> similarFriends;
+        private Dictionary<String, int> friendsCheckinsFrequency;
+        private Dictionary<String, int> myCheckins;
         private FacebookProfileModel model;
+        private FacebookProfileModel second;
         private FacebookStatistics statistics;
         private int likesMusic;
         private int likesBooks;
@@ -26,12 +29,14 @@ namespace smartGPS.Business.ExternalServices
         public FacebookDataMining(FacebookProfileModel model)
         {
             this.model = model;
+            //this.second = second;
         }
 
         public FacebookStatistics analyze()
         {
             similarFriends = new Dictionary<FacebookProfileModel, int>();
-
+            friendsCheckinsFrequency = new Dictionary<string, int>();
+            myCheckins = new Dictionary<string, int>();
             analyzeMyLikes();
             analyzeFriendsLikesFrequency();
             analyzeMusic();
@@ -40,7 +45,8 @@ namespace smartGPS.Business.ExternalServices
             analyzeSports();
             analyzeFavoriteAthletes();
             analyzeFavoriteTeams();
-
+            //analyzeMyCheckins();
+            
             prepareStatistics();
             return statistics;
         }
@@ -49,12 +55,32 @@ namespace smartGPS.Business.ExternalServices
         {
             FacebookProfileModel friend;
             Like like;
+            CheckinData place;
             int value;
             friendslikesCategoriesFrequency = new Dictionary<string, int>();
             friendslikesFrequency = new Dictionary<string, int>();
 
             for (int i = 0; i < model.UserFriends.Friends.Count; i++)
             {
+            //    friend = second.UserFriends.Friends.ElementAt(i);
+
+            //    if (friend.UserCheckins != null)
+            //    {
+            //        for (int j = 0; j < friend.UserCheckins.Checkins.Count(); j++)
+            //        {
+            //            place = friend.UserCheckins.Checkins.ElementAt(i);
+            //            if (friendsCheckinsFrequency.ContainsKey(place.Checkins.Name))
+            //            {
+            //                value = friendsCheckinsFrequency[place.Checkins.Name];
+            //                friendsCheckinsFrequency[place.Checkins.Name] = value + 1;
+            //            }
+            //            else
+            //            {
+            //                friendsCheckinsFrequency.Add(place.Checkins.Name, 1);
+            //            }
+            //        }
+            //    }
+
                 friend = model.UserFriends.Friends.ElementAt(i);
 
                 if (friend.UserLikes != null)
@@ -162,6 +188,23 @@ namespace smartGPS.Business.ExternalServices
         {
             int value;
             if (myLikesCategoriesFrequency.ContainsKey(like.Category))
+            {
+                if (similarFriends.ContainsKey(user))
+                {
+                    value = similarFriends[user];
+                    similarFriends[user] = value + 1;
+                }
+                else
+                {
+                    similarFriends.Add(user, 1);
+                }
+            }
+        }
+
+        private void checkIfSimilar(FacebookProfileModel user, Place place)
+        {
+            int value;
+            if (myCheckins.ContainsKey(place.Name))
             {
                 if (similarFriends.ContainsKey(user))
                 {
@@ -302,6 +345,31 @@ namespace smartGPS.Business.ExternalServices
             }
         }
 
+      
+        private void analyzeMyCheckins()
+        {
+            myCheckins = new Dictionary<string, int>();
+            CheckinData place;
+            int value;
+
+            if (model.UserCheckins != null)
+            {
+                for (int i = 0; i < second.UserCheckins.Checkins.Count(); i++)
+                {
+                    place = second.UserCheckins.Checkins.ElementAt(i);
+                    if (myCheckins.ContainsKey(place.Checkins.Name))
+                    {
+                        value = myCheckins[place.Checkins.Name];
+                        myCheckins[place.Checkins.Name] = value + 1;
+                    }
+                    else
+                    {
+                        myCheckins.Add(place.Checkins.Name, 1);
+                    }
+                }
+            }
+        }
+
         private void prepareStatistics()
         {
             statistics = new FacebookStatistics();
@@ -315,7 +383,9 @@ namespace smartGPS.Business.ExternalServices
             statistics.SortedFriendsLikesFrequency = Utilities.returnSortedKeyValuePair(friendslikesFrequency);
             statistics.SortedUserLikesCategoriesFrequency = Utilities.returnSortedKeyValuePair(myLikesCategoriesFrequency);
             statistics.SortedUserLikesFrequency = Utilities.returnSortedKeyValuePair(myLikesFrequency); 
-            statistics.SortedSimillarFriends = Utilities.returnSortedKeyValuePair(similarFriends); 
+            statistics.SortedSimillarFriends = Utilities.returnSortedKeyValuePair(similarFriends);
+            statistics.SortedFriendsCheckinsFrequency = Utilities.returnSortedKeyValuePair(friendsCheckinsFrequency);
+            statistics.SortedUserCheckinsFrequency = Utilities.returnSortedKeyValuePair(myCheckins);
 
             statistics.likesMusic = likesMusic;
             statistics.likesBooks = likesBooks;
@@ -323,7 +393,7 @@ namespace smartGPS.Business.ExternalServices
             statistics.isSportsman = isSportsman;
             statistics.likesSports = likesSports;
 
-            statistics.CountFriendsLikes = model.UserFriends.Friends.Count();
+            statistics.CountFriendsAnalzyed = model.UserFriends.Friends.Count();
             statistics.CountFriendsLikes = statistics.FriendsLikesFrequency.Count();
             statistics.CountUserLikes = statistics.UserLikesFrequency.Count();
             statistics.Name = model.Name;

@@ -25,11 +25,17 @@ namespace smartGPS.Areas.Dashboard.Models
         [Display(Name = "Most frequent user like category")]
         public String MostFrequendUserLikeCategory { get; set; }
 
+        [Display(Name = "Most frequent user checkin")]
+        public String MostFrequendUserCheckin { get; set; }
+
         [Display(Name = "Most frequent friend like category")]
         public String MostFrequendFriendLikeCategory { get; set; }
 
         [Display(Name = "Most frequent friend like")]
         public String MostFrequendFriendLike { get; set; }
+
+        [Display(Name = "Most frequent friends checkins")]
+        public String MostFrequendFriendCheckin { get; set; }
 
         [Display(Name = "List of similar friends by likes")]
         public String SimilarFriendsList { get; set; }
@@ -56,9 +62,13 @@ namespace smartGPS.Areas.Dashboard.Models
         public Dictionary<String, int> UserLikesCategoriesFrequency { get; set; }
         public Dictionary<String, int> FriendsLikesFrequency { get; set; }
         public Dictionary<String, int> FriendsLikesCategoriesFrequency { get; set; }
-        public dynamic SortedFriendsLikesFrequency { get; set; }
-        public dynamic SortedFriendsLikesCategoriesFrequency { get; set; }
-        public dynamic SortedUserLikesCategoriesFrequency { get; set; }
-        public dynamic SortedSimillarFriends { get; set; }
+        public Dictionary<String, int> FriendsCheckinsFrequency { get; set; }
+        public Dictionary<String, int> UserCheckinsFrequency { get; set; }
+        public IEnumerable<KeyValuePair<String, int>> SortedFriendsLikesFrequency { get; set; }
+        public IEnumerable<KeyValuePair<String, int>> SortedFriendsLikesCategoriesFrequency { get; set; }
+        public IEnumerable<KeyValuePair<String, int>> SortedUserLikesCategoriesFrequency { get; set; }
+        public IEnumerable<KeyValuePair<FacebookProfileModel, int>> SortedSimillarFriends { get; set; }
+        public IEnumerable<KeyValuePair<String, int>> SortedFriendsCheckinsFrequency { get; set; }
+        public IEnumerable<KeyValuePair<String, int>> SortedUserCheckinsFrequency { get; set; }
     }
 }

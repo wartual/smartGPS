@@ -21,8 +21,12 @@ namespace smartGPS.Business.ExternalServices
             
             try
             {
-                var fb = client.Get("me?fields=id,name,sports,likes,location,favorite_athletes,favorite_teams,interests,music,video.watches,checkins,books.reads,friends.limit(200).fields(likes,id,name)");
+                var fb = client.Get("me?fields=id,name,sports,likes,location,favorite_athletes,favorite_teams,interests,music,video.watches,books.reads,friends.limit(200).fields(likes,id,name)");
                 FacebookProfileModel model = JsonConvert.DeserializeObject<FacebookProfileModel>(fb.ToString());
+
+                //fb = client.Get("me?fields=checkins,friends.limit(200).fields(id,name,checkins.limit(<>))");
+                //FacebookProfileModel second = JsonConvert.DeserializeObject<FacebookProfileModel>(fb.ToString());
+               
                 FacebookDataMining dataMining = new FacebookDataMining(model);
                 FacebookStatistics statistics = dataMining.analyze();
 

@@ -95,7 +95,7 @@ namespace smartGPS.Business
                     return firstPair.Value.CompareTo(nextPair.Value);
                 }
             );
-            
+            list.Reverse();
             return list;
         }
 
@@ -107,7 +107,7 @@ namespace smartGPS.Business
                 return firstPair.Value.CompareTo(nextPair.Value);
             }
             );
-
+            list.Reverse();
             return list;
         }
     }

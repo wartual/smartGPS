@@ -2,5 +2,248 @@
 
 <h4>Facebook statistics</h4>
 
+<table class="table">
+    <tr>
+        <td>@Html.LabelFor(m => m.Name, new { @class = "control-label" })</td>
+        <td><b>@Model.Name</b></td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.MostFrequendUserLikeCategory) 
+        </td>
+        <td>
+            Categories analyzed: @Model.UserLikesCategoriesFrequency.Count
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table">
+                <thead>
+                    <td>#
+                    </td>
+                    <td>Like category
+                    </td>
+                    <td>Number of categories
+                    </td>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        <tr>
+                            <td>
+                                @i
+                            </td>
+                            <td>
+                                @Model.SortedUserLikesCategoriesFrequency.ElementAt(i - 1).Key
+                            </td>
+                            <td>
+                                @Model.SortedUserLikesCategoriesFrequency.ElementAt(i - 1).Value
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.MostFrequendFriendLike)
+        </td>
+        <td>
+            Likes analyzed: @Model.CountFriendsLikes
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table">
+                <thead>
+                    <td>#
+                    </td>
+                    <td>Like
+                    </td>
+                    <td>Number of likes
+                    </td>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        <tr>
+                            <td>
+                                @i
+                            </td>
+                            <td>
+                                @Model.SortedFriendsLikesFrequency.ElementAt(i - 1).Key
+                            </td>
+                            <td>
+                                @Model.SortedFriendsLikesFrequency.ElementAt(i - 1).Value
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.MostFrequendFriendLikeCategory)
+        </td>
+        <td>
+            Categories analyzed: @Model.FriendsLikesCategoriesFrequency.Count
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table">
+                <thead>
+                    <td>#
+                    </td>
+                    <td>Category of like
+                    </td>
+                    <td>Number of likes
+                    </td>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        <tr>
+                            <td>
+                                @i
+                            </td>
+                            <td>
+                                @Model.SortedFriendsLikesCategoriesFrequency.ElementAt(i - 1).Key
+                            </td>
+                            <td>
+                                @Model.SortedFriendsLikesCategoriesFrequency.ElementAt(i - 1).Value
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    @*<tr>
+        <td>
+            @Html.LabelFor(m => m.MostFrequendFriendCheckin)
+        </td>
+        <td>
+            Locations analyzed: @Model.FriendsCheckinsFrequency.Count
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table">
+                <thead>
+                    <td>#
+                    </td>
+                    <td>Category of like
+                    </td>
+                    <td>Number of likes
+                    </td>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        <tr>
+                            <td>
+                                @i
+                            </td>
+                            <td>
+                                @Model.SortedFriendsCheckinsFrequency.ElementAt(i - 1).Key
+                            </td>
+                            <td>
+                                @Model.SortedFriendsCheckinsFrequency.ElementAt(i - 1).Value
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>*@
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.SimilarFriendsList)
+        </td>
+        <td>
+             Friends analyzed: @Model.CountFriendsAnalzyed
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table">
+                <thead>
+                    <td>#
+                    </td>
+                    <td>Friend
+                    </td>
+                    <td>Number of shared likes
+                    </td>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        <tr>
+                            <td>
+                                @i
+                            </td>
+                            <td>
+                                @Model.SortedSimillarFriends.ElementAt(i - 1).Key.Name
+                            </td>
+                            <td>
+                                @Model.SortedSimillarFriends.ElementAt(i - 1).Value
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.IsSportsman)
+        </td>
+        <td>
+            @Model.IsSportsman
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.LikesBooks)
+        </td>
+        <td>
+            @Model.LikesBooks
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.LikesMovies)
+        </td>
+        <td>
+            @Model.LikesMovies
+        </td>
+    </tr>
+        <tr>
+        <td>
+            @Html.LabelFor(m => m.LikesMusic)
+        </td>
+        <td>
+            @Model.LikesMusic
+        </td>
+    </tr>
+        <tr>
+        <td>
+            @Html.LabelFor(m => m.LikesSports)
+        </td>
+        <td>
+            @Model.LikesSports
+        </td>
+    </tr>
+        <tr>
+        <td>
+            @Html.LabelFor(m => m.LikesTravelling)
+        </td>
+        <td>
+            @Model.LikesTravelling
+        </td>
+    </tr>
 
-@Html.LabelFor(m => m.IsSportsman)
+</table>

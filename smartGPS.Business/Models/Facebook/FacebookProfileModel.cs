@@ -13,10 +13,10 @@ namespace smartGPS.Business.Models.Facebook
         public String id { get; set; }
 
         [JsonProperty("name")]
-        public String name { get; set; }
+        public String Name { get; set; }
 
         [JsonProperty("first_name")]
-        public String Name { get; set; }
+        public String FirstName { get; set; }
 
         [JsonProperty("last_name")]
         public String Surname { get; set; }
@@ -65,5 +65,5 @@ namespace smartGPS.Business.Models.Facebook
 
         [JsonProperty("checkins")]
         public UserCheckins UserCheckins { get; set; }
-    }
+      }
 }
