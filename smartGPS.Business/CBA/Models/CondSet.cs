@@ -8,9 +8,9 @@ namespace smartGPS.Business.CBA.Models
     public class CondSet
     {
         //Dictionary of conditions
-        private Dictionary<String, String> Conditions { get; set; }
+        public Dictionary<String, String> Conditions { get; set; }
         //Support count
-        private int CondSupCount { get; set; }
+        public int CondSupCount { get; set; }
 
         // Constructor
         public CondSet()

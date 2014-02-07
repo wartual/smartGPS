@@ -97,9 +97,9 @@ namespace smartGPS.Persistance
             }
         }
 
-        public static IEnumerable<FacebookProccesedEntries> ProccessedFacebookEntries_getAllByUser(String userId)
+        public static List<FacebookProccesedEntries> ProccessedFacebookEntries_getAllByUser(String userId)
         {
-            return db.FacebookProccesedEntries.Where(item => item.UserId.Equals(userId));
+            return db.FacebookProccesedEntries.Where(item => item.UserId.Equals(userId)).ToList();
         }
 
         public static String mapEnumCategoryToWord(int enumerator)

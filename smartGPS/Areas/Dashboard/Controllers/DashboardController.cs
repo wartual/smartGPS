@@ -16,8 +16,9 @@ namespace smartGPS.Areas.Dashboard.Controllers
         // GET: /Dashboard/Dashboard/
 
         public ActionResult Index()
-        {
-            CBA.testConditionSet();
+        { 
+            CBA_RG ruleGenerator = new CBA_RG(0.1, 0.3, User.Identity.Name);
+            ruleGenerator.getRulesSet();
             return View();
         }
 

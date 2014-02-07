@@ -135,10 +135,9 @@ namespace smartGPS.Business.ExternalServices
             }
         }
 
-        #region Utils
-
-       
-
-        #endregion
+        public static IEnumerable<FacebookProccesedEntries> FacebookProccessedEntries_GetAllForUser(String userId)
+        {
+            return FacebookDao.ProccessedFacebookEntries_getAllByUser(userId);
+        }
     }
 }

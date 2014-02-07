@@ -15,6 +15,11 @@ namespace smartGPS.Business
     public class Utilities
     {
 
+        public static Boolean compareDictionaries(Dictionary<String, String> first, Dictionary<String, String> second)
+        {
+            return first.Keys.Count == second.Keys.Count && first.Keys.All(k => second.ContainsKey(k) && object.Equals(second[k], first[k]));
+        }
+
         public static String encryptPassword(String password)
         {
             MD5 md5 = new MD5CryptoServiceProvider();

@@ -8,17 +8,17 @@ namespace smartGPS.Business.CBA.Models
     public class RuleItem
     {
         //condition set
-        private CondSet Conditions { get; set; }
+        public CondSet Conditions { get; set; }
         //rule support
-        private int RuleSupCount { get; set; }
+        public int RuleSupCount { get; set; }
         //class key (speed difference or consumption)
-        private String ClassKey { get; set; }
+        public String ClassKey { get; set; }
         //class value
-        private String ClassValue { get; set; }
+        public String ClassValue { get; set; }
         //number of entries 
-        private int DataSize { get; set; }
+        public int DataSize { get; set; }
         //username
-        private String UserId { get; set; }
+        public String UserId { get; set; }
 
         /**
 	     * Constructor
