@@ -67,7 +67,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClass.cs" />
+    <Compile Include="FacebookDao.cs" />
+    <Compile Include="FacebookProccesedEntries.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="FacebookProfile.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FoursquareDao.cs" />
+    <Compile Include="FoursquareProfile.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">

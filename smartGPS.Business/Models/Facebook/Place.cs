@@ -15,6 +15,6 @@ namespace smartGPS.Business.Models.Facebook
         public String Name{get; set;}
 
         [JsonProperty("location")]
-        public Location Location{ get; set; }
+        public dynamic Location{ get; set; }
     }
 }

@@ -42,7 +42,18 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         public ActionResult ShowFoursquareStatistics()
         {
-            FoursquareStatistics statistics = FourqsquareManagement.importVenusHistory(User.Identity.Name);
+            FoursquareProfile model = TempData["profile"] as FoursquareProfile;
+            FoursquareStatistics statistics;
+
+            if (model == null)
+            {
+                statistics = FourqsquareManagement.importVenusHistory(User.Identity.Name);
+            }
+            else
+            {
+                statistics = FourqsquareManagement.getStatistics(model);
+            }
+
             Profile profile = UserAdministration.getProfileByUserId(User.Identity.Name);
             ProfileModel viewModel = smartGPS.Areas.Administration.Models.Mapping.usersToProfileModel(profile);
             viewModel.FoursquareStatistics = prepareFoursquareStatisticsModel(statistics);
@@ -76,7 +87,34 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         public ActionResult FacebookStatistics(String token)
         {
-            FacebookStatistics statistics = FacebookManagement.importFacebookData(token, User.Identity.Name);
+            FacebookProfile fbProfile = FacebookManagement.getFacebookProfileData(User.Identity.Name);
+            FacebookStatistics statistics;
+
+            if (fbProfile == null)
+            {
+                FacebookManagement.importFacebookData(token, User.Identity.Name);
+                FacebookManagement.importCheckins(token, User.Identity.Name);
+                FacebookManagement.importLikes(token, User.Identity.Name);
+            }
+            else
+            {
+                if(fbProfile.JsonPersonalDataAndFriends == null)
+                {
+                    FacebookManagement.importFacebookData(token, User.Identity.Name);
+                }
+                else if(fbProfile.JsonUserAndFriendsCheckins == null)
+                {
+                    FacebookManagement.importCheckins(token, User.Identity.Name);
+                }
+                else if(fbProfile.JsonUserAndFriendsLikes == null)
+                {
+                    FacebookManagement.importLikes(token, User.Identity.Name);
+                }
+            }
+            
+            fbProfile = FacebookManagement.getFacebookProfileData(User.Identity.Name);
+            statistics = FacebookManagement.getStatistics(fbProfile);
+         
             if (statistics != null)
             {
                 FacebookStatisticsModel model = prepareFacebookStatisticsModel(statistics);
@@ -109,12 +147,12 @@ namespace smartGPS.Areas.Dashboard.Controllers
             model.UserCheckinsFrequency = statistics.UserCheckinsFrequency;
             model.SimilarFriends = statistics.similarFriends;
             model.UserLikesCategoriesFrequency = statistics.UserLikesCategoriesFrequency;
-            model.LikesBooks = mapStatusEnumToWord(statistics.likesBooks);
-            model.LikesMovies = mapStatusEnumToWord(statistics.likesMovies);
-            model.LikesMusic = mapStatusEnumToWord(statistics.likesMusic);
-            model.LikesTravelling = mapStatusEnumToWord(statistics.likesTraveling);
-            model.LikesSports = mapStatusEnumToWord(statistics.likesSports);
-            model.IsSportsman = mapStatusEnumToWord(statistics.isSportsman);
+            model.LikesBooks = Utilities.mapStatusEnumToWord(statistics.likesBooks);
+            model.LikesMovies = Utilities.mapStatusEnumToWord(statistics.likesMovies);
+            model.LikesMusic = Utilities.mapStatusEnumToWord(statistics.likesMusic);
+            model.LikesTravelling = Utilities.mapStatusEnumToWord(statistics.likesTraveling);
+            model.LikesSports = Utilities.mapStatusEnumToWord(statistics.likesSports);
+            model.IsSportsman = Utilities.mapStatusEnumToWord(statistics.isSportsman);
             model.SortedFriendsLikesCategoriesFrequency = statistics.SortedFriendsLikesCategoriesFrequency.Take(10);
             model.SortedFriendsLikesFrequency = statistics.SortedFriendsLikesFrequency.Take(10);
             model.SortedUserLikesCategoriesFrequency = statistics.SortedUserLikesCategoriesFrequency.Take(10);
@@ -138,15 +176,7 @@ namespace smartGPS.Areas.Dashboard.Controllers
             return model;
         }
 
-        private String mapStatusEnumToWord(int enumerator)
-        {
-            if(enumerator == (int)CommonModels.Status.True)
-                return "True";
-            else if (enumerator == (int)CommonModels.Status.False)
-                return "False";
-            else
-                return "Unknown";
-        }
+       
 
         #endregion
     }

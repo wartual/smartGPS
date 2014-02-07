@@ -14,10 +14,10 @@ namespace smartGPS.Business.Models.Facebook
         [JsonProperty("name")]
         public String Name { get; set; }
 
-        [JsonProperty("with")]
-        public BasicInformation With { get; set; }
+        //[JsonProperty("with")]
+        //public List<BasicInformation> With { get; set; }
 
-        [JsonProperty("from")]
-        public BasicInformation From { get; set; }
+        //[JsonProperty("from")]
+        //public List<BasicInformation> From { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace smartGPS.Business.Models
     public class CommonModels
     {
         public enum Status { True, Unknown, False };
+        public enum UserCategories { Traveller, Sportsman, Music }
     }
 }

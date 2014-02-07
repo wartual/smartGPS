@@ -1,23 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="smartGPSModelStoreContainer" CdmEntityContainer="smartGPSEntities">
-    <EntitySetMapping Name="FacebookProfile">
-      <EntityTypeMapping TypeName="smartGPSModel.FacebookProfile">
-        <MappingFragment StoreEntitySet="FacebookProfile">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-          <ScalarProperty Name="Link" ColumnName="Link" />
-          <ScalarProperty Name="Biography" ColumnName="Biography" />
-          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Profile">
       <EntityTypeMapping TypeName="smartGPSModel.Profile">
         <MappingFragment StoreEntitySet="Profile">
@@ -112,6 +95,48 @@
       <EntityTypeMapping TypeName="smartGPSModel.TravelStatusCategory">
         <MappingFragment StoreEntitySet="TravelStatusCategory">
           <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacebookProfile">
+      <EntityTypeMapping TypeName="smartGPSModel.FacebookProfile">
+        <MappingFragment StoreEntitySet="FacebookProfile">
+          <ScalarProperty Name="JsonUserAndFriendsLikes" ColumnName="JsonUserAndFriendsLikes" />
+          <ScalarProperty Name="JsonUserAndFriendsCheckins" ColumnName="JsonUserAndFriendsCheckins" />
+          <ScalarProperty Name="JsonPersonalDataAndFriends" ColumnName="JsonPersonalDataAndFriends" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoursquareProfile">
+      <EntityTypeMapping TypeName="smartGPSModel.FoursquareProfile">
+        <MappingFragment StoreEntitySet="FoursquareProfile">
+          <ScalarProperty Name="Recent" ColumnName="Recent" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UserCheckins" ColumnName="UserCheckins" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacebookProccesedEntries">
+      <EntityTypeMapping TypeName="smartGPSModel.FacebookProccesedEntries">
+        <MappingFragment StoreEntitySet="FacebookProccesedEntries">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LikesMovies" ColumnName="LikesMovies" />
+          <ScalarProperty Name="LikesTravelling" ColumnName="LikesTravelling" />
+          <ScalarProperty Name="LikesSports" ColumnName="LikesSports" />
+          <ScalarProperty Name="LikesMusic" ColumnName="LikesMusic" />
+          <ScalarProperty Name="LikesBooks" ColumnName="LikesBooks" />
+          <ScalarProperty Name="Sportsman" ColumnName="Sportsman" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

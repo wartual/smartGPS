@@ -34,7 +34,16 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         public ActionResult FoursquareLogin()
         {
-            return PartialView("_FoursquareLogin");
+            smartGPS.Persistance.FoursquareProfile profile = FourqsquareManagement.getFoursquareProfileData(User.Identity.Name);
+            if (profile == null)
+            {
+                TempData["profile"] = profile;
+                return RedirectToAction("ShowFoursquareStatistics", "Profile", new { area = "Dashboard" });
+            }
+            else
+            {
+                return PartialView("_FoursquareLogin");
+            }
         }
 
 

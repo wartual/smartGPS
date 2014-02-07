@@ -6,7 +6,9 @@
     <edmx:StorageModels>
     <Schema Namespace="smartGPSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="smartGPSModelStoreContainer">
+          <EntitySet Name="FacebookProccesedEntries" EntityType="smartGPSModel.Store.FacebookProccesedEntries" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.Store.FacebookProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FoursquareProfile" EntityType="smartGPSModel.Store.FoursquareProfile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NotificationCategory" EntityType="smartGPSModel.Store.NotificationCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Notifications" EntityType="smartGPSModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profile" EntityType="smartGPSModel.Store.Profile" store:Type="Tables" Schema="dbo" />
@@ -14,9 +16,17 @@
           <EntitySet Name="TravelStatusCategory" EntityType="smartGPSModel.Store.TravelStatusCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="smartGPSModel.Store.User" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserHelper" EntityType="smartGPSModel.Store.UserHelper" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_FacebookProccesedEntries_User" Association="smartGPSModel.Store.FK_FacebookProccesedEntries_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
+          </AssociationSet>
           <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.Store.FK_FacebookProfile_User">
             <End Role="User" EntitySet="User" />
             <End Role="FacebookProfile" EntitySet="FacebookProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoursquareProfile_FoursquareProfile" Association="smartGPSModel.Store.FK_FoursquareProfile_FoursquareProfile">
+            <End Role="User" EntitySet="User" />
+            <End Role="FoursquareProfile" EntitySet="FoursquareProfile" />
           </AssociationSet>
           <AssociationSet Name="FK_Notifications_NotificationCategory" Association="smartGPSModel.Store.FK_Notifications_NotificationCategory">
             <End Role="NotificationCategory" EntitySet="NotificationCategory" />
@@ -43,21 +53,44 @@
             <End Role="UserHelper" EntitySet="UserHelper" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="FacebookProccesedEntries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Sportsman" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="LikesBooks" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="LikesMusic" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="LikesSports" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="LikesTravelling" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="LikesMovies" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="Category" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="FacebookProfile">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Surname" Type="varchar" MaxLength="50" />
-          <Property Name="Username" Type="varchar" MaxLength="50" />
-          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
-          <Property Name="Link" Type="varchar" MaxLength="100" />
-          <Property Name="Biography" Type="varchar" MaxLength="1000" />
-          <Property Name="DateOfBirth" Type="datetime" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="JsonPersonalDataAndFriends" Type="nvarchar(max)" />
+          <Property Name="JsonUserAndFriendsCheckins" Type="nvarchar(max)" />
+          <Property Name="JsonUserAndFriendsLikes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FoursquareProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserCheckins" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="Recent" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="NotificationCategory">
           <Key>
@@ -110,14 +143,14 @@
           <Property Name="DestinationAddress" Type="varchar" MaxLength="200" />
           <Property Name="DestinationLatitude" Type="float" Nullable="false" />
           <Property Name="DestinationLongitude" Type="float" Nullable="false" />
-          <Property Name="CurrentLatitude" Type="float" Nullable="false" />
-          <Property Name="CurrentLongitude" Type="float" Nullable="false" />
           <Property Name="Time" Type="float" Nullable="false" />
           <Property Name="Distance" Type="float" Nullable="false" />
           <Property Name="StatusId" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="CurrentLatitude" Type="float" Nullable="false" />
+          <Property Name="CurrentLongitude" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="TravelStatusCategory">
           <Key>
@@ -135,10 +168,10 @@
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="FacebookId" Type="varchar" MaxLength="100" />
-          <Property Name="FoursquareId" Type="varchar" MaxLength="100" />
           <Property Name="TwitterId" Type="varchar" MaxLength="100" />
           <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
           <Property Name="GcmId" Type="varchar" MaxLength="200" />
+          <Property Name="FoursquareId" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="UserHelper">
           <Key>
@@ -150,6 +183,18 @@
           <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK_FacebookProccesedEntries_User">
+          <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
+          <End Role="FacebookProccesedEntries" Type="smartGPSModel.Store.FacebookProccesedEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FacebookProccesedEntries">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FacebookProfile_User">
           <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
           <End Role="FacebookProfile" Type="smartGPSModel.Store.FacebookProfile" Multiplicity="*" />
@@ -158,6 +203,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="FacebookProfile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoursquareProfile_FoursquareProfile">
+          <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
+          <End Role="FoursquareProfile" Type="smartGPSModel.Store.FoursquareProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FoursquareProfile">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -239,13 +296,8 @@
     <edmx:ConceptualModels>
       <Schema Namespace="smartGPSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="smartGPSEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.FacebookProfile" />
           <EntitySet Name="Profile" EntityType="smartGPSModel.Profile" />
           <EntitySet Name="User" EntityType="smartGPSModel.User" />
-          <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.FK_FacebookProfile_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="FacebookProfile" EntitySet="FacebookProfile" />
-          </AssociationSet>
           <AssociationSet Name="FK_Profile_User" Association="smartGPSModel.FK_Profile_User">
             <End Role="User" EntitySet="User" />
             <End Role="Profile" EntitySet="Profile" />
@@ -275,24 +327,22 @@
             <End Role="User" EntitySet="User" />
             <End Role="Travel" EntitySet="Travel" />
           </AssociationSet>
+          <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.FacebookProfile" />
+          <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.FK_FacebookProfile_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FacebookProfile" EntitySet="FacebookProfile" />
+          </AssociationSet>
+          <EntitySet Name="FoursquareProfile" EntityType="smartGPSModel.FoursquareProfile" />
+          <AssociationSet Name="FK_FoursquareProfile_FoursquareProfile" Association="smartGPSModel.FK_FoursquareProfile_FoursquareProfile">
+            <End Role="User" EntitySet="User" />
+            <End Role="FoursquareProfile" EntitySet="FoursquareProfile" />
+          </AssociationSet>
+          <EntitySet Name="FacebookProccesedEntries" EntityType="smartGPSModel.FacebookProccesedEntries" />
+          <AssociationSet Name="FK_FacebookProccesedEntries_User" Association="smartGPSModel.FK_FacebookProccesedEntries_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
+          </AssociationSet>
           </EntityContainer>
-        <EntityType Name="FacebookProfile">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Username" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Link" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="Biography" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FacebookProfile_User" FromRole="FacebookProfile" ToRole="User" />
-        </EntityType>
         <EntityType Name="Profile">
           <Key>
             <PropertyRef Name="Id" />
@@ -321,26 +371,16 @@
           <Property Name="FacebookId" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="TwitterId" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="DateLastLogin" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="FacebookProfile" Relationship="smartGPSModel.FK_FacebookProfile_User" FromRole="User" ToRole="FacebookProfile" />
           <NavigationProperty Name="Profile" Relationship="smartGPSModel.FK_Profile_User" FromRole="User" ToRole="Profile" />
           <NavigationProperty Name="UserHelper" Relationship="smartGPSModel.FK_UserHelper_User" FromRole="User" ToRole="UserHelper" />
           <NavigationProperty Name="Notifications" Relationship="smartGPSModel.FK_Notifications_User" FromRole="User" ToRole="Notifications" />
           <Property Type="String" Name="GcmId" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Travel" Relationship="smartGPSModel.FK_Travel_User" FromRole="User" ToRole="Travel" />
           <Property Type="String" Name="FoursquareId" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FacebookProfile" Relationship="smartGPSModel.FK_FacebookProfile_User" FromRole="User" ToRole="FacebookProfile" />
+          <NavigationProperty Name="FoursquareProfile" Relationship="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" FromRole="User" ToRole="FoursquareProfile" />
+          <NavigationProperty Name="FacebookProccesedEntries" Relationship="smartGPSModel.FK_FacebookProccesedEntries_User" FromRole="User" ToRole="FacebookProccesedEntries" />
           </EntityType>
-        <Association Name="FK_FacebookProfile_User">
-          <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
-          <End Role="FacebookProfile" Type="smartGPSModel.FacebookProfile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FacebookProfile">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Profile_User">
           <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
           <End Role="Profile" Type="smartGPSModel.Profile" Multiplicity="*" />
@@ -481,29 +521,90 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FacebookProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
+          <Property Type="String" Name="JsonPersonalDataAndFriends" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JsonUserAndFriendsCheckins" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FacebookProfile_User" FromRole="FacebookProfile" ToRole="User" />
+          <Property Type="String" Name="JsonUserAndFriendsLikes" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_FacebookProfile_User">
+          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
+          <End Type="smartGPSModel.FacebookProfile" Role="FacebookProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FacebookProfile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FoursquareProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserCheckins" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" FromRole="FoursquareProfile" ToRole="User" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Recent" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_FoursquareProfile_FoursquareProfile">
+          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
+          <End Type="smartGPSModel.FoursquareProfile" Role="FoursquareProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FoursquareProfile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FacebookProccesedEntries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Sportsman" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LikesBooks" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LikesMusic" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LikesSports" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LikesTravelling" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LikesMovies" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Category" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FacebookProccesedEntries_User" FromRole="FacebookProccesedEntries" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_FacebookProccesedEntries_User">
+          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
+          <End Type="smartGPSModel.FacebookProccesedEntries" Role="FacebookProccesedEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FacebookProccesedEntries">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="smartGPSModelStoreContainer" CdmEntityContainer="smartGPSEntities">
-          <EntitySetMapping Name="FacebookProfile">
-            <EntityTypeMapping TypeName="smartGPSModel.FacebookProfile">
-              <MappingFragment StoreEntitySet="FacebookProfile">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="Biography" ColumnName="Biography" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Profile">
             <EntityTypeMapping TypeName="smartGPSModel.Profile">
               <MappingFragment StoreEntitySet="Profile">
@@ -598,6 +699,48 @@
             <EntityTypeMapping TypeName="smartGPSModel.TravelStatusCategory">
               <MappingFragment StoreEntitySet="TravelStatusCategory">
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacebookProfile">
+            <EntityTypeMapping TypeName="smartGPSModel.FacebookProfile">
+              <MappingFragment StoreEntitySet="FacebookProfile">
+                <ScalarProperty Name="JsonUserAndFriendsLikes" ColumnName="JsonUserAndFriendsLikes" />
+                <ScalarProperty Name="JsonUserAndFriendsCheckins" ColumnName="JsonUserAndFriendsCheckins" />
+                <ScalarProperty Name="JsonPersonalDataAndFriends" ColumnName="JsonPersonalDataAndFriends" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoursquareProfile">
+            <EntityTypeMapping TypeName="smartGPSModel.FoursquareProfile">
+              <MappingFragment StoreEntitySet="FoursquareProfile">
+                <ScalarProperty Name="Recent" ColumnName="Recent" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserCheckins" ColumnName="UserCheckins" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacebookProccesedEntries">
+            <EntityTypeMapping TypeName="smartGPSModel.FacebookProccesedEntries">
+              <MappingFragment StoreEntitySet="FacebookProccesedEntries">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LikesMovies" ColumnName="LikesMovies" />
+                <ScalarProperty Name="LikesTravelling" ColumnName="LikesTravelling" />
+                <ScalarProperty Name="LikesSports" ColumnName="LikesSports" />
+                <ScalarProperty Name="LikesMusic" ColumnName="LikesMusic" />
+                <ScalarProperty Name="LikesBooks" ColumnName="LikesBooks" />
+                <ScalarProperty Name="Sportsman" ColumnName="Sportsman" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

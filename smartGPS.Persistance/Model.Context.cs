@@ -25,7 +25,6 @@ namespace smartGPS.Persistance
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<FacebookProfile> FacebookProfile { get; set; }
         public DbSet<Profile> Profile { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserHelper> UserHelper { get; set; }
@@ -33,5 +32,8 @@ namespace smartGPS.Persistance
         public DbSet<Notifications> Notifications { get; set; }
         public DbSet<Travel> Travel { get; set; }
         public DbSet<TravelStatusCategory> TravelStatusCategory { get; set; }
+        public DbSet<FacebookProfile> FacebookProfile { get; set; }
+        public DbSet<FoursquareProfile> FoursquareProfile { get; set; }
+        public DbSet<FacebookProccesedEntries> FacebookProccesedEntries { get; set; }
     }
 }

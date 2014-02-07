@@ -27,15 +27,20 @@ namespace smartGPS.Business.ExternalServices
 
         public static int SORTED_LIMIT = 10;
 
-        public static int LIKES_MUSIC_LIMIT = 10;
+        public static int LIKES_MUSIC_LIMIT = 8;
 
-        public static int LIKES_MOVIES_LIMIT = 10;
+        public static int LIKES_MOVIES_LIMIT = 3;
 
-        public static int LIKES_BOOK_LIMIT = 10;
+        public static int LIKES_BOOK_LIMIT = 3;
 
         public static int LIKES_SPORTS = 3;
 
         public static int LIKES_TRAVELING = 3;
 
+        public static double CBA_DEFAULT_SUPPORT = 0.2;
+
+        public static double CBA_DEFAULT_CONFIDENCE = 0.3;
+
+        
     }
 }

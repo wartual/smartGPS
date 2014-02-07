@@ -71,6 +71,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CBA\CBA.cs" />
+    <Compile Include="CBA\CBA_RG.cs" />
+    <Compile Include="CBA\Models\CondSet.cs" />
+    <Compile Include="CBA\Models\RuleItem.cs" />
     <Compile Include="Custom\Haversine.cs" />
     <Compile Include="Custom\SmartLocation.cs" />
     <Compile Include="Enviroment.cs" />
@@ -91,6 +95,7 @@
     <Compile Include="Models\Facebook\CategoryList.cs" />
     <Compile Include="Models\Facebook\CheckinData.cs" />
     <Compile Include="Models\Facebook\FacebookStatistics.cs" />
+    <Compile Include="Models\Facebook\FbProccessDataForPersitence.cs" />
     <Compile Include="Models\Facebook\Location.cs" />
     <Compile Include="Models\Facebook\MovieDetails.cs" />
     <Compile Include="Models\Facebook\Music.cs" />

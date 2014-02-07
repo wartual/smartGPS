@@ -7,6 +7,7 @@ using System.Text;
 using System.Web;
 using smartGPS.Business.Custom;
 using smartGPS.Business.ExternalServices;
+using smartGPS.Business.Models;
 using smartGPS.Business.Models.Facebook;
 
 namespace smartGPS.Business
@@ -109,6 +110,26 @@ namespace smartGPS.Business
             );
             list.Reverse();
             return list;
+        }
+
+        public static String mapStatusEnumToWord(int enumerator)
+        {
+            if (enumerator == (int)CommonModels.Status.True)
+                return "True";
+            else if (enumerator == (int)CommonModels.Status.False)
+                return "False";
+            else
+                return "Unknown";
+        }
+
+        public static String mapEnumCategoryToWord(int enumerator)
+        {
+            if (enumerator == (int)CommonModels.UserCategories.Traveller)
+                return "Traveller";
+            else if (enumerator == (int)CommonModels.UserCategories.Sportsman)
+                return "Sportsman";
+            else
+                return "Music";
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using Newtonsoft.Json;
 using smartGPS.Business.Models.Foursquare;
+using smartGPS.Persistance;
 
 namespace smartGPS.Business.ExternalServices
 {
@@ -76,14 +77,16 @@ namespace smartGPS.Business.ExternalServices
                 FoursquareStatistics statistics;
                 FoursquareDataMining dataMining;
                 WebRequest request = WebRequest.Create(url);
+                String responseHistory;
+                String responseRecent;
                 try
                 {
                     using (WebResponse response = request.GetResponse())
                     {
                         using (Stream stream = response.GetResponseStream())
                         {
-                            String responseString = new StreamReader(stream).ReadToEnd();
-                            checkins = JsonConvert.DeserializeObject<FoursquareVenuesHistoryResponse>(responseString);
+                            responseHistory = new StreamReader(stream).ReadToEnd();
+                            checkins = JsonConvert.DeserializeObject<FoursquareVenuesHistoryResponse>(responseHistory);
                         }
                     }
 
@@ -94,10 +97,12 @@ namespace smartGPS.Business.ExternalServices
                     {
                         using (Stream stream = response.GetResponseStream())
                         {
-                            String responseString = new StreamReader(stream).ReadToEnd();
-                            recent = JsonConvert.DeserializeObject<FoursquareRecentCheckinsResponse>(responseString);
+                            responseRecent = new StreamReader(stream).ReadToEnd();
+                            recent = JsonConvert.DeserializeObject<FoursquareRecentCheckinsResponse>(responseRecent);
                         }
                     }
+
+                    updateJsonData(userId, responseHistory, responseRecent);
                     dataMining = new FoursquareDataMining(checkins, recent);
                     statistics = dataMining.analyze();
                     return statistics;
@@ -106,6 +111,48 @@ namespace smartGPS.Business.ExternalServices
                 {
                     return null;
                 }
+            }
+        }
+
+        public static FoursquareStatistics getStatistics(FoursquareProfile profile)
+        {
+            try
+            {
+                String history = profile.UserCheckins;
+                String recent = profile.Recent;
+                FoursquareVenuesHistoryResponse userCheckins = JsonConvert.DeserializeObject<FoursquareVenuesHistoryResponse>(history);
+                FoursquareRecentCheckinsResponse recentCheckins = JsonConvert.DeserializeObject<FoursquareRecentCheckinsResponse>(recent);
+                FoursquareDataMining dataMining = new FoursquareDataMining(userCheckins, recentCheckins);
+                FoursquareStatistics statistics = dataMining.analyze();
+
+                return statistics;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static FoursquareProfile getFoursquareProfileData(String userId)
+        {
+            FoursquareProfile profile = FoursquareDao.getProfileByUserId(userId);
+
+            if (profile == null)
+                return null;
+            else
+                return profile;
+        }
+
+        public static void updateJsonData(String userId, String jsonUserCheckins, String jsonRecent)
+        {
+            FoursquareProfile profile = FoursquareDao.getProfileByUserId(userId);
+            if (profile == null)
+            {
+                FoursquareDao.addNewProfile(userId, jsonUserCheckins, jsonRecent);
+            }
+            else
+            {
+                FoursquareDao.updateProfile(userId, jsonUserCheckins, jsonRecent);
             }
         }
     }

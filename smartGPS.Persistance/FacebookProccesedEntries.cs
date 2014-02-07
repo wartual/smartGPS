@@ -12,15 +12,19 @@ namespace smartGPS.Persistance
     using System;
     using System.Collections.Generic;
     
-    public partial class FacebookProfile
+    public partial class FacebookProccesedEntries
     {
         public string Id { get; set; }
+        public string UserName { get; set; }
+        public string Sportsman { get; set; }
+        public string LikesBooks { get; set; }
+        public string LikesMusic { get; set; }
+        public string LikesSports { get; set; }
+        public string LikesTravelling { get; set; }
+        public string LikesMovies { get; set; }
         public string UserId { get; set; }
         public System.DateTime DateCreated { get; set; }
-        public System.DateTime DateUpdated { get; set; }
-        public string JsonPersonalDataAndFriends { get; set; }
-        public string JsonUserAndFriendsCheckins { get; set; }
-        public string JsonUserAndFriendsLikes { get; set; }
+        public int Category { get; set; }
     
         public virtual User User { get; set; }
     }

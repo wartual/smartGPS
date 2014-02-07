@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using smartGPS.Business;
+using smartGPS.Business.CBA;
 using smartGPS.Custom;
 
 namespace smartGPS.Areas.Dashboard.Controllers
@@ -16,6 +17,7 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         public ActionResult Index()
         {
+            CBA.testConditionSet();
             return View();
         }
 

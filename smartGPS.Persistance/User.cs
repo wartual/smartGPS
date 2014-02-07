@@ -16,11 +16,13 @@ namespace smartGPS.Persistance
     {
         public User()
         {
-            this.FacebookProfile = new HashSet<FacebookProfile>();
             this.Profile = new HashSet<Profile>();
             this.UserHelper = new HashSet<UserHelper>();
             this.Notifications = new HashSet<Notifications>();
             this.Travel = new HashSet<Travel>();
+            this.FacebookProfile = new HashSet<FacebookProfile>();
+            this.FoursquareProfile = new HashSet<FoursquareProfile>();
+            this.FacebookProccesedEntries = new HashSet<FacebookProccesedEntries>();
         }
     
         public string Id { get; set; }
@@ -33,10 +35,12 @@ namespace smartGPS.Persistance
         public string GcmId { get; set; }
         public string FoursquareId { get; set; }
     
-        public virtual ICollection<FacebookProfile> FacebookProfile { get; set; }
         public virtual ICollection<Profile> Profile { get; set; }
         public virtual ICollection<UserHelper> UserHelper { get; set; }
         public virtual ICollection<Notifications> Notifications { get; set; }
         public virtual ICollection<Travel> Travel { get; set; }
+        public virtual ICollection<FacebookProfile> FacebookProfile { get; set; }
+        public virtual ICollection<FoursquareProfile> FoursquareProfile { get; set; }
+        public virtual ICollection<FacebookProccesedEntries> FacebookProccesedEntries { get; set; }
     }
 }

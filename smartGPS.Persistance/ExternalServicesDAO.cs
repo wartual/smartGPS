@@ -8,28 +8,28 @@ namespace smartGPS.Persistance.Users
     public class ExternalServicesDAO : BaseClass
     {
         
-        public static void addFacebookProfile(String userId, String name, String lastName, String middleName, String username, String link,
-                        String gender, String birthday, String biography)
-        {
-            FacebookProfile model = new FacebookProfile();
+        //public static void addFacebookProfile(String userId, String name, String lastName, String middleName, String username, String link,
+        //                String gender, String birthday, String biography)
+        //{
+        //    FacebookProfile model = new FacebookProfile();
 
-            model.Id = Guid.NewGuid().ToString();
-            model.UserId = userId;
-            model.Name = name;
-            model.Surname = lastName;
-            model.MiddleName = middleName;
-            model.Username = username;
-            model.Link = link;
-            if(birthday != null)
-              model.DateOfBirth = DateTime.ParseExact(birthday, "MM/dd/YYYY", null);
-            model.Biography = biography;
+        //    model.Id = Guid.NewGuid().ToString();
+        //    model.UserId = userId;
+        //    model.Name = name;
+        //    model.Surname = lastName;
+        //    model.MiddleName = middleName;
+        //    model.Username = username;
+        //    model.Link = link;
+        //    if(birthday != null)
+        //      model.DateOfBirth = DateTime.ParseExact(birthday, "MM/dd/YYYY", null);
+        //    model.Biography = biography;
 
-            model.DateCreated = DateTime.Now;
-            model.DateUpdated = DateTime.Now;
+        //    model.DateCreated = DateTime.Now;
+        //    model.DateUpdated = DateTime.Now;
 
-            db.FacebookProfile.Add(model);
-            db.SaveChanges();
-        }
+        //    db.FacebookProfile.Add(model);
+        //    db.SaveChanges();
+        //}
 
         public static FacebookProfile getFacebookProfileByUserId(String userId)
         {
