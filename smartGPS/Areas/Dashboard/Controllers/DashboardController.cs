@@ -9,6 +9,7 @@ using smartGPS.Business.CBA;
 using smartGPS.Business.DecisionTrees;
 using smartGPS.Business.KMeansAlgorithm;
 using smartGPS.Business.KNN;
+using smartGPS.Business.SVM;
 using smartGPS.Custom;
 using smartGPS.Persistance;
 
@@ -24,10 +25,12 @@ namespace smartGPS.Areas.Dashboard.Controllers
             CBA cba = new CBA(User.Identity.Name);
             KNNAlgorithm knn = new KNNAlgorithm(User.Identity.Name, 10);
             DecisionTreesAlgorithm decisionTrees = new DecisionTreesAlgorithm(User.Identity.Name, 2, dummyModel());
-
+            SVMAlgorithm svm = new SVMAlgorithm(User.Identity.Name);
             //decisionTrees.runAlgorithm();
             //cba.performClassification();
-            knn.testData();
+            //knn.testData();
+            svm.runAlgorithm();
+            
             return View();
         }
 

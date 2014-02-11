@@ -203,6 +203,7 @@
     <Compile Include="Models\PrometInfo\PrometInfoResponse.cs" />
     <Compile Include="NotificationsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SVM\SVMAlgorithm.cs" />
     <Compile Include="TravelManager.cs" />
     <Compile Include="UserAdministration.cs" />
     <Compile Include="Utilities.cs" />
