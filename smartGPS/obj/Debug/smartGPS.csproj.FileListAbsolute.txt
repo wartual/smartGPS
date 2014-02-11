@@ -1,5 +1,4 @@
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.dll
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Data.Edm.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Antlr3.Runtime.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.AspNet.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.Core.dll
@@ -7,9 +6,10 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OAuth.Consumer.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OAuth.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OpenId.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Elmah.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\EntityFramework.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Facebook.dll
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Data.Edm.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\GeoCoding.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Data.OData.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Web.Infrastructure.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
@@ -19,6 +19,7 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.Business.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.Persistance.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Net.Http.Formatting.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Spatial.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Abstractions.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Helpers.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Http.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Http.OData.dll
@@ -26,6 +27,7 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Http.WebHost.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Mvc.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Optimization.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Razor.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Routing.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.WebPages.Deployment.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.WebPages.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.WebPages.Razor.dll
@@ -35,12 +37,13 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\WebMatrix.WebData.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.Business.pdb
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.Persistance.pdb
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Facebook.xml
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\EntityFramework.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Newtonsoft.Json.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Net.Http.Formatting.xml
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Helpers.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Http.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Http.OData.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Http.WebHost.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\EntityFramework.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Helpers.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Mvc.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Razor.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.WebPages.xml
@@ -55,7 +58,6 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OAuth.Consumer.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OAuth.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OpenId.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Http.OData.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Data.Edm.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Microsoft.Data.OData.xml
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Spatial.xml
@@ -89,7 +91,8 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\zh-Hant\System.Spatial.resources.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.csprojResolveAssemblyReference.cache
 C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\obj\Debug\smartGPS.pdb
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\GeoCoding.dll
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Abstractions.dll
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\System.Web.Routing.dll
-C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Elmah.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\MathNet.Numerics.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\MathNet.Numerics.pdb
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\MathNet.Numerics.xml

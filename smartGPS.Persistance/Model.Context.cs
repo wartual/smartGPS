@@ -35,5 +35,8 @@ namespace smartGPS.Persistance
         public DbSet<FacebookProfile> FacebookProfile { get; set; }
         public DbSet<FoursquareProfile> FoursquareProfile { get; set; }
         public DbSet<FacebookProccesedEntries> FacebookProccesedEntries { get; set; }
+        public DbSet<CondSetTable> CondSetTable { get; set; }
+        public DbSet<RuleItemTable> RuleItemTable { get; set; }
+        public DbSet<CBATest> CBATest { get; set; }
     }
 }

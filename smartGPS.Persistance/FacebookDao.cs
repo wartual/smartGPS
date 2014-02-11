@@ -77,7 +77,6 @@ namespace smartGPS.Persistance
             model.DateCreated = DateTime.Now;
 
             model.Category = category;
-
             db.FacebookProccesedEntries.Add(model);
             db.SaveChanges();
         }

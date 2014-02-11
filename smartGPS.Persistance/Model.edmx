@@ -6,12 +6,15 @@
     <edmx:StorageModels>
     <Schema Namespace="smartGPSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="smartGPSModelStoreContainer">
+          <EntitySet Name="CBATest" EntityType="smartGPSModel.Store.CBATest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CondSetTable" EntityType="smartGPSModel.Store.CondSetTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FacebookProccesedEntries" EntityType="smartGPSModel.Store.FacebookProccesedEntries" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.Store.FacebookProfile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FoursquareProfile" EntityType="smartGPSModel.Store.FoursquareProfile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NotificationCategory" EntityType="smartGPSModel.Store.NotificationCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Notifications" EntityType="smartGPSModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profile" EntityType="smartGPSModel.Store.Profile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RuleItemTable" EntityType="smartGPSModel.Store.RuleItemTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Travel" EntityType="smartGPSModel.Store.Travel" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TravelStatusCategory" EntityType="smartGPSModel.Store.TravelStatusCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="smartGPSModel.Store.User" store:Type="Tables" Schema="dbo" />
@@ -40,6 +43,14 @@
             <End Role="User" EntitySet="User" />
             <End Role="Profile" EntitySet="Profile" />
           </AssociationSet>
+          <AssociationSet Name="FK_RuleItem_CondSet" Association="smartGPSModel.Store.FK_RuleItem_CondSet">
+            <End Role="CondSetTable" EntitySet="CondSetTable" />
+            <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleItem_User" Association="smartGPSModel.Store.FK_RuleItem_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_Travel_TravelStatusCategory" Association="smartGPSModel.Store.FK_Travel_TravelStatusCategory">
             <End Role="TravelStatusCategory" EntitySet="TravelStatusCategory" />
             <End Role="Travel" EntitySet="Travel" />
@@ -53,6 +64,24 @@
             <End Role="UserHelper" EntitySet="UserHelper" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="CBATest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="A" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="B" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="C" Type="nchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="CondSetTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CondSupCount" Type="int" Nullable="false" />
+          <Property Name="CondtionsJson" Type="varchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="FacebookProccesedEntries">
           <Key>
             <PropertyRef Name="Id" />
@@ -131,6 +160,19 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Surname" Type="varchar" MaxLength="50" />
           <Property Name="Phone" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RuleItemTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="RuleSupCount" Type="int" Nullable="false" />
+          <Property Name="ClassKey" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ClassValue" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DataSize" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CondSetId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Travel">
           <Key>
@@ -255,6 +297,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RuleItem_CondSet">
+          <End Role="CondSetTable" Type="smartGPSModel.Store.CondSetTable" Multiplicity="1" />
+          <End Role="RuleItemTable" Type="smartGPSModel.Store.RuleItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CondSetTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RuleItemTable">
+              <PropertyRef Name="CondSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleItem_User">
+          <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
+          <End Role="RuleItemTable" Type="smartGPSModel.Store.RuleItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RuleItemTable">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Travel_TravelStatusCategory">
           <End Role="TravelStatusCategory" Type="smartGPSModel.Store.TravelStatusCategory" Multiplicity="1" />
           <End Role="Travel" Type="smartGPSModel.Store.Travel" Multiplicity="*" />
@@ -342,6 +408,17 @@
             <End Role="User" EntitySet="User" />
             <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
           </AssociationSet>
+          <EntitySet Name="CondSetTable" EntityType="smartGPSModel.CondSetTable" />
+          <EntitySet Name="RuleItemTable" EntityType="smartGPSModel.RuleItemTable" />
+          <AssociationSet Name="FK_RuleItem_CondSet" Association="smartGPSModel.FK_RuleItem_CondSet">
+            <End Role="CondSetTable" EntitySet="CondSetTable" />
+            <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleItem_User" Association="smartGPSModel.FK_RuleItem_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+          </AssociationSet>
+          <EntitySet Name="CBATest" EntityType="smartGPSModel.CBATest" />
           </EntityContainer>
         <EntityType Name="Profile">
           <Key>
@@ -380,6 +457,7 @@
           <NavigationProperty Name="FacebookProfile" Relationship="smartGPSModel.FK_FacebookProfile_User" FromRole="User" ToRole="FacebookProfile" />
           <NavigationProperty Name="FoursquareProfile" Relationship="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" FromRole="User" ToRole="FoursquareProfile" />
           <NavigationProperty Name="FacebookProccesedEntries" Relationship="smartGPSModel.FK_FacebookProccesedEntries_User" FromRole="User" ToRole="FacebookProccesedEntries" />
+          <NavigationProperty Name="RuleItemTable" Relationship="smartGPSModel.FK_RuleItem_User" FromRole="User" ToRole="RuleItemTable" />
           </EntityType>
         <Association Name="FK_Profile_User">
           <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
@@ -599,6 +677,64 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CondSetTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CondSupCount" Nullable="false" />
+          <Property Type="String" Name="CondtionsJson" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <NavigationProperty Name="RuleItemTable" Relationship="smartGPSModel.FK_RuleItem_CondSet" FromRole="CondSetTable" ToRole="RuleItemTable" />
+        </EntityType>
+        <EntityType Name="RuleItemTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="RuleSupCount" Nullable="false" />
+          <Property Type="String" Name="ClassKey" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ClassValue" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="DataSize" Nullable="false" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CondSetId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CondSetTable" Relationship="smartGPSModel.FK_RuleItem_CondSet" FromRole="RuleItemTable" ToRole="CondSetTable" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_RuleItem_User" FromRole="RuleItemTable" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_RuleItem_CondSet">
+          <End Type="smartGPSModel.CondSetTable" Role="CondSetTable" Multiplicity="1" />
+          <End Type="smartGPSModel.RuleItemTable" Role="RuleItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CondSetTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RuleItemTable">
+              <PropertyRef Name="CondSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleItem_User">
+          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
+          <End Type="smartGPSModel.RuleItemTable" Role="RuleItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RuleItemTable">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CBATest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="A" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="B" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="C" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -741,6 +877,40 @@
                 <ScalarProperty Name="LikesBooks" ColumnName="LikesBooks" />
                 <ScalarProperty Name="Sportsman" ColumnName="Sportsman" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CondSetTable">
+            <EntityTypeMapping TypeName="smartGPSModel.CondSetTable">
+              <MappingFragment StoreEntitySet="CondSetTable">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CondtionsJson" ColumnName="CondtionsJson" />
+                <ScalarProperty Name="CondSupCount" ColumnName="CondSupCount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RuleItemTable">
+            <EntityTypeMapping TypeName="smartGPSModel.RuleItemTable">
+              <MappingFragment StoreEntitySet="RuleItemTable">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CondSetId" ColumnName="CondSetId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DataSize" ColumnName="DataSize" />
+                <ScalarProperty Name="ClassValue" ColumnName="ClassValue" />
+                <ScalarProperty Name="ClassKey" ColumnName="ClassKey" />
+                <ScalarProperty Name="RuleSupCount" ColumnName="RuleSupCount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CBATest">
+            <EntityTypeMapping TypeName="smartGPSModel.CBATest">
+              <MappingFragment StoreEntitySet="CBATest">
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="A" ColumnName="A" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

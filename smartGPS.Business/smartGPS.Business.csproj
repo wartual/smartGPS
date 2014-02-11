@@ -38,11 +38,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accord">
+      <HintPath>..\packages\Accord.2.12.0.0\lib\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.MachineLearning">
+      <HintPath>..\packages\Accord.MachineLearning.2.12.0.0\lib\Accord.MachineLearning.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math">
+      <HintPath>..\packages\Accord.Math.2.12.0.0\lib\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics">
+      <HintPath>..\packages\Accord.Statistics.2.12.0.0\lib\Accord.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+    </Reference>
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.6.4.2\lib\net45\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="GeoCoding">
       <HintPath>..\packages\Geocoding.net.2.1.1\lib\net35\GeoCoding.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>..\packages\MathNet.Numerics.3.0.0-alpha7\lib\net40\MathNet.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
@@ -50,6 +71,7 @@
     </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -72,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CBA\CBA.cs" />
+    <Compile Include="CBA\CBAManagement.cs" />
+    <Compile Include="CBA\CBA_CB.cs" />
     <Compile Include="CBA\CBA_RG.cs" />
     <Compile Include="CBA\Models\CondSet.cs" />
     <Compile Include="CBA\Models\RuleItem.cs" />
@@ -88,6 +112,11 @@
     <Compile Include="ExternalServices\GoogleManagement.cs" />
     <Compile Include="ExternalServices\OpenWeatherManagement.cs" />
     <Compile Include="ExternalServices\PrometInfoManagement.cs" />
+    <Compile Include="KMeans\Centroids.cs" />
+    <Compile Include="KMeans\KMeansAlgorithm.cs" />
+    <Compile Include="KMeans\Points.cs" />
+    <Compile Include="KNN\KNNAlgorithm.cs" />
+    <Compile Include="KNN\Points.cs" />
     <Compile Include="Models\CommonModels.cs" />
     <Compile Include="Models\Facebook\BasicInformation.cs" />
     <Compile Include="Models\Facebook\BookDetails.cs" />

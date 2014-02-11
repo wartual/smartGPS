@@ -5,7 +5,7 @@ using System.Web;
 
 namespace smartGPS.Business.CBA.Models
 {
-    public class RuleItem
+    public class RuleItem : IComparable<RuleItem>
     {
         //condition set
         public CondSet Conditions { get; set; }
@@ -82,5 +82,42 @@ namespace smartGPS.Business.CBA.Models
             return newRule;
         }
 
+        public int CompareTo(RuleItem other)
+        {
+            if (this.Conditions.Conditions.Count > other.Conditions.Conditions.Count)
+            {
+                return -1;
+            }
+            else if (this.Conditions.Conditions.Count == other.Conditions.Conditions.Count)
+            {
+                if ((this.RuleSupCount / this.Conditions.CondSupCount) > (other.RuleSupCount / other.Conditions.CondSupCount))
+                {
+                    return -1;
+                }
+                else if ((this.RuleSupCount / this.Conditions.CondSupCount) == (other.RuleSupCount / other.Conditions.CondSupCount))
+                {
+                    if (this.Conditions.CondSupCount < other.Conditions.CondSupCount)
+                    {
+                        return -1;
+                    }
+                    else if (this.Conditions.CondSupCount == other.Conditions.CondSupCount)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            else
+            {
+                return 1;
+            }
+        }
     }
 }

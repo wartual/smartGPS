@@ -31,8 +31,9 @@ namespace smartGPS.Business.CBA
             this.UserId = userId;
         }
 
-        public CBA_RG()
+        public CBA_RG(String userId)
         {
+            this.UserId = userId;
             this.Support = Config.CBA_DEFAULT_SUPPORT;
             this.Support = Config.CBA_DEFAULT_CONFIDENCE;
         }
@@ -56,7 +57,7 @@ namespace smartGPS.Business.CBA
             String tempClassValue;
             int tempCount = 0;
 
-            IEnumerable<FacebookProccesedEntries> proccessedEntries = FacebookManagement.FacebookProccessedEntries_GetAllForUser(UserId).Take(3);
+            IEnumerable<FacebookProccesedEntries> proccessedEntries = FacebookManagement.FacebookProccessedEntries_GetAllForUser(UserId);
             DataSetSize = proccessedEntries.Count();
 
             foreach (FacebookProccesedEntries entry in proccessedEntries)
@@ -204,7 +205,7 @@ namespace smartGPS.Business.CBA
                 }
 
                 RuleSet.AddRange(rulesK);
-                IEnumerable<FacebookProccesedEntries> proccessedEntries = FacebookManagement.FacebookProccessedEntries_GetAllForUser(UserId).Take(3);
+                IEnumerable<FacebookProccesedEntries> proccessedEntries = FacebookManagement.FacebookProccessedEntries_GetAllForUser(UserId);
                 DataSetSize = proccessedEntries.Count();
                 foreach (FacebookProccesedEntries entry in proccessedEntries)
                 {
@@ -220,25 +221,30 @@ namespace smartGPS.Business.CBA
                             //fourth pass over all atributes in each record
                             int i;
                             PropertyInfo pi;
+                            int count = 0;
                             for (i = 0; i < LinqObject.GetType().GetProperties().Count(); i++)
                             {
                                 pi = LinqObject.GetType().GetProperties().ElementAt(i);
                                 tempDataSet = getTempKeyAndValue(pi.Name, entry);
                                 if (!tempDataSet)
                                     continue;
-                                if (tempKey.Equals(c.Key) && tempValue.Equals(c.Value))
+                                else
+                                    count++;
+                                if (this.tempKey.Equals(c.Key) && this.tempValue.Equals(c.Value))
                                 {
                                     break;
                                 }
                             }
 
                             /// 5 is the number of colums in FacebookProccessedEntries which are important
-                            if (i == 5)
+                            if (count == 5)
                             {
                                 condSetFound = false;
                                 break;
                             }
                         }
+
+                        int supValue;
 
                         //if rule is not found and condition set is found, get condition set support and increase it in both rules
                         if (tempClassValue.Equals(r.ClassValue) && condSetFound)
@@ -255,29 +261,30 @@ namespace smartGPS.Business.CBA
                 }
 
                 //rule pruning based on support and confidence
-                RuleItem temp;
-                for (int i = 0; i < rulesC.Count; i++)
+                List<RuleItem> tempList = new List<RuleItem>();
+                foreach (RuleItem temp in rulesC)
                 {
-                    temp = rulesC.ElementAt(i);
                     if ((double)temp.RuleSupCount / (double)DataSetSize < Support)
                     {
-                        rulesC.RemoveAt(i);
+                        continue;
                     }
                     else if ((double)temp.RuleSupCount / (double)temp.Conditions.CondSupCount < Confidence)
                     {
-                        rulesC.RemoveAt(i);
+                        continue;
+                    }
+                    else
+                    {
+                        tempList.Add(temp);
                     }
                 }
               
                 //rulesK to rules list
-                rulesK = rulesC;
+                rulesK = tempList;
                 k++;
             }
         }
 
         #region Utils
-
-        
 
         private Boolean getTempKeyAndValue(String name, FacebookProccesedEntries entry)
         {
@@ -289,7 +296,7 @@ namespace smartGPS.Business.CBA
                 tempValue = entry.Sportsman;
                 return true;
             }
-            else if (name.Equals("LikesBook"))
+            else if (name.Equals("LikesBooks"))
             {
                 tempKey = name;
                 tempValue = entry.LikesBooks;

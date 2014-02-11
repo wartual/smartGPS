@@ -47,6 +47,17 @@
       <End Role="User" EntitySet="User" />
       <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
     </AssociationSet>
+    <EntitySet Name="CondSetTable" EntityType="smartGPSModel.CondSetTable" />
+    <EntitySet Name="RuleItemTable" EntityType="smartGPSModel.RuleItemTable" />
+    <AssociationSet Name="FK_RuleItem_CondSet" Association="smartGPSModel.FK_RuleItem_CondSet">
+      <End Role="CondSetTable" EntitySet="CondSetTable" />
+      <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RuleItem_User" Association="smartGPSModel.FK_RuleItem_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+    </AssociationSet>
+    <EntitySet Name="CBATest" EntityType="smartGPSModel.CBATest" />
   </EntityContainer>
   <EntityType Name="Profile">
     <Key>
@@ -85,6 +96,7 @@
     <NavigationProperty Name="FacebookProfile" Relationship="smartGPSModel.FK_FacebookProfile_User" FromRole="User" ToRole="FacebookProfile" />
     <NavigationProperty Name="FoursquareProfile" Relationship="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" FromRole="User" ToRole="FoursquareProfile" />
     <NavigationProperty Name="FacebookProccesedEntries" Relationship="smartGPSModel.FK_FacebookProccesedEntries_User" FromRole="User" ToRole="FacebookProccesedEntries" />
+    <NavigationProperty Name="RuleItemTable" Relationship="smartGPSModel.FK_RuleItem_User" FromRole="User" ToRole="RuleItemTable" />
   </EntityType>
   <Association Name="FK_Profile_User">
     <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
@@ -304,4 +316,62 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="CondSetTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="CondSupCount" Nullable="false" />
+    <Property Type="String" Name="CondtionsJson" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+    <NavigationProperty Name="RuleItemTable" Relationship="smartGPSModel.FK_RuleItem_CondSet" FromRole="CondSetTable" ToRole="RuleItemTable" />
+  </EntityType>
+  <EntityType Name="RuleItemTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="RuleSupCount" Nullable="false" />
+    <Property Type="String" Name="ClassKey" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ClassValue" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="DataSize" Nullable="false" />
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CondSetId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CondSetTable" Relationship="smartGPSModel.FK_RuleItem_CondSet" FromRole="RuleItemTable" ToRole="CondSetTable" />
+    <NavigationProperty Name="User" Relationship="smartGPSModel.FK_RuleItem_User" FromRole="RuleItemTable" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_RuleItem_CondSet">
+    <End Type="smartGPSModel.CondSetTable" Role="CondSetTable" Multiplicity="1" />
+    <End Type="smartGPSModel.RuleItemTable" Role="RuleItemTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CondSetTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RuleItemTable">
+        <PropertyRef Name="CondSetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RuleItem_User">
+    <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
+    <End Type="smartGPSModel.RuleItemTable" Role="RuleItemTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RuleItemTable">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CBATest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="A" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="B" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="C" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
 </Schema>

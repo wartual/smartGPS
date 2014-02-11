@@ -102,11 +102,11 @@ namespace smartGPS.Areas.Dashboard.Controllers
                 {
                     FacebookManagement.importFacebookData(token, User.Identity.Name);
                 }
-                else if(fbProfile.JsonUserAndFriendsCheckins == null)
+                if(fbProfile.JsonUserAndFriendsCheckins == null)
                 {
                     FacebookManagement.importCheckins(token, User.Identity.Name);
                 }
-                else if(fbProfile.JsonUserAndFriendsLikes == null)
+                if(fbProfile.JsonUserAndFriendsLikes == null)
                 {
                     FacebookManagement.importLikes(token, User.Identity.Name);
                 }

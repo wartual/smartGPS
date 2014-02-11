@@ -24,6 +24,11 @@
         <AssociationConnector Association="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" />
         <EntityTypeShape EntityType="smartGPSModel.FacebookProccesedEntries" Width="1.5" PointX="3.5516167653499249" PointY="2.7882128370870896" />
         <AssociationConnector Association="smartGPSModel.FK_FacebookProccesedEntries_User" />
+        <EntityTypeShape EntityType="smartGPSModel.CondSetTable" Width="1.5" PointX="3.7459602094003746" PointY="24.717334565109262" />
+        <EntityTypeShape EntityType="smartGPSModel.RuleItemTable" Width="1.5" PointX="9.6539328217757543" PointY="29.153782202468154" />
+        <AssociationConnector Association="smartGPSModel.FK_RuleItem_CondSet" />
+        <AssociationConnector Association="smartGPSModel.FK_RuleItem_User" />
+        <EntityTypeShape EntityType="smartGPSModel.CBATest" Width="1.5" PointX="9.43796216763461" PointY="6.8128726067081429" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

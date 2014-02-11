@@ -105,6 +105,18 @@ namespace smartGPS.Business
             return list;
         }
 
+        public static List<KeyValuePair<int, double>> returnSortedKeyValuePair(Dictionary<int, double> dictionary)
+        {
+            List<KeyValuePair<int, double>> list = dictionary.ToList();
+            list.Sort((firstPair, nextPair) =>
+            {
+                return firstPair.Value.CompareTo(nextPair.Value);
+            }
+            );
+            list.Reverse();
+            return list;
+        }
+
         public static List<KeyValuePair<FacebookProfileModel, int>> returnSortedKeyValuePair(Dictionary<FacebookProfileModel, int> dictionary)
         {
             List<KeyValuePair<FacebookProfileModel, int>> list = dictionary.ToList();
@@ -127,6 +139,16 @@ namespace smartGPS.Business
                 return "Unknown";
         }
 
+        public static double mapWordToStatusEnum(String word)
+        {
+            if (word.Equals("True"))
+                return 0;
+            else if (word.Equals("Unknown"))
+                return 1;
+            else
+                return 2;
+        }
+
         public static String mapEnumCategoryToWord(int enumerator)
         {
             if (enumerator == (int)CommonModels.UserCategories.Traveller)
@@ -136,5 +158,6 @@ namespace smartGPS.Business
             else
                 return "Music";
         }
+
     }
 }

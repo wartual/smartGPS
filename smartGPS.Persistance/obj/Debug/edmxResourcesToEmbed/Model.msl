@@ -141,5 +141,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CondSetTable">
+      <EntityTypeMapping TypeName="smartGPSModel.CondSetTable">
+        <MappingFragment StoreEntitySet="CondSetTable">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CondtionsJson" ColumnName="CondtionsJson" />
+          <ScalarProperty Name="CondSupCount" ColumnName="CondSupCount" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RuleItemTable">
+      <EntityTypeMapping TypeName="smartGPSModel.RuleItemTable">
+        <MappingFragment StoreEntitySet="RuleItemTable">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CondSetId" ColumnName="CondSetId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DataSize" ColumnName="DataSize" />
+          <ScalarProperty Name="ClassValue" ColumnName="ClassValue" />
+          <ScalarProperty Name="ClassKey" ColumnName="ClassKey" />
+          <ScalarProperty Name="RuleSupCount" ColumnName="RuleSupCount" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CBATest">
+      <EntityTypeMapping TypeName="smartGPSModel.CBATest">
+        <MappingFragment StoreEntitySet="CBATest">
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="B" ColumnName="B" />
+          <ScalarProperty Name="A" ColumnName="A" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

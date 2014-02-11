@@ -23,6 +23,7 @@ namespace smartGPS.Persistance
             this.FacebookProfile = new HashSet<FacebookProfile>();
             this.FoursquareProfile = new HashSet<FoursquareProfile>();
             this.FacebookProccesedEntries = new HashSet<FacebookProccesedEntries>();
+            this.RuleItemTable = new HashSet<RuleItemTable>();
         }
     
         public string Id { get; set; }
@@ -42,5 +43,6 @@ namespace smartGPS.Persistance
         public virtual ICollection<FacebookProfile> FacebookProfile { get; set; }
         public virtual ICollection<FoursquareProfile> FoursquareProfile { get; set; }
         public virtual ICollection<FacebookProccesedEntries> FacebookProccesedEntries { get; set; }
+        public virtual ICollection<RuleItemTable> RuleItemTable { get; set; }
     }
 }

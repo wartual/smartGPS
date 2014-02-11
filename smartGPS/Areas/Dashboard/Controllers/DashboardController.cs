@@ -6,7 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using smartGPS.Business;
 using smartGPS.Business.CBA;
+using smartGPS.Business.KMeansAlgorithm;
+using smartGPS.Business.KNN;
 using smartGPS.Custom;
+using smartGPS.Persistance;
 
 namespace smartGPS.Areas.Dashboard.Controllers
 {
@@ -16,9 +19,12 @@ namespace smartGPS.Areas.Dashboard.Controllers
         // GET: /Dashboard/Dashboard/
 
         public ActionResult Index()
-        { 
-            CBA_RG ruleGenerator = new CBA_RG(0.1, 0.3, User.Identity.Name);
-            ruleGenerator.getRulesSet();
+        {
+            CBA cba = new CBA(User.Identity.Name);
+
+            //cba.performClassification();
+            KNNAlgorithm knn = new KNNAlgorithm(User.Identity.Name, 10);
+            knn.runAlgorithm(dummyModel());
             return View();
         }
 
@@ -27,6 +33,20 @@ namespace smartGPS.Areas.Dashboard.Controllers
         {
             UserAdministration.updateUserLocation(Double.Parse(latitude, CultureInfo.InvariantCulture), Double.Parse(longitude, CultureInfo.InvariantCulture), User.Identity.Name);
             return Content("User location updated!");
+        }
+
+        private FacebookProccesedEntries dummyModel()
+        {
+            FacebookProccesedEntries model = new FacebookProccesedEntries();
+            model.UserId = User.Identity.Name;
+            model.UserName = "Kristina Krznarić";
+            model.LikesBooks = "Unknown";
+            model.LikesMovies = "True";
+            model.LikesMusic = "True";
+            model.LikesSports = "True";
+            model.LikesTravelling = "True";
+            model.Sportsman = "False";
+            return model;
         }
     }
 }

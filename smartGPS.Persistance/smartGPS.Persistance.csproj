@@ -67,6 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClass.cs" />
+    <Compile Include="CBADao.cs" />
+    <Compile Include="CBATest.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CBATestDa.cs" />
+    <Compile Include="CondSetTable.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="FacebookDao.cs" />
     <Compile Include="FacebookProccesedEntries.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -105,6 +113,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExternalServicesDAO.cs" />
+    <Compile Include="RuleItemTable.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Travel.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
