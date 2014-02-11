@@ -96,3 +96,15 @@ C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\smartGPS.pdb
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\MathNet.Numerics.dll
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\MathNet.Numerics.pdb
 C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\MathNet.Numerics.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Accord.MachineLearning.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Accord.Statistics.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Accord.Math.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\AForge.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\AForge.Math.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Accord.dll
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Accord.MachineLearning.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Accord.Statistics.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Accord.Math.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\AForge.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\AForge.Math.xml
+C:\smartGPS\smartGPS\smartGPS\smartGPS\bin\Accord.xml

@@ -21,6 +21,7 @@ namespace smartGPS.Business.KNN
             this.userId = userId;
             this.k = k;
             this.dataSet = new List<Points>();
+            prepareData();
         }
 
          public KNNAlgorithm(String userId)
@@ -28,6 +29,7 @@ namespace smartGPS.Business.KNN
             this.userId = userId;
             this.k = Config.KMEANS_DEFAULT_K;
             this.dataSet = new List<Points>();
+            prepareData();
         }
 
          private void prepareData()
@@ -44,8 +46,6 @@ namespace smartGPS.Business.KNN
 
          public String runAlgorithm(FacebookProccesedEntries entry)
          {
-             prepareData();
-
              Points point = new Points(mapEntryToList(entry), -1, null);
              double coeff;
              coefficients = new Dictionary<int, double>();
@@ -85,6 +85,33 @@ namespace smartGPS.Business.KNN
              String classValue = Utilities.returnSortedKeyValuePair(temp).ElementAt(0).Key;
              return classValue;
          }
+
+         public void testData()
+         {
+             String classValue;
+             int categorized = 0;
+             int trueCategorized = 0;
+
+             IEnumerable<FacebookProccesedEntries> entries = FacebookDao.ProccessedFacebookEntries_getAllByUser(userId);
+
+             foreach (FacebookProccesedEntries entry in entries)
+             {
+                 classValue = runAlgorithm(entry);
+
+                 if (!classValue.Equals(""))
+                 {
+                     categorized++;
+                 }
+
+                 if (classValue.Equals(entry.Category.ToString()))
+                 {
+                     trueCategorized++;
+                 }
+             }
+
+             return;
+         }
+
 
          private List<double> mapEntryToList(FacebookProccesedEntries entry)
          {

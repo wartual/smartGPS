@@ -72,7 +72,7 @@ namespace smartGPS.Business.Models.Facebook
                 }
                 else
                 {
-                    return (int)CommonModels.Status.True;
+                    return (int)CommonModels.Status.False;
                 }
             }
             else
@@ -91,7 +91,7 @@ namespace smartGPS.Business.Models.Facebook
                 }
                 else
                 {
-                    return (int)CommonModels.Status.True;
+                    return (int)CommonModels.Status.False;
                 }
             }
             else
@@ -175,16 +175,18 @@ namespace smartGPS.Business.Models.Facebook
                         myCheckins.Add(place.Checkins.Name, 1);
                     }
                 }
-            }
 
-            if (myCheckins.Count >= 3)
-            {
-                return (int)CommonModels.Status.True;
-            }
+                if (myCheckins.Count >= 3)
+                {
+                    return (int)CommonModels.Status.True;
+                }
+                else 
+                {
+                    return (int)CommonModels.Status.False;
+                }
+            }          
             else
                 return (int)CommonModels.Status.Unknown;
         }
-
-
     }
 }

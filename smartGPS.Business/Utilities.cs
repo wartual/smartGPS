@@ -139,7 +139,7 @@ namespace smartGPS.Business
                 return "Unknown";
         }
 
-        public static double mapWordToStatusEnum(String word)
+        public static int mapWordToStatusEnum(String word)
         {
             if (word.Equals("True"))
                 return 0;

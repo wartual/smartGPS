@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using smartGPS.Business;
 using smartGPS.Business.CBA;
+using smartGPS.Business.DecisionTrees;
 using smartGPS.Business.KMeansAlgorithm;
 using smartGPS.Business.KNN;
 using smartGPS.Custom;
@@ -21,10 +22,12 @@ namespace smartGPS.Areas.Dashboard.Controllers
         public ActionResult Index()
         {
             CBA cba = new CBA(User.Identity.Name);
-
-            //cba.performClassification();
             KNNAlgorithm knn = new KNNAlgorithm(User.Identity.Name, 10);
-            knn.runAlgorithm(dummyModel());
+            DecisionTreesAlgorithm decisionTrees = new DecisionTreesAlgorithm(User.Identity.Name, 2, dummyModel());
+
+            //decisionTrees.runAlgorithm();
+            //cba.performClassification();
+            knn.testData();
             return View();
         }
 

@@ -31,7 +31,7 @@ namespace smartGPS.Business.ExternalServices
 
         public static int LIKES_MOVIES_LIMIT = 3;
 
-        public static int LIKES_BOOK_LIMIT = 1;
+        public static int LIKES_BOOK_LIMIT = 3;
 
         public static int LIKES_SPORTS = 3;
 
@@ -44,5 +44,7 @@ namespace smartGPS.Business.ExternalServices
         public static int KMEANS_DEFAULT_K = 3;
 
         public static int KNN_DEFAULT_K = 3;
+
+        public static int DECISION_TREES_CLASS_COUNT = 2;
     }
 }
