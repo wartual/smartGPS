@@ -46,5 +46,9 @@ namespace smartGPS.Business.ExternalServices
         public static int KNN_DEFAULT_K = 3;
 
         public static int DECISION_TREES_CLASS_COUNT = 2;
+
+        public static int FB_PROCCESSED_ENTRIES_ATTRIBUTE_COLUMNS = 6;
+
+        public static int CONFUSION_MATRIX_NEGATIVE_CLASS_VALUE = -1;
     }
 }

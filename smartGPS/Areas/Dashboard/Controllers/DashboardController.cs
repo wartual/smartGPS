@@ -23,14 +23,17 @@ namespace smartGPS.Areas.Dashboard.Controllers
         public ActionResult Index()
         {
             CBA cba = new CBA(User.Identity.Name);
-            KNNAlgorithm knn = new KNNAlgorithm(User.Identity.Name, 10);
-            DecisionTreesAlgorithm decisionTrees = new DecisionTreesAlgorithm(User.Identity.Name, 2, dummyModel());
+
+            // empiricallz determined that 4 is the best k
+            KNNAlgorithm knn = new KNNAlgorithm(User.Identity.Name, 4);
+            DecisionTreesAlgorithm decisionTrees = new DecisionTreesAlgorithm(User.Identity.Name, 3, dummyModel());
             SVMAlgorithm svm = new SVMAlgorithm(User.Identity.Name);
-            //decisionTrees.runAlgorithm();
-            //cba.performClassification();
-            //knn.testData();
-            svm.runAlgorithm();
             
+            //decisionTrees.test(2);
+            //cba.performClassification();
+           // knn.test(1);
+            svm.test(3);
+
             return View();
         }
 

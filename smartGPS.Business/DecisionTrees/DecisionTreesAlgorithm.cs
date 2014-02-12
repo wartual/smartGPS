@@ -9,6 +9,8 @@ using Accord.Statistics.Filters;
 using smartGPS.Business.ExternalServices;
 using smartGPS.Persistance;
 using Accord.Math;
+using Accord.Statistics.Analysis;
+using System.Linq.Expressions;
 
 namespace smartGPS.Business.DecisionTrees
 {
@@ -20,6 +22,9 @@ namespace smartGPS.Business.DecisionTrees
         private Codification codebook { get; set; }
         private DataTable data { get; set; }
         private FacebookProccesedEntries element { get; set; }
+        private int[] outputs;
+        private int[] predicted;
+        private Expression<Func<double[], int>> expression { get; set; }
         
         public DecisionTreesAlgorithm(String userId, int classCount, FacebookProccesedEntries element)
         {
@@ -72,58 +77,100 @@ namespace smartGPS.Business.DecisionTrees
             tree = new DecisionTree(attributes, classCount); 
         }
 
-        public int runAlgorithm()
+        public void runAlgorithm()
         {
             prepareData();
-            
+            predicted = new int[199];
+
             // Create a new instance of the ID3 algorithm
             ID3Learning id3learning = new ID3Learning(tree);
 
             // Translate our training data into integer symbols using our codebook:
             DataTable symbols = codebook.Apply(data);
             int[][] inputs = symbols.ToIntArray("Sportsman", "LikesBooks", "LikesMusic", "LikesSports", "LikesTravelling", "LikesMovies");
-            int[] outputs = symbols.ToIntArray("Category").GetColumn(0);
+            predicted = symbols.ToIntArray("Category").GetColumn(0);
 
             // Learn the training instances!
-            id3learning.Run(inputs, outputs);
+            id3learning.Run(inputs, predicted);
 
             // Convert to an expression tree
-            var expression = tree.ToExpression();
-
-            // Compiles the expression to IL
-            var func = expression.Compile();
-            int m = tree.Compute(mapElementToIntArray());
-            return 1;
+            expression = tree.ToExpression(); 
         }
 
-        public void test()
+        public int classify(FacebookProccesedEntries query)
         {
-            String classValue;
-            int categorized = 0;
-            int trueCategorized = 0;
+            // Compiles the expression to IL
+            var func = expression.Compile();
 
-            IEnumerable<FacebookProccesedEntries> entries = FacebookDao.ProccessedFacebookEntries_getAllByUser(userId);
+            double[] proccessedQuery = mapElementToIntArray(query);
 
-            foreach (FacebookProccesedEntries entry in entries)
+            try
             {
-                classValue = tree.Compute(mapElementToIntArray()).ToString();
-
-                if (!classValue.Equals(""))
-                {
-                    categorized++;
-                }
-
-                if (classValue.Equals(entry.Category.ToString()))
-                {
-                    trueCategorized++;
-                }
+                return tree.Compute(proccessedQuery);
+            }
+            catch (Exception e)
+            {
+                return -1;
             }
         }
 
-        private int[] mapElementToIntArray()
+        public Boolean classify(FacebookProccesedEntries query, int classValue)
         {
-            int[] array = new int[] { Utilities.mapWordToStatusEnum(element.Sportsman), Utilities.mapWordToStatusEnum(element.LikesBooks), Utilities.mapWordToStatusEnum(element.LikesMusic),
-                                        Utilities.mapWordToStatusEnum(element.LikesSports), Utilities.mapWordToStatusEnum(element.LikesTravelling), Utilities.mapWordToStatusEnum(element.LikesMovies)};
+            // Compiles the expression to IL
+            var func = expression.Compile();
+
+            double[] proccessedQuery = mapElementToIntArray(query);
+
+            try
+            {
+                return func(proccessedQuery) == classValue;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public void test(int classValue)
+        {
+            List<int> classIndex = new List<int>();
+            outputs = new int[199];
+            Boolean predictedValue;
+
+            runAlgorithm();
+
+            IEnumerable<FacebookProccesedEntries> entries = FacebookDao.ProccessedFacebookEntries_getAllByUser(userId);
+            int i = 0;
+            foreach (FacebookProccesedEntries entry in entries)
+            {
+                if (entry.Category == classValue)
+                {
+                    outputs[i] = 1;
+                    if (!classIndex.Contains(entry.Category))
+                    {
+                        classIndex.Add(entry.Category);
+                    }
+                }
+                else
+                    outputs[i] = 0;
+
+                predictedValue = classify(entry, classValue);
+                if (predictedValue)
+                    predicted[i] = 1;
+                else
+                    predicted[i] = 0;
+
+                i++;
+            }
+
+            ConfusionMatrix matrix = new ConfusionMatrix(predicted, outputs, 1, 0);
+            return;
+        }
+
+        private double[] mapElementToIntArray(FacebookProccesedEntries query)
+        {
+            double[] array = new double[] { Utilities.mapSportsmanWordToStatusEnum(query.Sportsman), Utilities.mapWordToStatusEnum(query.LikesBooks), Utilities.mapWordToStatusEnum(query.LikesMusic),
+                                        Utilities.mapWordToStatusEnum(query.LikesSports), Utilities.mapWordToStatusEnum(query.LikesTravelling), Utilities.mapWordToStatusEnum(query.LikesMovies)};
             return array;
         }
     }

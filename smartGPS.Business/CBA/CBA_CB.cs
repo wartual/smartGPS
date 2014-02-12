@@ -79,8 +79,8 @@ namespace smartGPS.Business.CBA
                         }
                     }
 
-                    /// 5 is the number of colums in FacebookProccessedEntries which are important
-                    if (count == 5)
+                    /// 6 is the number of colums in FacebookProccessedEntries which are important
+                    if (count == Config.FB_PROCCESSED_ENTRIES_ATTRIBUTE_COLUMNS)
                     {
                         condSetFound = false;
                         break;
@@ -174,7 +174,7 @@ namespace smartGPS.Business.CBA
                                     break;
                                 }
                             }
-                            if (count == 5)
+                            if (count == Config.FB_PROCCESSED_ENTRIES_ATTRIBUTE_COLUMNS)
                             {
                                 condSetFound = false;
                                 break;
@@ -232,7 +232,7 @@ namespace smartGPS.Business.CBA
                                             break;
                                         }
                                     }
-                                    if (count == 5)
+                                    if (count == Config.FB_PROCCESSED_ENTRIES_ATTRIBUTE_COLUMNS)
                                     {
                                         condSetFound = false;
                                         break;

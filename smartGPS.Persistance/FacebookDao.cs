@@ -63,7 +63,7 @@ namespace smartGPS.Persistance
         {
             FacebookProccesedEntries model = new FacebookProccesedEntries();
             Random random = new Random();
-            int category = random.Next(0, 2);
+            int category = random.Next(0, 3);
             
             model.Id = id;
             model.LikesBooks = likesBook;

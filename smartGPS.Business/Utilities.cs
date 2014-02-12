@@ -149,6 +149,14 @@ namespace smartGPS.Business
                 return 2;
         }
 
+        public static int mapSportsmanWordToStatusEnum(String word)
+        {
+            if (word.Equals("True"))
+                return 0;
+            else
+                return 1;
+        }
+
         public static String mapEnumCategoryToWord(int enumerator)
         {
             if (enumerator == (int)CommonModels.UserCategories.Traveller)

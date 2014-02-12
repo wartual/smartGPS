@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Accord.Statistics.Analysis;
 using MathNet.Numerics.Statistics;
 using smartGPS.Business.ExternalServices;
 using smartGPS.Persistance;
@@ -15,6 +16,8 @@ namespace smartGPS.Business.KNN
         private List<Points> dataSet { get; set; }
         private Dictionary<int, double> coefficients { get; set; }
         private List<KeyValuePair<int, double>> sortedCoefficients { get; set; }
+        private int[] expected;
+        private int[] predicted;
 
         public KNNAlgorithm(String userId, int k)
         {
@@ -38,7 +41,7 @@ namespace smartGPS.Business.KNN
              int i = 0;
              foreach (FacebookProccesedEntries entry in entries)
              {
-                 Points point = new Points(mapEntryToList(entry), i, entry.Category.ToString());
+                 Points point = new Points(mapEntryToList(entry), i, entry.Category.ToString(), entry.Id);
                  dataSet.Add(point);
                  i++;
              }
@@ -46,13 +49,15 @@ namespace smartGPS.Business.KNN
 
          public String runAlgorithm(FacebookProccesedEntries entry)
          {
-             Points point = new Points(mapEntryToList(entry), -1, null);
+             Points point = new Points(mapEntryToList(entry), -1, null, entry.Id);
              double coeff;
              coefficients = new Dictionary<int, double>();
 
              // calculate correlation for whole set
              foreach (Points element in dataSet)
              {
+                 if (element.userId.Equals(point.userId))
+                     continue;
                  coeff = Correlation.Pearson(point.elements, element.elements);
                  coefficients.Add(element.index, coeff);
              }
@@ -67,7 +72,7 @@ namespace smartGPS.Business.KNN
              // k - neighbours
              for (int i = 0; i < k; i++)
              {
-                 row = sortedCoefficients.ElementAt(i);
+                row = sortedCoefficients.ElementAt(i);
 
                  // calculate freqeuency of each class
                  if (temp.ContainsKey(dataSet.ElementAt(row.Key).category.ToString()))
@@ -86,33 +91,35 @@ namespace smartGPS.Business.KNN
              return classValue;
          }
 
-         public void testData()
+         public void test(int classValue)
          {
-             String classValue;
-             int categorized = 0;
-             int trueCategorized = 0;
-
              IEnumerable<FacebookProccesedEntries> entries = FacebookDao.ProccessedFacebookEntries_getAllByUser(userId);
+             predicted = new int[199];
+             expected = new int[199];
+             int predictedClassValue;
 
+             int i = 0;
              foreach (FacebookProccesedEntries entry in entries)
              {
-                 classValue = runAlgorithm(entry);
+                 predictedClassValue = Int16.Parse(runAlgorithm(entry));
 
-                 if (!classValue.Equals(""))
-                 {
-                     categorized++;
-                 }
+                 if (entry.Category == classValue)
+                     expected[i] = 1;
+                 else
+                     expected[i] = 0;
 
-                 if (classValue.Equals(entry.Category.ToString()))
-                 {
-                     trueCategorized++;
-                 }
+                 if (predictedClassValue == classValue)
+                     predicted[i] = 1;
+                 else
+                     predicted[i] = 0;
+                 i++;
              }
 
+             ConfusionMatrix matrix = new ConfusionMatrix(predicted, expected, 1, 0);
              return;
          }
 
-
+         #region Utils
          private List<double> mapEntryToList(FacebookProccesedEntries entry)
          {
              List<double> element = new List<double>();
@@ -125,5 +132,7 @@ namespace smartGPS.Business.KNN
 
              return element;
          }
+
+#endregion
     }
 }
