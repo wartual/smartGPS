@@ -63,7 +63,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClass.cs" />
@@ -73,6 +75,9 @@
     </Compile>
     <Compile Include="CBATestDa.cs" />
     <Compile Include="CondSetTable.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Edge.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="FacebookDao.cs" />
@@ -86,6 +91,13 @@
     <Compile Include="FoursquareProfile.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="FoursquareVenuesCategories.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GooglePlacesAPICategories.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GooglePlacesAPIDao.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,6 +113,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Node.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="NotificationCategory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -108,6 +123,10 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="NotificationsDao.cs" />
+    <Compile Include="Obstacle.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpenMapDAO.cs" />
     <Compile Include="Profile.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -126,10 +145,20 @@
     <Compile Include="User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserCategory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserCategoryDAO.cs" />
     <Compile Include="UserHelper.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="UsersDAO.cs" />
+    <Compile Include="Way.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WayType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -36,6 +36,13 @@ namespace smartGPS.Persistance.UsersFolder
             db.SaveChanges();
         }
 
+        public static void updateUserCategory(String userId, int category)
+        {
+            Profile model = getProfileByUserId(userId);
+            model.Category = category;
+            db.SaveChanges();
+        }
+
         public static IEnumerable<User> getAll()
         {
             return db.User;

@@ -8,19 +8,43 @@
         <EntityContainer Name="smartGPSModelStoreContainer">
           <EntitySet Name="CBATest" EntityType="smartGPSModel.Store.CBATest" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CondSetTable" EntityType="smartGPSModel.Store.CondSetTable" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Edge" EntityType="smartGPSModel.Store.Edge" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FacebookProccesedEntries" EntityType="smartGPSModel.Store.FacebookProccesedEntries" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.Store.FacebookProfile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FoursquareProfile" EntityType="smartGPSModel.Store.FoursquareProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FoursquareVenuesCategories" EntityType="smartGPSModel.Store.FoursquareVenuesCategories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GooglePlacesAPICategories" EntityType="smartGPSModel.Store.GooglePlacesAPICategories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Node" EntityType="smartGPSModel.Store.Node" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NotificationCategory" EntityType="smartGPSModel.Store.NotificationCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Notifications" EntityType="smartGPSModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Obstacle" EntityType="smartGPSModel.Store.Obstacle" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profile" EntityType="smartGPSModel.Store.Profile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RuleItemTable" EntityType="smartGPSModel.Store.RuleItemTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Travel" EntityType="smartGPSModel.Store.Travel" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TravelStatusCategory" EntityType="smartGPSModel.Store.TravelStatusCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="smartGPSModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserCategory" EntityType="smartGPSModel.Store.UserCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserHelper" EntityType="smartGPSModel.Store.UserHelper" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Way" EntityType="smartGPSModel.Store.Way" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WayType" EntityType="smartGPSModel.Store.WayType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Edge_Node" Association="smartGPSModel.Store.FK_Edge_Node">
+            <End Role="Node" EntitySet="Node" />
+            <End Role="Edge" EntitySet="Edge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Edge_Node1" Association="smartGPSModel.Store.FK_Edge_Node1">
+            <End Role="Node" EntitySet="Node" />
+            <End Role="Edge" EntitySet="Edge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Edge_Way" Association="smartGPSModel.Store.FK_Edge_Way">
+            <End Role="Way" EntitySet="Way" />
+            <End Role="Edge" EntitySet="Edge" />
+          </AssociationSet>
           <AssociationSet Name="FK_FacebookProccesedEntries_User" Association="smartGPSModel.Store.FK_FacebookProccesedEntries_User">
             <End Role="User" EntitySet="User" />
+            <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacebookProccesedEntries_UserCategory" Association="smartGPSModel.Store.FK_FacebookProccesedEntries_UserCategory">
+            <End Role="UserCategory" EntitySet="UserCategory" />
             <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
           </AssociationSet>
           <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.Store.FK_FacebookProfile_User">
@@ -31,6 +55,18 @@
             <End Role="User" EntitySet="User" />
             <End Role="FoursquareProfile" EntitySet="FoursquareProfile" />
           </AssociationSet>
+          <AssociationSet Name="FK_FoursquareVenuesCategories_FoursquareVenuesCategories" Association="smartGPSModel.Store.FK_FoursquareVenuesCategories_FoursquareVenuesCategories">
+            <End Role="FoursquareVenuesCategories" EntitySet="FoursquareVenuesCategories" />
+            <End Role="FoursquareVenuesCategories1" EntitySet="FoursquareVenuesCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoursquareVenuesCategories_UserCategory" Association="smartGPSModel.Store.FK_FoursquareVenuesCategories_UserCategory">
+            <End Role="UserCategory" EntitySet="UserCategory" />
+            <End Role="FoursquareVenuesCategories" EntitySet="FoursquareVenuesCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GooglePlacesAPICategories_UserCategory" Association="smartGPSModel.Store.FK_GooglePlacesAPICategories_UserCategory">
+            <End Role="UserCategory" EntitySet="UserCategory" />
+            <End Role="GooglePlacesAPICategories" EntitySet="GooglePlacesAPICategories" />
+          </AssociationSet>
           <AssociationSet Name="FK_Notifications_NotificationCategory" Association="smartGPSModel.Store.FK_Notifications_NotificationCategory">
             <End Role="NotificationCategory" EntitySet="NotificationCategory" />
             <End Role="Notifications" EntitySet="Notifications" />
@@ -39,8 +75,16 @@
             <End Role="User" EntitySet="User" />
             <End Role="Notifications" EntitySet="Notifications" />
           </AssociationSet>
+          <AssociationSet Name="FK_Obstacle_Edge" Association="smartGPSModel.Store.FK_Obstacle_Edge">
+            <End Role="Edge" EntitySet="Edge" />
+            <End Role="Obstacle" EntitySet="Obstacle" />
+          </AssociationSet>
           <AssociationSet Name="FK_Profile_User" Association="smartGPSModel.Store.FK_Profile_User">
             <End Role="User" EntitySet="User" />
+            <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_UserCategory" Association="smartGPSModel.Store.FK_Profile_UserCategory">
+            <End Role="UserCategory" EntitySet="UserCategory" />
             <End Role="Profile" EntitySet="Profile" />
           </AssociationSet>
           <AssociationSet Name="FK_RuleItem_CondSet" Association="smartGPSModel.Store.FK_RuleItem_CondSet">
@@ -63,6 +107,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="UserHelper" EntitySet="UserHelper" />
           </AssociationSet>
+          <AssociationSet Name="FK_Way_WayType" Association="smartGPSModel.Store.FK_Way_WayType">
+            <End Role="WayType" EntitySet="WayType" />
+            <End Role="Way" EntitySet="Way" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CBATest">
           <Key>
@@ -81,6 +129,17 @@
           <Property Name="CondSupCount" Type="int" Nullable="false" />
           <Property Name="CondtionsJson" Type="varchar(max)" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Edge">
+          <Key>
+            <PropertyRef Name="EdgeId" />
+          </Key>
+          <Property Name="EdgeId" Type="int" Nullable="false" />
+          <Property Name="StartId" Type="int" Nullable="false" />
+          <Property Name="WayId" Type="int" Nullable="false" />
+          <Property Name="EndId" Type="int" Nullable="false" />
+          <Property Name="EdgeLength" Type="float" Nullable="false" />
+          <Property Name="EdgeHeading" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="FacebookProccesedEntries">
           <Key>
@@ -121,6 +180,32 @@
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="Recent" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="FoursquareVenuesCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Category" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Parent" Type="varchar" MaxLength="50" />
+          <Property Name="UserCategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GooglePlacesAPICategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="nchar" Nullable="false" MaxLength="30" />
+          <Property Name="UserCategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Node">
+          <Key>
+            <PropertyRef Name="NodeId" />
+          </Key>
+          <Property Name="NodeId" Type="int" Nullable="false" />
+          <Property Name="NodeLat" Type="float" Nullable="false" />
+          <Property Name="NodeLong" Type="float" Nullable="false" />
+          <Property Name="NodeUsed" Type="smallint" Nullable="false" />
+        </EntityType>
         <EntityType Name="NotificationCategory">
           <Key>
             <PropertyRef Name="Id" />
@@ -145,6 +230,15 @@
           <Property Name="ThumbsUp" Type="bigint" Nullable="false" />
           <Property Name="ThumbsDown" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Obstacle">
+          <Key>
+            <PropertyRef Name="ObstacleId" />
+          </Key>
+          <Property Name="ObstacleId" Type="int" Nullable="false" />
+          <Property Name="EdgeId" Type="int" Nullable="false" />
+          <Property Name="ObstacleType" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ObstacleNoPass" Type="smallint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Profile">
           <Key>
             <PropertyRef Name="Id" />
@@ -160,6 +254,7 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Surname" Type="varchar" MaxLength="50" />
           <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Category" Type="int" />
         </EntityType>
         <EntityType Name="RuleItemTable">
           <Key>
@@ -215,6 +310,13 @@
           <Property Name="GcmId" Type="varchar" MaxLength="200" />
           <Property Name="FoursquareId" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="UserCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="nchar" Nullable="false" MaxLength="30" />
+        </EntityType>
         <EntityType Name="UserHelper">
           <Key>
             <PropertyRef Name="Id" />
@@ -225,6 +327,62 @@
           <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Way">
+          <Key>
+            <PropertyRef Name="WayId" />
+          </Key>
+          <Property Name="WayId" Type="int" Nullable="false" />
+          <Property Name="WayTypeId" Type="int" Nullable="false" />
+          <Property Name="WayMaxSpeed" Type="int" Nullable="false" />
+          <Property Name="WayOneWay" Type="smallint" Nullable="false" />
+          <Property Name="WayName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="WayRef" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WayType">
+          <Key>
+            <PropertyRef Name="WayTypeId" />
+          </Key>
+          <Property Name="WayTypeId" Type="int" Nullable="false" />
+          <Property Name="WayTypeName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="WayTypeDefSpeed" Type="int" Nullable="false" />
+          <Property Name="WayTypeDefSpdRes" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Edge_Node">
+          <End Role="Node" Type="smartGPSModel.Store.Node" Multiplicity="1" />
+          <End Role="Edge" Type="smartGPSModel.Store.Edge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Node">
+              <PropertyRef Name="NodeId" />
+            </Principal>
+            <Dependent Role="Edge">
+              <PropertyRef Name="StartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Edge_Node1">
+          <End Role="Node" Type="smartGPSModel.Store.Node" Multiplicity="1" />
+          <End Role="Edge" Type="smartGPSModel.Store.Edge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Node">
+              <PropertyRef Name="NodeId" />
+            </Principal>
+            <Dependent Role="Edge">
+              <PropertyRef Name="EndId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Edge_Way">
+          <End Role="Way" Type="smartGPSModel.Store.Way" Multiplicity="1" />
+          <End Role="Edge" Type="smartGPSModel.Store.Edge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Way">
+              <PropertyRef Name="WayId" />
+            </Principal>
+            <Dependent Role="Edge">
+              <PropertyRef Name="WayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FacebookProccesedEntries_User">
           <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
           <End Role="FacebookProccesedEntries" Type="smartGPSModel.Store.FacebookProccesedEntries" Multiplicity="*" />
@@ -234,6 +392,18 @@
             </Principal>
             <Dependent Role="FacebookProccesedEntries">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacebookProccesedEntries_UserCategory">
+          <End Role="UserCategory" Type="smartGPSModel.Store.UserCategory" Multiplicity="1" />
+          <End Role="FacebookProccesedEntries" Type="smartGPSModel.Store.FacebookProccesedEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FacebookProccesedEntries">
+              <PropertyRef Name="Category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -261,6 +431,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FoursquareVenuesCategories_FoursquareVenuesCategories">
+          <End Role="FoursquareVenuesCategories" Type="smartGPSModel.Store.FoursquareVenuesCategories" Multiplicity="0..1" />
+          <End Role="FoursquareVenuesCategories1" Type="smartGPSModel.Store.FoursquareVenuesCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoursquareVenuesCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FoursquareVenuesCategories1">
+              <PropertyRef Name="Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoursquareVenuesCategories_UserCategory">
+          <End Role="UserCategory" Type="smartGPSModel.Store.UserCategory" Multiplicity="1" />
+          <End Role="FoursquareVenuesCategories" Type="smartGPSModel.Store.FoursquareVenuesCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FoursquareVenuesCategories">
+              <PropertyRef Name="UserCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GooglePlacesAPICategories_UserCategory">
+          <End Role="UserCategory" Type="smartGPSModel.Store.UserCategory" Multiplicity="1" />
+          <End Role="GooglePlacesAPICategories" Type="smartGPSModel.Store.GooglePlacesAPICategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GooglePlacesAPICategories">
+              <PropertyRef Name="UserCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Notifications_NotificationCategory">
           <End Role="NotificationCategory" Type="smartGPSModel.Store.NotificationCategory" Multiplicity="1" />
           <End Role="Notifications" Type="smartGPSModel.Store.Notifications" Multiplicity="*" />
@@ -285,6 +491,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Obstacle_Edge">
+          <End Role="Edge" Type="smartGPSModel.Store.Edge" Multiplicity="1" />
+          <End Role="Obstacle" Type="smartGPSModel.Store.Obstacle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edge">
+              <PropertyRef Name="EdgeId" />
+            </Principal>
+            <Dependent Role="Obstacle">
+              <PropertyRef Name="EdgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Profile_User">
           <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
           <End Role="Profile" Type="smartGPSModel.Store.Profile" Multiplicity="*" />
@@ -294,6 +512,18 @@
             </Principal>
             <Dependent Role="Profile">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_UserCategory">
+          <End Role="UserCategory" Type="smartGPSModel.Store.UserCategory" Multiplicity="0..1" />
+          <End Role="Profile" Type="smartGPSModel.Store.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="Category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -357,24 +587,71 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Way_WayType">
+          <End Role="WayType" Type="smartGPSModel.Store.WayType" Multiplicity="1" />
+          <End Role="Way" Type="smartGPSModel.Store.Way" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WayType">
+              <PropertyRef Name="WayTypeId" />
+            </Principal>
+            <Dependent Role="Way">
+              <PropertyRef Name="WayTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="smartGPSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="smartGPSEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Profile" EntityType="smartGPSModel.Profile" />
-          <EntitySet Name="User" EntityType="smartGPSModel.User" />
-          <AssociationSet Name="FK_Profile_User" Association="smartGPSModel.FK_Profile_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Profile" EntitySet="Profile" />
-          </AssociationSet>
-          <EntitySet Name="UserHelper" EntityType="smartGPSModel.UserHelper" />
-          <AssociationSet Name="FK_UserHelper_User" Association="smartGPSModel.FK_UserHelper_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserHelper" EntitySet="UserHelper" />
-          </AssociationSet>
+          <EntitySet Name="CBATest" EntityType="smartGPSModel.CBATest" />
+          <EntitySet Name="CondSetTable" EntityType="smartGPSModel.CondSetTable" />
+          <EntitySet Name="FacebookProccesedEntries" EntityType="smartGPSModel.FacebookProccesedEntries" />
+          <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.FacebookProfile" />
+          <EntitySet Name="FoursquareProfile" EntityType="smartGPSModel.FoursquareProfile" />
+          <EntitySet Name="FoursquareVenuesCategories" EntityType="smartGPSModel.FoursquareVenuesCategories" />
+          <EntitySet Name="GooglePlacesAPICategories" EntityType="smartGPSModel.GooglePlacesAPICategories" />
           <EntitySet Name="NotificationCategory" EntityType="smartGPSModel.NotificationCategory" />
           <EntitySet Name="Notifications" EntityType="smartGPSModel.Notifications" />
+          <EntitySet Name="Profile" EntityType="smartGPSModel.Profile" />
+          <EntitySet Name="RuleItemTable" EntityType="smartGPSModel.RuleItemTable" />
+          <EntitySet Name="Travel" EntityType="smartGPSModel.Travel" />
+          <EntitySet Name="TravelStatusCategory" EntityType="smartGPSModel.TravelStatusCategory" />
+          <EntitySet Name="User" EntityType="smartGPSModel.User" />
+          <EntitySet Name="UserCategory" EntityType="smartGPSModel.UserCategory" />
+          <EntitySet Name="UserHelper" EntityType="smartGPSModel.UserHelper" />
+          <AssociationSet Name="FK_RuleItem_CondSet" Association="smartGPSModel.FK_RuleItem_CondSet">
+            <End Role="CondSetTable" EntitySet="CondSetTable" />
+            <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacebookProccesedEntries_User" Association="smartGPSModel.FK_FacebookProccesedEntries_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacebookProccesedEntries_UserCategory" Association="smartGPSModel.FK_FacebookProccesedEntries_UserCategory">
+            <End Role="UserCategory" EntitySet="UserCategory" />
+            <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.FK_FacebookProfile_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FacebookProfile" EntitySet="FacebookProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoursquareProfile_FoursquareProfile" Association="smartGPSModel.FK_FoursquareProfile_FoursquareProfile">
+            <End Role="User" EntitySet="User" />
+            <End Role="FoursquareProfile" EntitySet="FoursquareProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoursquareVenuesCategories_FoursquareVenuesCategories" Association="smartGPSModel.FK_FoursquareVenuesCategories_FoursquareVenuesCategories">
+            <End Role="FoursquareVenuesCategories" EntitySet="FoursquareVenuesCategories" />
+            <End Role="FoursquareVenuesCategories1" EntitySet="FoursquareVenuesCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoursquareVenuesCategories_UserCategory" Association="smartGPSModel.FK_FoursquareVenuesCategories_UserCategory">
+            <End Role="UserCategory" EntitySet="UserCategory" />
+            <End Role="FoursquareVenuesCategories" EntitySet="FoursquareVenuesCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GooglePlacesAPICategories_UserCategory" Association="smartGPSModel.FK_GooglePlacesAPICategories_UserCategory">
+            <End Role="UserCategory" EntitySet="UserCategory" />
+            <End Role="GooglePlacesAPICategories" EntitySet="GooglePlacesAPICategories" />
+          </AssociationSet>
           <AssociationSet Name="FK_Notifications_NotificationCategory" Association="smartGPSModel.FK_Notifications_NotificationCategory">
             <End Role="NotificationCategory" EntitySet="NotificationCategory" />
             <End Role="Notifications" EntitySet="Notifications" />
@@ -383,8 +660,18 @@
             <End Role="User" EntitySet="User" />
             <End Role="Notifications" EntitySet="Notifications" />
           </AssociationSet>
-          <EntitySet Name="Travel" EntityType="smartGPSModel.Travel" />
-          <EntitySet Name="TravelStatusCategory" EntityType="smartGPSModel.TravelStatusCategory" />
+          <AssociationSet Name="FK_Profile_User" Association="smartGPSModel.FK_Profile_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_UserCategory" Association="smartGPSModel.FK_Profile_UserCategory">
+            <End Role="UserCategory" EntitySet="UserCategory" />
+            <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleItem_User" Association="smartGPSModel.FK_RuleItem_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_Travel_TravelStatusCategory" Association="smartGPSModel.FK_Travel_TravelStatusCategory">
             <End Role="TravelStatusCategory" EntitySet="TravelStatusCategory" />
             <End Role="Travel" EntitySet="Travel" />
@@ -393,33 +680,146 @@
             <End Role="User" EntitySet="User" />
             <End Role="Travel" EntitySet="Travel" />
           </AssociationSet>
-          <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.FacebookProfile" />
-          <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.FK_FacebookProfile_User">
+          <AssociationSet Name="FK_UserHelper_User" Association="smartGPSModel.FK_UserHelper_User">
             <End Role="User" EntitySet="User" />
-            <End Role="FacebookProfile" EntitySet="FacebookProfile" />
+            <End Role="UserHelper" EntitySet="UserHelper" />
           </AssociationSet>
-          <EntitySet Name="FoursquareProfile" EntityType="smartGPSModel.FoursquareProfile" />
-          <AssociationSet Name="FK_FoursquareProfile_FoursquareProfile" Association="smartGPSModel.FK_FoursquareProfile_FoursquareProfile">
-            <End Role="User" EntitySet="User" />
-            <End Role="FoursquareProfile" EntitySet="FoursquareProfile" />
+          <EntitySet Name="Edge" EntityType="smartGPSModel.Edge" />
+          <EntitySet Name="Node" EntityType="smartGPSModel.Node" />
+          <EntitySet Name="Way" EntityType="smartGPSModel.Way" />
+          <EntitySet Name="WayType" EntityType="smartGPSModel.WayType" />
+          <AssociationSet Name="FK_Edge_Node" Association="smartGPSModel.FK_Edge_Node">
+            <End Role="Node" EntitySet="Node" />
+            <End Role="Edge" EntitySet="Edge" />
           </AssociationSet>
-          <EntitySet Name="FacebookProccesedEntries" EntityType="smartGPSModel.FacebookProccesedEntries" />
-          <AssociationSet Name="FK_FacebookProccesedEntries_User" Association="smartGPSModel.FK_FacebookProccesedEntries_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
+          <AssociationSet Name="FK_Edge_Node1" Association="smartGPSModel.FK_Edge_Node1">
+            <End Role="Node" EntitySet="Node" />
+            <End Role="Edge" EntitySet="Edge" />
           </AssociationSet>
-          <EntitySet Name="CondSetTable" EntityType="smartGPSModel.CondSetTable" />
-          <EntitySet Name="RuleItemTable" EntityType="smartGPSModel.RuleItemTable" />
-          <AssociationSet Name="FK_RuleItem_CondSet" Association="smartGPSModel.FK_RuleItem_CondSet">
-            <End Role="CondSetTable" EntitySet="CondSetTable" />
-            <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+          <AssociationSet Name="FK_Edge_Way" Association="smartGPSModel.FK_Edge_Way">
+            <End Role="Way" EntitySet="Way" />
+            <End Role="Edge" EntitySet="Edge" />
           </AssociationSet>
-          <AssociationSet Name="FK_RuleItem_User" Association="smartGPSModel.FK_RuleItem_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+          <AssociationSet Name="FK_Way_WayType" Association="smartGPSModel.FK_Way_WayType">
+            <End Role="WayType" EntitySet="WayType" />
+            <End Role="Way" EntitySet="Way" />
           </AssociationSet>
-          <EntitySet Name="CBATest" EntityType="smartGPSModel.CBATest" />
-          </EntityContainer>
+          <EntitySet Name="Obstacle" EntityType="smartGPSModel.Obstacle" />
+          <AssociationSet Name="FK_Obstacle_Edge" Association="smartGPSModel.FK_Obstacle_Edge">
+            <End Role="Edge" EntitySet="Edge" />
+            <End Role="Obstacle" EntitySet="Obstacle" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CBATest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="A" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="B" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="C" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="CondSetTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CondSupCount" Type="Int32" Nullable="false" />
+          <Property Name="CondtionsJson" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="RuleItemTable" Relationship="smartGPSModel.FK_RuleItem_CondSet" FromRole="CondSetTable" ToRole="RuleItemTable" />
+        </EntityType>
+        <EntityType Name="FacebookProccesedEntries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Sportsman" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="LikesBooks" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="LikesMusic" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="LikesSports" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="LikesTravelling" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="LikesMovies" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Category" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FacebookProccesedEntries_User" FromRole="FacebookProccesedEntries" ToRole="User" />
+          <NavigationProperty Name="UserCategory" Relationship="smartGPSModel.FK_FacebookProccesedEntries_UserCategory" FromRole="FacebookProccesedEntries" ToRole="UserCategory" />
+        </EntityType>
+        <EntityType Name="FacebookProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="JsonPersonalDataAndFriends" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="JsonUserAndFriendsCheckins" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="JsonUserAndFriendsLikes" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FacebookProfile_User" FromRole="FacebookProfile" ToRole="User" />
+        </EntityType>
+        <EntityType Name="FoursquareProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UserCheckins" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Recent" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" FromRole="FoursquareProfile" ToRole="User" />
+        </EntityType>
+        <EntityType Name="FoursquareVenuesCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Parent" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UserCategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FoursquareVenuesCategories1" Relationship="smartGPSModel.FK_FoursquareVenuesCategories_FoursquareVenuesCategories" FromRole="FoursquareVenuesCategories" ToRole="FoursquareVenuesCategories1" />
+          <NavigationProperty Name="FoursquareVenuesCategories2" Relationship="smartGPSModel.FK_FoursquareVenuesCategories_FoursquareVenuesCategories" FromRole="FoursquareVenuesCategories1" ToRole="FoursquareVenuesCategories" />
+          <NavigationProperty Name="UserCategory" Relationship="smartGPSModel.FK_FoursquareVenuesCategories_UserCategory" FromRole="FoursquareVenuesCategories" ToRole="UserCategory" />
+        </EntityType>
+        <EntityType Name="GooglePlacesAPICategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="true" />
+          <Property Name="UserCategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserCategory" Relationship="smartGPSModel.FK_GooglePlacesAPICategories_UserCategory" FromRole="GooglePlacesAPICategories" ToRole="UserCategory" />
+        </EntityType>
+        <EntityType Name="NotificationCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Notifications" Relationship="smartGPSModel.FK_Notifications_NotificationCategory" FromRole="NotificationCategory" ToRole="Notifications" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ThumbsUp" Type="Int64" Nullable="false" />
+          <Property Name="ThumbsDown" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="NotificationCategory" Relationship="smartGPSModel.FK_Notifications_NotificationCategory" FromRole="Notifications" ToRole="NotificationCategory" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Notifications_User" FromRole="Notifications" ToRole="User" />
+        </EntityType>
         <EntityType Name="Profile">
           <Key>
             <PropertyRef Name="Id" />
@@ -435,7 +835,54 @@
           <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Surname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Phone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Category" Type="Int32" />
           <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Profile_User" FromRole="Profile" ToRole="User" />
+          <NavigationProperty Name="UserCategory" Relationship="smartGPSModel.FK_Profile_UserCategory" FromRole="Profile" ToRole="UserCategory" />
+        </EntityType>
+        <EntityType Name="RuleItemTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RuleSupCount" Type="Int32" Nullable="false" />
+          <Property Name="ClassKey" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ClassValue" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DataSize" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CondSetId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CondSetTable" Relationship="smartGPSModel.FK_RuleItem_CondSet" FromRole="RuleItemTable" ToRole="CondSetTable" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_RuleItem_User" FromRole="RuleItemTable" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Travel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DepartudeAddress" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="DepartureLatitude" Type="Double" Nullable="false" />
+          <Property Name="DepartudeLongitude" Type="Double" Nullable="false" />
+          <Property Name="DestinationAddress" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="DestinationLatitude" Type="Double" Nullable="false" />
+          <Property Name="DestinationLongitude" Type="Double" Nullable="false" />
+          <Property Name="Time" Type="Double" Nullable="false" />
+          <Property Name="Distance" Type="Double" Nullable="false" />
+          <Property Name="StatusId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CurrentLatitude" Type="Double" Nullable="false" />
+          <Property Name="CurrentLongitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="TravelStatusCategory" Relationship="smartGPSModel.FK_Travel_TravelStatusCategory" FromRole="Travel" ToRole="TravelStatusCategory" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Travel_User" FromRole="Travel" ToRole="User" />
+        </EntityType>
+        <EntityType Name="TravelStatusCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Travel" Relationship="smartGPSModel.FK_Travel_TravelStatusCategory" FromRole="TravelStatusCategory" ToRole="Travel" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -448,17 +895,159 @@
           <Property Name="FacebookId" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="TwitterId" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="DateLastLogin" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Profile" Relationship="smartGPSModel.FK_Profile_User" FromRole="User" ToRole="Profile" />
-          <NavigationProperty Name="UserHelper" Relationship="smartGPSModel.FK_UserHelper_User" FromRole="User" ToRole="UserHelper" />
-          <NavigationProperty Name="Notifications" Relationship="smartGPSModel.FK_Notifications_User" FromRole="User" ToRole="Notifications" />
-          <Property Type="String" Name="GcmId" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Travel" Relationship="smartGPSModel.FK_Travel_User" FromRole="User" ToRole="Travel" />
-          <Property Type="String" Name="FoursquareId" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GcmId" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="FoursquareId" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="FacebookProccesedEntries" Relationship="smartGPSModel.FK_FacebookProccesedEntries_User" FromRole="User" ToRole="FacebookProccesedEntries" />
           <NavigationProperty Name="FacebookProfile" Relationship="smartGPSModel.FK_FacebookProfile_User" FromRole="User" ToRole="FacebookProfile" />
           <NavigationProperty Name="FoursquareProfile" Relationship="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" FromRole="User" ToRole="FoursquareProfile" />
-          <NavigationProperty Name="FacebookProccesedEntries" Relationship="smartGPSModel.FK_FacebookProccesedEntries_User" FromRole="User" ToRole="FacebookProccesedEntries" />
+          <NavigationProperty Name="Notifications" Relationship="smartGPSModel.FK_Notifications_User" FromRole="User" ToRole="Notifications" />
+          <NavigationProperty Name="Profile" Relationship="smartGPSModel.FK_Profile_User" FromRole="User" ToRole="Profile" />
           <NavigationProperty Name="RuleItemTable" Relationship="smartGPSModel.FK_RuleItem_User" FromRole="User" ToRole="RuleItemTable" />
-          </EntityType>
+          <NavigationProperty Name="Travel" Relationship="smartGPSModel.FK_Travel_User" FromRole="User" ToRole="Travel" />
+          <NavigationProperty Name="UserHelper" Relationship="smartGPSModel.FK_UserHelper_User" FromRole="User" ToRole="UserHelper" />
+        </EntityType>
+        <EntityType Name="UserCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="FacebookProccesedEntries" Relationship="smartGPSModel.FK_FacebookProccesedEntries_UserCategory" FromRole="UserCategory" ToRole="FacebookProccesedEntries" />
+          <NavigationProperty Name="FoursquareVenuesCategories" Relationship="smartGPSModel.FK_FoursquareVenuesCategories_UserCategory" FromRole="UserCategory" ToRole="FoursquareVenuesCategories" />
+          <NavigationProperty Name="GooglePlacesAPICategories" Relationship="smartGPSModel.FK_GooglePlacesAPICategories_UserCategory" FromRole="UserCategory" ToRole="GooglePlacesAPICategories" />
+          <NavigationProperty Name="Profile" Relationship="smartGPSModel.FK_Profile_UserCategory" FromRole="UserCategory" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="UserHelper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastLocationLatitude" Type="Double" />
+          <Property Name="LastLocationLongitude" Type="Double" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_UserHelper_User" FromRole="UserHelper" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_RuleItem_CondSet">
+          <End Role="CondSetTable" Type="smartGPSModel.CondSetTable" Multiplicity="1" />
+          <End Role="RuleItemTable" Type="smartGPSModel.RuleItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CondSetTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RuleItemTable">
+              <PropertyRef Name="CondSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacebookProccesedEntries_User">
+          <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
+          <End Role="FacebookProccesedEntries" Type="smartGPSModel.FacebookProccesedEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FacebookProccesedEntries">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacebookProccesedEntries_UserCategory">
+          <End Role="UserCategory" Type="smartGPSModel.UserCategory" Multiplicity="1" />
+          <End Role="FacebookProccesedEntries" Type="smartGPSModel.FacebookProccesedEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FacebookProccesedEntries">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacebookProfile_User">
+          <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
+          <End Role="FacebookProfile" Type="smartGPSModel.FacebookProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FacebookProfile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoursquareProfile_FoursquareProfile">
+          <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
+          <End Role="FoursquareProfile" Type="smartGPSModel.FoursquareProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FoursquareProfile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoursquareVenuesCategories_FoursquareVenuesCategories">
+          <End Role="FoursquareVenuesCategories" Type="smartGPSModel.FoursquareVenuesCategories" Multiplicity="0..1" />
+          <End Role="FoursquareVenuesCategories1" Type="smartGPSModel.FoursquareVenuesCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoursquareVenuesCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FoursquareVenuesCategories1">
+              <PropertyRef Name="Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoursquareVenuesCategories_UserCategory">
+          <End Role="UserCategory" Type="smartGPSModel.UserCategory" Multiplicity="1" />
+          <End Role="FoursquareVenuesCategories" Type="smartGPSModel.FoursquareVenuesCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FoursquareVenuesCategories">
+              <PropertyRef Name="UserCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GooglePlacesAPICategories_UserCategory">
+          <End Role="UserCategory" Type="smartGPSModel.UserCategory" Multiplicity="1" />
+          <End Role="GooglePlacesAPICategories" Type="smartGPSModel.GooglePlacesAPICategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GooglePlacesAPICategories">
+              <PropertyRef Name="UserCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_NotificationCategory">
+          <End Role="NotificationCategory" Type="smartGPSModel.NotificationCategory" Multiplicity="1" />
+          <End Role="Notifications" Type="smartGPSModel.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_User">
+          <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
+          <End Role="Notifications" Type="smartGPSModel.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Profile_User">
           <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
           <End Role="Profile" Type="smartGPSModel.Profile" Multiplicity="*" />
@@ -471,113 +1060,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UserHelper">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="LastLocationLatitude" />
-          <Property Type="Double" Name="LastLocationLongitude" />
-          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_UserHelper_User" FromRole="UserHelper" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_UserHelper_User">
-          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
-          <End Type="smartGPSModel.UserHelper" Role="UserHelper" Multiplicity="*" />
+        <Association Name="FK_Profile_UserCategory">
+          <End Role="UserCategory" Type="smartGPSModel.UserCategory" Multiplicity="0..1" />
+          <End Role="Profile" Type="smartGPSModel.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleItem_User">
+          <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
+          <End Role="RuleItemTable" Type="smartGPSModel.RuleItemTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserHelper">
+            <Dependent Role="RuleItemTable">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="NotificationCategory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Notifications" Relationship="smartGPSModel.FK_Notifications_NotificationCategory" FromRole="NotificationCategory" ToRole="Notifications" />
-        </EntityType>
-        <EntityType Name="Notifications">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Text" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Latitude" Nullable="false" />
-          <Property Type="Double" Name="Longitude" Nullable="false" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
-          <Property Type="String" Name="CategoryId" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Active" Nullable="false" />
-          <NavigationProperty Name="NotificationCategory" Relationship="smartGPSModel.FK_Notifications_NotificationCategory" FromRole="Notifications" ToRole="NotificationCategory" />
-          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Notifications_User" FromRole="Notifications" ToRole="User" />
-          <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
-          <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="ThumbsUp" Nullable="false" />
-          <Property Type="Int64" Name="ThumbsDown" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Notifications_NotificationCategory">
-          <End Type="smartGPSModel.NotificationCategory" Role="NotificationCategory" Multiplicity="1" />
-          <End Type="smartGPSModel.Notifications" Role="Notifications" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NotificationCategory">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Notifications">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Notifications_User">
-          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
-          <End Type="smartGPSModel.Notifications" Role="Notifications" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Notifications">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Travel">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DepartudeAddress" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="DepartureLatitude" Nullable="false" />
-          <Property Type="Double" Name="DepartudeLongitude" Nullable="false" />
-          <Property Type="String" Name="DestinationAddress" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="DestinationLatitude" Nullable="false" />
-          <Property Type="Double" Name="DestinationLongitude" Nullable="false" />
-          <Property Type="Double" Name="Time" Nullable="false" />
-          <Property Type="Double" Name="Distance" Nullable="false" />
-          <Property Type="String" Name="StatusId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TravelStatusCategory" Relationship="smartGPSModel.FK_Travel_TravelStatusCategory" FromRole="Travel" ToRole="TravelStatusCategory" />
-          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Travel_User" FromRole="Travel" ToRole="User" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
-          <Property Type="Double" Name="CurrentLatitude" Nullable="false" />
-          <Property Type="Double" Name="CurrentLongitude" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TravelStatusCategory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Type" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Travel" Relationship="smartGPSModel.FK_Travel_TravelStatusCategory" FromRole="TravelStatusCategory" ToRole="Travel" />
-        </EntityType>
         <Association Name="FK_Travel_TravelStatusCategory">
-          <End Type="smartGPSModel.TravelStatusCategory" Role="TravelStatusCategory" Multiplicity="1" />
-          <End Type="smartGPSModel.Travel" Role="Travel" Multiplicity="*" />
+          <End Role="TravelStatusCategory" Type="smartGPSModel.TravelStatusCategory" Multiplicity="1" />
+          <End Role="Travel" Type="smartGPSModel.Travel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TravelStatusCategory">
               <PropertyRef Name="Id" />
@@ -588,8 +1097,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Travel_User">
-          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
-          <End Type="smartGPSModel.Travel" Role="Travel" Multiplicity="*" />
+          <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
+          <End Role="Travel" Type="smartGPSModel.Travel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -599,148 +1108,250 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="FacebookProfile">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
-          <Property Type="String" Name="JsonPersonalDataAndFriends" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="JsonUserAndFriendsCheckins" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FacebookProfile_User" FromRole="FacebookProfile" ToRole="User" />
-          <Property Type="String" Name="JsonUserAndFriendsLikes" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_FacebookProfile_User">
-          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
-          <End Type="smartGPSModel.FacebookProfile" Role="FacebookProfile" Multiplicity="*" />
+        <Association Name="FK_UserHelper_User">
+          <End Role="User" Type="smartGPSModel.User" Multiplicity="1" />
+          <End Role="UserHelper" Type="smartGPSModel.UserHelper" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="FacebookProfile">
+            <Dependent Role="UserHelper">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="FoursquareProfile">
+        <EntityType Name="Edge">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="EdgeId" />
           </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserCheckins" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" FromRole="FoursquareProfile" ToRole="User" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="3" />
-          <Property Type="String" Name="Recent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="EdgeId" Nullable="false" />
+          <Property Type="Int32" Name="StartId" Nullable="false" />
+          <Property Type="Int32" Name="WayId" Nullable="false" />
+          <Property Type="Int32" Name="EndId" Nullable="false" />
+          <Property Type="Double" Name="EdgeLength" Nullable="false" />
+          <Property Type="Double" Name="EdgeHeading" Nullable="false" />
+          <NavigationProperty Name="Node" Relationship="smartGPSModel.FK_Edge_Node" FromRole="Edge" ToRole="Node" />
+          <NavigationProperty Name="Node1" Relationship="smartGPSModel.FK_Edge_Node1" FromRole="Edge" ToRole="Node" />
+          <NavigationProperty Name="Way" Relationship="smartGPSModel.FK_Edge_Way" FromRole="Edge" ToRole="Way" />
+          <NavigationProperty Name="Obstacle" Relationship="smartGPSModel.FK_Obstacle_Edge" FromRole="Edge" ToRole="Obstacle" />
         </EntityType>
-        <Association Name="FK_FoursquareProfile_FoursquareProfile">
-          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
-          <End Type="smartGPSModel.FoursquareProfile" Role="FoursquareProfile" Multiplicity="*" />
+        <EntityType Name="Node">
+          <Key>
+            <PropertyRef Name="NodeId" />
+          </Key>
+          <Property Type="Int32" Name="NodeId" Nullable="false" />
+          <Property Type="Double" Name="NodeLat" Nullable="false" />
+          <Property Type="Double" Name="NodeLong" Nullable="false" />
+          <Property Type="Int16" Name="NodeUsed" Nullable="false" />
+          <NavigationProperty Name="Edge" Relationship="smartGPSModel.FK_Edge_Node" FromRole="Node" ToRole="Edge" />
+          <NavigationProperty Name="Edge1" Relationship="smartGPSModel.FK_Edge_Node1" FromRole="Node" ToRole="Edge" />
+        </EntityType>
+        <EntityType Name="Way">
+          <Key>
+            <PropertyRef Name="WayId" />
+          </Key>
+          <Property Type="Int32" Name="WayId" Nullable="false" />
+          <Property Type="Int32" Name="WayTypeId" Nullable="false" />
+          <Property Type="Int32" Name="WayMaxSpeed" Nullable="false" />
+          <Property Type="Int16" Name="WayOneWay" Nullable="false" />
+          <Property Type="String" Name="WayName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WayRef" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Edge" Relationship="smartGPSModel.FK_Edge_Way" FromRole="Way" ToRole="Edge" />
+          <NavigationProperty Name="WayType" Relationship="smartGPSModel.FK_Way_WayType" FromRole="Way" ToRole="WayType" />
+        </EntityType>
+        <EntityType Name="WayType">
+          <Key>
+            <PropertyRef Name="WayTypeId" />
+          </Key>
+          <Property Type="Int32" Name="WayTypeId" Nullable="false" />
+          <Property Type="String" Name="WayTypeName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="WayTypeDefSpeed" Nullable="false" />
+          <Property Type="Int32" Name="WayTypeDefSpdRes" Nullable="false" />
+          <NavigationProperty Name="Way" Relationship="smartGPSModel.FK_Way_WayType" FromRole="WayType" ToRole="Way" />
+        </EntityType>
+        <Association Name="FK_Edge_Node">
+          <End Type="smartGPSModel.Node" Role="Node" Multiplicity="1" />
+          <End Type="smartGPSModel.Edge" Role="Edge" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
+            <Principal Role="Node">
+              <PropertyRef Name="NodeId" />
             </Principal>
-            <Dependent Role="FoursquareProfile">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="Edge">
+              <PropertyRef Name="StartId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="FacebookProccesedEntries">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sportsman" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LikesBooks" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LikesMusic" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LikesSports" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LikesTravelling" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LikesMovies" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="Category" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_FacebookProccesedEntries_User" FromRole="FacebookProccesedEntries" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_FacebookProccesedEntries_User">
-          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
-          <End Type="smartGPSModel.FacebookProccesedEntries" Role="FacebookProccesedEntries" Multiplicity="*" />
+        <Association Name="FK_Edge_Node1">
+          <End Type="smartGPSModel.Node" Role="Node" Multiplicity="1" />
+          <End Type="smartGPSModel.Edge" Role="Edge" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
+            <Principal Role="Node">
+              <PropertyRef Name="NodeId" />
             </Principal>
-            <Dependent Role="FacebookProccesedEntries">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="Edge">
+              <PropertyRef Name="EndId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CondSetTable">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="CondSupCount" Nullable="false" />
-          <Property Type="String" Name="CondtionsJson" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
-          <NavigationProperty Name="RuleItemTable" Relationship="smartGPSModel.FK_RuleItem_CondSet" FromRole="CondSetTable" ToRole="RuleItemTable" />
-        </EntityType>
-        <EntityType Name="RuleItemTable">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="RuleSupCount" Nullable="false" />
-          <Property Type="String" Name="ClassKey" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ClassValue" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="DataSize" Nullable="false" />
-          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CondSetId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
-          <NavigationProperty Name="CondSetTable" Relationship="smartGPSModel.FK_RuleItem_CondSet" FromRole="RuleItemTable" ToRole="CondSetTable" />
-          <NavigationProperty Name="User" Relationship="smartGPSModel.FK_RuleItem_User" FromRole="RuleItemTable" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_RuleItem_CondSet">
-          <End Type="smartGPSModel.CondSetTable" Role="CondSetTable" Multiplicity="1" />
-          <End Type="smartGPSModel.RuleItemTable" Role="RuleItemTable" Multiplicity="*" />
+        <Association Name="FK_Edge_Way">
+          <End Type="smartGPSModel.Way" Role="Way" Multiplicity="1" />
+          <End Type="smartGPSModel.Edge" Role="Edge" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CondSetTable">
-              <PropertyRef Name="Id" />
+            <Principal Role="Way">
+              <PropertyRef Name="WayId" />
             </Principal>
-            <Dependent Role="RuleItemTable">
-              <PropertyRef Name="CondSetId" />
+            <Dependent Role="Edge">
+              <PropertyRef Name="WayId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RuleItem_User">
-          <End Type="smartGPSModel.User" Role="User" Multiplicity="1" />
-          <End Type="smartGPSModel.RuleItemTable" Role="RuleItemTable" Multiplicity="*" />
+        <Association Name="FK_Way_WayType">
+          <End Type="smartGPSModel.WayType" Role="WayType" Multiplicity="1" />
+          <End Type="smartGPSModel.Way" Role="Way" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
+            <Principal Role="WayType">
+              <PropertyRef Name="WayTypeId" />
             </Principal>
-            <Dependent Role="RuleItemTable">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="Way">
+              <PropertyRef Name="WayTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CBATest">
+        <EntityType Name="Obstacle">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ObstacleId" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="A" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="B" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="C" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="ObstacleId" Nullable="false" />
+          <Property Type="Int32" Name="EdgeId" Nullable="false" />
+          <Property Type="String" Name="ObstacleType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="ObstacleNoPass" Nullable="false" />
+          <NavigationProperty Name="Edge" Relationship="smartGPSModel.FK_Obstacle_Edge" FromRole="Obstacle" ToRole="Edge" />
         </EntityType>
-        </Schema>
+        <Association Name="FK_Obstacle_Edge">
+          <End Type="smartGPSModel.Edge" Role="Edge" Multiplicity="1" />
+          <End Type="smartGPSModel.Obstacle" Role="Obstacle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edge">
+              <PropertyRef Name="EdgeId" />
+            </Principal>
+            <Dependent Role="Obstacle">
+              <PropertyRef Name="EdgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="smartGPSModelStoreContainer" CdmEntityContainer="smartGPSEntities">
+          <EntitySetMapping Name="CBATest">
+            <EntityTypeMapping TypeName="smartGPSModel.CBATest">
+              <MappingFragment StoreEntitySet="CBATest">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="C" ColumnName="C" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CondSetTable">
+            <EntityTypeMapping TypeName="smartGPSModel.CondSetTable">
+              <MappingFragment StoreEntitySet="CondSetTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CondSupCount" ColumnName="CondSupCount" />
+                <ScalarProperty Name="CondtionsJson" ColumnName="CondtionsJson" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacebookProccesedEntries">
+            <EntityTypeMapping TypeName="smartGPSModel.FacebookProccesedEntries">
+              <MappingFragment StoreEntitySet="FacebookProccesedEntries">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Sportsman" ColumnName="Sportsman" />
+                <ScalarProperty Name="LikesBooks" ColumnName="LikesBooks" />
+                <ScalarProperty Name="LikesMusic" ColumnName="LikesMusic" />
+                <ScalarProperty Name="LikesSports" ColumnName="LikesSports" />
+                <ScalarProperty Name="LikesTravelling" ColumnName="LikesTravelling" />
+                <ScalarProperty Name="LikesMovies" ColumnName="LikesMovies" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacebookProfile">
+            <EntityTypeMapping TypeName="smartGPSModel.FacebookProfile">
+              <MappingFragment StoreEntitySet="FacebookProfile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="JsonPersonalDataAndFriends" ColumnName="JsonPersonalDataAndFriends" />
+                <ScalarProperty Name="JsonUserAndFriendsCheckins" ColumnName="JsonUserAndFriendsCheckins" />
+                <ScalarProperty Name="JsonUserAndFriendsLikes" ColumnName="JsonUserAndFriendsLikes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoursquareProfile">
+            <EntityTypeMapping TypeName="smartGPSModel.FoursquareProfile">
+              <MappingFragment StoreEntitySet="FoursquareProfile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserCheckins" ColumnName="UserCheckins" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="Recent" ColumnName="Recent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoursquareVenuesCategories">
+            <EntityTypeMapping TypeName="smartGPSModel.FoursquareVenuesCategories">
+              <MappingFragment StoreEntitySet="FoursquareVenuesCategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="UserCategoryId" ColumnName="UserCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GooglePlacesAPICategories">
+            <EntityTypeMapping TypeName="smartGPSModel.GooglePlacesAPICategories">
+              <MappingFragment StoreEntitySet="GooglePlacesAPICategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UserCategoryId" ColumnName="UserCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationCategory">
+            <EntityTypeMapping TypeName="smartGPSModel.NotificationCategory">
+              <MappingFragment StoreEntitySet="NotificationCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="smartGPSModel.Notifications">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ThumbsUp" ColumnName="ThumbsUp" />
+                <ScalarProperty Name="ThumbsDown" ColumnName="ThumbsDown" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Profile">
             <EntityTypeMapping TypeName="smartGPSModel.Profile">
               <MappingFragment StoreEntitySet="Profile">
@@ -755,14 +1366,56 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RuleItemTable">
+            <EntityTypeMapping TypeName="smartGPSModel.RuleItemTable">
+              <MappingFragment StoreEntitySet="RuleItemTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RuleSupCount" ColumnName="RuleSupCount" />
+                <ScalarProperty Name="ClassKey" ColumnName="ClassKey" />
+                <ScalarProperty Name="ClassValue" ColumnName="ClassValue" />
+                <ScalarProperty Name="DataSize" ColumnName="DataSize" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CondSetId" ColumnName="CondSetId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Travel">
+            <EntityTypeMapping TypeName="smartGPSModel.Travel">
+              <MappingFragment StoreEntitySet="Travel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartudeAddress" ColumnName="DepartudeAddress" />
+                <ScalarProperty Name="DepartureLatitude" ColumnName="DepartureLatitude" />
+                <ScalarProperty Name="DepartudeLongitude" ColumnName="DepartudeLongitude" />
+                <ScalarProperty Name="DestinationAddress" ColumnName="DestinationAddress" />
+                <ScalarProperty Name="DestinationLatitude" ColumnName="DestinationLatitude" />
+                <ScalarProperty Name="DestinationLongitude" ColumnName="DestinationLongitude" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="CurrentLatitude" ColumnName="CurrentLatitude" />
+                <ScalarProperty Name="CurrentLongitude" ColumnName="CurrentLongitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TravelStatusCategory">
+            <EntityTypeMapping TypeName="smartGPSModel.TravelStatusCategory">
+              <MappingFragment StoreEntitySet="TravelStatusCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="smartGPSModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="FoursquareId" ColumnName="FoursquareId" />
-                <ScalarProperty Name="GcmId" ColumnName="GcmId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -770,148 +1423,81 @@
                 <ScalarProperty Name="FacebookId" ColumnName="FacebookId" />
                 <ScalarProperty Name="TwitterId" ColumnName="TwitterId" />
                 <ScalarProperty Name="DateLastLogin" ColumnName="DateLastLogin" />
+                <ScalarProperty Name="GcmId" ColumnName="GcmId" />
+                <ScalarProperty Name="FoursquareId" ColumnName="FoursquareId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCategory">
+            <EntityTypeMapping TypeName="smartGPSModel.UserCategory">
+              <MappingFragment StoreEntitySet="UserCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserHelper">
             <EntityTypeMapping TypeName="smartGPSModel.UserHelper">
               <MappingFragment StoreEntitySet="UserHelper">
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="LastLocationLongitude" ColumnName="LastLocationLongitude" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="LastLocationLatitude" ColumnName="LastLocationLatitude" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NotificationCategory">
-            <EntityTypeMapping TypeName="smartGPSModel.NotificationCategory">
-              <MappingFragment StoreEntitySet="NotificationCategory">
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Notifications">
-            <EntityTypeMapping TypeName="smartGPSModel.Notifications">
-              <MappingFragment StoreEntitySet="Notifications">
-                <ScalarProperty Name="ThumbsDown" ColumnName="ThumbsDown" />
-                <ScalarProperty Name="ThumbsUp" ColumnName="ThumbsUp" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LastLocationLongitude" ColumnName="LastLocationLongitude" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Travel">
-            <EntityTypeMapping TypeName="smartGPSModel.Travel">
-              <MappingFragment StoreEntitySet="Travel">
-                <ScalarProperty Name="CurrentLongitude" ColumnName="CurrentLongitude" />
-                <ScalarProperty Name="CurrentLatitude" ColumnName="CurrentLatitude" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="Distance" ColumnName="Distance" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="DestinationLongitude" ColumnName="DestinationLongitude" />
-                <ScalarProperty Name="DestinationLatitude" ColumnName="DestinationLatitude" />
-                <ScalarProperty Name="DestinationAddress" ColumnName="DestinationAddress" />
-                <ScalarProperty Name="DepartudeLongitude" ColumnName="DepartudeLongitude" />
-                <ScalarProperty Name="DepartureLatitude" ColumnName="DepartureLatitude" />
-                <ScalarProperty Name="DepartudeAddress" ColumnName="DepartudeAddress" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <EntitySetMapping Name="Edge">
+            <EntityTypeMapping TypeName="smartGPSModel.Edge">
+              <MappingFragment StoreEntitySet="Edge">
+                <ScalarProperty Name="EdgeHeading" ColumnName="EdgeHeading" />
+                <ScalarProperty Name="EdgeLength" ColumnName="EdgeLength" />
+                <ScalarProperty Name="EndId" ColumnName="EndId" />
+                <ScalarProperty Name="WayId" ColumnName="WayId" />
+                <ScalarProperty Name="StartId" ColumnName="StartId" />
+                <ScalarProperty Name="EdgeId" ColumnName="EdgeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TravelStatusCategory">
-            <EntityTypeMapping TypeName="smartGPSModel.TravelStatusCategory">
-              <MappingFragment StoreEntitySet="TravelStatusCategory">
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <EntitySetMapping Name="Node">
+            <EntityTypeMapping TypeName="smartGPSModel.Node">
+              <MappingFragment StoreEntitySet="Node">
+                <ScalarProperty Name="NodeUsed" ColumnName="NodeUsed" />
+                <ScalarProperty Name="NodeLong" ColumnName="NodeLong" />
+                <ScalarProperty Name="NodeLat" ColumnName="NodeLat" />
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FacebookProfile">
-            <EntityTypeMapping TypeName="smartGPSModel.FacebookProfile">
-              <MappingFragment StoreEntitySet="FacebookProfile">
-                <ScalarProperty Name="JsonUserAndFriendsLikes" ColumnName="JsonUserAndFriendsLikes" />
-                <ScalarProperty Name="JsonUserAndFriendsCheckins" ColumnName="JsonUserAndFriendsCheckins" />
-                <ScalarProperty Name="JsonPersonalDataAndFriends" ColumnName="JsonPersonalDataAndFriends" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <EntitySetMapping Name="Way">
+            <EntityTypeMapping TypeName="smartGPSModel.Way">
+              <MappingFragment StoreEntitySet="Way">
+                <ScalarProperty Name="WayRef" ColumnName="WayRef" />
+                <ScalarProperty Name="WayName" ColumnName="WayName" />
+                <ScalarProperty Name="WayOneWay" ColumnName="WayOneWay" />
+                <ScalarProperty Name="WayMaxSpeed" ColumnName="WayMaxSpeed" />
+                <ScalarProperty Name="WayTypeId" ColumnName="WayTypeId" />
+                <ScalarProperty Name="WayId" ColumnName="WayId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FoursquareProfile">
-            <EntityTypeMapping TypeName="smartGPSModel.FoursquareProfile">
-              <MappingFragment StoreEntitySet="FoursquareProfile">
-                <ScalarProperty Name="Recent" ColumnName="Recent" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="UserCheckins" ColumnName="UserCheckins" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <EntitySetMapping Name="WayType">
+            <EntityTypeMapping TypeName="smartGPSModel.WayType">
+              <MappingFragment StoreEntitySet="WayType">
+                <ScalarProperty Name="WayTypeDefSpdRes" ColumnName="WayTypeDefSpdRes" />
+                <ScalarProperty Name="WayTypeDefSpeed" ColumnName="WayTypeDefSpeed" />
+                <ScalarProperty Name="WayTypeName" ColumnName="WayTypeName" />
+                <ScalarProperty Name="WayTypeId" ColumnName="WayTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FacebookProccesedEntries">
-            <EntityTypeMapping TypeName="smartGPSModel.FacebookProccesedEntries">
-              <MappingFragment StoreEntitySet="FacebookProccesedEntries">
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="LikesMovies" ColumnName="LikesMovies" />
-                <ScalarProperty Name="LikesTravelling" ColumnName="LikesTravelling" />
-                <ScalarProperty Name="LikesSports" ColumnName="LikesSports" />
-                <ScalarProperty Name="LikesMusic" ColumnName="LikesMusic" />
-                <ScalarProperty Name="LikesBooks" ColumnName="LikesBooks" />
-                <ScalarProperty Name="Sportsman" ColumnName="Sportsman" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CondSetTable">
-            <EntityTypeMapping TypeName="smartGPSModel.CondSetTable">
-              <MappingFragment StoreEntitySet="CondSetTable">
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CondtionsJson" ColumnName="CondtionsJson" />
-                <ScalarProperty Name="CondSupCount" ColumnName="CondSupCount" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RuleItemTable">
-            <EntityTypeMapping TypeName="smartGPSModel.RuleItemTable">
-              <MappingFragment StoreEntitySet="RuleItemTable">
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CondSetId" ColumnName="CondSetId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="DataSize" ColumnName="DataSize" />
-                <ScalarProperty Name="ClassValue" ColumnName="ClassValue" />
-                <ScalarProperty Name="ClassKey" ColumnName="ClassKey" />
-                <ScalarProperty Name="RuleSupCount" ColumnName="RuleSupCount" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CBATest">
-            <EntityTypeMapping TypeName="smartGPSModel.CBATest">
-              <MappingFragment StoreEntitySet="CBATest">
-                <ScalarProperty Name="C" ColumnName="C" />
-                <ScalarProperty Name="B" ColumnName="B" />
-                <ScalarProperty Name="A" ColumnName="A" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <EntitySetMapping Name="Obstacle">
+            <EntityTypeMapping TypeName="smartGPSModel.Obstacle">
+              <MappingFragment StoreEntitySet="Obstacle">
+                <ScalarProperty Name="ObstacleNoPass" ColumnName="ObstacleNoPass" />
+                <ScalarProperty Name="ObstacleType" ColumnName="ObstacleType" />
+                <ScalarProperty Name="EdgeId" ColumnName="EdgeId" />
+                <ScalarProperty Name="ObstacleId" ColumnName="ObstacleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

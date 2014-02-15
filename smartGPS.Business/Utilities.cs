@@ -75,14 +75,10 @@ namespace smartGPS.Business
 
         public static double calculateDistance(double departureLatitude, double departureLongitude, double destinationLatitude, double destinationLongitude)
         {
-            SmartLocation departure = new SmartLocation();
-            departure.Latitude = departureLatitude;
-            departure.Longitude = departureLongitude;
-
-            SmartLocation destination = new SmartLocation();
-            destination.Latitude = destinationLatitude;
-            destination.Longitude = destinationLongitude;
-
+            SmartLocation departure = new SmartLocation(departureLatitude, departureLongitude);
+          
+            SmartLocation destination = new SmartLocation(destinationLatitude, destinationLongitude);
+      
             Haversine haversine = new Haversine();
             return haversine.Distance(departure, destination, Haversine.DistanceType.Kilometers);
         }
@@ -100,6 +96,18 @@ namespace smartGPS.Business
                 {
                     return firstPair.Value.CompareTo(nextPair.Value);
                 }
+            );
+            list.Reverse();
+            return list;
+        }
+
+        public static List<KeyValuePair<String, double>> returnSortedKeyValuePair(Dictionary<String, double> dictionary)
+        {
+            List<KeyValuePair<String, double>> list = dictionary.ToList();
+            list.Sort((firstPair, nextPair) =>
+            {
+                return firstPair.Value.CompareTo(nextPair.Value);
+            }
             );
             list.Reverse();
             return list;

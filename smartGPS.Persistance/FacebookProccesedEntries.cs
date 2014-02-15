@@ -27,5 +27,6 @@ namespace smartGPS.Persistance
         public int Category { get; set; }
     
         public virtual User User { get; set; }
+        public virtual UserCategory UserCategory { get; set; }
     }
 }

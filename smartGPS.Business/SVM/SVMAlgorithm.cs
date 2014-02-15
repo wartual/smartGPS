@@ -19,6 +19,7 @@ namespace smartGPS.Business.SVM
         private int[] outputs { get; set; }
         private int[] testOutputs { get; set; }
         private MulticlassSupportVectorMachine machine { get; set; }
+        private KernelSupportVectorMachine ksvm { get; set; }
         private int[] predicted { get; set; }
 
         public SVMAlgorithm(String userId)
@@ -67,7 +68,7 @@ namespace smartGPS.Business.SVM
             prepareData(false);
          
             // Create a new machine with a polynomial kernel and six inputs 
-            KernelSupportVectorMachine ksvm = new KernelSupportVectorMachine(new Gaussian(), 6);
+            ksvm = new KernelSupportVectorMachine(new Gaussian(), 6);
 
             // Create the learning algorithm with the given inputs and outputs
             var smo = new SequentialMinimalOptimization(machine: ksvm, inputs: inputs, outputs: outputs)
@@ -85,15 +86,6 @@ namespace smartGPS.Business.SVM
             catch (ConvergenceException)
             {
                 converged = false;
-            }
-
-            int trueCategorized = 0;
-            for(int i = 0; i< inputs.Length; i++)
-            {
-                testOutputs[i] = System.Math.Sign(ksvm.Compute(inputs[i]));
-
-                if (testOutputs[i] == outputs[i])
-                    trueCategorized++;
             }
 
             return;
@@ -131,22 +123,48 @@ namespace smartGPS.Business.SVM
             }
         }
 
-        public void test(int numberOfClass)
+        public ConfusionMatrix test(int numberOfClass, Boolean isMultiClass)
         {
-            runMultiClassAlgorithm(numberOfClass);
-
+            if (isMultiClass)
+            {
+                runMultiClassAlgorithm(numberOfClass);
+            }
+            else
+            {
+                runBinaryClassAlgorithm();
+            }
+            
             IEnumerable<FacebookProccesedEntries> entries = FacebookDao.ProccessedFacebookEntries_getAllByUser(userId);
             int i = 0;
             predicted = new int[199];
             foreach (FacebookProccesedEntries entry in entries)
             {
                 outputs[i] = entry.Category;
-                predicted[i] = System.Math.Sign(machine.Compute(inputs[i]));
+                if (isMultiClass)
+                    predicted[i] = System.Math.Sign(machine.Compute(inputs[i]));
+                else
+                    predicted[i] = System.Math.Sign(ksvm.Compute(inputs[i]));
                 i++;
             }
 
             ConfusionMatrix matrix = new ConfusionMatrix(predicted, outputs, 1, 0);
-            return;
+            return matrix;
+        }
+
+        public int clasify(FacebookProccesedEntries entry, Boolean isMultiClass)
+        {
+            double[] proccessedInputs = new double[6];
+            proccessedInputs[0] = Utilities.mapWordToStatusEnum(entry.LikesBooks);
+            proccessedInputs[1] = Utilities.mapWordToStatusEnum(entry.LikesMovies);
+            proccessedInputs[2] = Utilities.mapWordToStatusEnum(entry.LikesMusic);
+            proccessedInputs[3] = Utilities.mapWordToStatusEnum(entry.LikesSports);
+            proccessedInputs[4] = Utilities.mapWordToStatusEnum(entry.LikesTravelling);
+            proccessedInputs[5] = Utilities.mapWordToStatusEnum(entry.Sportsman);
+
+            if (isMultiClass)
+                return System.Math.Sign(machine.Compute(proccessedInputs));
+            else
+                return System.Math.Sign(ksvm.Compute(proccessedInputs));
         }
     }
 }

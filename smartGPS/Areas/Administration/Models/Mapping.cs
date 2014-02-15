@@ -23,7 +23,7 @@ namespace smartGPS.Areas.Administration.Models
             model.DateOfBirth = profile.DateOfBirth;
             model.Gender = profile.Gender;
             model.PostalOffice = profile.PostalOffice;
-
+            model.Category = profile.UserCategory.Category;
             return model;
         }
     }

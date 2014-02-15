@@ -131,6 +131,14 @@ namespace smartGPS.Areas.Dashboard.Controllers
             return View();
         }
 
+        public ActionResult CategorizeUser(ProfileModel model)
+        {
+            UserCategory category = UserAdministration.clasifyUser(User.Identity.Name);
+            model.Category = category.Category;
+
+            return RedirectToAction("Index");
+        }
+
         #region Utils
 
         private FacebookStatisticsModel prepareFacebookStatisticsModel(FacebookStatistics statistics)

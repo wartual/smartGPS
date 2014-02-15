@@ -4,32 +4,50 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dd0553e32a5e4251827f9d5125e19a51" Name="Diagram1">
-        <EntityTypeShape EntityType="smartGPSModel.Profile" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.User" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+      <Diagram DiagramId="b8565000457740c99d78b0deffbcdf09" Name="Diagram1">
+        <EntityTypeShape EntityType="smartGPSModel.CBATest" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.CondSetTable" Width="1.5" PointX="3.75" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.FacebookProccesedEntries" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.FacebookProfile" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.FoursquareProfile" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.FoursquareVenuesCategories" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.GooglePlacesAPICategories" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.NotificationCategory" Width="1.5" PointX="3.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.Notifications" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.Profile" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.RuleItemTable" Width="1.5" PointX="6" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.Travel" Width="1.5" PointX="9" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.TravelStatusCategory" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.User" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.UserCategory" Width="1.5" PointX="3.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartGPSModel.UserHelper" Width="1.5" PointX="3" PointY="41.625" IsExpanded="true" />
+        <AssociationConnector Association="smartGPSModel.FK_RuleItem_CondSet" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_FacebookProccesedEntries_User" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_FacebookProccesedEntries_UserCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_FacebookProfile_User" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_FoursquareVenuesCategories_FoursquareVenuesCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_FoursquareVenuesCategories_UserCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_GooglePlacesAPICategories_UserCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_Notifications_NotificationCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_Notifications_User" ManuallyRouted="false" />
         <AssociationConnector Association="smartGPSModel.FK_Profile_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="smartGPSModel.UserHelper" Width="1.5" PointX="2.6166796659197096" PointY="11.886430224350853" />
-        <AssociationConnector Association="smartGPSModel.FK_UserHelper_User" />
-        <EntityTypeShape EntityType="smartGPSModel.NotificationCategory" Width="1.5" PointX="10.096277072139214" PointY="18.889437624667508" />
-        <EntityTypeShape EntityType="smartGPSModel.Notifications" Width="1.5" PointX="6.3842029079721332" PointY="2.7761572463326889" />
-        <AssociationConnector Association="smartGPSModel.FK_Notifications_NotificationCategory" />
-        <AssociationConnector Association="smartGPSModel.FK_Notifications_User" />
-        <EntityTypeShape EntityType="smartGPSModel.Travel" Width="1.5" PointX="4.1986536570818416" PointY="31.11702136654268" />
-        <EntityTypeShape EntityType="smartGPSModel.TravelStatusCategory" Width="1.5" PointX="1.215032067715671" PointY="25.973020610386982" />
-        <AssociationConnector Association="smartGPSModel.FK_Travel_TravelStatusCategory" />
-        <AssociationConnector Association="smartGPSModel.FK_Travel_User" />
-        <EntityTypeShape EntityType="smartGPSModel.FacebookProfile" Width="1.5" PointX="9.2114468334296014" PointY="14.973250276862295" />
-        <AssociationConnector Association="smartGPSModel.FK_FacebookProfile_User" />
-        <EntityTypeShape EntityType="smartGPSModel.FoursquareProfile" Width="1.5" PointX="8.436365692148156" PointY="28.887825949530967" />
-        <AssociationConnector Association="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" />
-        <EntityTypeShape EntityType="smartGPSModel.FacebookProccesedEntries" Width="1.5" PointX="3.5516167653499249" PointY="2.7882128370870896" />
-        <AssociationConnector Association="smartGPSModel.FK_FacebookProccesedEntries_User" />
-        <EntityTypeShape EntityType="smartGPSModel.CondSetTable" Width="1.5" PointX="3.7459602094003746" PointY="24.717334565109262" />
-        <EntityTypeShape EntityType="smartGPSModel.RuleItemTable" Width="1.5" PointX="9.6539328217757543" PointY="29.153782202468154" />
-        <AssociationConnector Association="smartGPSModel.FK_RuleItem_CondSet" />
-        <AssociationConnector Association="smartGPSModel.FK_RuleItem_User" />
-        <EntityTypeShape EntityType="smartGPSModel.CBATest" Width="1.5" PointX="9.43796216763461" PointY="6.8128726067081429" />
-        </Diagram>
+        <AssociationConnector Association="smartGPSModel.FK_Profile_UserCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_RuleItem_User" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_Travel_TravelStatusCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_Travel_User" ManuallyRouted="false" />
+        <AssociationConnector Association="smartGPSModel.FK_UserHelper_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="smartGPSModel.Edge" Width="1.5" PointX="7.8428045938922111" PointY="23.205545182901222" />
+        <EntityTypeShape EntityType="smartGPSModel.Node" Width="1.5" PointX="4.0378316957679727" PointY="2.2001049230807017" />
+        <EntityTypeShape EntityType="smartGPSModel.Way" Width="1.5" PointX="6.3282514914536154" PointY="8.5171682576263184" />
+        <EntityTypeShape EntityType="smartGPSModel.WayType" Width="1.5" PointX="4.0643834751399162" PointY="29.111122025694289" />
+        <AssociationConnector Association="smartGPSModel.FK_Edge_Node" />
+        <AssociationConnector Association="smartGPSModel.FK_Edge_Node1" />
+        <AssociationConnector Association="smartGPSModel.FK_Edge_Way" />
+        <AssociationConnector Association="smartGPSModel.FK_Way_WayType" />
+        <EntityTypeShape EntityType="smartGPSModel.Obstacle" Width="1.5" PointX="11.527432635206466" PointY="12.868063381345973" />
+        <AssociationConnector Association="smartGPSModel.FK_Obstacle_Edge" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

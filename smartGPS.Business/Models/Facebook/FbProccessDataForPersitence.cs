@@ -43,6 +43,32 @@ namespace smartGPS.Business.Models.Facebook
             }
         }
 
+        public FacebookProccesedEntries createEntryForUser(FacebookProfileModel model, FacebookProfileModel checkins)
+        {
+            FacebookProccesedEntries entry = new FacebookProccesedEntries();
+
+            int likesSports;
+            if (analyzeSports(model) == (int)CommonModels.Status.True || analyzeFavoriteTeams(model) == (int)CommonModels.Status.True || analyzeFavoriteAthletes(model) == (int)CommonModels.Status.True)
+            {
+                likesSports = (int)CommonModels.Status.True;
+            }
+            else if (analyzeSports(model) == (int)CommonModels.Status.False && analyzeFavoriteTeams(model) == (int)CommonModels.Status.False && analyzeFavoriteAthletes(model) == (int)CommonModels.Status.False)
+                likesSports = (int)CommonModels.Status.False;
+            else
+                likesSports = (int)CommonModels.Status.Unknown;
+
+            entry.Id = Guid.NewGuid().ToString();
+            entry.DateCreated = DateTime.Now;
+            entry.LikesBooks = Utilities.mapStatusEnumToWord(analyzeBooks(model));
+            entry.LikesSports = Utilities.mapStatusEnumToWord(analyzeSports(model));
+            entry.LikesMusic = Utilities.mapStatusEnumToWord(analyzeMusic(model));
+            entry.LikesMovies = Utilities.mapStatusEnumToWord(analyzeVideos(model));
+            entry.LikesTravelling = Utilities.mapStatusEnumToWord(analyzeMyCheckins(checkins));
+            entry.Sportsman = Utilities.mapStatusEnumToWord(likesSports);
+           
+            return entry;
+        }
+
         public int analyzeMusic(FacebookProfileModel model)
         {
             if (model.UserMusic != null)
@@ -150,6 +176,41 @@ namespace smartGPS.Business.Models.Facebook
             {
                 return (int)CommonModels.Status.Unknown;
             }
+        }
+
+        private int analyzeMyCheckins(FacebookProfileModel model)
+        {
+            Dictionary<string, int> myCheckins = new Dictionary<string, int>();
+            CheckinData place;
+            int value;
+
+            if (model.UserCheckins != null)
+            {
+                for (int i = 0; i < model.UserCheckins.Checkins.Count(); i++)
+                {
+                    place = model.UserCheckins.Checkins.ElementAt(i);
+                    if (myCheckins.ContainsKey(place.Checkins.Name))
+                    {
+                        value = myCheckins[place.Checkins.Name];
+                        myCheckins[place.Checkins.Name] = value + 1;
+                    }
+                    else
+                    {
+                        myCheckins.Add(place.Checkins.Name, 1);
+                    }
+                }
+
+                if (myCheckins.Count >= 3)
+                {
+                    return (int)CommonModels.Status.True;
+                }
+                else
+                {
+                    return (int)CommonModels.Status.False;
+                }
+            }
+            else
+                return (int)CommonModels.Status.Unknown;
         }
 
         private int analyzeMyCheckins(int index)

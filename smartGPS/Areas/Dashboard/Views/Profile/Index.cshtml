@@ -15,6 +15,7 @@
     <li class="active"><a href="#home" data-toggle="tab">smartGPS profile</a></li>
     <li><a href="#facebook" data-toggle="tab">Facebook</a></li>
     <li><a href="#foursquare" data-toggle="tab">Foursquare</a></li>
+    <li><a href="#category" data-toggle="tab">Category</a></li>
 </ul>
 
 
@@ -95,7 +96,15 @@
                     @Html.ValidationMessageFor(m => m.PostalOffice)
                 </div>
             </div>
-    
+            
+             <div class="control-group">
+                @Html.LabelFor(m => m.Category, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Category, new { placeholder = "Category" })
+                    @Html.ValidationMessageFor(m => m.Category)
+                </div>
+            </div>
+            
             <div class="control-group">
                 <div class="controls">
                     <button class="btn btn-large btn-primary" type="submit">Save changes</button>
@@ -123,5 +132,8 @@
             @Html.Partial("_FoursquareStatistics", Model.FoursquareStatistics)
         }
     </div>
+     <div class="tab-pane" id="category">
+         @Html.Partial("_UserCategory", Model)        
+     </div>
 </div>
 

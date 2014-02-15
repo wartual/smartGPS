@@ -93,7 +93,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CBA\CBA.cs" />
+    <Compile Include="AStar\AStarEdge.cs" />
+    <Compile Include="AStar\AStarNode.cs" />
+    <Compile Include="AStar\SmartNode.cs" />
+    <Compile Include="AStar\PathSearch.cs" />
+    <Compile Include="AStar\PriorityQueue.cs" />
+    <Compile Include="CBA\CBAAlgorithm.cs" />
     <Compile Include="CBA\CBAManagement.cs" />
     <Compile Include="CBA\CBA_CB.cs" />
     <Compile Include="CBA\CBA_RG.cs" />
@@ -155,6 +160,7 @@
     <Compile Include="Models\Foursquare\FoursquareRecentCheckinsResponse.cs" />
     <Compile Include="Models\Foursquare\FoursquareSearchVenuesResponse.cs" />
     <Compile Include="Models\Foursquare\FoursquareStatistics.cs" />
+    <Compile Include="Models\Foursquare\FoursquareVenuesCategoriesResponse.cs" />
     <Compile Include="Models\Foursquare\FoursquareVenuesHistoryResponse.cs" />
     <Compile Include="Models\Foursquare\GroupItems.cs" />
     <Compile Include="Models\Foursquare\Groups.cs" />
@@ -171,6 +177,7 @@
     <Compile Include="Models\Foursquare\SuggestedFilters.cs" />
     <Compile Include="Models\Foursquare\Tips.cs" />
     <Compile Include="Models\Foursquare\User.cs" />
+    <Compile Include="Models\Foursquare\VenueCategories.cs" />
     <Compile Include="Models\Foursquare\Venues.cs" />
     <Compile Include="Models\Foursquare\ResponseVenues.cs" />
     <Compile Include="Models\GoogleModels\AddressComponents.cs" />

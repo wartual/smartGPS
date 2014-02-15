@@ -19,6 +19,7 @@ namespace smartGPS.Business.ExternalServices
         public static String FOURSQUARE_AUTH_TOKEN_URL = "https://foursquare.com/oauth2/access_token?client_id=";
         public static String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?";
         public static String ROAD_CONDITIONS_URL = "http://opendata.si/promet/events/";
+        public static String FOURSQUARE_VENUES_CATEGORY = "https://api.foursquare.com/v2/venues/categories?oauth_token=";
 
         public static String getMapDirectionsFormattedUrl(double startLatitude, double startLongitude, double endLatitude, double endLongitude, String mode)
         {
@@ -71,6 +72,11 @@ namespace smartGPS.Business.ExternalServices
         public static String getRoadConditionsUrl()
         {
             return ROAD_CONDITIONS_URL;
+        }
+
+        public static String getFoursquareVenuesCateogories(String authToken)
+        {
+            return FOURSQUARE_VENUES_CATEGORY + authToken + "&v=20131201";
         }
     }
 }

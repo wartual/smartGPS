@@ -2,28 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Accord.Statistics.Analysis;
 using smartGPS.Business.CBA.Models;
 using smartGPS.Business.ExternalServices;
 using smartGPS.Persistance;
 
 namespace smartGPS.Business.CBA
 {
-    public class CBA
+    public class CBAAlgorithm
     {
         private CBA_RG ruleGenerator{get; set;}
         private CBA_CB classificatorBuilder { get; set; }
         private String userId { get; set; }
         private double support { get; set; }
         private double confidence { get; set; }
+        private int[] predicted { get; set; }
+        private int[] expected { get; set; }
 
-        public CBA(String userId)
+        public CBAAlgorithm(String userId)
         {
             this.userId = userId;
             this.support = Config.CBA_DEFAULT_SUPPORT;
             this.confidence = Config.CBA_DEFAULT_CONFIDENCE;
         }
 
-        public CBA(String userId, double support, double confidence)
+        public CBAAlgorithm(String userId, double support, double confidence)
         {
             this.userId = userId;
             this.support = support;
@@ -36,46 +39,58 @@ namespace smartGPS.Business.CBA
             return ruleGenerator.getRulesSet();
         }
 
-        public String performClassification(FacebookProccesedEntries entry)
+        public String classify(FacebookProccesedEntries entry)
         {
-            List<RuleItem> ruleItems = ruleGenerator.getRulesSet();
-            classificatorBuilder = new CBA_CB(ruleItems, userId);
-            classificatorBuilder.generateClassificator();
-
-            return classificatorBuilder.classify(entry);
-            //return "xx";
+            return classificatorBuilder.classify(entry); 
         }
 
-        public String performClassification()
+        public ConfusionMatrix test(int classValue)
         {
+            String predictedValue;
+            predicted = new int[199];
+            expected = new int[199];
+
             List<RuleItem> ruleItems = generateRules();
             classificatorBuilder = new CBA_CB(ruleItems, userId);
             classificatorBuilder.generateClassificator();
-            Dictionary<FacebookProccesedEntries, String> test = new Dictionary<FacebookProccesedEntries, string>();
-            String classValue;
-            int categorized = 0;
-            int trueCategorized = 0;
 
             IEnumerable<FacebookProccesedEntries> entries = FacebookDao.ProccessedFacebookEntries_getAllByUser(userId);
-
+            int i = 0;
+            int notClassified = 0;
             foreach (FacebookProccesedEntries entry in entries)
             {
-                classValue = classificatorBuilder.classify(entry);
+                predictedValue = classificatorBuilder.classify(entry);
 
-                if(!classValue.Equals(""))
+                if (predictedValue.Equals(""))
                 {
-                    categorized++;
+                    predicted[i] = 0;
+                    notClassified++;
+                }
+                else
+                {
+                    if (Int16.Parse(predictedValue) == classValue)
+                    {
+                        predicted[i] = 1;
+                    }
+                    else
+                    {
+                        predicted[i] = 0;
+                    }
                 }
 
-                if(classValue.Equals(entry.Category.ToString()))
+                if (entry.Category == classValue)
                 {
-                    trueCategorized++;
+                    expected[i] = 1;
                 }
-
-                test.Add(entry, classValue);
+                else
+                {
+                    expected[i] = 0;
+                }
+                i++;
             }
 
-            return "";
+            ConfusionMatrix matrix = new ConfusionMatrix(predicted, expected, 1, 0);
+            return matrix;
         }
 
         public void generateClassificator(List<RuleItem> ruleItems)

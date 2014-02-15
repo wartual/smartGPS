@@ -25,18 +25,26 @@ namespace smartGPS.Persistance
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Profile> Profile { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<UserHelper> UserHelper { get; set; }
-        public DbSet<NotificationCategory> NotificationCategory { get; set; }
-        public DbSet<Notifications> Notifications { get; set; }
-        public DbSet<Travel> Travel { get; set; }
-        public DbSet<TravelStatusCategory> TravelStatusCategory { get; set; }
+        public DbSet<CBATest> CBATest { get; set; }
+        public DbSet<CondSetTable> CondSetTable { get; set; }
+        public DbSet<FacebookProccesedEntries> FacebookProccesedEntries { get; set; }
         public DbSet<FacebookProfile> FacebookProfile { get; set; }
         public DbSet<FoursquareProfile> FoursquareProfile { get; set; }
-        public DbSet<FacebookProccesedEntries> FacebookProccesedEntries { get; set; }
-        public DbSet<CondSetTable> CondSetTable { get; set; }
+        public DbSet<FoursquareVenuesCategories> FoursquareVenuesCategories { get; set; }
+        public DbSet<GooglePlacesAPICategories> GooglePlacesAPICategories { get; set; }
+        public DbSet<NotificationCategory> NotificationCategory { get; set; }
+        public DbSet<Notifications> Notifications { get; set; }
+        public DbSet<Profile> Profile { get; set; }
         public DbSet<RuleItemTable> RuleItemTable { get; set; }
-        public DbSet<CBATest> CBATest { get; set; }
+        public DbSet<Travel> Travel { get; set; }
+        public DbSet<TravelStatusCategory> TravelStatusCategory { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<UserCategory> UserCategory { get; set; }
+        public DbSet<UserHelper> UserHelper { get; set; }
+        public DbSet<Edge> Edge { get; set; }
+        public DbSet<Node> Node { get; set; }
+        public DbSet<Way> Way { get; set; }
+        public DbSet<WayType> WayType { get; set; }
+        public DbSet<Obstacle> Obstacle { get; set; }
     }
 }

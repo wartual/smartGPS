@@ -10,5 +10,15 @@ namespace smartGPS.Business.Custom
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
+
+        public SmartLocation(double latitude, double longitude)
+        {
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+        }
+
+        public SmartLocation()
+        {
+        }
     }
 }

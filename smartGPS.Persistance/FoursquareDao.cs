@@ -49,5 +49,37 @@ namespace smartGPS.Persistance
             profile.DateUpdated = DateTime.Now;
             db.SaveChanges();
         }
+
+        public static IEnumerable<FoursquareVenuesCategories> Categories_getAll()
+        {
+            return db.FoursquareVenuesCategories;
+        }
+
+        public static IEnumerable<FoursquareVenuesCategories> Categories_getAllByCategory(int categoryId)
+        {
+            return db.FoursquareVenuesCategories.Where(item => item.UserCategoryId == categoryId);
+        }
+
+        public static FoursquareVenuesCategories Categories_getById(String id)
+        {
+            return db.FoursquareVenuesCategories.Where(item => item.Id.Equals(id)).SingleOrDefault();
+        }
+
+        public static void Categories_addNew(String id, String category, int? categoryId, String parentId)
+        {
+            FoursquareVenuesCategories model = new FoursquareVenuesCategories();
+            model.Id = id;
+
+            if(categoryId.HasValue)
+                 model.UserCategoryId = categoryId.Value;
+
+            if(parentId != null)
+                model.Parent = parentId;
+
+            model.Category = category;
+            db.FoursquareVenuesCategories.Add(model);
+            db.SaveChanges();
+        }
+
     }
 }

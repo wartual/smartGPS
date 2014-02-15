@@ -62,8 +62,10 @@ namespace smartGPS.Persistance
         public static void ProccessedFacebookEntries_addNew(String id, String userId, String userName, String sportsman, String likesMusic, String likesBook, String likesMovies, String likesTravelling, String likesSports)
         {
             FacebookProccesedEntries model = new FacebookProccesedEntries();
+            IEnumerable<UserCategory> categories = UserCategoryDAO.getAll();
+
             Random random = new Random();
-            int category = random.Next(0, 3);
+            int category = random.Next(1, categories.Count());
             
             model.Id = id;
             model.LikesBooks = likesBook;
@@ -78,7 +80,16 @@ namespace smartGPS.Persistance
 
             model.Category = category;
             db.FacebookProccesedEntries.Add(model);
-            db.SaveChanges();
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                return;
+            }
+           
         }
 
         public static void ProccessedFacebookEntries_deleteAllForUser(String userId)

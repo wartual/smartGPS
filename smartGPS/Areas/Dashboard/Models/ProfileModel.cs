@@ -41,6 +41,9 @@ namespace smartGPS.Areas.Dashboard.Models
         [Display(Name = "Country")]
         public String Country { get; set; }
 
+        [Display(Name = "Category")]
+        public String Category { get; set; }
+
         [Display(Name = "Gender")]
         public Boolean? Gender { get; set; }
 

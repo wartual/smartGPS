@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using smartGPS.Business;
+using smartGPS.Business.AStar;
 using smartGPS.Business.CBA;
 using smartGPS.Business.DecisionTrees;
 using smartGPS.Business.KMeansAlgorithm;
@@ -22,18 +23,9 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         public ActionResult Index()
         {
-            CBA cba = new CBA(User.Identity.Name);
-
-            // empiricallz determined that 4 is the best k
-            KNNAlgorithm knn = new KNNAlgorithm(User.Identity.Name, 4);
-            DecisionTreesAlgorithm decisionTrees = new DecisionTreesAlgorithm(User.Identity.Name, 3, dummyModel());
-            SVMAlgorithm svm = new SVMAlgorithm(User.Identity.Name);
-            
-            //decisionTrees.test(2);
-            //cba.performClassification();
-           // knn.test(1);
-            svm.test(3);
-
+            PathSearch pathSearch = new PathSearch();
+           // pathSearch.search(46.056450999999996, 14.50807, 46.0744955, 14.48583009999993, 11);
+            pathSearch.search(46.05148532366063, 14.505992531776428, 46.05230064782611, 14.503664374351501, 11);
             return View();
         }
 

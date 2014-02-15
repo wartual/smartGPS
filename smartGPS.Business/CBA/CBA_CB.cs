@@ -362,7 +362,7 @@ namespace smartGPS.Business.CBA
                 tempValue = entry.Sportsman;
                 return true;
             }
-            else if (name.Equals("LikesBook"))
+            else if (name.Equals("LikesBooks"))
             {
                 tempKey = name;
                 tempValue = entry.LikesBooks;

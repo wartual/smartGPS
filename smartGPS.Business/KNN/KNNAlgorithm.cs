@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Accord.Math;
 using Accord.Statistics.Analysis;
 using MathNet.Numerics.Statistics;
 using smartGPS.Business.ExternalServices;
@@ -91,7 +92,7 @@ namespace smartGPS.Business.KNN
              return classValue;
          }
 
-         public void test(int classValue)
+         public ConfusionMatrix test(int classValue)
          {
              IEnumerable<FacebookProccesedEntries> entries = FacebookDao.ProccessedFacebookEntries_getAllByUser(userId);
              predicted = new int[199];
@@ -116,7 +117,7 @@ namespace smartGPS.Business.KNN
              }
 
              ConfusionMatrix matrix = new ConfusionMatrix(predicted, expected, 1, 0);
-             return;
+             return matrix;
          }
 
          #region Utils

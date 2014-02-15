@@ -354,6 +354,7 @@
     <Content Include="Areas\Dashboard\Views\ExternalServices\_FoursquareLogin.cshtml" />
     <Content Include="Areas\Dashboard\Views\Profile\_FacebookStatistics.cshtml" />
     <Content Include="Areas\Dashboard\Views\Profile\_FoursquareStatistics.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Profile\_UserCategory.cshtml" />
     <None Include="Properties\PublishProfiles\smartGPS.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-paginator.min.js" />

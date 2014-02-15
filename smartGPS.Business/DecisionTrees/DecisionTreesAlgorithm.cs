@@ -26,10 +26,9 @@ namespace smartGPS.Business.DecisionTrees
         private int[] predicted;
         private Expression<Func<double[], int>> expression { get; set; }
         
-        public DecisionTreesAlgorithm(String userId, int classCount, FacebookProccesedEntries element)
+        public DecisionTreesAlgorithm(String userId, int classCount)
         {
             this.userId = userId;
-            this.element = element;
             this.classCount = classCount;
         }
 
@@ -131,7 +130,7 @@ namespace smartGPS.Business.DecisionTrees
             }
         }
 
-        public void test(int classValue)
+        public ConfusionMatrix test(int classValue)
         {
             List<int> classIndex = new List<int>();
             outputs = new int[199];
@@ -164,7 +163,7 @@ namespace smartGPS.Business.DecisionTrees
             }
 
             ConfusionMatrix matrix = new ConfusionMatrix(predicted, outputs, 1, 0);
-            return;
+            return matrix;
         }
 
         private double[] mapElementToIntArray(FacebookProccesedEntries query)

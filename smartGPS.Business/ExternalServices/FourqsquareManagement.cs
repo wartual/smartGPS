@@ -38,6 +38,42 @@ namespace smartGPS.Business.ExternalServices
             }
         }
 
+        public static void getExploreCategories(String userId)
+        {
+            smartGPS.Persistance.User user = UserAdministration.getUserByUserId(userId);
+
+            if (user == null || user.FoursquareId == null)
+                return;
+            else if(FoursquareDao.Categories_getAll().Count() != 0)
+            {
+                return;
+            }
+            else
+            {
+                String url = APICalls.getFoursquareVenuesCateogories(user.FoursquareId);
+                FoursquareVenuesCategoriesResponse model;
+                WebRequest request = WebRequest.Create(url);
+
+                try
+                {
+                    using (WebResponse response = request.GetResponse())
+                    {
+                        using (Stream stream = response.GetResponseStream())
+                        {
+                            String responseString = new StreamReader(stream).ReadToEnd();
+                            model = JsonConvert.DeserializeObject<FoursquareVenuesCategoriesResponse>(responseString);
+                            persistVenueCategories(model);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    return;
+                }
+            }
+
+        }
+
         public static Boolean obtainAuthToken(String code, String userId)
         {
             String url = APICalls.getFoursquareAuthTokenWithCode(code);
@@ -53,6 +89,7 @@ namespace smartGPS.Business.ExternalServices
                         String responseString = new StreamReader(stream).ReadToEnd();
                         token = JsonConvert.DeserializeObject<FoursquareAuthToken>(responseString);
                         UserAdministration.updateFoursquareId(userId, token.AuthToken);
+                        getExploreCategories(userId);
                         return true;
                     }
                 }
@@ -92,7 +129,7 @@ namespace smartGPS.Business.ExternalServices
 
                     url = APICalls.getFoursquareRecentCheckins(user.FoursquareId);
                     request = WebRequest.Create(url);
-         
+
                     using (WebResponse response = request.GetResponse())
                     {
                         using (Stream stream = response.GetResponseStream())
@@ -153,6 +190,23 @@ namespace smartGPS.Business.ExternalServices
             else
             {
                 FoursquareDao.updateProfile(userId, jsonUserCheckins, jsonRecent);
+            }
+        }
+
+        public static void persistVenueCategories(FoursquareVenuesCategoriesResponse model)
+        {
+            foreach(Categories category in model.Categories.Categories)
+            {
+                FoursquareDao.Categories_addNew(category.Id, category.Name, 1, null);
+
+                if (category.ListCategories != null)
+                {
+                
+                    foreach(Categories subcategory in category.ListCategories)
+                    {
+                        FoursquareDao.Categories_addNew(subcategory.Id, subcategory.Name, 1, category.Id);
+                    }
+                }
             }
         }
     }

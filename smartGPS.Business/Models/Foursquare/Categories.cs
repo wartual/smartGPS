@@ -26,5 +26,8 @@ namespace smartGPS.Business.Models.Foursquare
         [JsonProperty("icon")]
         public Icon Icon { get; set; }
 
+        [JsonProperty("categories")]
+        public List<Categories> ListCategories { get; set; }
+
     }
 }

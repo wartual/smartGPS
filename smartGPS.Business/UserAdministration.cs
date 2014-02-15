@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using Accord.Statistics.Analysis;
+using Newtonsoft.Json;
+using smartGPS.Business.CBA;
+using smartGPS.Business.DecisionTrees;
 using smartGPS.Business.ExternalServices;
+using smartGPS.Business.KNN;
+using smartGPS.Business.Models.Facebook;
+using smartGPS.Business.SVM;
 using smartGPS.Persistance;
 using smartGPS.Persistance.Users;
 using smartGPS.Persistance.UsersFolder;
@@ -12,6 +19,11 @@ namespace smartGPS.Business
 {
     public class UserAdministration
     {
+
+        public static String CBA = "cba";
+        public static String DECISION_TREES = "decision_Trees";
+        public static String SVM = "svm";
+        public static String KNN = "knn";
 
         #region SignIn/Signup/SignOut
 
@@ -157,6 +169,70 @@ namespace smartGPS.Business
             }
         }
 
+        public static UserCategory clasifyUser(String userId)
+        {
+            IEnumerable<UserCategory> categories = UserCategoryDAO.getAll();
+            FacebookProccesedEntries proccessedEntry = getProccessedEntryForUser(userId);
+            User user = getUserByUserId(userId);
+            int defaultVariable = 1;
+            int category = 1;
+            bool isMultiClass = categories.Count() == 2;
+            Dictionary<String, double> accuracies = new Dictionary<string, double>();
+            List<KeyValuePair<String, double>> sortedAccuracy;
+
+            // empiricallz determined that 4 is the best k
+            CBAAlgorithm cba = new CBAAlgorithm(user.Id);
+            KNNAlgorithm knn = new KNNAlgorithm(user.Id, 4);
+            DecisionTreesAlgorithm decisionTrees = new DecisionTreesAlgorithm(user.Id, 3);
+            SVMAlgorithm svm = new SVMAlgorithm(user.Id);
+
+            ConfusionMatrix matrix;
+
+            matrix = cba.test(defaultVariable);
+            accuracies.Add(CBA, matrix.Accuracy);
+
+            matrix = knn.test(defaultVariable);
+            accuracies.Add(KNN, matrix.Accuracy);
+
+            matrix = decisionTrees.test(defaultVariable);
+            accuracies.Add(DECISION_TREES, matrix.Accuracy);
+
+            if (!isMultiClass)
+                matrix = svm.test(defaultVariable, false);
+            else
+                matrix = svm.test(defaultVariable, true);
+            accuracies.Add(SVM, matrix.Accuracy);
+
+            sortedAccuracy = Utilities.returnSortedKeyValuePair(accuracies);
+
+            // ovo mora bit pametnije
+            if(sortedAccuracy.First().Key.Equals(CBA))
+            {
+                String temp = cba.classify(proccessedEntry);
+                if (!temp.Equals(""))
+                    category = -1;
+                else
+                    category = Int16.Parse(temp);
+
+            }
+            else if(sortedAccuracy.First().Key.Equals(SVM))
+            {
+                category = svm.clasify(proccessedEntry, isMultiClass);
+            }
+            else if (sortedAccuracy.First().Key.Equals(DECISION_TREES))
+            {
+                category = decisionTrees.classify(proccessedEntry);
+            }
+            else if (sortedAccuracy.First().Key.Equals(KNN))
+            {
+                category = Int16.Parse(knn.runAlgorithm(proccessedEntry));
+            }
+
+            UsersDAO.updateUserCategory(user.Id, category);
+
+            return categories.Where(item => item.Id == category).SingleOrDefault();
+        }
+
         #endregion
 
 
@@ -167,8 +243,6 @@ namespace smartGPS.Business
             Profile model = UsersDAO.getProfileByUserId(userId);
             return model;
         }
-
-
 
         public static Boolean updateProfile(String userId, String username, String name, String surname, long? dateofBirth, Boolean? gender, String email,
                                                String phone, String address, String postalOffice, String country, DateTime? date)
@@ -186,6 +260,21 @@ namespace smartGPS.Business
 
             Boolean status = UsersDAO.updateProfile(userId, username, name, surname, dateOfBirthDB, gender, email, phone, address, postalOffice, country, date);
             return status;
+        }
+
+        #endregion
+
+        #region Utils
+
+        public static FacebookProccesedEntries getProccessedEntryForUser(String userId)
+        {
+            FacebookProfile profile = FacebookManagement.getFacebookProfileData(userId);
+            FacebookProfileModel basicInfo = JsonConvert.DeserializeObject<FacebookProfileModel>(profile.JsonPersonalDataAndFriends);
+            FacebookProfileModel checkins = JsonConvert.DeserializeObject<FacebookProfileModel>(profile.JsonUserAndFriendsCheckins);
+            FacebookProccesedEntries entry = new FacebookProccesedEntries();
+
+            FbProccessDataForPersitence proccessData = new FbProccessDataForPersitence(null, null, null);
+            return proccessData.createEntryForUser(basicInfo, checkins);
         }
 
         #endregion
