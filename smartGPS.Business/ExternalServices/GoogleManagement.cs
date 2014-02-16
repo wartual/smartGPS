@@ -134,5 +134,40 @@ namespace smartGPS.Business.ExternalServices
                 return null;
             }
         }
+
+        public static GooglePlacesResponse getDataFromGooglePlacesByFilter(String userId, double latitude, double longitude)
+        {
+            Profile profile = UserAdministration.getProfileByUserId(userId);
+
+            if (profile == null || profile.Category == null)
+            {
+                return null;
+            }
+            else
+            {
+                GooglePlacesResponse model = null;
+                String url = APICalls.getPlacesFormattedUrlByFilters(latitude, longitude, Config.PLACES_RADIUS, profile.Category.Value);
+
+                WebRequest request = WebRequest.Create(url);
+
+                try
+                {
+                    using (WebResponse response = request.GetResponse())
+                    {
+                        using (Stream stream = response.GetResponseStream())
+                        {
+                            String responseString = new StreamReader(stream).ReadToEnd();
+                            model = JsonConvert.DeserializeObject<GooglePlacesResponse>(responseString);
+                            return model;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+
+        }
     }
 }

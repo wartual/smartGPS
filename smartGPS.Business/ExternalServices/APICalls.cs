@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using smartGPS.Persistance;
 
 namespace smartGPS.Business.ExternalServices
 {
@@ -33,10 +34,51 @@ namespace smartGPS.Business.ExternalServices
                 + "&radius=" + radius.ToString().Replace(",", ".") + "&key=" +  Config.GOOGLE_SERVER_API;
         }
 
-        public static String getFoursquareExploreVenuesUrl(double latitude, double longitude, double radius, List<String> sections)
+        public static String getPlacesFormattedUrlByFilters(double startLatitude, double startLongitude, double radius, int category)
+        {
+            String filter = "";
+            IEnumerable<GooglePlacesAPICategories> categories = GooglePlacesAPIDao.Categories_getAllByCategory(category);
+            GooglePlacesAPICategories model;
+            for (int i = 0; i < categories.Count(); i++)
+            {
+                model = categories.ElementAt(i);
+                filter = filter + model.Type.Trim();
+                if (i != categories.Count() - 1)
+                {
+                    filter = filter + "|";
+                }
+            }
+            
+            return GOOGLE_PLACES + startLatitude.ToString().Replace(",", ".") + "," + startLongitude.ToString().Replace(",", ".") + "&types=" + filter 
+                + "&radius=" + radius.ToString().Replace(",", ".") + "&key=" + Config.GOOGLE_SERVER_API;
+        }
+
+        public static String getFoursquareExploreVenuesUrl(double latitude, double longitude, double radius)
         {
             return FOURSQUARE_EXPLORE_VENUES + "client_id=" + Config.FOURSQUARE_CLIENT_ID + "&client_secret=" + Config.FOURSQUARE_CLIENT_SECRET +
                  "&v=20131201&" + "ll=" + latitude.ToString().Replace(",",".") + "," + longitude.ToString().Replace(",",".") +  "&radius=" + radius;
+        }
+
+        public static String getFoursquareExploreVenuesUrlByCategory(double latitude, double longitude, double radius, int category)
+        {
+            String filter = "";
+            IEnumerable<FoursquareVenuesCategories> categories = FoursquareDao.Categories_getAllByCategory(category);
+            FoursquareVenuesCategories model;
+            for (int i = 0; i < categories.Count(); i++)
+            {
+                model = categories.ElementAt(i);
+                //if (model.Parent == null)
+                //{
+                    filter = filter + model.Id;
+                    if (i != categories.Count() - 1)
+                    {
+                        filter = filter + ",";
+                    }
+                //}
+            }
+
+            return FOURSQUARE_EXPLORE_VENUES + "client_id=" + Config.FOURSQUARE_CLIENT_ID + "&client_secret=" + Config.FOURSQUARE_CLIENT_SECRET +
+                 "&v=20131201&" + "ll=" + latitude.ToString().Replace(",", ".") + "," + longitude.ToString().Replace(",", ".") + "&radius=" + radius + "&categoryId=" + filter;
         }
 
         public static String getPlacesByTextFormattedUrl(String text, double radius)

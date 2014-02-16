@@ -16,7 +16,7 @@ namespace smartGPS.Business.ExternalServices
         public static FoursquareExploreVenueResponse getExploreVenues(double latitude, double longitude)
         {
             FoursquareExploreVenueResponse model = null;
-            String url = APICalls.getFoursquareExploreVenuesUrl(latitude, longitude, Config.PLACES_RADIUS, null);
+            String url = APICalls.getFoursquareExploreVenuesUrl(latitude, longitude, Config.PLACES_RADIUS);
 
             WebRequest request = WebRequest.Create(url);
 
@@ -35,6 +35,40 @@ namespace smartGPS.Business.ExternalServices
             catch (Exception e)
             {
                 return null;
+            }
+        }
+
+        public static FoursquareExploreVenueResponse getExploreVenuesByCategories(double latitude, double longitude, String userId)
+        {
+            Profile profile = UserAdministration.getProfileByUserId(userId);
+
+            if (profile == null || profile.Category == null)
+            {
+                return null;
+            }
+            else
+            {
+                FoursquareExploreVenueResponse model = null;
+                String url = APICalls.getFoursquareExploreVenuesUrlByCategory(latitude, longitude, Config.PLACES_RADIUS, profile.Category.Value);
+
+                WebRequest request = WebRequest.Create(url);
+
+                try
+                {
+                    using (WebResponse response = request.GetResponse())
+                    {
+                        using (Stream stream = response.GetResponseStream())
+                        {
+                            String responseString = new StreamReader(stream).ReadToEnd();
+                            model = JsonConvert.DeserializeObject<FoursquareExploreVenueResponse>(responseString);
+                            return model;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
             }
         }
 

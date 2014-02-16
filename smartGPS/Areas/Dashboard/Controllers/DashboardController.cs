@@ -8,8 +8,11 @@ using smartGPS.Business;
 using smartGPS.Business.AStar;
 using smartGPS.Business.CBA;
 using smartGPS.Business.DecisionTrees;
+using smartGPS.Business.ExternalServices;
 using smartGPS.Business.KMeansAlgorithm;
 using smartGPS.Business.KNN;
+using smartGPS.Business.Models.Foursquare;
+using smartGPS.Business.Models.GoogleModels;
 using smartGPS.Business.SVM;
 using smartGPS.Custom;
 using smartGPS.Persistance;
@@ -23,9 +26,10 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         public ActionResult Index()
         {
-            PathSearch pathSearch = new PathSearch();
+            //PathSearch pathSearch = new PathSearch();
            // pathSearch.search(46.056450999999996, 14.50807, 46.0744955, 14.48583009999993, 11);
-            pathSearch.search(46.05148532366063, 14.505992531776428, 46.05230064782611, 14.503664374351501, 11);
+            //pathSearch.search(46.05148532366063, 14.505992531776428, 46.05230064782611, 14.503664374351501, 11);
+            
             return View();
         }
 
