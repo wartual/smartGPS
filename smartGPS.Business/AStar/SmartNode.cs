@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace smartGPS.Business.AStar
 {
     public class SmartNode
     {
-
+        [JsonProperty("latitude")]
         public double latitude { get; set; }
+
+        [JsonProperty("longitude")]
         public double longitude { get; set; }
+
+        [JsonProperty("id")]
         public double id { get; set; }
 
         public SmartNode()

@@ -67,6 +67,32 @@ namespace smartGPS.Business
             return gcmIds;
         }
 
+        public static void sendNodes(string regId, string text, string travelModel)
+        {
+            var applicationID = Config.GOOGLE_SERVER_API;
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://android.googleapis.com/gcm/send");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            httpWebRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{\"registration_ids\":[\"" + regId + "\"]," +
+                            "\"data\": {\"nodes\": " + text + ", \"travelData\": " + travelModel + "}}";
+                Console.WriteLine(json);
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    Console.WriteLine(result);
+                }
+            }
+        }
+
         public static void sendNotification(string regId, string text)
         {
             var applicationID = Config.GOOGLE_SERVER_API ;

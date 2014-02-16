@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
+using Newtonsoft.Json;
 using smartGPS.Areas.API.Models;
 using smartGPS.Business;
+using smartGPS.Business.AStar;
+using smartGPS.Business.Models;
 using smartGPS.Models.UserAdministration;
 using smartGPS.Persistance;
 
@@ -168,7 +172,52 @@ namespace smartGPS.Controllers.API
             }
         }
 
+        [HttpPost]
+        [ActionName("newTravelWithDirections")]
+        public HttpResponseMessage newTravelWithDirections([FromBody] APITravel model)
+        {
+            try
+            {
+                if (UserAdministration.getUserByUserId(model.userId) == null)
+                {
+                    response.Status = SmartResponseType.RESULT_FAIL;
+                    response.Message = "User does not exists";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }   
+                else
+                {
+                    new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                        getDirections(model);
+                    }).Start();
+
+                    response.Status = SmartResponseType.RESULT_OK;
+                    response.Message = "Search has started!";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+            }
+            catch (Exception e)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                response.Status = SmartResponseType.RESULT_FAIL;
+                response.Message = "An error has occured!";
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
+            }
+        }
+
         #region Utils
+
+        private void getDirections(APITravel model)
+        {
+            PathSearch pathSearch = new PathSearch();
+            List<SmartNode> nodes = pathSearch.search(model.departureLatitude, model.departureLongitude, model.destinationLatitude, model.destinationLongitude, 11);
+
+            String json = JsonConvert.SerializeObject(nodes);
+            String travel = JsonConvert.SerializeObject(model);
+            User user = UserAdministration.getUserByUserId(model.userId);
+            NotificationsManager.sendNodes(user.GcmId, json, travel);
+        }
 
         private APITravel mapToAPITravel(Travel model)
         {
