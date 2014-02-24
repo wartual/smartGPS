@@ -46,11 +46,11 @@ namespace smartGPS.Business
         }
 
         public static String newTravel(String userId, String statusId, String destinationAddress, double currentLatitude, double currentLongitude, double destinationLatitude, double destinationLongitude,
-                                    String departureAddress, double departureLatitude, double departureLongitude, double time, double distance)
+                                    String departureAddress, double departureLatitude, double departureLongitude, double time, double distance, String directions)
         {
 
             String id = TravelDao.newTravel(Guid.NewGuid().ToString(), userId, statusId, destinationAddress, currentLatitude, currentLongitude, destinationLatitude, destinationLongitude, departureAddress, departureLatitude,
-                                        departureLongitude, time, distance, DateTime.Now, DateTime.Now);
+                                        departureLongitude, time, distance, directions, DateTime.Now, DateTime.Now);
             return id;
         }
 

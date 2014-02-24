@@ -5,6 +5,7 @@ using System.Web;
 using smartGPS.Business.Custom;
 using smartGPS.Business.ExternalServices;
 using smartGPS.Business.Models.OpetWeather;
+using smartGPS.Business.Models.PrometInfo;
 using smartGPS.Persistance;
 
 namespace smartGPS.Business.AStar
@@ -12,13 +13,19 @@ namespace smartGPS.Business.AStar
     public class PathSearch
     {
         private double rainCoefficient { get; set; }
+        private double trafficCoefficinet { get; set; }
+        private double trafficRadius { get; set; }
         private Haversine Haversine { get; set; }
         private List<WeatherResponse> weatherPoints { get; set; }
+        private Dictionary<long, Event> trafficEvents { get; set; }
 
         public PathSearch()
         {
             this.Haversine = new Haversine();
             this.weatherPoints = new List<WeatherResponse>();
+            this.rainCoefficient = 10;
+            this.trafficCoefficinet = 20;
+            this.trafficRadius = 0.2;
         }
 
         /**
@@ -45,6 +52,70 @@ namespace smartGPS.Business.AStar
                 currentLong = currentLong + vectorLong;
                 response = OpenWeatherManagement.getWeatherByGPS(currentLat, currentLong);
                 weatherPoints.Add(response);
+            }
+        }
+
+        private void prepareTrafficData(double startLat, double startLong, double endLat, double endLong)
+        {
+            double distance = Haversine.Distance(startLat, startLong, endLat, endLong, Custom.Haversine.DistanceType.Kilometers);
+            double currentLat = startLat;
+            double currentLong = startLong;
+            int trafficPointsNum = (int)Math.Ceiling(distance);
+
+            double vectorLat = (endLat - startLat) / trafficPointsNum;
+            double vectorLong = (endLong - startLong) / trafficPointsNum;
+            double tmpDistance;
+
+            trafficEvents = new Dictionary<long, Event>();
+
+            PrometInfoResponse response = PrometInfoManagement.getInfo();
+            IEnumerable<Event> activeEvents = response.Events.Event.Where(item => item.VeljavnostDoDateTime >= DateTime.Now);
+
+            foreach(Event trafficEvent in activeEvents)
+            {
+                 tmpDistance = Haversine.Distance(startLat, startLong, trafficEvent.Y_WGS, trafficEvent.X_WGS, Custom.Haversine.DistanceType.Kilometers);
+                 if (tmpDistance < trafficRadius && !trafficEvents.ContainsKey(trafficEvent.Id))
+                        trafficEvents.Add(trafficEvent.Id, trafficEvent);
+            }
+
+            for (int i = 0; i < trafficPointsNum; i++)
+            {
+                 currentLat = currentLat + vectorLat;
+                 currentLong = currentLong + vectorLong;
+
+                foreach(Event trafficEvent in activeEvents)
+                {
+                    tmpDistance = Haversine.Distance(currentLat, currentLong, trafficEvent.Y_WGS, trafficEvent.X_WGS, Custom.Haversine.DistanceType.Kilometers);
+                    if (tmpDistance < trafficRadius && !trafficEvents.ContainsKey(trafficEvent.Id))
+                        trafficEvents.Add(trafficEvent.Id, trafficEvent);
+                }
+            }
+        }
+
+        private Event getClosestTrafficEvent(double latitude, double longitude)
+        {
+            int minDistanceIndex = 0;
+            double distance = Double.MaxValue;
+            double tempDistance = 0;
+            KeyValuePair<long, Event> trafficEvent = new KeyValuePair<long,Event>();
+      
+            foreach(KeyValuePair<long, Event> tmpEvent in trafficEvents)
+            {
+                tempDistance = Math.Sqrt(Math.Pow((latitude - tmpEvent.Value.Y_WGS), 2) + Math.Pow((longitude - tmpEvent.Value.X_WGS), 2));
+                if (tempDistance < distance)
+                {
+                    distance = tempDistance;
+                    trafficEvent = tmpEvent;
+                }
+            }
+
+            if(trafficEvent.Value != null && Haversine.Distance(latitude, longitude, trafficEvent.Value.Y_WGS, trafficEvent.Value.X_WGS, Custom.Haversine.DistanceType.Kilometers) <= trafficRadius)
+            {
+                return trafficEvent.Value;
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -104,6 +175,8 @@ namespace smartGPS.Business.AStar
             List<SmartNode> returnList = new List<SmartNode>();
             int tempTime = 0;
             int weatherIndex = 0;
+            int trafficIndex;
+
             Dictionary<int, AStarNode> openSet = new Dictionary<int, AStarNode>();
             Dictionary<int, AStarNode> closedSet = new Dictionary<int, AStarNode>();
             PriorityQueue queue = new PriorityQueue();
@@ -111,10 +184,12 @@ namespace smartGPS.Business.AStar
             AStarNode startNode = closestAStarNode(startLat, startLong);
             AStarNode target = closestAStarNode(targetLat, targetLong);
             WeatherResponse weather;
+            Event roadEvent;
             double g;
             Boolean containsKey;
                       
             prepareWeatherData(startLat, startLong, targetLat, targetLong);
+            prepareTrafficData(startLat, startLong, targetLat, targetLong);
             startNode.h = Haversine.Distance(startNode.latitude, startNode.longitude, target.latitude, target.longitude, Custom.Haversine.DistanceType.Kilometers);
 
             openSet.Add(startNode.id, startNode);
@@ -142,11 +217,18 @@ namespace smartGPS.Business.AStar
                     weatherIndex = getClosestWeatherPoint(x.latitude, x.longitude);
                     weather = weatherPoints.ElementAt(weatherIndex);
 
+                    roadEvent = getClosestTrafficEvent(x.latitude, x.longitude);
+
+
                      foreach (AStarEdge neighbor in x.outEdges) 
                      {
                          // calculate cost
-                         if(weather.Rain != null && weather.Rain.Last3Hours == 0)
+                         if(weather.Rain != null && weather.Rain.Last3Hours != 0 && roadEvent != null)
+                             g = x.g + (3.6 * neighbor.length) / (neighbor.speedLimit) + rainCoefficient + trafficCoefficinet;
+                         else if(roadEvent == null && weather.Rain != null && weather.Rain.Last3Hours == 0)
                              g = x.g + (3.6 * neighbor.length) / (neighbor.speedLimit) + rainCoefficient;
+                        else if(weather.Rain == null && roadEvent != null)
+                             g = x.g + (3.6 * neighbor.length) / (neighbor.speedLimit) + trafficCoefficinet;
                          else
                              g = x.g + (3.6 * neighbor.length) / (neighbor.speedLimit);
 

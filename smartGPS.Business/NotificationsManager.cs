@@ -67,7 +67,7 @@ namespace smartGPS.Business
             return gcmIds;
         }
 
-        public static void sendNodes(string regId, string text, string travelModel)
+        public static void sendNodes(string regId, string travelId, string travelModel)
         {
             var applicationID = Config.GOOGLE_SERVER_API;
 
@@ -78,7 +78,7 @@ namespace smartGPS.Business
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 string json = "{\"registration_ids\":[\"" + regId + "\"]," +
-                            "\"data\": {\"nodes\": " + text + ", \"travelData\": " + travelModel + "}}";
+                            "\"data\": {\"travelId\": " + travelId + ", \"travelData\": " + travelModel + "}}";
                 Console.WriteLine(json);
                 streamWriter.Write(json);
                 streamWriter.Flush();

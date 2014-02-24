@@ -143,6 +143,7 @@
     <EntitySetMapping Name="Travel">
       <EntityTypeMapping TypeName="smartGPSModel.Travel">
         <MappingFragment StoreEntitySet="Travel">
+          <ScalarProperty Name="Directions" ColumnName="Directions" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="DepartudeAddress" ColumnName="DepartudeAddress" />
           <ScalarProperty Name="DepartureLatitude" ColumnName="DepartureLatitude" />

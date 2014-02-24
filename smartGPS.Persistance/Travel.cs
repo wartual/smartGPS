@@ -29,6 +29,7 @@ namespace smartGPS.Persistance
         public System.DateTime DateUpdated { get; set; }
         public double CurrentLatitude { get; set; }
         public double CurrentLongitude { get; set; }
+        public string Directions { get; set; }
     
         public virtual TravelStatusCategory TravelStatusCategory { get; set; }
         public virtual User User { get; set; }

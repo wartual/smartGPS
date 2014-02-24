@@ -288,6 +288,7 @@
           <Property Name="DateUpdated" Type="datetime" Nullable="false" />
           <Property Name="CurrentLatitude" Type="float" Nullable="false" />
           <Property Name="CurrentLongitude" Type="float" Nullable="false" />
+          <Property Name="Directions" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TravelStatusCategory">
           <Key>
@@ -875,6 +876,7 @@
           <Property Name="CurrentLongitude" Type="Double" Nullable="false" />
           <NavigationProperty Name="TravelStatusCategory" Relationship="smartGPSModel.FK_Travel_TravelStatusCategory" FromRole="Travel" ToRole="TravelStatusCategory" />
           <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Travel_User" FromRole="Travel" ToRole="User" />
+          <Property Type="String" Name="Directions" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TravelStatusCategory">
           <Key>
@@ -1387,6 +1389,7 @@
           <EntitySetMapping Name="Travel">
             <EntityTypeMapping TypeName="smartGPSModel.Travel">
               <MappingFragment StoreEntitySet="Travel">
+                <ScalarProperty Name="Directions" ColumnName="Directions" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DepartudeAddress" ColumnName="DepartudeAddress" />
                 <ScalarProperty Name="DepartureLatitude" ColumnName="DepartureLatitude" />

@@ -17,11 +17,15 @@ namespace smartGPS.Business.AStar
         [JsonProperty("id")]
         public double id { get; set; }
 
+        [JsonProperty("type")]
+        public String type;
+
         public SmartNode()
         {
             latitude = 0;
             longitude = 0;
             id = -1;
+            type = "regular";
         }
 
         public SmartNode(double _lat, double _long, double _id)
@@ -29,6 +33,23 @@ namespace smartGPS.Business.AStar
             latitude = _lat;
             longitude = _long;
             id = _id;
+            type = "regular";
+        }
+
+        public SmartNode(double _lat, double _long, string _type)
+        {
+            latitude = _lat;
+            longitude = _long;
+            id = -1;
+            type = _type;
+        }
+
+        public SmartNode(double _lat, double _long, double _id,  string _type)
+        {
+            latitude = _lat;
+            longitude = _long;
+            id = _id;
+            type = _type;
         }
     }
 }

@@ -9,13 +9,16 @@ using Newtonsoft.Json;
 using smartGPS.Areas.API.Models;
 using smartGPS.Business;
 using smartGPS.Business.AStar;
+using smartGPS.Business.Custom;
+using smartGPS.Business.ExternalServices;
 using smartGPS.Business.Models;
+using smartGPS.Business.Models.Foursquare;
 using smartGPS.Models.UserAdministration;
 using smartGPS.Persistance;
 
 namespace smartGPS.Controllers.API
 {
-    public class TravelController:BaseAPIController
+    public class TravelController : BaseAPIController
     {
 
         [HttpGet]
@@ -67,7 +70,7 @@ namespace smartGPS.Controllers.API
                 {
                     List<Travel> travels = TravelManager.getAllByUserId(userId);
                     List<APITravel> apiTravel = new List<APITravel>();
-                    foreach(var item in travels)
+                    foreach (var item in travels)
                     {
                         apiTravel.Add(mapToAPITravel(item));
                     }
@@ -157,7 +160,7 @@ namespace smartGPS.Controllers.API
                 else
                 {
                     String id = TravelManager.newTravel(model.userId, model.statusId, model.destinationAddress, model.currentLatitude, model.currentLongitude, model.destinationLatitude, model.destinationLongitude,
-                                                model.departureAddress, model.departureLatitude, model.departureLongitude, model.time, model.distance);
+                                                model.departureAddress, model.departureLatitude, model.departureLongitude, model.time, model.distance, null);
                     response.Status = SmartResponseType.RESULT_OK;
                     response.Message = id;
                     return Request.CreateResponse(HttpStatusCode.OK, response);
@@ -183,7 +186,7 @@ namespace smartGPS.Controllers.API
                     response.Status = SmartResponseType.RESULT_FAIL;
                     response.Message = "User does not exists";
                     return Request.CreateResponse(HttpStatusCode.OK, response);
-                }   
+                }
                 else
                 {
                     new Thread(() =>
@@ -211,12 +214,63 @@ namespace smartGPS.Controllers.API
         private void getDirections(APITravel model)
         {
             PathSearch pathSearch = new PathSearch();
+            Haversine haversine = new Haversine();
             List<SmartNode> nodes = pathSearch.search(model.departureLatitude, model.departureLongitude, model.destinationLatitude, model.destinationLongitude, 11);
+            SmartLocation lastLocation = new SmartLocation(0, 0);
 
-            String json = JsonConvert.SerializeObject(nodes);
+            List<SmartNode> directions = new List<SmartNode>();
+            directions.Add(nodes.ElementAt(0));
+            FoursquareExploreVenueResponse venues;
+            SmartNode node;
+        
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                node = nodes.ElementAt(i);
+                if (haversine.Distance(new SmartLocation(node.latitude, node.longitude), lastLocation, Haversine.DistanceType.Kilometers) > 2.5)
+                {
+                    venues = FourqsquareManagement.getExploreVenuesByCategories(node.latitude, node.longitude, model.userId, 100);
+                    foreach (GroupItems item in venues.Response.Groups.ElementAt(0).Items)
+                    {
+                        List<SmartNode> tmpNodes = pathSearch.search(directions.Last().latitude, directions.Last().longitude, item.Venue.Location.Latitude, item.Venue.Location.Longitude, 11);
+                        SmartNode venue = tmpNodes.Last();
+
+                        tmpNodes.RemoveAt(tmpNodes.Count() - 1);
+
+                        directions.AddRange(tmpNodes);
+                        directions.Add(new SmartNode(venue.latitude, venue.longitude, venue.id , "foursquare"));
+                        // directions.Add(new SmartNode(item.Venue.Location.Latitude, item.Venue.Location.Longitude, "foursquare"));
+                    }
+
+                    // return to next point
+                    List<SmartNode> returnPath;
+                    if (i + 1 < nodes.Count)
+                    {
+                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, nodes.ElementAt(i + 1).latitude, nodes.ElementAt(i + 1).longitude, 11);
+                    }
+                    else
+                    {
+                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, node.latitude, node.longitude, 11);
+
+                    }
+                    directions.AddRange(returnPath);
+
+                    lastLocation.Latitude = node.latitude;
+                    lastLocation.Longitude = node.longitude;
+                }
+                else
+                {
+                    directions.Add(node);
+                }
+            }
+
+            String json = JsonConvert.SerializeObject(directions);
             String travel = JsonConvert.SerializeObject(model);
-            User user = UserAdministration.getUserByUserId(model.userId);
-            NotificationsManager.sendNodes(user.GcmId, json, travel);
+
+            String id = TravelManager.newTravel(model.userId, model.statusId, model.destinationAddress, model.currentLatitude, model.currentLongitude, model.destinationLatitude, model.destinationLongitude,
+                                             model.departureAddress, model.departureLatitude, model.departureLongitude, model.time, model.distance, json);
+          
+            smartGPS.Persistance.User user = UserAdministration.getUserByUserId(model.userId);
+            NotificationsManager.sendNodes(user.GcmId, id, travel);
         }
 
         private APITravel mapToAPITravel(Travel model)

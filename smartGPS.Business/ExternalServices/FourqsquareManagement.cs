@@ -38,7 +38,7 @@ namespace smartGPS.Business.ExternalServices
             }
         }
 
-        public static FoursquareExploreVenueResponse getExploreVenuesByCategories(double latitude, double longitude, String userId)
+        public static FoursquareExploreVenueResponse getExploreVenuesByCategories(double latitude, double longitude, String userId, int radius)
         {
             Profile profile = UserAdministration.getProfileByUserId(userId);
 
@@ -49,7 +49,7 @@ namespace smartGPS.Business.ExternalServices
             else
             {
                 FoursquareExploreVenueResponse model = null;
-                String url = APICalls.getFoursquareExploreVenuesUrlByCategory(latitude, longitude, Config.PLACES_RADIUS, profile.Category.Value);
+                String url = APICalls.getFoursquareExploreVenuesUrlByCategory(latitude, longitude, radius, profile.Category.Value);
 
                 WebRequest request = WebRequest.Create(url);
 

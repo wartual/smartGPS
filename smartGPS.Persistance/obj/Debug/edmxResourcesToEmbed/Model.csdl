@@ -272,6 +272,7 @@
     <Property Name="CurrentLongitude" Type="Double" Nullable="false" />
     <NavigationProperty Name="TravelStatusCategory" Relationship="smartGPSModel.FK_Travel_TravelStatusCategory" FromRole="Travel" ToRole="TravelStatusCategory" />
     <NavigationProperty Name="User" Relationship="smartGPSModel.FK_Travel_User" FromRole="Travel" ToRole="User" />
+    <Property Type="String" Name="Directions" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="TravelStatusCategory">
     <Key>
