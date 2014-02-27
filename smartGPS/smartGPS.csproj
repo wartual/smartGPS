@@ -355,6 +355,7 @@
     <Content Include="Areas\Dashboard\Views\Profile\_FacebookStatistics.cshtml" />
     <Content Include="Areas\Dashboard\Views\Profile\_FoursquareStatistics.cshtml" />
     <Content Include="Areas\Dashboard\Views\Profile\_UserCategory.cshtml" />
+    <None Include="Properties\PublishProfiles\openLavbic.pubxml" />
     <None Include="Properties\PublishProfiles\smartGPS.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-paginator.min.js" />
@@ -394,7 +395,9 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Profile\profile.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

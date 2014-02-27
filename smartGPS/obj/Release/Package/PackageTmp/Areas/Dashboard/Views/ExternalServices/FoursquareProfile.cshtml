@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "FourqsquareProfile";
+}
+
+<legend>Foursquare profile</legend>
+
+@if (ViewBag.LoadData == true)
+{
+    @Html.Action("FoursquareLogin")
+}
+else
+{
+      using (Html.BeginForm("FoursquareProfile", "ExternalServices", FormMethod.Post, new { @class = "form-horizontal" }))
+      {
+           <button class="btn btn-large btn-primary" type="submit">Load data</button>
+      }
+}

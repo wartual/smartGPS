@@ -1,0 +1,25 @@
+﻿<script>
+    
+    $(document).ready(function () {
+
+        var clientId = "V22JFGZJFGU0N1EI2XPLWTCZMOMY5KPCMFZ0DUK05JPI0EVS";
+        var redirect_url = "http://localhost:5188/Dashboard/ExternalServices/FoursquareResponse";
+        var url = "https://foursquare.com/oauth2/authenticate?client_id=" + clientId+"&response_type=code&redirect_uri=" + redirect_url;
+
+        $.ajax({
+            url: ("Travel/GetAddressByGPSCoordinates"),
+            type: ("GET"),
+             success: function (data) {
+                 refresh();
+            }
+        });
+
+    });
+
+    function refresh(data) {
+    }
+        
+</script>
+
+
+

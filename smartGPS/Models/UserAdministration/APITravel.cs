@@ -52,5 +52,8 @@ namespace smartGPS.Models.UserAdministration
 
         [JsonProperty("dateUpdated")]
         public long dateUpdated { get; set; }
+
+        [JsonProperty("directions")]
+        public String directions { get; set; }
     }
 }

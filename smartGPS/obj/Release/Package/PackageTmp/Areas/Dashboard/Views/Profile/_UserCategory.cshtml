@@ -1,0 +1,23 @@
+﻿@model smartGPS.Areas.Dashboard.Models.ProfileModel
+@{
+    ViewBag.Title = "_UserCategory";
+}
+
+
+@if (Model.Category == null)
+{
+    using (Html.BeginForm("CategorizeUser", "Profile", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <h4>You are not categorized</h4>
+        <button class="btn btn-large btn-primary" type="submit">Categorize me!</button>
+    }
+}
+else
+{
+    using (Html.BeginForm("CategorizeUser", "Profile", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <h4>You are a <b>@Model.Category</b>!</h4>
+        
+        <button class="btn btn-large btn-primary" type="submit">Recategorize me!</button>
+    }
+}

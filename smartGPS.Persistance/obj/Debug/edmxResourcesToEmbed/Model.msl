@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="smartGPSModelStoreContainer" CdmEntityContainer="smartGPSEntities">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="smartGPSEntities">
     <EntitySetMapping Name="CBATest">
-      <EntityTypeMapping TypeName="smartGPSModel.CBATest">
+      <EntityTypeMapping TypeName="Model.CBATest">
         <MappingFragment StoreEntitySet="CBATest">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="A" ColumnName="A" />
@@ -12,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CondSetTable">
-      <EntityTypeMapping TypeName="smartGPSModel.CondSetTable">
+      <EntityTypeMapping TypeName="Model.CondSetTable">
         <MappingFragment StoreEntitySet="CondSetTable">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CondSupCount" ColumnName="CondSupCount" />
@@ -21,8 +21,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Edge">
+      <EntityTypeMapping TypeName="Model.Edge">
+        <MappingFragment StoreEntitySet="Edge">
+          <ScalarProperty Name="EdgeId" ColumnName="EdgeId" />
+          <ScalarProperty Name="StartId" ColumnName="StartId" />
+          <ScalarProperty Name="WayId" ColumnName="WayId" />
+          <ScalarProperty Name="EndId" ColumnName="EndId" />
+          <ScalarProperty Name="EdgeLength" ColumnName="EdgeLength" />
+          <ScalarProperty Name="EdgeHeading" ColumnName="EdgeHeading" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="FacebookProccesedEntries">
-      <EntityTypeMapping TypeName="smartGPSModel.FacebookProccesedEntries">
+      <EntityTypeMapping TypeName="Model.FacebookProccesedEntries">
         <MappingFragment StoreEntitySet="FacebookProccesedEntries">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -39,7 +51,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FacebookProfile">
-      <EntityTypeMapping TypeName="smartGPSModel.FacebookProfile">
+      <EntityTypeMapping TypeName="Model.FacebookProfile">
         <MappingFragment StoreEntitySet="FacebookProfile">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -52,7 +64,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FoursquareProfile">
-      <EntityTypeMapping TypeName="smartGPSModel.FoursquareProfile">
+      <EntityTypeMapping TypeName="Model.FoursquareProfile">
         <MappingFragment StoreEntitySet="FoursquareProfile">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -64,7 +76,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FoursquareVenuesCategories">
-      <EntityTypeMapping TypeName="smartGPSModel.FoursquareVenuesCategories">
+      <EntityTypeMapping TypeName="Model.FoursquareVenuesCategories">
         <MappingFragment StoreEntitySet="FoursquareVenuesCategories">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Category" ColumnName="Category" />
@@ -74,7 +86,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GooglePlacesAPICategories">
-      <EntityTypeMapping TypeName="smartGPSModel.GooglePlacesAPICategories">
+      <EntityTypeMapping TypeName="Model.GooglePlacesAPICategories">
         <MappingFragment StoreEntitySet="GooglePlacesAPICategories">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Type" ColumnName="Type" />
@@ -82,8 +94,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Node">
+      <EntityTypeMapping TypeName="Model.Node">
+        <MappingFragment StoreEntitySet="Node">
+          <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+          <ScalarProperty Name="NodeLat" ColumnName="NodeLat" />
+          <ScalarProperty Name="NodeLong" ColumnName="NodeLong" />
+          <ScalarProperty Name="NodeUsed" ColumnName="NodeUsed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="NotificationCategory">
-      <EntityTypeMapping TypeName="smartGPSModel.NotificationCategory">
+      <EntityTypeMapping TypeName="Model.NotificationCategory">
         <MappingFragment StoreEntitySet="NotificationCategory">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Type" ColumnName="Type" />
@@ -91,7 +113,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Notifications">
-      <EntityTypeMapping TypeName="smartGPSModel.Notifications">
+      <EntityTypeMapping TypeName="Model.Notifications">
         <MappingFragment StoreEntitySet="Notifications">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Text" ColumnName="Text" />
@@ -108,8 +130,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Obstacle">
+      <EntityTypeMapping TypeName="Model.Obstacle">
+        <MappingFragment StoreEntitySet="Obstacle">
+          <ScalarProperty Name="ObstacleId" ColumnName="ObstacleId" />
+          <ScalarProperty Name="EdgeId" ColumnName="EdgeId" />
+          <ScalarProperty Name="ObstacleType" ColumnName="ObstacleType" />
+          <ScalarProperty Name="ObstacleNoPass" ColumnName="ObstacleNoPass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Profile">
-      <EntityTypeMapping TypeName="smartGPSModel.Profile">
+      <EntityTypeMapping TypeName="Model.Profile">
         <MappingFragment StoreEntitySet="Profile">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -127,7 +159,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RuleItemTable">
-      <EntityTypeMapping TypeName="smartGPSModel.RuleItemTable">
+      <EntityTypeMapping TypeName="Model.RuleItemTable">
         <MappingFragment StoreEntitySet="RuleItemTable">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="RuleSupCount" ColumnName="RuleSupCount" />
@@ -141,9 +173,8 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Travel">
-      <EntityTypeMapping TypeName="smartGPSModel.Travel">
+      <EntityTypeMapping TypeName="Model.Travel">
         <MappingFragment StoreEntitySet="Travel">
-          <ScalarProperty Name="Directions" ColumnName="Directions" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="DepartudeAddress" ColumnName="DepartudeAddress" />
           <ScalarProperty Name="DepartureLatitude" ColumnName="DepartureLatitude" />
@@ -159,11 +190,12 @@
           <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
           <ScalarProperty Name="CurrentLatitude" ColumnName="CurrentLatitude" />
           <ScalarProperty Name="CurrentLongitude" ColumnName="CurrentLongitude" />
+          <ScalarProperty Name="Directions" ColumnName="Directions" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TravelStatusCategory">
-      <EntityTypeMapping TypeName="smartGPSModel.TravelStatusCategory">
+      <EntityTypeMapping TypeName="Model.TravelStatusCategory">
         <MappingFragment StoreEntitySet="TravelStatusCategory">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Type" ColumnName="Type" />
@@ -171,7 +203,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="User">
-      <EntityTypeMapping TypeName="smartGPSModel.User">
+      <EntityTypeMapping TypeName="Model.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -186,7 +218,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserCategory">
-      <EntityTypeMapping TypeName="smartGPSModel.UserCategory">
+      <EntityTypeMapping TypeName="Model.UserCategory">
         <MappingFragment StoreEntitySet="UserCategory">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Category" ColumnName="Category" />
@@ -194,7 +226,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserHelper">
-      <EntityTypeMapping TypeName="smartGPSModel.UserHelper">
+      <EntityTypeMapping TypeName="Model.UserHelper">
         <MappingFragment StoreEntitySet="UserHelper">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="LastLocationLatitude" ColumnName="LastLocationLatitude" />
@@ -204,57 +236,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Edge">
-      <EntityTypeMapping TypeName="smartGPSModel.Edge">
-        <MappingFragment StoreEntitySet="Edge">
-          <ScalarProperty Name="EdgeHeading" ColumnName="EdgeHeading" />
-          <ScalarProperty Name="EdgeLength" ColumnName="EdgeLength" />
-          <ScalarProperty Name="EndId" ColumnName="EndId" />
-          <ScalarProperty Name="WayId" ColumnName="WayId" />
-          <ScalarProperty Name="StartId" ColumnName="StartId" />
-          <ScalarProperty Name="EdgeId" ColumnName="EdgeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Node">
-      <EntityTypeMapping TypeName="smartGPSModel.Node">
-        <MappingFragment StoreEntitySet="Node">
-          <ScalarProperty Name="NodeUsed" ColumnName="NodeUsed" />
-          <ScalarProperty Name="NodeLong" ColumnName="NodeLong" />
-          <ScalarProperty Name="NodeLat" ColumnName="NodeLat" />
-          <ScalarProperty Name="NodeId" ColumnName="NodeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Way">
-      <EntityTypeMapping TypeName="smartGPSModel.Way">
+      <EntityTypeMapping TypeName="Model.Way">
         <MappingFragment StoreEntitySet="Way">
-          <ScalarProperty Name="WayRef" ColumnName="WayRef" />
-          <ScalarProperty Name="WayName" ColumnName="WayName" />
-          <ScalarProperty Name="WayOneWay" ColumnName="WayOneWay" />
-          <ScalarProperty Name="WayMaxSpeed" ColumnName="WayMaxSpeed" />
-          <ScalarProperty Name="WayTypeId" ColumnName="WayTypeId" />
           <ScalarProperty Name="WayId" ColumnName="WayId" />
+          <ScalarProperty Name="WayTypeId" ColumnName="WayTypeId" />
+          <ScalarProperty Name="WayMaxSpeed" ColumnName="WayMaxSpeed" />
+          <ScalarProperty Name="WayOneWay" ColumnName="WayOneWay" />
+          <ScalarProperty Name="WayName" ColumnName="WayName" />
+          <ScalarProperty Name="WayRef" ColumnName="WayRef" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WayType">
-      <EntityTypeMapping TypeName="smartGPSModel.WayType">
+      <EntityTypeMapping TypeName="Model.WayType">
         <MappingFragment StoreEntitySet="WayType">
-          <ScalarProperty Name="WayTypeDefSpdRes" ColumnName="WayTypeDefSpdRes" />
-          <ScalarProperty Name="WayTypeDefSpeed" ColumnName="WayTypeDefSpeed" />
-          <ScalarProperty Name="WayTypeName" ColumnName="WayTypeName" />
           <ScalarProperty Name="WayTypeId" ColumnName="WayTypeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Obstacle">
-      <EntityTypeMapping TypeName="smartGPSModel.Obstacle">
-        <MappingFragment StoreEntitySet="Obstacle">
-          <ScalarProperty Name="ObstacleNoPass" ColumnName="ObstacleNoPass" />
-          <ScalarProperty Name="ObstacleType" ColumnName="ObstacleType" />
-          <ScalarProperty Name="EdgeId" ColumnName="EdgeId" />
-          <ScalarProperty Name="ObstacleId" ColumnName="ObstacleId" />
+          <ScalarProperty Name="WayTypeName" ColumnName="WayTypeName" />
+          <ScalarProperty Name="WayTypeDefSpeed" ColumnName="WayTypeDefSpeed" />
+          <ScalarProperty Name="WayTypeDefSpdRes" ColumnName="WayTypeDefSpdRes" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

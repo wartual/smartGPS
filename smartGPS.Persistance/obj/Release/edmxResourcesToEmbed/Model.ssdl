@@ -1,17 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="smartGPSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="smartGPSModelStoreContainer">
+    <EntitySet Name="CBATest" EntityType="smartGPSModel.Store.CBATest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CondSetTable" EntityType="smartGPSModel.Store.CondSetTable" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Edge" EntityType="smartGPSModel.Store.Edge" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FacebookProccesedEntries" EntityType="smartGPSModel.Store.FacebookProccesedEntries" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FacebookProfile" EntityType="smartGPSModel.Store.FacebookProfile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FoursquareProfile" EntityType="smartGPSModel.Store.FoursquareProfile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FoursquareVenuesCategories" EntityType="smartGPSModel.Store.FoursquareVenuesCategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GooglePlacesAPICategories" EntityType="smartGPSModel.Store.GooglePlacesAPICategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Node" EntityType="smartGPSModel.Store.Node" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="NotificationCategory" EntityType="smartGPSModel.Store.NotificationCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Notifications" EntityType="smartGPSModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Obstacle" EntityType="smartGPSModel.Store.Obstacle" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Profile" EntityType="smartGPSModel.Store.Profile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RuleItemTable" EntityType="smartGPSModel.Store.RuleItemTable" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Travel" EntityType="smartGPSModel.Store.Travel" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TravelStatusCategory" EntityType="smartGPSModel.Store.TravelStatusCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="smartGPSModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserCategory" EntityType="smartGPSModel.Store.UserCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserHelper" EntityType="smartGPSModel.Store.UserHelper" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Way" EntityType="smartGPSModel.Store.Way" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WayType" EntityType="smartGPSModel.Store.WayType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Edge_Node" Association="smartGPSModel.Store.FK_Edge_Node">
+      <End Role="Node" EntitySet="Node" />
+      <End Role="Edge" EntitySet="Edge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Edge_Node1" Association="smartGPSModel.Store.FK_Edge_Node1">
+      <End Role="Node" EntitySet="Node" />
+      <End Role="Edge" EntitySet="Edge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Edge_Way" Association="smartGPSModel.Store.FK_Edge_Way">
+      <End Role="Way" EntitySet="Way" />
+      <End Role="Edge" EntitySet="Edge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FacebookProccesedEntries_User" Association="smartGPSModel.Store.FK_FacebookProccesedEntries_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FacebookProccesedEntries_UserCategory" Association="smartGPSModel.Store.FK_FacebookProccesedEntries_UserCategory">
+      <End Role="UserCategory" EntitySet="UserCategory" />
+      <End Role="FacebookProccesedEntries" EntitySet="FacebookProccesedEntries" />
+    </AssociationSet>
     <AssociationSet Name="FK_FacebookProfile_User" Association="smartGPSModel.Store.FK_FacebookProfile_User">
       <End Role="User" EntitySet="User" />
       <End Role="FacebookProfile" EntitySet="FacebookProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoursquareProfile_FoursquareProfile" Association="smartGPSModel.Store.FK_FoursquareProfile_FoursquareProfile">
+      <End Role="User" EntitySet="User" />
+      <End Role="FoursquareProfile" EntitySet="FoursquareProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoursquareVenuesCategories_FoursquareVenuesCategories" Association="smartGPSModel.Store.FK_FoursquareVenuesCategories_FoursquareVenuesCategories">
+      <End Role="FoursquareVenuesCategories" EntitySet="FoursquareVenuesCategories" />
+      <End Role="FoursquareVenuesCategories1" EntitySet="FoursquareVenuesCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoursquareVenuesCategories_UserCategory" Association="smartGPSModel.Store.FK_FoursquareVenuesCategories_UserCategory">
+      <End Role="UserCategory" EntitySet="UserCategory" />
+      <End Role="FoursquareVenuesCategories" EntitySet="FoursquareVenuesCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GooglePlacesAPICategories_UserCategory" Association="smartGPSModel.Store.FK_GooglePlacesAPICategories_UserCategory">
+      <End Role="UserCategory" EntitySet="UserCategory" />
+      <End Role="GooglePlacesAPICategories" EntitySet="GooglePlacesAPICategories" />
     </AssociationSet>
     <AssociationSet Name="FK_Notifications_NotificationCategory" Association="smartGPSModel.Store.FK_Notifications_NotificationCategory">
       <End Role="NotificationCategory" EntitySet="NotificationCategory" />
@@ -21,9 +70,25 @@
       <End Role="User" EntitySet="User" />
       <End Role="Notifications" EntitySet="Notifications" />
     </AssociationSet>
+    <AssociationSet Name="FK_Obstacle_Edge" Association="smartGPSModel.Store.FK_Obstacle_Edge">
+      <End Role="Edge" EntitySet="Edge" />
+      <End Role="Obstacle" EntitySet="Obstacle" />
+    </AssociationSet>
     <AssociationSet Name="FK_Profile_User" Association="smartGPSModel.Store.FK_Profile_User">
       <End Role="User" EntitySet="User" />
       <End Role="Profile" EntitySet="Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profile_UserCategory" Association="smartGPSModel.Store.FK_Profile_UserCategory">
+      <End Role="UserCategory" EntitySet="UserCategory" />
+      <End Role="Profile" EntitySet="Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RuleItem_CondSet" Association="smartGPSModel.Store.FK_RuleItem_CondSet">
+      <End Role="CondSetTable" EntitySet="CondSetTable" />
+      <End Role="RuleItemTable" EntitySet="RuleItemTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RuleItem_User" Association="smartGPSModel.Store.FK_RuleItem_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="RuleItemTable" EntitySet="RuleItemTable" />
     </AssociationSet>
     <AssociationSet Name="FK_Travel_TravelStatusCategory" Association="smartGPSModel.Store.FK_Travel_TravelStatusCategory">
       <End Role="TravelStatusCategory" EntitySet="TravelStatusCategory" />
@@ -37,22 +102,104 @@
       <End Role="User" EntitySet="User" />
       <End Role="UserHelper" EntitySet="UserHelper" />
     </AssociationSet>
+    <AssociationSet Name="FK_Way_WayType" Association="smartGPSModel.Store.FK_Way_WayType">
+      <End Role="WayType" EntitySet="WayType" />
+      <End Role="Way" EntitySet="Way" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="CBATest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="A" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="B" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="C" Type="nchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="CondSetTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CondSupCount" Type="int" Nullable="false" />
+    <Property Name="CondtionsJson" Type="varchar(max)" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Edge">
+    <Key>
+      <PropertyRef Name="EdgeId" />
+    </Key>
+    <Property Name="EdgeId" Type="int" Nullable="false" />
+    <Property Name="StartId" Type="int" Nullable="false" />
+    <Property Name="WayId" Type="int" Nullable="false" />
+    <Property Name="EndId" Type="int" Nullable="false" />
+    <Property Name="EdgeLength" Type="float" Nullable="false" />
+    <Property Name="EdgeHeading" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FacebookProccesedEntries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Sportsman" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="LikesBooks" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="LikesMusic" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="LikesSports" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="LikesTravelling" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="LikesMovies" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="Category" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="FacebookProfile">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Name" Type="varchar" MaxLength="50" />
-    <Property Name="Surname" Type="varchar" MaxLength="50" />
-    <Property Name="Username" Type="varchar" MaxLength="50" />
-    <Property Name="MiddleName" Type="varchar" MaxLength="50" />
-    <Property Name="Link" Type="varchar" MaxLength="100" />
-    <Property Name="Biography" Type="varchar" MaxLength="1000" />
-    <Property Name="DateOfBirth" Type="datetime" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+    <Property Name="JsonPersonalDataAndFriends" Type="nvarchar(max)" />
+    <Property Name="JsonUserAndFriendsCheckins" Type="nvarchar(max)" />
+    <Property Name="JsonUserAndFriendsLikes" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="FoursquareProfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserCheckins" Type="nvarchar(max)" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+    <Property Name="Recent" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="FoursquareVenuesCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Category" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Parent" Type="varchar" MaxLength="50" />
+    <Property Name="UserCategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GooglePlacesAPICategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="nchar" Nullable="false" MaxLength="30" />
+    <Property Name="UserCategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Node">
+    <Key>
+      <PropertyRef Name="NodeId" />
+    </Key>
+    <Property Name="NodeId" Type="int" Nullable="false" />
+    <Property Name="NodeLat" Type="float" Nullable="false" />
+    <Property Name="NodeLong" Type="float" Nullable="false" />
+    <Property Name="NodeUsed" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="NotificationCategory">
     <Key>
@@ -78,6 +225,15 @@
     <Property Name="ThumbsUp" Type="bigint" Nullable="false" />
     <Property Name="ThumbsDown" Type="bigint" Nullable="false" />
   </EntityType>
+  <EntityType Name="Obstacle">
+    <Key>
+      <PropertyRef Name="ObstacleId" />
+    </Key>
+    <Property Name="ObstacleId" Type="int" Nullable="false" />
+    <Property Name="EdgeId" Type="int" Nullable="false" />
+    <Property Name="ObstacleType" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ObstacleNoPass" Type="smallint" Nullable="false" />
+  </EntityType>
   <EntityType Name="Profile">
     <Key>
       <PropertyRef Name="Id" />
@@ -93,6 +249,20 @@
     <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Surname" Type="varchar" MaxLength="50" />
     <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Category" Type="int" />
+  </EntityType>
+  <EntityType Name="RuleItemTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="RuleSupCount" Type="int" Nullable="false" />
+    <Property Name="ClassKey" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ClassValue" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DataSize" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CondSetId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Travel">
     <Key>
@@ -105,14 +275,15 @@
     <Property Name="DestinationAddress" Type="varchar" MaxLength="200" />
     <Property Name="DestinationLatitude" Type="float" Nullable="false" />
     <Property Name="DestinationLongitude" Type="float" Nullable="false" />
-    <Property Name="CurrentLatitude" Type="float" Nullable="false" />
-    <Property Name="CurrentLongitude" Type="float" Nullable="false" />
     <Property Name="Time" Type="float" Nullable="false" />
     <Property Name="Distance" Type="float" Nullable="false" />
     <Property Name="StatusId" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+    <Property Name="CurrentLatitude" Type="float" Nullable="false" />
+    <Property Name="CurrentLongitude" Type="float" Nullable="false" />
+    <Property Name="Directions" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="TravelStatusCategory">
     <Key>
@@ -133,6 +304,14 @@
     <Property Name="TwitterId" Type="varchar" MaxLength="100" />
     <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
     <Property Name="GcmId" Type="varchar" MaxLength="200" />
+    <Property Name="FoursquareId" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UserCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="nchar" Nullable="false" MaxLength="30" />
   </EntityType>
   <EntityType Name="UserHelper">
     <Key>
@@ -144,6 +323,86 @@
     <Property Name="UserId" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="DateUpdated" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="Way">
+    <Key>
+      <PropertyRef Name="WayId" />
+    </Key>
+    <Property Name="WayId" Type="int" Nullable="false" />
+    <Property Name="WayTypeId" Type="int" Nullable="false" />
+    <Property Name="WayMaxSpeed" Type="int" Nullable="false" />
+    <Property Name="WayOneWay" Type="smallint" Nullable="false" />
+    <Property Name="WayName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="WayRef" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="WayType">
+    <Key>
+      <PropertyRef Name="WayTypeId" />
+    </Key>
+    <Property Name="WayTypeId" Type="int" Nullable="false" />
+    <Property Name="WayTypeName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="WayTypeDefSpeed" Type="int" Nullable="false" />
+    <Property Name="WayTypeDefSpdRes" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Edge_Node">
+    <End Role="Node" Type="smartGPSModel.Store.Node" Multiplicity="1" />
+    <End Role="Edge" Type="smartGPSModel.Store.Edge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Node">
+        <PropertyRef Name="NodeId" />
+      </Principal>
+      <Dependent Role="Edge">
+        <PropertyRef Name="StartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Edge_Node1">
+    <End Role="Node" Type="smartGPSModel.Store.Node" Multiplicity="1" />
+    <End Role="Edge" Type="smartGPSModel.Store.Edge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Node">
+        <PropertyRef Name="NodeId" />
+      </Principal>
+      <Dependent Role="Edge">
+        <PropertyRef Name="EndId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Edge_Way">
+    <End Role="Way" Type="smartGPSModel.Store.Way" Multiplicity="1" />
+    <End Role="Edge" Type="smartGPSModel.Store.Edge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Way">
+        <PropertyRef Name="WayId" />
+      </Principal>
+      <Dependent Role="Edge">
+        <PropertyRef Name="WayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FacebookProccesedEntries_User">
+    <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
+    <End Role="FacebookProccesedEntries" Type="smartGPSModel.Store.FacebookProccesedEntries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FacebookProccesedEntries">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FacebookProccesedEntries_UserCategory">
+    <End Role="UserCategory" Type="smartGPSModel.Store.UserCategory" Multiplicity="1" />
+    <End Role="FacebookProccesedEntries" Type="smartGPSModel.Store.FacebookProccesedEntries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FacebookProccesedEntries">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_FacebookProfile_User">
     <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
     <End Role="FacebookProfile" Type="smartGPSModel.Store.FacebookProfile" Multiplicity="*" />
@@ -153,6 +412,54 @@
       </Principal>
       <Dependent Role="FacebookProfile">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoursquareProfile_FoursquareProfile">
+    <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
+    <End Role="FoursquareProfile" Type="smartGPSModel.Store.FoursquareProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FoursquareProfile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoursquareVenuesCategories_FoursquareVenuesCategories">
+    <End Role="FoursquareVenuesCategories" Type="smartGPSModel.Store.FoursquareVenuesCategories" Multiplicity="0..1" />
+    <End Role="FoursquareVenuesCategories1" Type="smartGPSModel.Store.FoursquareVenuesCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoursquareVenuesCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FoursquareVenuesCategories1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoursquareVenuesCategories_UserCategory">
+    <End Role="UserCategory" Type="smartGPSModel.Store.UserCategory" Multiplicity="1" />
+    <End Role="FoursquareVenuesCategories" Type="smartGPSModel.Store.FoursquareVenuesCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FoursquareVenuesCategories">
+        <PropertyRef Name="UserCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GooglePlacesAPICategories_UserCategory">
+    <End Role="UserCategory" Type="smartGPSModel.Store.UserCategory" Multiplicity="1" />
+    <End Role="GooglePlacesAPICategories" Type="smartGPSModel.Store.GooglePlacesAPICategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GooglePlacesAPICategories">
+        <PropertyRef Name="UserCategoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -180,6 +487,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Obstacle_Edge">
+    <End Role="Edge" Type="smartGPSModel.Store.Edge" Multiplicity="1" />
+    <End Role="Obstacle" Type="smartGPSModel.Store.Obstacle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Edge">
+        <PropertyRef Name="EdgeId" />
+      </Principal>
+      <Dependent Role="Obstacle">
+        <PropertyRef Name="EdgeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Profile_User">
     <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
     <End Role="Profile" Type="smartGPSModel.Store.Profile" Multiplicity="*" />
@@ -188,6 +507,42 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profile_UserCategory">
+    <End Role="UserCategory" Type="smartGPSModel.Store.UserCategory" Multiplicity="0..1" />
+    <End Role="Profile" Type="smartGPSModel.Store.Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RuleItem_CondSet">
+    <End Role="CondSetTable" Type="smartGPSModel.Store.CondSetTable" Multiplicity="1" />
+    <End Role="RuleItemTable" Type="smartGPSModel.Store.RuleItemTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CondSetTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RuleItemTable">
+        <PropertyRef Name="CondSetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RuleItem_User">
+    <End Role="User" Type="smartGPSModel.Store.User" Multiplicity="1" />
+    <End Role="RuleItemTable" Type="smartGPSModel.Store.RuleItemTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RuleItemTable">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
@@ -225,6 +580,18 @@
       </Principal>
       <Dependent Role="UserHelper">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Way_WayType">
+    <End Role="WayType" Type="smartGPSModel.Store.WayType" Multiplicity="1" />
+    <End Role="Way" Type="smartGPSModel.Store.Way" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WayType">
+        <PropertyRef Name="WayTypeId" />
+      </Principal>
+      <Dependent Role="Way">
+        <PropertyRef Name="WayTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

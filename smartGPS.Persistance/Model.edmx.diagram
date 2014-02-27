@@ -4,49 +4,48 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b8565000457740c99d78b0deffbcdf09" Name="Diagram1">
-        <EntityTypeShape EntityType="smartGPSModel.CBATest" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.CondSetTable" Width="1.5" PointX="3.75" PointY="27.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.FacebookProccesedEntries" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.FacebookProfile" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.FoursquareProfile" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.FoursquareVenuesCategories" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.GooglePlacesAPICategories" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.NotificationCategory" Width="1.5" PointX="3.75" PointY="24.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.Notifications" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.Profile" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.RuleItemTable" Width="1.5" PointX="6" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.Travel" Width="1.5" PointX="9" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.TravelStatusCategory" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.User" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.UserCategory" Width="1.5" PointX="3.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="smartGPSModel.UserHelper" Width="1.5" PointX="3" PointY="41.625" IsExpanded="true" />
-        <AssociationConnector Association="smartGPSModel.FK_RuleItem_CondSet" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_FacebookProccesedEntries_User" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_FacebookProccesedEntries_UserCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_FacebookProfile_User" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_FoursquareProfile_FoursquareProfile" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_FoursquareVenuesCategories_FoursquareVenuesCategories" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_FoursquareVenuesCategories_UserCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_GooglePlacesAPICategories_UserCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_Notifications_NotificationCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_Notifications_User" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_Profile_User" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_Profile_UserCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_RuleItem_User" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_Travel_TravelStatusCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_Travel_User" ManuallyRouted="false" />
-        <AssociationConnector Association="smartGPSModel.FK_UserHelper_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="smartGPSModel.Edge" Width="1.5" PointX="7.8428045938922111" PointY="23.205545182901222" />
-        <EntityTypeShape EntityType="smartGPSModel.Node" Width="1.5" PointX="4.0378316957679727" PointY="2.2001049230807017" />
-        <EntityTypeShape EntityType="smartGPSModel.Way" Width="1.5" PointX="6.3282514914536154" PointY="8.5171682576263184" />
-        <EntityTypeShape EntityType="smartGPSModel.WayType" Width="1.5" PointX="4.0643834751399162" PointY="29.111122025694289" />
-        <AssociationConnector Association="smartGPSModel.FK_Edge_Node" />
-        <AssociationConnector Association="smartGPSModel.FK_Edge_Node1" />
-        <AssociationConnector Association="smartGPSModel.FK_Edge_Way" />
-        <AssociationConnector Association="smartGPSModel.FK_Way_WayType" />
-        <EntityTypeShape EntityType="smartGPSModel.Obstacle" Width="1.5" PointX="11.527432635206466" PointY="12.868063381345973" />
-        <AssociationConnector Association="smartGPSModel.FK_Obstacle_Edge" />
+      <Diagram DiagramId="eb7d395ffaf949d682e1a26af63143f9" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.CBATest" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CondSetTable" Width="1.5" PointX="0.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Edge" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FacebookProccesedEntries" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FacebookProfile" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FoursquareProfile" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FoursquareVenuesCategories" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GooglePlacesAPICategories" Width="1.5" PointX="10" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Node" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NotificationCategory" Width="1.5" PointX="3.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Notifications" Width="1.5" PointX="6" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Obstacle" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Profile" Width="1.5" PointX="3" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RuleItemTable" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Travel" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TravelStatusCategory" Width="1.5" PointX="3.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UserCategory" Width="1.5" PointX="7.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UserHelper" Width="1.5" PointX="3" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Way" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WayType" Width="1.5" PointX="1.5" PointY="28.5" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_RuleItemTable_CondSetTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Edge_Node" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Edge_Node1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Edge_Way" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Obstacle_Edge" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_FacebookProccesedEntries_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_FacebookProfile_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_FoursquareProfile_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_FoursquareVenuesCategories_FoursquareVenuesCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_FoursquareVenuesCategories_UserCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_GooglePlacesAPICategories_UserCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Notifications_NotificationCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Notifications_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Profile_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_RuleItemTable_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Travel_TravelStatusCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Travel_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_UserHelper_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Way_WayType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Profile_UserCategory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,6 +14,8 @@
 <ul class="nav nav-tabs">
     <li class="active"><a href="#home" data-toggle="tab">smartGPS profile</a></li>
     <li><a href="#facebook" data-toggle="tab">Facebook</a></li>
+    <li><a href="#foursquare" data-toggle="tab">Foursquare</a></li>
+    <li><a href="#category" data-toggle="tab">Category</a></li>
 </ul>
 
 
@@ -94,7 +96,15 @@
                     @Html.ValidationMessageFor(m => m.PostalOffice)
                 </div>
             </div>
-    
+            
+             <div class="control-group">
+                @Html.LabelFor(m => m.Category, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Category, new { placeholder = "Category" })
+                    @Html.ValidationMessageFor(m => m.Category)
+                </div>
+            </div>
+            
             <div class="control-group">
                 <div class="controls">
                     <button class="btn btn-large btn-primary" type="submit">Save changes</button>
@@ -103,8 +113,27 @@
         }
     </div>
     <div class="tab-pane" id="facebook">
-        @Html.Action("FacebookProfile", "ExternalServices")
-
+        @if (Model.FacebookStatistics == null)
+        {
+                @Html.Action("FacebookProfile", "ExternalServices")        
+        }
+        else
+        {
+            @Html.Partial("_FacebookStatistics", Model.FacebookStatistics)
+        }
+       </div>
+    <div class="tab-pane" id="foursquare">
+        @if (Model.FoursquareStatistics == null)
+        {
+             @Html.Action("FoursquareProfile", "ExternalServices")
+        }
+        else
+        {
+            @Html.Partial("_FoursquareStatistics", Model.FoursquareStatistics)
+        }
     </div>
+     <div class="tab-pane" id="category">
+         @Html.Partial("_UserCategory", Model)        
+     </div>
 </div>
 

@@ -87,6 +87,34 @@ namespace smartGPS.Controllers.API
             }
         }
 
+        [HttpGet]
+        [ActionName("getTravelById")]
+        public HttpResponseMessage getTravelById([FromUri] String userId, String travelId)
+        {
+            try
+            {
+                if (UserAdministration.getUserByUserId(userId) == null)
+                {
+                    response.Status = SmartResponseType.RESULT_FAIL;
+                    response.Message = "User does not exists";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else
+                {
+                    Travel travel = TravelManager.getById(travelId);
+                    APITravel apiTravel = mapToAPITravel(travel);
+                    return Request.CreateResponse(HttpStatusCode.OK, apiTravel);
+                }
+            }
+            catch (Exception e)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                response.Status = SmartResponseType.RESULT_FAIL;
+                response.Message = "An error has occured!";
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
+            }
+        }
+
         [HttpPut]
         [ActionName("updateTravelStatus")]
         public HttpResponseMessage updateTravelStatus([FromBody] APITravelStatus model)
@@ -237,7 +265,7 @@ namespace smartGPS.Controllers.API
                         tmpNodes.RemoveAt(tmpNodes.Count() - 1);
 
                         directions.AddRange(tmpNodes);
-                        directions.Add(new SmartNode(venue.latitude, venue.longitude, venue.id , "foursquare"));
+                        directions.Add(new SmartNode(venue.latitude, venue.longitude, venue.id , "foursquare", item.Venue.Categories.ElementAt(0).Icon.Prefix, item.Venue.Categories.ElementAt(0).Icon.Sufix));
                         // directions.Add(new SmartNode(item.Venue.Location.Latitude, item.Venue.Location.Longitude, "foursquare"));
                     }
 
@@ -292,7 +320,7 @@ namespace smartGPS.Controllers.API
             api.time = model.Time;
             api.dateCreated = Utilities.ToEpochFromDateTime(model.DateCreated);
             api.dateUpdated = Utilities.ToEpochFromDateTime(model.DateUpdated);
-
+            api.directions = model.Directions;
             return api;
         }
 
