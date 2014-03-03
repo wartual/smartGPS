@@ -34,6 +34,16 @@ namespace smartGPS.Persistance
             db.SaveChanges();
         }
 
+        public static void updateTravelsDirections(Travel travel, double currentLatitude, double currentLongitude, String directions)
+        {
+            travel.CurrentLatitude = currentLatitude;
+            travel.CurrentLongitude = currentLongitude;
+            travel.Directions = directions;
+            travel.DateUpdated = DateTime.Now;
+
+            db.SaveChanges();
+        }
+
         public static IEnumerable<Travel> getByUserId(String userId)
         {
             return db.Travel.Where(item => item.UserId.Equals(userId));

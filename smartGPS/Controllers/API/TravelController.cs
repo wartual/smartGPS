@@ -13,6 +13,8 @@ using smartGPS.Business.Custom;
 using smartGPS.Business.ExternalServices;
 using smartGPS.Business.Models;
 using smartGPS.Business.Models.Foursquare;
+using smartGPS.Business.Models.OpetWeather;
+using smartGPS.Business.Models.PrometInfo;
 using smartGPS.Models.UserAdministration;
 using smartGPS.Persistance;
 
@@ -173,6 +175,50 @@ namespace smartGPS.Controllers.API
             }
         }
 
+        [HttpPut]
+        [ActionName("smartUpadateTravelsCurrentLocation")]
+        public HttpResponseMessage smartUpdateTravelsCurrentLocation([FromBody] APITravelsCurrentLocation model)
+        {
+            try
+            {
+                if (UserAdministration.getUserByUserId(model.userId) == null)
+                {
+                    response.Status = SmartResponseType.RESULT_FAIL;
+                    response.Message = "User does not exists";
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                }
+                else
+                {
+                    if(checkDirection(model.travelId, model.latitude, model.longitude))
+                    {
+                        new Thread(() =>
+                        {
+                            Thread.CurrentThread.IsBackground = true;
+                            getDirections(mapToAPITravel(TravelManager.getById(model.travelId)), model);
+                        }).Start();
+
+                        response.Status = SmartResponseType.RESULT_AWAITING_DIRECTIONS;
+                        response.Message = "Travel conditions have changed, awaiting new directions!";
+                        return Request.CreateResponse(HttpStatusCode.OK, response);
+                    }
+                    else
+                    {
+                        TravelManager.updateTravelsCurrentLocation(model.travelId, model.userId, model.latitude, model.longitude);
+                        response.Status = SmartResponseType.RESULT_OK;
+                        response.Message = "Travel status updated!";
+                        return Request.CreateResponse(HttpStatusCode.OK, response);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                response.Status = SmartResponseType.RESULT_FAIL;
+                response.Message = "An error has occured!";
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, response);
+            }
+        }
+
         [HttpPost]
         [ActionName("newTravel")]
         public HttpResponseMessage newTravel([FromBody] APITravel model)
@@ -220,7 +266,7 @@ namespace smartGPS.Controllers.API
                     new Thread(() =>
                     {
                         Thread.CurrentThread.IsBackground = true;
-                        getDirections(model);
+                        getDirections(model, null);
                     }).Start();
 
                     response.Status = SmartResponseType.RESULT_OK;
@@ -239,7 +285,33 @@ namespace smartGPS.Controllers.API
 
         #region Utils
 
-        private void getDirections(APITravel model)
+        private Boolean checkDirection(String travelId, double currentLatitude, double currentLongitude)
+        {
+            WeatherResponse response =  OpenWeatherManagement.getWeatherByGPS(currentLatitude, currentLongitude);
+            PrometInfoResponse prometInfoResponse = PrometInfoManagement.getInfo();
+            Haversine haversine = new Haversine();
+            double distance;
+
+            // check for traffic jams
+            IEnumerable<Event> activeEvents = prometInfoResponse.Events.Event.Where(item => item.VeljavnostDoDateTime >= DateTime.Now);
+            foreach(Event trafficEvent in activeEvents)
+            {
+                 distance = haversine.Distance(currentLatitude, currentLongitude, trafficEvent.Y_WGS, trafficEvent.X_WGS, Haversine.DistanceType.Kilometers);
+                 if (distance < Config.TRAFFIC_RADIUS){
+                     return true;
+                 }
+            }
+
+            // check weather data
+            if(response.Rain != null && response.Rain.Last3Hours != 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void getDirections(APITravel model, APITravelsCurrentLocation currentLocation)
         {
             PathSearch pathSearch = new PathSearch();
             Haversine haversine = new Haversine();
@@ -293,10 +365,19 @@ namespace smartGPS.Controllers.API
 
             String json = JsonConvert.SerializeObject(directions);
             String travel = JsonConvert.SerializeObject(model);
+            String id = null;
 
-            String id = TravelManager.newTravel(model.userId, model.statusId, model.destinationAddress, model.currentLatitude, model.currentLongitude, model.destinationLatitude, model.destinationLongitude,
+            if (currentLocation != null)
+            {
+                TravelManager.updateTravelsDirections(currentLocation.travelId, currentLocation.userId, currentLocation.latitude, currentLocation.longitude, json); 
+                id = currentLocation.travelId;
+            }
+            else
+            {
+                id = TravelManager.newTravel(model.userId, model.statusId, model.destinationAddress, model.currentLatitude, model.currentLongitude, model.destinationLatitude, model.destinationLongitude,
                                              model.departureAddress, model.departureLatitude, model.departureLongitude, model.time, model.distance, json);
-          
+            }
+            
             smartGPS.Persistance.User user = UserAdministration.getUserByUserId(model.userId);
             NotificationsManager.sendNodes(user.GcmId, id, travel);
         }

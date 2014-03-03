@@ -63,7 +63,17 @@ namespace smartGPS.Business
                 TravelDao.updateTravelsCurrentLocation(travel, currentLatitude, currentLongitude);
                 UserAdministration.updateUserLocation(currentLatitude, currentLongitude, userId);
             }
-            
+        }
+
+        public static void updateTravelsDirections(String travelId,  String userId, double currentLatitude, double currentLongitude, String directions)
+        {
+            Travel travel = getById(travelId);
+
+            if (travel != null)
+            {
+                TravelDao.updateTravelsDirections(travel, currentLatitude, currentLongitude, directions);
+                UserAdministration.updateUserLocation(currentLatitude, currentLongitude, userId);
+            }
         }
 
         public static List<User> getAllUsersNearLocation(double latitude, double longitude, double radius, String userId)

@@ -50,5 +50,11 @@ namespace smartGPS.Business.ExternalServices
         public static int FB_PROCCESSED_ENTRIES_ATTRIBUTE_COLUMNS = 6;
 
         public static int CONFUSION_MATRIX_NEGATIVE_CLASS_VALUE = -1;
+
+        public static int RAIN_COEFFICINET = 15;
+
+        public static int TRAFFIC_COEFFICINET = 20;
+
+        public static double TRAFFIC_RADIUS = 0.2;
     }
 }

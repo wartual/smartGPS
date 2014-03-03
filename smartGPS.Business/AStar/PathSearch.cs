@@ -23,9 +23,9 @@ namespace smartGPS.Business.AStar
         {
             this.Haversine = new Haversine();
             this.weatherPoints = new List<WeatherResponse>();
-            this.rainCoefficient = 10;
-            this.trafficCoefficinet = 20;
-            this.trafficRadius = 0.2;
+            this.rainCoefficient = Config.RAIN_COEFFICINET;
+            this.trafficCoefficinet = Config.TRAFFIC_COEFFICINET;
+            this.trafficRadius = Config.TRAFFIC_RADIUS;
         }
 
         /**

@@ -10,5 +10,7 @@ namespace smartGPS.Areas.API.Models
         public static String RESULT_OK = "OK";
 
         public static String RESULT_FAIL = "FAIL";
+
+        public static String RESULT_AWAITING_DIRECTIONS = "AWAITING_DIRECTIONS";
     }
 }
