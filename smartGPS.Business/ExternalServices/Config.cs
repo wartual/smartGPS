@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using smartGPS.Business.Models.OpetWeather;
+using smartGPS.Business.Models.PrometInfo;
 
 namespace smartGPS.Business.ExternalServices
 {
@@ -62,5 +64,50 @@ namespace smartGPS.Business.ExternalServices
         public static List<int> DRIVING_OPTIONS = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16 };
 
         public static int WAY_TYPE_FORBIDDEN_COEFFICIENT = 100;
+
+        public static int getWeatherCoefficient(WeatherResponse weather)
+        {
+            int coeff = 0;
+
+            // check weather
+            foreach(WeatherDescription description in weather.Description)
+            {
+                if (description.Id > 201 && description.Id < 500)
+                    // thunderstorm with rain
+                    coeff = coeff + 50;
+                else if (description.Id == 500)
+                    // light rain
+                    coeff = coeff + 10;
+                else if (description.Id == 501)
+                    // moderate rain
+                    coeff = coeff + 20;
+                else if (description.Id > 502 && description.Id < 600)
+                    // heavz rain
+                    coeff = coeff + 40;
+                else if (description.Id == 600)
+                    // light snow
+                    coeff = coeff + 10;
+                else if (description.Id == 601)
+                    // snow
+                    coeff = coeff + 20;
+                else if (description.Id > 602 && description.Id < 700)
+                    // heavy snow
+                    coeff = coeff + 40;
+                else if (description.Id >= 900)
+                    //extreme weather
+                    coeff = coeff + 1000;
+            }
+
+            return coeff;
+        }
+
+        public static int getRoadEventCoefficient(Event roadEvent)
+        {
+            if (roadEvent != null)
+                return 100;
+            else
+                return 0;
+        }
+
     }
 }

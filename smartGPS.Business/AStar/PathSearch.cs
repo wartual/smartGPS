@@ -234,23 +234,7 @@ namespace smartGPS.Business.AStar
                      foreach (AStarEdge neighbor in x.outEdges) 
                      {
                          // calculate cost
-                         if(weather.Rain != null && weather.Rain.Last3Hours != 0 && roadEvent != null)
-                             g = x.g + neighbor.length / 1000 + rainCoefficient + trafficCoefficinet;
-                         else if(roadEvent == null && weather.Rain != null && weather.Rain.Last3Hours != 0)
-                             g = x.g + neighbor.length / 1000 + rainCoefficient;
-                        else if(weather.Rain == null && roadEvent != null)
-                             g = x.g + neighbor.length / 1000  + trafficCoefficinet;
-                         else
-                             g = x.g + neighbor.length / 1000;
-
-
-
-                         // check travel mode and add extra cost
-                         if (mode == 0 && !Config.WALKING_OPTIONS.Contains(neighbor.type))
-                             g = g + Config.WAY_TYPE_FORBIDDEN_COEFFICIENT;
-                         else if (mode == 1 && !Config.DRIVING_OPTIONS.Contains(neighbor.type))
-                             g = g + Config.WAY_TYPE_FORBIDDEN_COEFFICIENT;
-
+                         g = x.g + neighbor.length / 1000 + Config.getWeatherCoefficient(weather) + Config.getRoadEventCoefficient(roadEvent);
                          AStarNode n = null;
 
                          if (openSet.ContainsKey(neighbor.getEndNode().id))
