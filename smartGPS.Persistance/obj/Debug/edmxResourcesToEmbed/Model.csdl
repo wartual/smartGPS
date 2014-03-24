@@ -304,6 +304,7 @@
     <Property Name="Directions" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="TravelStatusCategory" Relationship="Model.FK_Travel_TravelStatusCategory" FromRole="Travel" ToRole="TravelStatusCategory" />
     <NavigationProperty Name="User" Relationship="Model.FK_Travel_User" FromRole="Travel" ToRole="User" />
+    <Property Type="Int32" Name="Mode" />
   </EntityType>
   <EntityType Name="TravelStatusCategory">
     <Key>

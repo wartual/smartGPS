@@ -285,6 +285,7 @@
           <Property Name="CurrentLatitude" Type="float" Nullable="false" />
           <Property Name="CurrentLongitude" Type="float" Nullable="false" />
           <Property Name="Directions" Type="nvarchar(max)" />
+          <Property Name="Mode" Type="int" />
         </EntityType>
         <EntityType Name="TravelStatusCategory">
           <Key>
@@ -892,6 +893,7 @@
           <Property Name="Directions" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="TravelStatusCategory" Relationship="Model.FK_Travel_TravelStatusCategory" FromRole="Travel" ToRole="TravelStatusCategory" />
           <NavigationProperty Name="User" Relationship="Model.FK_Travel_User" FromRole="Travel" ToRole="User" />
+          <Property Type="Int32" Name="Mode" />
         </EntityType>
         <EntityType Name="TravelStatusCategory">
           <Key>
@@ -1387,6 +1389,7 @@
           <EntitySetMapping Name="Travel">
             <EntityTypeMapping TypeName="Model.Travel">
               <MappingFragment StoreEntitySet="Travel">
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DepartudeAddress" ColumnName="DepartudeAddress" />
                 <ScalarProperty Name="DepartureLatitude" ColumnName="DepartureLatitude" />

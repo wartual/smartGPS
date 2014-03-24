@@ -51,7 +51,7 @@ namespace smartGPS.Business.AStar
             this.longitude = longitude; 
         }
 
-        public void getNeighbourEdges()
+        public void getNeighbourEdges(int drivingMode)
         {
             Edge tmp;
             String obstacleType = "";
@@ -59,7 +59,7 @@ namespace smartGPS.Business.AStar
             Obstacle obstacle;
             int wayMaxSpeed = 0;
             
-            IEnumerable<Edge> edges = OpenMapDAO.Edge_getFirstNeighborEdge(id, id);
+            IEnumerable<Edge> edges = OpenMapDAO.Edge_getFirstNeighborEdge(id, id, drivingMode);
             
             foreach (Edge edge in edges)
             {
@@ -86,10 +86,10 @@ namespace smartGPS.Business.AStar
                     wayMaxSpeed = tmp.Way.WayMaxSpeed;
                 }
 
-                outEdges.Add(new AStarEdge(tmp.EdgeId, id, tmp.EndId, tmp.EdgeLength, Convert.ToInt32(tmp.EdgeHeading), tmp.Way.WayType.WayTypeName, wayMaxSpeed, obstacleType));
+                outEdges.Add(new AStarEdge(tmp.EdgeId, id, tmp.EndId, tmp.EdgeLength, Convert.ToInt32(tmp.EdgeHeading), tmp.Way.WayType.WayTypeId, wayMaxSpeed, obstacleType));
             }
 
-            edges = OpenMapDAO.Edge_getSecondNeghborEdge(id, id);
+            edges = OpenMapDAO.Edge_getSecondNeghborEdge(id, id, drivingMode);
 
             foreach(Edge edge in edges)
             {
@@ -116,7 +116,7 @@ namespace smartGPS.Business.AStar
                     wayMaxSpeed = tmp.Way.WayMaxSpeed;
                 }
 
-                outEdges.Add(new AStarEdge(tmp.EdgeId, id, edge.StartId, edge.EdgeLength, Convert.ToInt32(tmp.EdgeHeading), tmp.Way.WayType.WayTypeName, wayMaxSpeed, obstacleType));
+                outEdges.Add(new AStarEdge(tmp.EdgeId, id, edge.StartId, edge.EdgeLength, Convert.ToInt32(tmp.EdgeHeading), tmp.Way.WayType.WayTypeId, wayMaxSpeed, obstacleType));
             }
 
             return;

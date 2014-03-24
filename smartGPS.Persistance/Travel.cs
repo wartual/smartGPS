@@ -30,6 +30,7 @@ namespace smartGPS.Persistance
         public double CurrentLatitude { get; set; }
         public double CurrentLongitude { get; set; }
         public string Directions { get; set; }
+        public Nullable<int> Mode { get; set; }
     
         public virtual TravelStatusCategory TravelStatusCategory { get; set; }
         public virtual User User { get; set; }

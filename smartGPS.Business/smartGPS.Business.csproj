@@ -106,6 +106,7 @@
     <Compile Include="CBA\Models\RuleItem.cs" />
     <Compile Include="Custom\Haversine.cs" />
     <Compile Include="Custom\SmartLocation.cs" />
+    <Compile Include="Custom\SmartPriorityQueue.cs" />
     <Compile Include="DecisionTrees\DecisionTreesAlgorithm.cs" />
     <Compile Include="Enviroment.cs" />
     <Compile Include="ErrorHandler.cs" />

@@ -175,6 +175,7 @@
     <EntitySetMapping Name="Travel">
       <EntityTypeMapping TypeName="Model.Travel">
         <MappingFragment StoreEntitySet="Travel">
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="DepartudeAddress" ColumnName="DepartudeAddress" />
           <ScalarProperty Name="DepartureLatitude" ColumnName="DepartureLatitude" />

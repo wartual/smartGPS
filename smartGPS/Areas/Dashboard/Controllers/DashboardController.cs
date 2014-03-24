@@ -28,7 +28,7 @@ namespace smartGPS.Areas.Dashboard.Controllers
         {
             PathSearch pathSearch = new PathSearch();
            // pathSearch.search(46.056450999999996, 14.50807, 46.0744955, 14.48583009999993, 11);
-            pathSearch.search(46.05737474638258, 14.50594425201416, 46.05445617291736, 14.504635334014893, 11);
+           // pathSearch.search(46.05737474638258, 14.50594425201416, 46.05445617291736, 14.504635334014893, 11);
             
             return View();
         }

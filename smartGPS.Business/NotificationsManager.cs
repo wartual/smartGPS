@@ -78,7 +78,7 @@ namespace smartGPS.Business
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 string json = "{\"registration_ids\":[\"" + regId + "\"]," +
-                            "\"data\": {\"travelId\": " + travelId + ", \"travelData\": " + travelModel + "}}";
+                            "\"data\": {\"travelId\": \"" + travelId + "\", \"travelData\": " + travelModel + "}}";
                 Console.WriteLine(json);
                 streamWriter.Write(json);
                 streamWriter.Flush();

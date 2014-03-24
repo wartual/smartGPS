@@ -19,7 +19,7 @@ namespace smartGPS.Business.AStar
         //Heading of this edge
         public int heading { get; set; }
         //Way type of this edge
-        public String type { get; set; }
+        public int type { get; set; }
         //Speed limit on this edge
         public int speedLimit { get; set; }
         //Obstacle on this edge if any
@@ -33,13 +33,13 @@ namespace smartGPS.Business.AStar
             this.end = -1;
             this.length = 0;
             this.heading = 0;
-            this.type = "";
+            this.type = 0;
             this.speedLimit = 0;
             this.obstacle = "";
         }
 
         //Construcstor that sets all the parameters 
-        public AStarEdge(int id, int start, int end, double length, int heading, String type, int speedLimit, String obstacle) 
+        public AStarEdge(int id, int start, int end, double length, int heading, int type, int speedLimit, String obstacle) 
         {
             this.id = id;
             this.start = start;

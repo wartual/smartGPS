@@ -56,5 +56,11 @@ namespace smartGPS.Business.ExternalServices
         public static int TRAFFIC_COEFFICINET = 20;
 
         public static double TRAFFIC_RADIUS = 0.2;
+
+        public static List<int> WALKING_OPTIONS = new List<int>() { 5, 6 , 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+
+        public static List<int> DRIVING_OPTIONS = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16 };
+
+        public static int WAY_TYPE_FORBIDDEN_COEFFICIENT = 100;
     }
 }

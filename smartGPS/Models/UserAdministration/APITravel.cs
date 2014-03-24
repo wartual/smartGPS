@@ -55,5 +55,8 @@ namespace smartGPS.Models.UserAdministration
 
         [JsonProperty("directions")]
         public String directions { get; set; }
+
+        [JsonProperty("mode")]
+        public int mode { get; set; }
     }
 }

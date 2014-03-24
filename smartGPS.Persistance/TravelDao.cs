@@ -55,7 +55,7 @@ namespace smartGPS.Persistance
         }
 
         public static String newTravel(String id, String userId, String statusId, String destinationAddress, double currentLatitude, double currentLongitude, double destinationLatitude, double destinationLongitude,
-                                    String departureAddress, double departureLatitude, double departureLongitude, double time, double distance, string directions, DateTime dateCreated, DateTime dateUpdated)
+                                    String departureAddress, double departureLatitude, double departureLongitude, double time, double distance, string directions, int mode, DateTime dateCreated, DateTime dateUpdated)
         {
             Travel travel = new Travel();
             travel.DepartudeAddress = departureAddress;
@@ -74,7 +74,7 @@ namespace smartGPS.Persistance
             travel.UserId = userId;
             travel.DateCreated = dateCreated;
             travel.DateUpdated = dateUpdated;
-
+            travel.Mode = mode;
             db.Travel.Add(travel);
             db.SaveChanges();
 

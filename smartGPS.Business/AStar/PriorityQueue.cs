@@ -25,6 +25,11 @@ namespace smartGPS.Business.AStar
             return nodes.Count();
         }
 
+        public AStarNode get(int position)
+        {
+            return nodes.ElementAt(position);
+        }
+
         public AStarNode poll()
         {
             AStarNode tmp = nodes.First();
@@ -37,6 +42,19 @@ namespace smartGPS.Business.AStar
         {
             nodes.Add(node);
             nodes.Sort();
+        }
+
+        public void removeAt(int position)
+        {
+            if (position < size())
+            {
+                nodes.RemoveAt(position);
+            }
+        }
+
+        public void remove(AStarNode node)
+        {
+            nodes.Remove(node);
         }
     }
 }

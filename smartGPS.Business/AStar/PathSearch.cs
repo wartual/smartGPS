@@ -12,12 +12,18 @@ namespace smartGPS.Business.AStar
 {
     public class PathSearch
     {
+        public static int WALKING = 0;
+        public static int DRIVING = 1;
+
         private double rainCoefficient { get; set; }
         private double trafficCoefficinet { get; set; }
         private double trafficRadius { get; set; }
         private Haversine Haversine { get; set; }
         private List<WeatherResponse> weatherPoints { get; set; }
         private Dictionary<long, Event> trafficEvents { get; set; }
+        private Dictionary<int, AStarNode> openSet { get; set; }
+        private Dictionary<int, AStarNode> closedSet{get; set; }
+        private PriorityQueue queue { get; set; }
 
         public PathSearch()
         {
@@ -170,19 +176,20 @@ namespace smartGPS.Business.AStar
 
         // Calculates best route using user data and current data. It uses A star alorithm that allows loops due to possible route that must go to
         // the same node twice. This poses danger of long calculation time in certain cases.
-        public List<SmartNode> search(double startLat, double startLong, double targetLat, double targetLong, int div)
+        public List<SmartNode> search(double startLat, double startLong, double targetLat, double targetLong, int mode, int div)
         {
             List<SmartNode> returnList = new List<SmartNode>();
             int tempTime = 0;
             int weatherIndex = 0;
             int trafficIndex;
 
-            Dictionary<int, AStarNode> openSet = new Dictionary<int, AStarNode>();
-            Dictionary<int, AStarNode> closedSet = new Dictionary<int, AStarNode>();
-            PriorityQueue queue = new PriorityQueue();
+            openSet = new Dictionary<int, AStarNode>();
+            closedSet = new Dictionary<int, AStarNode>();
+            queue = new PriorityQueue();
             AStarNode goal = null;
             AStarNode startNode = closestAStarNode(startLat, startLong);
             AStarNode target = closestAStarNode(targetLat, targetLong);
+            AStarNode nodeForEarlyExploration = null;
             WeatherResponse weather;
             Event roadEvent;
             double g;
@@ -195,11 +202,16 @@ namespace smartGPS.Business.AStar
             openSet.Add(startNode.id, startNode);
             queue.add(startNode);
 
+            int howMuch = 0;
+            AStarNode x;
+
             while (openSet.Count > 0)
             {
-                //get best candidate from open set
-                AStarNode x = queue.poll();
+                howMuch++;
+                div = 1;
+                x = queue.poll();
                 openSet.Remove(x.id);
+                double tmp_distance = Haversine.Distance(x.latitude, x.longitude, target.latitude, target.longitude, Custom.Haversine.DistanceType.Kilometers);
 
                 if (x.id == target.id)
                 {
@@ -212,25 +224,32 @@ namespace smartGPS.Business.AStar
                         closedSet[x.id] = x;
                     else
                         closedSet.Add(x.id, x);
-                    x.getNeighbourEdges();
+                    x.getNeighbourEdges(mode);
 
                     weatherIndex = getClosestWeatherPoint(x.latitude, x.longitude);
                     weather = weatherPoints.ElementAt(weatherIndex);
 
                     roadEvent = getClosestTrafficEvent(x.latitude, x.longitude);
 
-
                      foreach (AStarEdge neighbor in x.outEdges) 
                      {
                          // calculate cost
                          if(weather.Rain != null && weather.Rain.Last3Hours != 0 && roadEvent != null)
-                             g = x.g + (3.6 * neighbor.length) / (neighbor.speedLimit) + rainCoefficient + trafficCoefficinet;
-                         else if(roadEvent == null && weather.Rain != null && weather.Rain.Last3Hours == 0)
-                             g = x.g + (3.6 * neighbor.length) / (neighbor.speedLimit) + rainCoefficient;
+                             g = x.g + neighbor.length / 1000 + rainCoefficient + trafficCoefficinet;
+                         else if(roadEvent == null && weather.Rain != null && weather.Rain.Last3Hours != 0)
+                             g = x.g + neighbor.length / 1000 + rainCoefficient;
                         else if(weather.Rain == null && roadEvent != null)
-                             g = x.g + (3.6 * neighbor.length) / (neighbor.speedLimit) + trafficCoefficinet;
+                             g = x.g + neighbor.length / 1000  + trafficCoefficinet;
                          else
-                             g = x.g + (3.6 * neighbor.length) / (neighbor.speedLimit);
+                             g = x.g + neighbor.length / 1000;
+
+
+
+                         // check travel mode and add extra cost
+                         if (mode == 0 && !Config.WALKING_OPTIONS.Contains(neighbor.type))
+                             g = g + Config.WAY_TYPE_FORBIDDEN_COEFFICIENT;
+                         else if (mode == 1 && !Config.DRIVING_OPTIONS.Contains(neighbor.type))
+                             g = g + Config.WAY_TYPE_FORBIDDEN_COEFFICIENT;
 
                          AStarNode n = null;
 
@@ -287,5 +306,7 @@ namespace smartGPS.Business.AStar
 
             return returnList;
         }
+
+        
     }
 }

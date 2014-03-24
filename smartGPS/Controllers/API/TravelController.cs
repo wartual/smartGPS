@@ -234,7 +234,7 @@ namespace smartGPS.Controllers.API
                 else
                 {
                     String id = TravelManager.newTravel(model.userId, model.statusId, model.destinationAddress, model.currentLatitude, model.currentLongitude, model.destinationLatitude, model.destinationLongitude,
-                                                model.departureAddress, model.departureLatitude, model.departureLongitude, model.time, model.distance, null);
+                                                model.departureAddress, model.departureLatitude, model.departureLongitude, model.time, model.distance, null, model.mode);
                     response.Status = SmartResponseType.RESULT_OK;
                     response.Message = id;
                     return Request.CreateResponse(HttpStatusCode.OK, response);
@@ -315,7 +315,7 @@ namespace smartGPS.Controllers.API
         {
             PathSearch pathSearch = new PathSearch();
             Haversine haversine = new Haversine();
-            List<SmartNode> nodes = pathSearch.search(model.departureLatitude, model.departureLongitude, model.destinationLatitude, model.destinationLongitude, 11);
+            List<SmartNode> nodes = pathSearch.search(model.departureLatitude, model.departureLongitude, model.destinationLatitude, model.destinationLongitude, model.mode, 11);
             SmartLocation lastLocation = new SmartLocation(0, 0);
 
             List<SmartNode> directions = new List<SmartNode>();
@@ -329,31 +329,35 @@ namespace smartGPS.Controllers.API
                 if (haversine.Distance(new SmartLocation(node.latitude, node.longitude), lastLocation, Haversine.DistanceType.Kilometers) > 2.5)
                 {
                     venues = FourqsquareManagement.getExploreVenuesByCategories(node.latitude, node.longitude, model.userId, 100);
+                    int k = 0;
                     foreach (GroupItems item in venues.Response.Groups.ElementAt(0).Items)
                     {
-                        List<SmartNode> tmpNodes = pathSearch.search(directions.Last().latitude, directions.Last().longitude, item.Venue.Location.Latitude, item.Venue.Location.Longitude, 11);
+                        k++;
+                        List<SmartNode> tmpNodes = pathSearch.search(directions.Last().latitude, directions.Last().longitude, item.Venue.Location.Latitude, item.Venue.Location.Longitude, model.mode, 11);
                         SmartNode venue = tmpNodes.Last();
 
                         tmpNodes.RemoveAt(tmpNodes.Count() - 1);
 
                         directions.AddRange(tmpNodes);
-                        directions.Add(new SmartNode(venue.latitude, venue.longitude, venue.id , "foursquare", item.Venue.Categories.ElementAt(0).Icon.Prefix, item.Venue.Categories.ElementAt(0).Icon.Sufix));
-                        // directions.Add(new SmartNode(item.Venue.Location.Latitude, item.Venue.Location.Longitude, "foursquare"));
+                        directions.Add(new SmartNode(venue.latitude, venue.longitude, venue.id , "foursquare", item.Venue.Categories.ElementAt(0).Icon.Prefix, item.Venue.Categories.ElementAt(0).Icon.Sufix, item.Venue.Name, item.Venue.Categories.ElementAt(0).Name));
                     }
 
+                    
+                    // TO DO
+                    // TESTIRAJ NA NAČIN DA OVO MAKNEŠ VAN
                     // return to next point
                     List<SmartNode> returnPath;
                     if (i + 1 < nodes.Count)
                     {
-                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, nodes.ElementAt(i + 1).latitude, nodes.ElementAt(i + 1).longitude, 11);
+                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, nodes.ElementAt(i + 1).latitude, nodes.ElementAt(i + 1).longitude, model.mode ,11);
                     }
                     else
                     {
-                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, node.latitude, node.longitude, 11);
+                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, node.latitude, node.longitude, model.mode, 11);
 
                     }
                     directions.AddRange(returnPath);
-
+                    
                     lastLocation.Latitude = node.latitude;
                     lastLocation.Longitude = node.longitude;
                 }
@@ -375,11 +379,13 @@ namespace smartGPS.Controllers.API
             else
             {
                 id = TravelManager.newTravel(model.userId, model.statusId, model.destinationAddress, model.currentLatitude, model.currentLongitude, model.destinationLatitude, model.destinationLongitude,
-                                             model.departureAddress, model.departureLatitude, model.departureLongitude, model.time, model.distance, json);
+                                             model.departureAddress, model.departureLatitude, model.departureLongitude, model.time, model.distance, json, model.mode);
             }
             
             smartGPS.Persistance.User user = UserAdministration.getUserByUserId(model.userId);
             NotificationsManager.sendNodes(user.GcmId, id, travel);
+
+            OpenMapDAO.clearCache();
         }
 
         private APITravel mapToAPITravel(Travel model)

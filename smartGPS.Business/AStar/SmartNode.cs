@@ -26,6 +26,12 @@ namespace smartGPS.Business.AStar
         [JsonProperty("iconSufix")]
         public String sufix;
 
+        [JsonProperty("title")]
+        public String title;
+
+        [JsonProperty("category")]
+        public String category;
+
         public SmartNode()
         {
             latitude = 0;
@@ -34,6 +40,8 @@ namespace smartGPS.Business.AStar
             type = "regular";
             prefix = null;
             sufix = null;
+            title = null;
+            category = null;
         }
 
         public SmartNode(double _lat, double _long, double _id)
@@ -44,6 +52,8 @@ namespace smartGPS.Business.AStar
             type = "regular";
             prefix = null;
             sufix = null;
+            title = null;
+            category = null;
         }
 
         public SmartNode(double _lat, double _long, string _type)
@@ -54,9 +64,11 @@ namespace smartGPS.Business.AStar
             type = _type;
             prefix = null;
             sufix = null;
+            title = null;
+            category = null;
         }
 
-        public SmartNode(double _lat, double _long, double _id,  string _type, String _prefix, String _sufix)
+        public SmartNode(double _lat, double _long, double _id,  string _type, String _prefix, String _sufix, String _title, String _category)
         {
             latitude = _lat;
             longitude = _long;
@@ -64,6 +76,8 @@ namespace smartGPS.Business.AStar
             type = _type;
             prefix = _prefix;
             sufix = _sufix;
+            title = _title;
+            category = _category;
         }
     }
 }
