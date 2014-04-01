@@ -208,7 +208,6 @@ namespace smartGPS.Business.AStar
             while (openSet.Count > 0)
             {
                 howMuch++;
-                div = 1;
                 x = queue.poll();
                 openSet.Remove(x.id);
                 double tmp_distance = Haversine.Distance(x.latitude, x.longitude, target.latitude, target.longitude, Custom.Haversine.DistanceType.Kilometers);
@@ -246,7 +245,7 @@ namespace smartGPS.Business.AStar
                          if (n == null)
                          {
                              n = new AStarNode(neighbor.getEndNode().id, neighbor.getEndNode().latitude, neighbor.getEndNode().longitude);
-                             n.h = Haversine.Distance(n.latitude, n.longitude, target.latitude, target.longitude, Custom.Haversine.DistanceType.Kilometers) / div;
+                             n.h = Haversine.Distance(n.latitude, n.longitude, target.latitude, target.longitude, Custom.Haversine.DistanceType.Kilometers) * div;
                              n.cameFrom = x;
                              n.g = g;
                              openSet.Add(n.id, n);
@@ -256,7 +255,7 @@ namespace smartGPS.Business.AStar
                          {
                              //Have a better route to the current node, change its parent
                              n.cameFrom = x;
-                             n.h = Haversine.Distance(n.latitude, n.longitude, target.latitude, target.longitude, Custom.Haversine.DistanceType.Kilometers) / div;
+                             n.h = Haversine.Distance(n.latitude, n.longitude, target.latitude, target.longitude, Custom.Haversine.DistanceType.Kilometers) * div;
                              n.g = g;
                          }
                      }

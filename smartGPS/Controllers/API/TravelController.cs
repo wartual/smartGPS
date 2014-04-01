@@ -315,7 +315,7 @@ namespace smartGPS.Controllers.API
         {
             PathSearch pathSearch = new PathSearch();
             Haversine haversine = new Haversine();
-            List<SmartNode> nodes = pathSearch.search(model.departureLatitude, model.departureLongitude, model.destinationLatitude, model.destinationLongitude, model.mode, 11);
+            List<SmartNode> nodes = pathSearch.search(model.departureLatitude, model.departureLongitude, model.destinationLatitude, model.destinationLongitude, model.mode, 1);
             SmartLocation lastLocation = new SmartLocation(0, 0);
 
             List<SmartNode> directions = new List<SmartNode>();
@@ -333,7 +333,7 @@ namespace smartGPS.Controllers.API
                     foreach (GroupItems item in venues.Response.Groups.ElementAt(0).Items)
                     {
                         k++;
-                        List<SmartNode> tmpNodes = pathSearch.search(directions.Last().latitude, directions.Last().longitude, item.Venue.Location.Latitude, item.Venue.Location.Longitude, model.mode, 11);
+                        List<SmartNode> tmpNodes = pathSearch.search(directions.Last().latitude, directions.Last().longitude, item.Venue.Location.Latitude, item.Venue.Location.Longitude, model.mode, 1);
                         SmartNode venue = tmpNodes.Last();
 
                         tmpNodes.RemoveAt(tmpNodes.Count() - 1);
@@ -349,11 +349,11 @@ namespace smartGPS.Controllers.API
                     List<SmartNode> returnPath;
                     if (i + 1 < nodes.Count)
                     {
-                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, nodes.ElementAt(i + 1).latitude, nodes.ElementAt(i + 1).longitude, model.mode ,11);
+                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, nodes.ElementAt(i + 1).latitude, nodes.ElementAt(i + 1).longitude, model.mode ,1);
                     }
                     else
                     {
-                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, node.latitude, node.longitude, model.mode, 11);
+                        returnPath = pathSearch.search(directions.Last().latitude, directions.Last().longitude, node.latitude, node.longitude, model.mode, 1);
 
                     }
                     directions.AddRange(returnPath);
