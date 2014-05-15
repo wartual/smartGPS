@@ -236,7 +236,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/15/2014 22:16:16</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
+<<<<<<< HEAD
       <publishTime>05/15/2014 23:17:57</publishTime>
+=======
+      <publishTime>05/15/2014 22:18:12</publishTime>
+>>>>>>> master
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
       <publishTime>05/15/2014 21:40:15</publishTime>
