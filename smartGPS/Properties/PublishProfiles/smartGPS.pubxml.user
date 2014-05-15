@@ -74,7 +74,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2013 21:04:03</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/PlaceDetails.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>01/19/2014 17:07:47</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/PreviewTravel.cshtml">
       <publishTime>01/19/2014 17:07:47</publishTime>
@@ -233,13 +233,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>03/16/2014 22:02:24</publishTime>
+      <publishTime>05/14/2014 21:17:10</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>03/16/2014 22:02:26</publishTime>
+      <publishTime>05/14/2014 21:17:13</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>03/16/2014 22:02:23</publishTime>
+      <publishTime>05/14/2014 21:17:09</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>10/04/2012 00:21:08</publishTime>
@@ -560,7 +560,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="Images/orderedList7.png">
-      <publishTime>10/22/2013 22:13:21</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Images/orderedList8.png">
       <publishTime>10/22/2013 22:13:21</publishTime>

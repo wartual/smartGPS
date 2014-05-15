@@ -67,7 +67,11 @@ namespace smartGPS.Persistance
             travel.CurrentLatitude = currentLatitude;
             travel.CurrentLongitude = currentLongitude;
             travel.Distance = distance;
-            travel.Directions = directions.Trim();
+            if (travel.Directions != null)
+            {
+                travel.Directions = directions.Trim();
+            }
+
             travel.Id = id;
             travel.StatusId = statusId;
             travel.Time = time;
