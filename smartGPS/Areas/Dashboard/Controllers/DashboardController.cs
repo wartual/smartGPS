@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using smartGPS.Areas.Dashboard.Models;
 using smartGPS.Business;
 using smartGPS.Business.AStar;
 using smartGPS.Business.CBA;
@@ -26,11 +27,9 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         public ActionResult Index()
         {
-            PathSearch pathSearch = new PathSearch();
-           // pathSearch.search(46.056450999999996, 14.50807, 46.0744955, 14.48583009999993, 11);
-           // pathSearch.search(46.05737474638258, 14.50594425201416, 46.05445617291736, 14.504635334014893, 11);
-            
-            return View();
+            Profile profile = UserAdministration.getProfileByUserId(User.Identity.Name);
+            ProfileModel viewModel = smartGPS.Areas.Administration.Models.Mapping.usersToProfileModel(profile);
+            return View(viewModel);
         }
 
         [HttpPut]
