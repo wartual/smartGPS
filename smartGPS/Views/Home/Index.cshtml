@@ -231,24 +231,6 @@
                     <a class="brand" href="#">smartGPS</a>
                     <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
                     <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <!-- Read about Bootstrap dropdowns at http://twbs.github.com/bootstrap/javascript.html#dropdowns -->
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                         <ul class="nav pull-right">
                             <li>@Html.ActionLink("Sign up", "Index", "SignUp", new { area = "Administration" }, null)</li>
                             <li>@Html.ActionLink("Sign in", "Index", "SignIn", new { area = "Administration" }, null)</li>
@@ -275,8 +257,8 @@
                 <img src="~/Content/img/slide-01.jpg" />
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>Example headline.</h1>
-                        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <h1>Personalize travels</h1>
+                        <p class="lead">Personalize your travels and adapt travel directions to your interests by using different machine learning algorithms.</p>
                         @Html.ActionLink("Sign in", "Index", "SignIn", new { area = "Administration" }, new { @class = "btn btn-large btn-primary" })
                     </div>
                 </div>
@@ -285,8 +267,8 @@
                 <img src="~/Content/img/slide-02.jpg" />
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <h1>Increase safety</h1>
+                        <p class="lead">Sick and tired of dull trafic jams? Want to go for a walk, but suddenly it starts to rain? Avoid traffic jams and bad weather with our predictive algorithms!</p>
                         <a class="btn btn-large btn-primary" href="#">Learn more</a>
                     </div>
                 </div>
@@ -295,9 +277,9 @@
                 <img src="~/Content/img/slide-03.jpg" />
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>One more for good measure.</h1>
-                        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+                        <h1>Be social</h1>
+                        <p class="lead">Share information about your interests, events, sights and many more with other users!</p>
+                        <a class="btn btn-large btn-primary" href="#">Learn more</a>
                     </div>
                 </div>
             </div>
@@ -319,23 +301,20 @@
         <div class="row">
             <div class="span4">
                 <img class="img-circle" data-src="holder.js/140x140">
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
+                <h2>Personalize travels</h2>
+                <p>Personalize your travels and adapt travel directions to your interests by using different machine learning algorithms.</p>
             </div>
             <!-- /.span4 -->
             <div class="span4">
                 <img class="img-circle" data-src="holder.js/140x140">
-                <h2>Heading</h2>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
+                <h2>Increase safety</h2>
+                <p>Sick and tired of dull trafic jams? Want to go for a walk, but suddenly it starts to rain? Avoid traffic jams and bad weather with our predictive algorithms!</p>
             </div>
             <!-- /.span4 -->
             <div class="span4">
                 <img class="img-circle" data-src="holder.js/140x140">
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
+                <h2>Be social</h2>
+                <p>Share information about your interests, events, sights and many more with other users!</p>
             </div>
             <!-- /.span4 -->
         </div>
@@ -346,37 +325,13 @@
 
         <hr class="featurette-divider">
 
-        <div class="featurette">
-            <img class="featurette-image pull-right" src="~/Content/img/browser-icon-chrome.png" />
-            <h2 class="featurette-heading">First featurette headling. <span class="muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="featurette">
-            <img class="featurette-image pull-right" src="~/Content/img/browser-icon-firefox.png" />
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="featurette">
-            <img class="featurette-image pull-right" src="~/Content/img/browser-icon-safari.png" />
-            <h2 class="featurette-heading">And lastly, this one. <span class="muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-
-        <hr class="featurette-divider">
-
         <!-- /END THE FEATURETTES -->
 
 
         <!-- FOOTER -->
         <footer>
             <p class="pull-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+            <p>&copy; 2013 smartGPS &middot;</p>
         </footer>
 
     </div>
