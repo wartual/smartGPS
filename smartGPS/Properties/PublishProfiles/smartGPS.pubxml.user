@@ -233,13 +233,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>05/14/2014 21:17:10</publishTime>
+      <publishTime>05/15/2014 21:40:17</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>05/14/2014 21:17:13</publishTime>
+      <publishTime>05/15/2014 21:40:19</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>05/14/2014 21:17:09</publishTime>
+      <publishTime>05/15/2014 21:40:15</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>10/04/2012 00:21:08</publishTime>
@@ -392,7 +392,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:38:30</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.all.css">
-      <publishTime>10/22/2013 22:38:30</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.autocomplete.css">
       <publishTime>10/22/2013 22:38:30</publishTime>
@@ -560,7 +560,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="Images/orderedList7.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/22/2013 22:13:21</publishTime>
     </File>
     <File Include="Images/orderedList8.png">
       <publishTime>10/22/2013 22:13:21</publishTime>
