@@ -9,6 +9,8 @@ namespace smartGPS.Business.ExternalServices
 {
     public class Config
     {
+        public static String TRAVEL_ACTIVE = "345a63cb-c017-479e-ba72-a1e34ae2ceaf";
+
         public static String getFacebookAppToken = "526242434133615|tlfuadfwXk4Qu5kS9L7W-DkDQFQ";
 
         public static String GOOGLE_SERVER_API = "AIzaSyAZM05G9vmxsBScFmW42iI0geoGmdryG0g";

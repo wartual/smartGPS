@@ -12,6 +12,7 @@ using smartGPS.Business.ExternalServices;
 using smartGPS.Business.Models.Foursquare;
 using smartGPS.Business.Models.GoogleModels;
 using smartGPS.Custom;
+using smartGPS.Models;
 using smartGPS.Persistance;
 
 namespace smartGPS.Areas.Dashboard.Controllers
@@ -113,6 +114,31 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult SendTravelToMobile(String latitude, String longitude, String destinationLongitude, String destinationLatitude, String departureAddress, String destinationAddress)
+        {
+            try
+            {
+                PlannedTravelModel plannedTravel = new PlannedTravelModel();
+                plannedTravel.destinationLatitude = Double.Parse(destinationLatitude);
+                plannedTravel.destinationLongitude = Double.Parse(destinationLongitude);
+                plannedTravel.departureLatitude = Double.Parse(latitude);
+                plannedTravel.departureLongitude = Double.Parse(longitude);
+                plannedTravel.departureAddress = departureAddress;
+                plannedTravel.destinationAddress = destinationAddress;
+                plannedTravel.proposedTravel = true;
+                smartGPS.Persistance.User user = UserAdministration.getUserByUserId(User.Identity.Name);
+                NotificationsManager.sendTravelNotification(user.GcmId, JsonConvert.SerializeObject(plannedTravel));
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return View("NewTravle");
+            }
+        }
+
         [HttpGet]
         public ActionResult PlaceDetails(int id, String lat, String lon)
         {
@@ -198,7 +224,7 @@ namespace smartGPS.Areas.Dashboard.Controllers
             locations = GoogleManagement.getLocationsFromAddress(address);
             String formattedAddress = locations.ElementAt(index).FormattedAddress;
             googleGeocoder = GoogleManagement.getDataFromGoogleApis(address);
-            return googleGeocoder.Results.ElementAt(0).Geometry;
+            return googleGeocoder.Results.ElementAt(index).Geometry;
         }
 
         private DirectionsModel mapGoogleDirectionsToDirectionsModel(DirectionsModel directions, GoogleMapsDirectionsResponse googleDirections, String mode)
