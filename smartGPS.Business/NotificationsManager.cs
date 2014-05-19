@@ -146,6 +146,32 @@ namespace smartGPS.Business
             }
         }
 
+        public static void sendTravelNotification(string regId, string travel)
+        {
+            var applicationID = Config.GOOGLE_SERVER_API;
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://android.googleapis.com/gcm/send");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            httpWebRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{\"registration_ids\":[\"" + regId + "\"]," +
+                            "\"data\": " + travel + "}";
+                Console.WriteLine(json);
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    Console.WriteLine(result);
+                }
+            }
+        }
+
         public static void notifyUsersNearNotification(String notificationId, String userId)
         {
             Notifications notification = getById(notificationId);

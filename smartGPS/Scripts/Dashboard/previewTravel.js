@@ -33,6 +33,20 @@
     var neBound = new google.maps.LatLng(neBoundLat, neBoundLng);
     var travelPath = null;
 
+    $("#send").click(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: ("SendTravelToMobile"),
+            type: ("POST"),
+            data: { latitude: $("#startLatitude").val(), longitude: $("#startLongitude").val(), destinationLatitude: $("#endLatitude").val(), destinationLongitude: $("#endLongitude").val()
+                                                , departureAddress: startAddress, destinationAddress: endAddress},
+            success: function (data) {
+                //refreshDestinationFromGPSCoordinates(data);
+            }
+        });
+    });
+
+
 
     google.maps.event.addDomListener(window, 'load', initialize);
    

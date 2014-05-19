@@ -214,6 +214,7 @@
     <Compile Include="Controllers\API\PlacesController.cs" />
     <Compile Include="Controllers\API\TravelController.cs" />
     <Compile Include="Controllers\API\UserController.cs" />
+    <Compile Include="Models\PlannedTravelModel.cs" />
     <Compile Include="Models\SmartResponseType.cs" />
     <Compile Include="Models\UserAdministration\APIAddNotification.cs" />
     <Compile Include="Models\UserAdministration\APIDeactivateNotification.cs" />
