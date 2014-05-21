@@ -31,7 +31,7 @@
 <!-- Tab panes -->
 <div class="tab-content" id="tabs">
     <div class="tab-pane active" id="preview">
-         @using (Html.BeginForm("Index", "SignUp", FormMethod.Post, new { @class = "form-horizontal" }))
+         @using (Html.BeginForm("SendTravelToMobile", "Travel", FormMethod.Post, new { @class = "form-horizontal" }))
         {
             @Html.ValidationSummary(true)
             <div class="control-group">
@@ -71,7 +71,7 @@
     
             <div class="control-group">
                 <div class="controls">
-                    <button class="btn btn-large btn-success" type="submit">Send to mobile phone</button>
+                    <button class="btn btn-large btn-success" type="submit" id="send" name="send">Send to mobile phone</button>
                 </div>
             </div>
         }
