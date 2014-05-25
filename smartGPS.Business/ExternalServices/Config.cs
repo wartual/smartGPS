@@ -9,8 +9,6 @@ namespace smartGPS.Business.ExternalServices
 {
     public class Config
     {
-        public static String TRAVEL_ACTIVE = "345a63cb-c017-479e-ba72-a1e34ae2ceaf";
-
         public static String getFacebookAppToken = "526242434133615|tlfuadfwXk4Qu5kS9L7W-DkDQFQ";
 
         public static String GOOGLE_SERVER_API = "AIzaSyAZM05G9vmxsBScFmW42iI0geoGmdryG0g";
@@ -111,5 +109,10 @@ namespace smartGPS.Business.ExternalServices
                 return 0;
         }
 
+        public static String TRAVEL_PAUSED = "2f3ed782-dcbf-47e5-b57b-3412d683f9dc";
+
+        public static String TRAVEL_ACTIVE = "345a63cb-c017-479e-ba72-a1e34ae2ceaf";
+
+        public static String TRAVEL_FINISHED = "9b816139-e6ce-497f-836c-2b5a2f198338";
     }
 }

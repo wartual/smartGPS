@@ -33,6 +33,15 @@ namespace smartGPS.Areas.Dashboard.Controllers
         }
 
 
+        #region History
+
+       
+
+        #endregion
+
+
+        #region Travel
+
         public ActionResult NewTravel()
         {
             SetupTravelModel model = new SetupTravelModel();
@@ -163,6 +172,9 @@ namespace smartGPS.Areas.Dashboard.Controllers
             return View(exploreVenues.Response.Groups.ElementAt(0).Items.ElementAt(id));
         }
 
+        #endregion
+
+
         #region Utilities
 
         private String getEventAddress(GroupItems item)
@@ -263,6 +275,8 @@ namespace smartGPS.Areas.Dashboard.Controllers
 
             return typesOfNavigation;
         }
+
+       
 
         #endregion
 
