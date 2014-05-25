@@ -1,0 +1,40 @@
+﻿@model List<smartGPS.Areas.Dashboard.Models.TravelModel>
+
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Travel history</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Date created</td>
+            <td>Departure</td>
+            <td>Destination</td>
+            <td>Status</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.DateCreated.ToShortDateString()
+                </td>
+                <td>
+                    @item.DepartureAddress
+                </td>
+                <td>
+                    @item.DestinationAddress
+                </td>
+                <td>
+                    @item.Status
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

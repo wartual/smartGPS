@@ -204,10 +204,12 @@
     <Compile Include="Areas\Administration\Controllers\SignUpController.cs" />
     <Compile Include="Areas\Administration\Models\Mapping.cs" />
     <Compile Include="Areas\Dashboard\Controllers\BaseDashboardController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\HistoryController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\SearchController.cs" />
     <Compile Include="Areas\Dashboard\Models\FacebookStatisticsModel.cs" />
     <Compile Include="Areas\Dashboard\Models\FoursquareStatisticsModel.cs" />
     <Compile Include="Areas\Dashboard\Models\SearchModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\TravelModel.cs" />
     <Compile Include="Controllers\API\BaseAPIController.cs" />
     <Compile Include="Controllers\API\EventsController.cs" />
     <Compile Include="Controllers\API\NotificationController.cs" />
@@ -356,6 +358,7 @@
     <Content Include="Areas\Dashboard\Views\Profile\_FacebookStatistics.cshtml" />
     <Content Include="Areas\Dashboard\Views\Profile\_FoursquareStatistics.cshtml" />
     <Content Include="Areas\Dashboard\Views\Profile\_UserCategory.cshtml" />
+    <Content Include="Areas\Dashboard\Views\History\Index.cshtml" />
     <None Include="Properties\PublishProfiles\openLavbic.pubxml" />
     <None Include="Properties\PublishProfiles\smartGPS.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
