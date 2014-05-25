@@ -46,6 +46,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Areas/Dashboard/Views/ExternalServices/_FoursquareLogin.cshtml">
       <publishTime>01/30/2014 21:45:15</publishTime>
     </File>
+    <File Include="Areas/Dashboard/Views/History/Index.cshtml">
+      <publishTime>05/25/2014 19:42:28</publishTime>
+    </File>
     <File Include="Areas/Dashboard/Views/Profile/Index.cshtml">
       <publishTime>02/14/2014 11:22:05</publishTime>
     </File>
@@ -65,13 +68,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/19/2014 17:07:47</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Shared/_Layout.cshtml">
-      <publishTime>05/16/2014 00:00:21</publishTime>
+      <publishTime>05/25/2014 19:42:28</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/EventDetails.cshtml">
       <publishTime>01/19/2014 17:07:47</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/Index.cshtml">
-      <publishTime>11/20/2013 21:04:03</publishTime>
+      <publishTime>05/25/2014 19:42:28</publishTime>
     </File>
     <File Include="Areas/Dashboard/Views/Travel/PlaceDetails.cshtml">
       <publishTime>01/19/2014 17:07:47</publishTime>
@@ -233,13 +236,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2013 22:14:06</publishTime>
     </File>
     <File Include="bin/smartGPS.Business.dll">
-      <publishTime>05/21/2014 19:54:51</publishTime>
+      <publishTime>05/25/2014 19:46:27</publishTime>
     </File>
     <File Include="bin/smartGPS.dll">
-      <publishTime>05/21/2014 20:13:40</publishTime>
+      <publishTime>05/25/2014 19:46:28</publishTime>
     </File>
     <File Include="bin/smartGPS.Persistance.dll">
-      <publishTime>05/15/2014 21:40:15</publishTime>
+      <publishTime>05/25/2014 19:46:06</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>10/04/2012 00:21:08</publishTime>
